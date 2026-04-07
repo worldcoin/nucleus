@@ -1,4 +1,4 @@
-name: Build Design Tokens
+name: Verify Design Tokens
 
 on:
   push:
@@ -21,6 +21,7 @@ jobs:
           cache: npm
 
       - run: npm ci
+      - run: npm run format:check
       - run: npm run lint
       - run: npm run typecheck
       - run: npm run build

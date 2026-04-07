@@ -23,6 +23,8 @@ jobs:
           PR_NUMBER: ${{ github.event.pull_request.number }}
           PR_LABELS: ${{ toJson(github.event.pull_request.labels.*.name) }}
         run: |
+          REMINDER='This PR changes design tokens or API surface but has no release label. To make a release, please add one of: `major`, `minor`, `patch`.'
+
           # Count release labels on this PR
           RELEASE_LABELS=$(echo "$PR_LABELS" | jq '[.[] | select(. == "major" or . == "minor" or . == "patch")] | length')
 
@@ -40,9 +42,12 @@ jobs:
           CHANGED=$(git diff --name-only origin/main...HEAD -- 'src/tokens/' 'src/formats/' 'src/templates/' || true)
 
           if [ -n "$CHANGED" ]; then
-            echo "Token-related files changed but no release label found. Posting comment."
-            gh pr comment "$PR_NUMBER" --body \
-              "This PR changes design tokens or API surface but has no release label. To make a release, please add one of: \`major\`, \`minor\`, \`patch\`."
+            if gh pr view "$PR_NUMBER" --json comments --jq '.comments[].body' | grep -Fq "$REMINDER"; then
+              echo "Token-related files changed but reminder already exists. Skipping comment."
+            else
+              echo "Token-related files changed but no release label found. Posting comment."
+              gh pr comment "$PR_NUMBER" --body "$REMINDER"
+            fi
           else
             echo "No release label and no token file changes. Skipping."
           fi

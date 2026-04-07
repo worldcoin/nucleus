@@ -8,6 +8,8 @@
     "build": "npm run clean && tsx src/tokens/build.ts",
     "typecheck": "tsc --noEmit",
     "lint": "oxlint",
+    "format": "prettier --write \"**/*.json\"",
+    "format:check": "prettier --check \"**/*.json\"",
     "clean": "rm -rf build"
   },
   "dependencies": {
@@ -17,6 +19,7 @@
   "devDependencies": {
     "@types/node": "^25.3.3",
     "oxlint": "^1.51.0",
+    "prettier": "^3.8.1",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
