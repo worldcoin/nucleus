@@ -23,7 +23,7 @@ jobs:
           PR_NUMBER: ${{ github.event.pull_request.number }}
           PR_LABELS: ${{ toJson(github.event.pull_request.labels.*.name) }}
         run: |
-          REMINDER='This PR changes design tokens or API surface but has no release label. To make a release, please add one of: `major`, `minor`, `patch`.'
+          REMINDER='This PR changes potentially changes design tokens or the API surface. To make a release, please add one of: `major`, `minor`, `patch`.'
 
           # Count release labels on this PR
           RELEASE_LABELS=$(echo "$PR_LABELS" | jq '[.[] | select(. == "major" or . == "minor" or . == "patch")] | length')
