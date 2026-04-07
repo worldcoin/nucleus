@@ -1,0 +1,218 @@
+{
+    "semantic": {
+        "color": {
+            "surface": {
+            "primary": {
+                "$value": "{primitive.color.black}",
+                "$type": "color"
+            },
+            "secondary": {
+                "$value": "{primitive.color.grey.950}",
+                "$type": "color"
+            },
+            "tertiary": {
+                "$value": "{primitive.color.grey.900}",
+                "$type": "color"
+            },
+            "overlay": {
+                "$value": "#000000CC",
+                "$type": "color"
+            },
+            "elevated": {
+                "$value": "{primitive.color.grey.900}",
+                "$type": "color"
+            }
+        },
+        "text": {
+            "primary": {
+                "$value": "{primitive.color.white}",
+                "$type": "color"
+            },
+            "secondary": {
+                "$value": "{primitive.color.grey.500}",
+                "$type": "color"
+            },
+            "tertiary": {
+                "$value": "{primitive.color.grey.700}",
+                "$type": "color"
+            },
+            "disabled": {
+                "$value": "{primitive.color.grey.800}",
+                "$type": "color"
+            },
+            "inverse": {
+                "$value": "{primitive.color.black}",
+                "$type": "color"
+            }
+        },
+        "icon": {
+            "primary": {
+                "$value": "{primitive.color.white}",
+                "$type": "color"
+            },
+            "secondary": {
+                "$value": "{primitive.color.grey.500}",
+                "$type": "color"
+            },
+            "tertiary": {
+                "$value": "{primitive.color.grey.600}",
+                "$type": "color"
+            },
+            "disabled": {
+                "$value": "{primitive.color.grey.700}",
+                "$type": "color"
+            },
+            "inverse": {
+                "$value": "{primitive.color.black}",
+                "$type": "color"
+            }
+        },
+        "border": {
+            "subtle": {
+                "$value": "{primitive.color.grey.900}",
+                "$type": "color"
+            },
+            "default": {
+                "$value": "{primitive.color.grey.800}",
+                "$type": "color"
+            },
+            "strong": {
+                "$value": "{primitive.color.grey.700}",
+                "$type": "color"
+            },
+            "focus": {
+                "$value": "{primitive.color.white}",
+                "$type": "color"
+            },
+            "divider": {
+                "$value": "{primitive.color.grey.800}",
+                "$type": "color"
+            },
+            "translucent": {
+                "$value": "#FFFFFF0A",
+                "$type": "color"
+            }
+        },
+        "action": {
+            "primary": {
+                "$value": "{primitive.color.white}",
+                "$type": "color"
+            },
+            "primaryContent": {
+                "$value": "{primitive.color.grey.950}",
+                "$type": "color"
+            },
+            "secondary": {
+                "$value": "{primitive.color.grey.800}",
+                "$type": "color"
+            },
+            "secondaryContent": {
+                "$value": "{primitive.color.white}",
+                "$type": "color"
+            },
+            "tertiary": {
+                "$value": "{primitive.color.black}",
+                "$type": "color"
+            },
+            "tertiaryContent": {
+                "$value": "{primitive.color.white}",
+                "$type": "color"
+            },
+            "destructive": {
+                "$value": "{primitive.color.error.600}",
+                "$type": "color"
+            },
+            "destructiveContent": {
+                "$value": "{primitive.color.white}",
+                "$type": "color"
+            },
+            "disabled": {
+                "$value": "{primitive.color.grey.900}",
+                "$type": "color"
+            },
+            "disabledContent": {
+                "$value": "{primitive.color.grey.600}",
+                "$type": "color"
+            },
+            "ghost": {
+                "$value": "#FFFFFF14",
+                "$type": "color"
+            },
+            "ghostContent": {
+                "$value": "{primitive.color.white}",
+                "$type": "color"
+            }
+        },
+        "input": {
+            "background": {
+                "$value": "{primitive.color.grey.900}",
+                "$type": "color"
+            },
+            "backgroundFocus": {
+                "$value": "{primitive.color.grey.900}",
+                "$type": "color"
+            },
+            "text": {
+                "$value": "{primitive.color.white}",
+                "$type": "color"
+            },
+            "placeholder": {
+                "$value": "{primitive.color.grey.400}",
+                "$type": "color"
+            },
+            "divider": {
+                "$value": "{primitive.color.grey.700}",
+                "$type": "color"
+            },
+            "error": {
+                "$value": "{primitive.color.error.300}",
+                "$type": "color"
+            }
+        },
+        "status": {
+            "error": {
+                "$value": "{primitive.color.error.300}",
+                "$type": "color"
+            },
+            "warning": {
+                "$value": "{primitive.color.warning.500}",
+                "$type": "color"
+            },
+            "success": {
+                "$value": "{primitive.color.success.500}",
+                "$type": "color"
+            },
+            "info": {
+                "$value": "{primitive.color.info.300}",
+                "$type": "color"
+            },
+            "errorBackground": {
+                "$value": "{primitive.color.error.900}",
+                "$type": "color"
+            },
+            "warningBackground": {
+                "$value": "{primitive.color.warning.900}",
+                "$type": "color"
+            },
+            "successBackground": {
+                "$value": "{primitive.color.success.900}",
+                "$type": "color"
+            },
+            "infoBackground": {
+                "$value": "{primitive.color.info.900}",
+                "$type": "color"
+            }
+        },
+        "accent": {
+            "primary": {
+                "$value": "{primitive.color.info.300}",
+                "$type": "color"
+            },
+            "content": {
+                "$value": "{primitive.color.black}",
+                "$type": "color"
+            }
+        }
+        }
+    }
+}
