@@ -1,6 +1,6 @@
 import StyleDictionary from 'style-dictionary';
 import { cpSync, mkdirSync, existsSync, readFileSync, writeFileSync } from 'fs';
-import { resolve, dirname } from 'path';
+import { resolve, dirname, basename } from 'path';
 import { fileURLToPath } from 'url';
 import type { Format, NameTransform, TransformedToken } from 'style-dictionary/types';
 
@@ -78,9 +78,25 @@ function isTokenInRoot(token: TransformedToken, root: TokenRoot): boolean {
   return token.$type === 'color' && token.path[0] === root;
 }
 
+function logBuiltFiles(target: TokenBuildTarget): void {
+  const header = target.source[0];
+  const files = [
+    ['android', `${androidOut}/${target.androidDestination}`],
+    ['ios', `${iosOut}/${target.iosDestination}`],
+    ['web', `${webOut}/${target.webBaseName}.css`],
+    ['web', `${webOut}/${target.webBaseName}.json`],
+  ] as const;
+
+  console.log(`\n${header}`);
+  for (const [platform, output] of files) {
+    console.log(`  ${platform.padEnd(8)}✔︎ ${output}`);
+  }
+}
+
 async function buildTokens(): Promise<void> {
   for (const target of buildTargets) {
     const sd = new StyleDictionary({
+      log: { verbosity: 'silent' },
       include: target.include,
       source: target.source,
       platforms: {
@@ -133,6 +149,7 @@ async function buildTokens(): Promise<void> {
     sd.registerTransform(nameTransform);
 
     await sd.buildAllPlatforms();
+    logBuiltFiles(target);
   }
 
   console.log('\n\u2713 Tokens built');
