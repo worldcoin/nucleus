@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,10 @@
 		A10000010000000000000003 /* HexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000110000000000000003 /* HexColor.swift */; };
 		A10000010000000000000004 /* NucleusPrimitiveColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000110000000000000005 /* NucleusPrimitiveColors.swift */; };
 		A10000010000000000000005 /* NucleusTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000110000000000000006 /* NucleusTokens.swift */; };
+		A10000010000000000000007 /* NucleusSemanticColorsLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000110000000000000007 /* NucleusSemanticColorsLight.swift */; };
+		A10000010000000000000008 /* NucleusSemanticColorsDark.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000110000000000000008 /* NucleusSemanticColorsDark.swift */; };
+		A10000010000000000000009 /* DemoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000110000000000000009 /* DemoModels.swift */; };
+		A10000010000000000000010 /* DemoComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000110000000000000010 /* DemoComponents.swift */; };
 		A10000010000000000000006 /* Nucleus in Frameworks */ = {isa = PBXBuildFile; productRef = A10000A10000000000000001 /* Nucleus */; };
 /* End PBXBuildFile section */
 
@@ -22,6 +26,10 @@
 		A10000110000000000000004 /* NucleusApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NucleusApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A10000110000000000000005 /* NucleusPrimitiveColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NucleusPrimitiveColors.swift; path = ../../../build/ios/Sources/Nucleus/NucleusPrimitiveColors.swift; sourceTree = SOURCE_ROOT; };
 		A10000110000000000000006 /* NucleusTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NucleusTokens.swift; sourceTree = "<group>"; };
+		A10000110000000000000007 /* NucleusSemanticColorsLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NucleusSemanticColorsLight.swift; path = ../../../build/ios/Sources/Nucleus/NucleusSemanticColorsLight.swift; sourceTree = SOURCE_ROOT; };
+		A10000110000000000000008 /* NucleusSemanticColorsDark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NucleusSemanticColorsDark.swift; path = ../../../build/ios/Sources/Nucleus/NucleusSemanticColorsDark.swift; sourceTree = SOURCE_ROOT; };
+		A10000110000000000000009 /* DemoModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoModels.swift; sourceTree = "<group>"; };
+		A10000110000000000000010 /* DemoComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoComponents.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,8 +58,12 @@
 				A10000110000000000000001 /* NucleusApp.swift */,
 				A10000110000000000000002 /* ContentView.swift */,
 				A10000110000000000000003 /* HexColor.swift */,
+				A10000110000000000000009 /* DemoModels.swift */,
+				A10000110000000000000010 /* DemoComponents.swift */,
 				A10000110000000000000006 /* NucleusTokens.swift */,
 				A10000110000000000000005 /* NucleusPrimitiveColors.swift */,
+				A10000110000000000000007 /* NucleusSemanticColorsLight.swift */,
+				A10000110000000000000008 /* NucleusSemanticColorsDark.swift */,
 			);
 			path = NucleusApp;
 			sourceTree = "<group>";
@@ -74,6 +86,7 @@
 				A10000510000000000000001 /* Sources */,
 				A10000210000000000000001 /* Frameworks */,
 				A10000610000000000000001 /* Resources */,
+				A10000B10000000000000001 /* Copy Generated Token Sources */,
 			);
 			buildRules = (
 			);
@@ -133,6 +146,33 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A10000B10000000000000001 /* Copy Generated Token Sources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/../../../build/ios/Sources/Nucleus/NucleusPrimitiveColors.swift",
+				"$(SRCROOT)/../../../build/ios/Sources/Nucleus/NucleusSemanticColorsLight.swift",
+				"$(SRCROOT)/../../../build/ios/Sources/Nucleus/NucleusSemanticColorsDark.swift",
+			);
+			name = "Copy Generated Token Sources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/NucleusPrimitiveColors.swift",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/NucleusSemanticColorsLight.swift",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/NucleusSemanticColorsDark.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nTOKEN_SOURCE_DIR=\"${SRCROOT}/../../../build/ios/Sources/Nucleus\"\nTOKEN_DEST_DIR=\"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}\"\ncp \"${TOKEN_SOURCE_DIR}/NucleusPrimitiveColors.swift\" \"${TOKEN_DEST_DIR}/NucleusPrimitiveColors.swift\"\ncp \"${TOKEN_SOURCE_DIR}/NucleusSemanticColorsLight.swift\" \"${TOKEN_DEST_DIR}/NucleusSemanticColorsLight.swift\"\ncp \"${TOKEN_SOURCE_DIR}/NucleusSemanticColorsDark.swift\" \"${TOKEN_DEST_DIR}/NucleusSemanticColorsDark.swift\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A10000510000000000000001 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -141,8 +181,12 @@
 				A10000010000000000000001 /* NucleusApp.swift in Sources */,
 				A10000010000000000000002 /* ContentView.swift in Sources */,
 				A10000010000000000000003 /* HexColor.swift in Sources */,
+				A10000010000000000000009 /* DemoModels.swift in Sources */,
+				A10000010000000000000010 /* DemoComponents.swift in Sources */,
 				A10000010000000000000005 /* NucleusTokens.swift in Sources */,
 				A10000010000000000000004 /* NucleusPrimitiveColors.swift in Sources */,
+				A10000010000000000000007 /* NucleusSemanticColorsLight.swift in Sources */,
+				A10000010000000000000008 /* NucleusSemanticColorsDark.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,7 +225,7 @@
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = SGR28C4682;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Nucleus;
@@ -210,7 +254,7 @@
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = SGR28C4682;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Nucleus;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -264,7 +308,7 @@
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = SGR28C4682;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Nucleus;
@@ -293,7 +337,7 @@
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = SGR28C4682;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Nucleus;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -356,7 +400,6 @@
 			productName = Nucleus;
 		};
 /* End XCSwiftPackageProductDependency section */
-
 	};
 	rootObject = A10000710000000000000001 /* Project object */;
 }

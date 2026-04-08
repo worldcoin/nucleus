@@ -1,80 +1,54 @@
 "use client";
 
 import { useState } from "react";
-import { primitiveColors } from "./tokens";
+import { HeroSection } from "./components/HeroSection";
+import { TokenSectionCard } from "./components/TokenSectionCard";
+import type { AppTheme, DemoTheme } from "./models";
+import { appThemes, demoSections } from "./tokens";
 
-function ColorCard({
-  name,
-  value,
-}: {
-  name: string;
-  value: string;
-}) {
-  const [copied, setCopied] = useState(false);
-  return (
-    <button
-      onClick={() => {
-        navigator.clipboard.writeText(value);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 1200);
-      }}
-      className="group flex items-center gap-3 rounded-lg border border-border px-3 py-2.5 hover:bg-surface transition-colors cursor-pointer text-left w-full"
-    >
-      <div
-        className="h-10 w-10 rounded-md border border-black/10 shrink-0"
-        style={{ backgroundColor: value }}
-      />
-      <div className="min-w-0 flex-1">
-        <div className="text-sm font-medium truncate">{name}</div>
-        <div className="text-xs font-mono text-muted">{value}</div>
-      </div>
-      <span className="shrink-0 text-xs font-mono text-muted opacity-0 group-hover:opacity-100 transition-opacity">
-        {copied ? "Copied!" : "Click to copy"}
-      </span>
-    </button>
-  );
-}
-
-function ColorsSection() {
-  return (
-    <div className="space-y-10">
-      <div>
-        {primitiveColors.map((group) => (
-          <div key={group.name} className="mb-8">
-            <div className="mb-3">
-              <h3 className="text-sm font-semibold tracking-wider">
-                {group.name}
-              </h3>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-              {group.colors.map((c) => (
-                <ColorCard
-                  key={c.name}
-                  name={c.name}
-                  value={c.value}
-                />
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+function fallbackSectionTheme(theme: AppTheme): DemoTheme {
+  return {
+    background: theme.surface,
+    surface: theme.surface,
+    surfaceAlt: theme.surface,
+    border: theme.border,
+    text: theme.text,
+    muted: theme.muted,
+    accent: theme.text,
+    accentContent: theme.background,
+  };
 }
 
 export default function Home() {
+  const [selectedSectionId, setSelectedSectionId] = useState(demoSections[0].id);
+  const [selectedThemeId, setSelectedThemeId] = useState<AppTheme["id"]>("dark");
+
+  const selectedSection =
+    demoSections.find((section) => section.id === selectedSectionId) ?? demoSections[0];
+  const activeTheme =
+    appThemes.find((theme) => theme.id === selectedThemeId) ?? appThemes[0];
+  const chromeTheme = fallbackSectionTheme(activeTheme);
+
   return (
-    <div className="min-h-screen">
-      <header className="sticky top-0 z-10 bg-background/80 backdrop-blur-lg">
-        <div className="mx-auto max-w-5xl px-6 py-4">
-          <h1 className="text-2xl font-semibold tracking-tight">
-            Nucleus
-          </h1>
-        </div>
-      </header>
-      <main className="mx-auto max-w-5xl px-6">
-        <ColorsSection />
-      </main>
-    </div>
+    <main
+      className="min-h-screen"
+      style={{
+        backgroundColor: activeTheme.background,
+        color: activeTheme.text,
+      }}
+    >
+      <div className="mx-auto flex max-w-7xl flex-col gap-8 px-6 py-8 md:py-10">
+        <HeroSection
+          activeTheme={activeTheme}
+          appThemes={appThemes}
+          demoSections={demoSections}
+          selectedSectionId={selectedSection.id}
+          onSelectTheme={setSelectedThemeId}
+          onSelectSection={setSelectedSectionId}
+        />
+
+        <TokenSectionCard section={selectedSection} theme={chromeTheme} />
+      </div>
+    </main>
   );
 }
