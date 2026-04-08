@@ -1,18 +1,12 @@
-name: Publish Design Tokens
+name: Publish Design Token Release
 
 on:
   push:
     branches: [main]
-  workflow_dispatch:
-    inputs:
-      bump:
-        description: Version bump type
-        required: true
-        type: choice
-        options:
-          - patch
-          - minor
-          - major
+
+concurrency:
+  group: publish-release-main
+  cancel-in-progress: false
 
 permissions:
   contents: write
@@ -23,97 +17,57 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.release.outputs.version }}
-      previous_version: ${{ steps.release.outputs.previous_version }}
-      tagged: ${{ steps.release.outputs.tagged }}
+      version: ${{ steps.plan.outputs.version }}
+      tagged: ${{ steps.tag.outputs.tagged }}
     steps:
       - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
-      - name: Determine bump type
-        id: pr
+      - name: Detect merged release PR
+        id: plan
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MANUAL_BUMP: ${{ inputs.bump }}
+          MERGE_SHA: ${{ github.sha }}
         run: |
-          # Manual dispatch — use the input directly
-          if [ -n "$MANUAL_BUMP" ]; then
-            echo "Manual dispatch with bump: $MANUAL_BUMP"
-            echo "bump=$MANUAL_BUMP" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
+          git fetch origin main --tags
+          git checkout -B main origin/main
 
-          # Push to main — look up the merged PR
-          SHA=$(git rev-parse HEAD)
-          PR_JSON=$(gh pr list --search "$SHA" --state merged --json labels,number --limit 1)
+          PR_JSON=$(gh pr list --search "$MERGE_SHA" --state merged --json headRefName,number --limit 1)
 
           if [ "$(echo "$PR_JSON" | jq length)" -eq 0 ]; then
-            echo "No merged PR found for $SHA. Skipping release."
-            echo "bump=" >> "$GITHUB_OUTPUT"
+            echo "No merged PR found for $MERGE_SHA. Skipping publish."
+            echo "action=skip" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
-          BUMP=$(echo "$PR_JSON" | jq -r '
-            .[0].labels
-            | map(.name)
-            | map(select(. == "major" or . == "minor" or . == "patch"))
-            | first
-            // empty
-          ')
+          HEAD_REF=$(echo "$PR_JSON" | jq -r '.[0].headRefName')
 
-          if [ -z "$BUMP" ]; then
-            echo "No release label on merged PR. Skipping release."
-          else
-            echo "Bump type: $BUMP"
+          if [[ "$HEAD_REF" != release/v* ]]; then
+            echo "Merged PR was not a release PR ($HEAD_REF). Skipping publish."
+            echo "action=skip" >> "$GITHUB_OUTPUT"
+            exit 0
           fi
-          echo "bump=$BUMP" >> "$GITHUB_OUTPUT"
 
-      - uses: actions/setup-node@v5
-        if: steps.pr.outputs.bump != ''
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Compute version, sync package metadata, commit, and create tag
-        id: release
-        if: steps.pr.outputs.bump != ''
-        env:
-          BUMP: ${{ steps.pr.outputs.bump }}
-        run: |
           CURRENT_VERSION=$(tr -d '[:space:]' < VERSION)
-          PREVIOUS_VERSION="v${CURRENT_VERSION}"
+          echo "action=publish" >> "$GITHUB_OUTPUT"
+          echo "version=v${CURRENT_VERSION}" >> "$GITHUB_OUTPUT"
 
-          MAJOR=$(echo "$CURRENT_VERSION" | cut -d. -f1)
-          MINOR=$(echo "$CURRENT_VERSION" | cut -d. -f2)
-          PATCH=$(echo "$CURRENT_VERSION" | cut -d. -f3)
+      - name: Tag merged release commit
+        id: tag
+        if: steps.plan.outputs.action == 'publish'
+        env:
+          VERSION_TAG: ${{ steps.plan.outputs.version }}
+        run: |
+          git fetch origin main --tags
 
-          case "$BUMP" in
-            major) NEXT_VERSION="$((MAJOR + 1)).0.0" ;;
-            minor) NEXT_VERSION="${MAJOR}.$((MINOR + 1)).0" ;;
-            patch) NEXT_VERSION="${MAJOR}.${MINOR}.$((PATCH + 1))" ;;
-          esac
+          if git rev-parse "$VERSION_TAG" >/dev/null 2>&1; then
+            echo "Tag $VERSION_TAG already exists."
+          else
+            git tag "$VERSION_TAG" "$GITHUB_SHA"
+            git push origin "$VERSION_TAG"
+          fi
 
-          NEW_VERSION="v${NEXT_VERSION}"
-          echo "Creating tag $NEW_VERSION"
-
-          printf '%s\n' "$NEXT_VERSION" > VERSION
-          npm version "$NEXT_VERSION" --no-git-tag-version
-
-          # Insert new version entry after the "# Changelog" title
-          LINK="https://github.com/worldcoin/nucleus/compare/${PREVIOUS_VERSION}...${NEW_VERSION}"
-          sed -i "/^# Changelog/a\\\n## ${NEW_VERSION}\n- [Full changelog](${LINK})\n" CHANGELOG.md
-
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add VERSION package.json package-lock.json CHANGELOG.md
-          git commit -m "release: $NEW_VERSION"
-          git push origin main
-          git tag "$NEW_VERSION"
-          git push origin "$NEW_VERSION"
-
-          echo "version=$NEW_VERSION" >> "$GITHUB_OUTPUT"
-          echo "previous_version=$PREVIOUS_VERSION" >> "$GITHUB_OUTPUT"
           echo "tagged=true" >> "$GITHUB_OUTPUT"
 
   build:
@@ -151,7 +105,7 @@ jobs:
           name: web-tokens
           path: build/web/
 
-  publish-maven:
+  publish-mvn:
     needs: [release, build]
     runs-on: ubuntu-latest
     steps:
@@ -230,7 +184,7 @@ jobs:
         with:
           node-version: 22
           registry-url: https://npm.pkg.github.com
-          scope: '@worldcoin'
+          scope: "@worldcoin"
 
       - name: Publish to GitHub Packages
         working-directory: web-build

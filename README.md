@@ -40,11 +40,11 @@ Release versioning lives in the repo root `VERSION` file. `npm run build` stamps
 
 ## Token Source Layout
 
-| Path | Description |
-| ---- | ----------- |
-| `src/tokens/color/primitive.json` | Primitive color tokens under `primitive.color.*` |
+| Path                                   | Description                                          |
+| -------------------------------------- | ---------------------------------------------------- |
+| `src/tokens/color/primitive.json`      | Primitive color tokens under `primitive.color.*`     |
 | `src/tokens/color/semantic.light.json` | Light semantic color tokens under `semantic.color.*` |
-| `src/tokens/color/semantic.dark.json` | Dark semantic color tokens under `semantic.color.*` |
+| `src/tokens/color/semantic.dark.json`  | Dark semantic color tokens under `semantic.color.*`  |
 
 ## Generated Output
 
@@ -75,18 +75,24 @@ Release versioning lives in the repo root `VERSION` file. `npm run build` stamps
 
 ## CI/CD
 
-The release workflow lives in `.github/workflows/publish.yml` and supports two trigger modes:
+Release automation is split across two workflows:
 
-- **Push to `main` after a merged PR with a release label** (`major`, `minor`, `patch`) – the workflow looks up the merged PR for `HEAD`, derives the bump from its labels, then creates a tag, builds, and publishes
-- **Manual dispatch** – choose the bump type from the Actions UI
+- `.github/workflows/prepare-release.yml` prepares release PRs
+- `.github/workflows/publish-release.yml` tags and publishes merged release PRs
+
+The prepare workflow supports two trigger modes:
+
+- **Push to `main` after a merged PR with a release label** (`major`, `minor`, `patch`) – the workflow derives the bump from the merged PR, creates a `release/v*` branch, and opens a release PR
+- **Manual dispatch** – choose the bump type from the Actions UI to create the same release PR flow without a source PR label
 
 ### Pipeline Steps
 
-1. **release** – Determines version bump, updates `VERSION` and release metadata, commits, creates a `v*` tag
-2. **build** – Runs `npm run build`, uploads `android-tokens`, `ios-tokens`, and `web-tokens` artifacts
-3. **publish-maven** – Publishes Android library to GitHub Packages
-4. **publish-spm** – Commits generated iOS files to the `generated/ios` branch, tags as `v*-ios`
-5. **publish-npm** – Publishes Web package to GitHub Packages npm registry
+1. **release PR creation** – `prepare-release.yml` determines the next version, updates `VERSION`, `package.json`, `package-lock.json`, and `CHANGELOG.md`, then opens a `release/v*` PR against `main`
+2. **release PR merge** – Merging that PR back into `main` triggers `publish-release.yml`
+3. **tag + build** – The merged release commit is tagged as `v*`, then `npm run build` runs and uploads `android-tokens`, `ios-tokens`, and `web-tokens`
+4. **publish-mvn** – Publishes Android library to GitHub Packages
+5. **publish-spm** – Commits generated iOS files to the `generated/ios` branch, tags as `v*-ios`
+6. **publish-npm** – Publishes Web package to GitHub Packages npm registry
 
 The verification workflow lives in `.github/workflows/verify.yml` and runs `format:check`, `lint`, `typecheck`, and `build` on pushes to `main` and pull requests.
 
@@ -185,4 +191,5 @@ import tokens from "@worldcoin/nucleus/nucleus-primitive-colors.json";
 1. Edit the relevant JSON file in `src/tokens/`
 2. Run `npm run build` to verify output
 3. Open a PR with a release label (`patch`, `minor`, or `major`)
-4. On merge to `main`, CI auto-tags and publishes when the merged PR label resolves to a release bump
+4. On merge to `main`, CI opens a `release/v*` PR with the version and changelog updates
+5. Merge that release PR to trigger tagging and publication

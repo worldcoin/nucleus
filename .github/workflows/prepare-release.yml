@@ -1,0 +1,157 @@
+name: Prepare Design Token Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: Version bump type
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+concurrency:
+  group: prepare-release-main
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  prepare-release:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Plan release PR
+        id: plan
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MANUAL_BUMP: ${{ inputs.bump }}
+          MERGE_SHA: ${{ github.sha }}
+        run: |
+          git fetch origin main --tags
+          git checkout -B main origin/main
+
+          next_version() {
+            CURRENT_VERSION="$1"
+            BUMP="$2"
+
+            MAJOR=$(echo "$CURRENT_VERSION" | cut -d. -f1)
+            MINOR=$(echo "$CURRENT_VERSION" | cut -d. -f2)
+            PATCH=$(echo "$CURRENT_VERSION" | cut -d. -f3)
+
+            case "$BUMP" in
+              major) echo "$((MAJOR + 1)).0.0" ;;
+              minor) echo "${MAJOR}.$((MINOR + 1)).0" ;;
+              patch) echo "${MAJOR}.${MINOR}.$((PATCH + 1))" ;;
+            esac
+          }
+
+          CURRENT_VERSION=$(tr -d '[:space:]' < VERSION)
+          PREVIOUS_VERSION="v${CURRENT_VERSION}"
+          echo "previous_version=$PREVIOUS_VERSION" >> "$GITHUB_OUTPUT"
+
+          if [ -n "$MANUAL_BUMP" ]; then
+            NEXT_VERSION=$(next_version "$CURRENT_VERSION" "$MANUAL_BUMP")
+            echo "action=create_pr" >> "$GITHUB_OUTPUT"
+            echo "version=v${NEXT_VERSION}" >> "$GITHUB_OUTPUT"
+            echo "source=manual" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          PR_JSON=$(gh pr list --search "$MERGE_SHA" --state merged --json labels,number,headRefName --limit 1)
+
+          if [ "$(echo "$PR_JSON" | jq length)" -eq 0 ]; then
+            echo "No merged PR found for $MERGE_SHA. Skipping release preparation."
+            echo "action=skip" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          HEAD_REF=$(echo "$PR_JSON" | jq -r '.[0].headRefName')
+          PR_NUMBER=$(echo "$PR_JSON" | jq -r '.[0].number')
+
+          if [[ "$HEAD_REF" == release/v* ]]; then
+            echo "Release PR merge detected from $HEAD_REF. Skipping release preparation."
+            echo "action=skip" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          BUMP=$(echo "$PR_JSON" | jq -r '
+            .[0].labels
+            | map(.name)
+            | map(select(. == "major" or . == "minor" or . == "patch"))
+            | first
+            // empty
+          ')
+
+          if [ -z "$BUMP" ]; then
+            echo "No release label on merged PR. Skipping release preparation."
+            echo "action=skip" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          NEXT_VERSION=$(next_version "$CURRENT_VERSION" "$BUMP")
+          echo "action=create_pr" >> "$GITHUB_OUTPUT"
+          echo "version=v${NEXT_VERSION}" >> "$GITHUB_OUTPUT"
+          echo "source=pr" >> "$GITHUB_OUTPUT"
+          echo "source_pr=$PR_NUMBER" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/setup-node@v5
+        if: steps.plan.outputs.action == 'create_pr'
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Create release branch and PR
+        if: steps.plan.outputs.action == 'create_pr'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION_TAG: ${{ steps.plan.outputs.version }}
+          PREVIOUS_VERSION: ${{ steps.plan.outputs.previous_version }}
+          SOURCE: ${{ steps.plan.outputs.source }}
+          SOURCE_PR: ${{ steps.plan.outputs.source_pr }}
+        run: |
+          git fetch origin main --tags
+          git checkout -B main origin/main
+
+          NEXT_VERSION="${VERSION_TAG#v}"
+          RELEASE_BRANCH="release/${VERSION_TAG}"
+
+          EXISTING_PR_URL=$(gh pr list --head "$RELEASE_BRANCH" --base main --state open --json url --jq '.[0].url // empty')
+          if [ -n "$EXISTING_PR_URL" ]; then
+            echo "Release PR already open: $EXISTING_PR_URL"
+            exit 0
+          fi
+
+          printf '%s\n' "$NEXT_VERSION" > VERSION
+          npm version "$NEXT_VERSION" --no-git-tag-version
+
+          LINK="https://github.com/worldcoin/nucleus/compare/${PREVIOUS_VERSION}...${VERSION_TAG}"
+          sed -i "/^# Changelog/a\\\n## ${VERSION_TAG}\n- [Full changelog](${LINK})\n" CHANGELOG.md
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add VERSION package.json package-lock.json CHANGELOG.md
+          git commit -m "release: $VERSION_TAG"
+          git push origin HEAD:"refs/heads/$RELEASE_BRANCH" --force-with-lease
+
+          if [ "$SOURCE" = "manual" ]; then
+            PR_BODY=$'Automated release PR.\n\nTriggered by manual workflow dispatch.'
+          else
+            PR_BODY=$'Automated release PR.\n\nTriggered by merged PR #'"$SOURCE_PR"$'.'
+          fi
+
+          gh pr create \
+            --base main \
+            --head "$RELEASE_BRANCH" \
+            --title "release: $VERSION_TAG" \
+            --body "$PR_BODY"
