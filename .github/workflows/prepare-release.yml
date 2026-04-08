@@ -37,6 +37,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MANUAL_BUMP: ${{ inputs.bump }}
           MERGE_SHA: ${{ github.sha }}
+          REPOSITORY: ${{ github.repository }}
         run: |
           git fetch origin main --tags
           git checkout -B main origin/main
@@ -68,16 +69,19 @@ jobs:
             exit 0
           fi
 
-          PR_JSON=$(gh pr list --search "$MERGE_SHA" --state merged --json labels,number,headRefName --limit 1)
+          PR_JSON=$(gh api \
+            -H "Accept: application/vnd.github+json" \
+            "/repos/$REPOSITORY/commits/$MERGE_SHA/pulls" \
+            --jq 'map(select(.merged_at != null)) | .[0]')
 
-          if [ "$(echo "$PR_JSON" | jq length)" -eq 0 ]; then
+          if [ "$PR_JSON" = "null" ] || [ -z "$PR_JSON" ]; then
             echo "No merged PR found for $MERGE_SHA. Skipping release preparation."
             echo "action=skip" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
-          HEAD_REF=$(echo "$PR_JSON" | jq -r '.[0].headRefName')
-          PR_NUMBER=$(echo "$PR_JSON" | jq -r '.[0].number')
+          HEAD_REF=$(echo "$PR_JSON" | jq -r '.head.ref')
+          PR_NUMBER=$(echo "$PR_JSON" | jq -r '.number')
 
           if [[ "$HEAD_REF" == release/v* ]]; then
             echo "Release PR merge detected from $HEAD_REF. Skipping release preparation."
@@ -86,7 +90,7 @@ jobs:
           fi
 
           BUMP=$(echo "$PR_JSON" | jq -r '
-            .[0].labels
+            .labels
             | map(.name)
             | map(select(. == "major" or . == "minor" or . == "patch"))
             | first
@@ -136,7 +140,7 @@ jobs:
           npm version "$NEXT_VERSION" --no-git-tag-version
 
           LINK="https://github.com/worldcoin/nucleus/compare/${PREVIOUS_VERSION}...${VERSION_TAG}"
-          sed -i "/^# Changelog/a\\\n## ${VERSION_TAG}\n- [Full changelog](${LINK})\n" CHANGELOG.md
+          sed -i "/^# Changelog/a\\\n## ${VERSION_TAG}\n- [Full changelog](${LINK})" CHANGELOG.md
 
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"

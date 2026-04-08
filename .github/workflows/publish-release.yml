@@ -29,19 +29,23 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MERGE_SHA: ${{ github.sha }}
+          REPOSITORY: ${{ github.repository }}
         run: |
           git fetch origin main --tags
           git checkout -B main origin/main
 
-          PR_JSON=$(gh pr list --search "$MERGE_SHA" --state merged --json headRefName,number --limit 1)
+          PR_JSON=$(gh api \
+            -H "Accept: application/vnd.github+json" \
+            "/repos/$REPOSITORY/commits/$MERGE_SHA/pulls" \
+            --jq 'map(select(.merged_at != null)) | .[0]')
 
-          if [ "$(echo "$PR_JSON" | jq length)" -eq 0 ]; then
+          if [ "$PR_JSON" = "null" ] || [ -z "$PR_JSON" ]; then
             echo "No merged PR found for $MERGE_SHA. Skipping publish."
             echo "action=skip" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
-          HEAD_REF=$(echo "$PR_JSON" | jq -r '.[0].headRefName')
+          HEAD_REF=$(echo "$PR_JSON" | jq -r '.head.ref')
 
           if [[ "$HEAD_REF" != release/v* ]]; then
             echo "Merged PR was not a release PR ($HEAD_REF). Skipping publish."
