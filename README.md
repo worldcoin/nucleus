@@ -69,9 +69,9 @@ Release versioning lives in the repo root `VERSION` file. Generated Android and 
 
 ## Example Apps
 
-- `examples/android/` – Android demo app that wraps generated Kotlin sources from `build/android`
-- `examples/ios/` – iOS demo app that compiles the generated Swift file from `build/ios`
-- `examples/web/` – Web demo app that reads generated files from `build/web`
+- `playground/android/` – Android demo app that wraps generated Kotlin sources from `build/android`
+- `playground/ios/` – iOS demo app that compiles the generated Swift file from `build/ios`
+- `playground/web/` – Web demo app that reads generated files from `build/web`
 
 ## CI/CD
 

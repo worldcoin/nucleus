@@ -9,7 +9,7 @@ Web sample app for Nucleus with two token source modes:
 
 ```bash
 npm run build
-cd examples/web
+cd playground/web
 npm install
 ```
 
