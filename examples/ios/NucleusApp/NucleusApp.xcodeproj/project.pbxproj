@@ -1,0 +1,405 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10000010000000000000001 /* NucleusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000110000000000000001 /* NucleusApp.swift */; };
+		A10000010000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000110000000000000002 /* ContentView.swift */; };
+		A10000010000000000000003 /* HexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000110000000000000003 /* HexColor.swift */; };
+		A10000010000000000000004 /* NucleusPrimitiveColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000110000000000000005 /* NucleusPrimitiveColors.swift */; };
+		A10000010000000000000005 /* NucleusTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000110000000000000006 /* NucleusTokens.swift */; };
+		A10000010000000000000007 /* NucleusSemanticColorsLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000110000000000000007 /* NucleusSemanticColorsLight.swift */; };
+		A10000010000000000000008 /* NucleusSemanticColorsDark.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000110000000000000008 /* NucleusSemanticColorsDark.swift */; };
+		A10000010000000000000009 /* DemoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000110000000000000009 /* DemoModels.swift */; };
+		A10000010000000000000010 /* DemoComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000110000000000000010 /* DemoComponents.swift */; };
+		A10000010000000000000006 /* Nucleus in Frameworks */ = {isa = PBXBuildFile; productRef = A10000A10000000000000001 /* Nucleus */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A10000110000000000000001 /* NucleusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NucleusApp.swift; sourceTree = "<group>"; };
+		A10000110000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A10000110000000000000003 /* HexColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexColor.swift; sourceTree = "<group>"; };
+		A10000110000000000000004 /* NucleusApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NucleusApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10000110000000000000005 /* NucleusPrimitiveColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NucleusPrimitiveColors.swift; path = ../../../build/ios/Sources/Nucleus/NucleusPrimitiveColors.swift; sourceTree = SOURCE_ROOT; };
+		A10000110000000000000006 /* NucleusTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NucleusTokens.swift; sourceTree = "<group>"; };
+		A10000110000000000000007 /* NucleusSemanticColorsLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NucleusSemanticColorsLight.swift; path = ../../../build/ios/Sources/Nucleus/NucleusSemanticColorsLight.swift; sourceTree = SOURCE_ROOT; };
+		A10000110000000000000008 /* NucleusSemanticColorsDark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NucleusSemanticColorsDark.swift; path = ../../../build/ios/Sources/Nucleus/NucleusSemanticColorsDark.swift; sourceTree = SOURCE_ROOT; };
+		A10000110000000000000009 /* DemoModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoModels.swift; sourceTree = "<group>"; };
+		A10000110000000000000010 /* DemoComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoComponents.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A10000210000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000010000000000000006 /* Nucleus in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A10000310000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				A10000310000000000000002 /* NucleusApp */,
+				A10000310000000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A10000310000000000000002 /* NucleusApp */ = {
+			isa = PBXGroup;
+			children = (
+				A10000110000000000000001 /* NucleusApp.swift */,
+				A10000110000000000000002 /* ContentView.swift */,
+				A10000110000000000000003 /* HexColor.swift */,
+				A10000110000000000000009 /* DemoModels.swift */,
+				A10000110000000000000010 /* DemoComponents.swift */,
+				A10000110000000000000006 /* NucleusTokens.swift */,
+				A10000110000000000000005 /* NucleusPrimitiveColors.swift */,
+				A10000110000000000000007 /* NucleusSemanticColorsLight.swift */,
+				A10000110000000000000008 /* NucleusSemanticColorsDark.swift */,
+			);
+			path = NucleusApp;
+			sourceTree = "<group>";
+		};
+		A10000310000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A10000110000000000000004 /* NucleusApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A10000410000000000000001 /* NucleusApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A10000910000000000000002 /* Build configuration list for PBXNativeTarget "NucleusApp" */;
+			buildPhases = (
+				A10000510000000000000001 /* Sources */,
+				A10000210000000000000001 /* Frameworks */,
+				A10000610000000000000001 /* Resources */,
+				A10000B10000000000000001 /* Copy Generated Token Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NucleusApp;
+			packageProductDependencies = (
+				A10000A10000000000000001 /* Nucleus */,
+			);
+			productName = NucleusApp;
+			productReference = A10000110000000000000004 /* NucleusApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A10000710000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					A10000410000000000000001 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = A10000910000000000000001 /* Build configuration list for PBXProject "NucleusApp" */;
+			compatibilityVersion = "Xcode 15.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A10000310000000000000001;
+			packageReferences = (
+				A10000A00000000000000001 /* XCLocalSwiftPackageReference "../../../build/ios" */,
+			);
+			productRefGroup = A10000310000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A10000410000000000000001 /* NucleusApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A10000610000000000000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A10000B10000000000000001 /* Copy Generated Token Sources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/../../../build/ios/Sources/Nucleus/NucleusPrimitiveColors.swift",
+				"$(SRCROOT)/../../../build/ios/Sources/Nucleus/NucleusSemanticColorsLight.swift",
+				"$(SRCROOT)/../../../build/ios/Sources/Nucleus/NucleusSemanticColorsDark.swift",
+			);
+			name = "Copy Generated Token Sources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/NucleusPrimitiveColors.swift",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/NucleusSemanticColorsLight.swift",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/NucleusSemanticColorsDark.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nTOKEN_SOURCE_DIR=\"${SRCROOT}/../../../build/ios/Sources/Nucleus\"\nTOKEN_DEST_DIR=\"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}\"\ncp \"${TOKEN_SOURCE_DIR}/NucleusPrimitiveColors.swift\" \"${TOKEN_DEST_DIR}/NucleusPrimitiveColors.swift\"\ncp \"${TOKEN_SOURCE_DIR}/NucleusSemanticColorsLight.swift\" \"${TOKEN_DEST_DIR}/NucleusSemanticColorsLight.swift\"\ncp \"${TOKEN_SOURCE_DIR}/NucleusSemanticColorsDark.swift\" \"${TOKEN_DEST_DIR}/NucleusSemanticColorsDark.swift\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A10000510000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000010000000000000001 /* NucleusApp.swift in Sources */,
+				A10000010000000000000002 /* ContentView.swift in Sources */,
+				A10000010000000000000003 /* HexColor.swift in Sources */,
+				A10000010000000000000009 /* DemoModels.swift in Sources */,
+				A10000010000000000000010 /* DemoComponents.swift in Sources */,
+				A10000010000000000000005 /* NucleusTokens.swift in Sources */,
+				A10000010000000000000004 /* NucleusPrimitiveColors.swift in Sources */,
+				A10000010000000000000007 /* NucleusSemanticColorsLight.swift in Sources */,
+				A10000010000000000000008 /* NucleusSemanticColorsDark.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A10000810000000000000001 /* Debug Local */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = "Debug Local";
+		};
+		A10000810000000000000002 /* Release Local */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				SDKROOT = iphoneos;
+			};
+			name = "Release Local";
+		};
+		A10000810000000000000003 /* Debug Local */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SGR28C4682;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Nucleus;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.worldcoin.NucleusApp;
+				PRODUCT_NAME = NucleusApp;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) LOCAL_TOKENS";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Debug Local";
+		};
+		A10000810000000000000004 /* Release Local */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SGR28C4682;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Nucleus;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.worldcoin.NucleusApp;
+				PRODUCT_NAME = NucleusApp;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) LOCAL_TOKENS";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Release Local";
+		};
+		A10000810000000000000005 /* Debug Package */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = "Debug Package";
+		};
+		A10000810000000000000006 /* Release Package */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				SDKROOT = iphoneos;
+			};
+			name = "Release Package";
+		};
+		A10000810000000000000007 /* Debug Package */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SGR28C4682;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Nucleus;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.worldcoin.NucleusApp;
+				PRODUCT_NAME = NucleusApp;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) PACKAGE_TOKENS";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Debug Package";
+		};
+		A10000810000000000000008 /* Release Package */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SGR28C4682;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Nucleus;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.worldcoin.NucleusApp;
+				PRODUCT_NAME = NucleusApp;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) PACKAGE_TOKENS";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Release Package";
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A10000910000000000000001 /* Build configuration list for PBXProject "NucleusApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10000810000000000000001 /* Debug Local */,
+				A10000810000000000000002 /* Release Local */,
+				A10000810000000000000005 /* Debug Package */,
+				A10000810000000000000006 /* Release Package */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release Local";
+		};
+		A10000910000000000000002 /* Build configuration list for PBXNativeTarget "NucleusApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10000810000000000000003 /* Debug Local */,
+				A10000810000000000000004 /* Release Local */,
+				A10000810000000000000007 /* Debug Package */,
+				A10000810000000000000008 /* Release Package */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release Local";
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		A10000A00000000000000001 /* XCLocalSwiftPackageReference "../../../build/ios" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../../build/ios;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A10000A10000000000000001 /* Nucleus */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000A00000000000000001 /* XCLocalSwiftPackageReference "../../../build/ios" */;
+			productName = Nucleus;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = A10000710000000000000001 /* Project object */;
+}

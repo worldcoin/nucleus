@@ -1,0 +1,53 @@
+name: Release Label Check
+
+on:
+  pull_request:
+    types: [opened, labeled, unlabeled, synchronize]
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  check-release-label:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Check release labels
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_LABELS: ${{ toJson(github.event.pull_request.labels.*.name) }}
+        run: |
+          REMINDER='This PR changes potentially changes design tokens or the API surface. To make a release, please add one of `major`, `minor`, `patch`.'
+
+          # Count release labels on this PR
+          RELEASE_LABELS=$(echo "$PR_LABELS" | jq '[.[] | select(. == "major" or . == "minor" or . == "patch")] | length')
+
+          if [ "$RELEASE_LABELS" -gt 1 ]; then
+            echo "::error::Only one release label allowed (found $RELEASE_LABELS). Use exactly one of: major, minor, patch"
+            exit 1
+          fi
+
+          if [ "$RELEASE_LABELS" -eq 1 ]; then
+            echo "Release label found. OK."
+            exit 0
+          fi
+
+          # No release label — check if token-related files changed
+          CHANGED=$(git diff --name-only origin/main...HEAD -- 'src/tokens/' 'src/formats/' 'src/templates/' || true)
+
+          if [ -n "$CHANGED" ]; then
+            if gh pr view "$PR_NUMBER" --json comments --jq '.comments[].body' | grep -Fq "$REMINDER"; then
+              echo "Token-related files changed but reminder already exists. Skipping comment."
+            else
+              echo "Token-related files changed but no release label found. Posting comment."
+              gh pr comment "$PR_NUMBER" --body "$REMINDER"
+            fi
+          else
+            echo "No release label and no token file changes. Skipping."
+          fi

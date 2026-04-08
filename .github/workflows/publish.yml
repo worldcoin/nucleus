@@ -1,0 +1,239 @@
+name: Publish Design Tokens
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: Version bump type
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  release:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.release.outputs.version }}
+      previous_version: ${{ steps.release.outputs.previous_version }}
+      tagged: ${{ steps.release.outputs.tagged }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Determine bump type
+        id: pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MANUAL_BUMP: ${{ inputs.bump }}
+        run: |
+          # Manual dispatch — use the input directly
+          if [ -n "$MANUAL_BUMP" ]; then
+            echo "Manual dispatch with bump: $MANUAL_BUMP"
+            echo "bump=$MANUAL_BUMP" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # Push to main — look up the merged PR
+          SHA=$(git rev-parse HEAD)
+          PR_JSON=$(gh pr list --search "$SHA" --state merged --json labels,number --limit 1)
+
+          if [ "$(echo "$PR_JSON" | jq length)" -eq 0 ]; then
+            echo "No merged PR found for $SHA. Skipping release."
+            echo "bump=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          BUMP=$(echo "$PR_JSON" | jq -r '
+            .[0].labels
+            | map(.name)
+            | map(select(. == "major" or . == "minor" or . == "patch"))
+            | first
+            // empty
+          ')
+
+          if [ -z "$BUMP" ]; then
+            echo "No release label on merged PR. Skipping release."
+          else
+            echo "Bump type: $BUMP"
+          fi
+          echo "bump=$BUMP" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/setup-node@v5
+        if: steps.pr.outputs.bump != ''
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Compute version, sync package metadata, commit, and create tag
+        id: release
+        if: steps.pr.outputs.bump != ''
+        env:
+          BUMP: ${{ steps.pr.outputs.bump }}
+        run: |
+          CURRENT_VERSION=$(tr -d '[:space:]' < VERSION)
+          PREVIOUS_VERSION="v${CURRENT_VERSION}"
+
+          MAJOR=$(echo "$CURRENT_VERSION" | cut -d. -f1)
+          MINOR=$(echo "$CURRENT_VERSION" | cut -d. -f2)
+          PATCH=$(echo "$CURRENT_VERSION" | cut -d. -f3)
+
+          case "$BUMP" in
+            major) NEXT_VERSION="$((MAJOR + 1)).0.0" ;;
+            minor) NEXT_VERSION="${MAJOR}.$((MINOR + 1)).0" ;;
+            patch) NEXT_VERSION="${MAJOR}.${MINOR}.$((PATCH + 1))" ;;
+          esac
+
+          NEW_VERSION="v${NEXT_VERSION}"
+          echo "Creating tag $NEW_VERSION"
+
+          printf '%s\n' "$NEXT_VERSION" > VERSION
+          npm version "$NEXT_VERSION" --no-git-tag-version
+
+          # Insert new version entry after the "# Changelog" title
+          LINK="https://github.com/worldcoin/nucleus/compare/${PREVIOUS_VERSION}...${NEW_VERSION}"
+          sed -i "/^# Changelog/a\\\n## ${NEW_VERSION}\n- [Full changelog](${LINK})\n" CHANGELOG.md
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add VERSION package.json package-lock.json CHANGELOG.md
+          git commit -m "release: $NEW_VERSION"
+          git push origin main
+          git tag "$NEW_VERSION"
+          git push origin "$NEW_VERSION"
+
+          echo "version=$NEW_VERSION" >> "$GITHUB_OUTPUT"
+          echo "previous_version=$PREVIOUS_VERSION" >> "$GITHUB_OUTPUT"
+          echo "tagged=true" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: release
+    if: needs.release.outputs.tagged == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ needs.release.outputs.version }}
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run format:check
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: android-tokens
+          path: build/android/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ios-tokens
+          path: build/ios/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: web-tokens
+          path: build/web/
+
+  publish-maven:
+    needs: [release, build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: android-tokens
+          path: android-build/
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: gradle/actions/setup-gradle@v3
+
+      - name: Generate Gradle wrapper
+        working-directory: android-build
+        run: gradle wrapper
+
+      - name: Publish to GitHub Packages
+        working-directory: android-build
+        env:
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./gradlew publish
+
+  publish-spm:
+    needs: [release, build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: generated/ios
+          fetch-depth: 0
+        continue-on-error: true
+
+      - name: Init branch if needed
+        run: |
+          if ! git rev-parse --verify generated/ios 2>/dev/null; then
+            git checkout --orphan generated/ios
+            git rm -rf . || true
+          fi
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: ios-tokens
+          path: ios-build/
+
+      - name: Copy files to repo root
+        run: |
+          cp ios-build/Package.swift .
+          rm -rf Sources
+          cp -r ios-build/Sources .
+
+      - name: Commit and tag
+        env:
+          TAG: ${{ needs.release.outputs.version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Package.swift Sources/
+          git commit -m "chore: update ios tokens for ${TAG}" || echo "no changes"
+          git tag "${TAG}-ios"
+          git push origin generated/ios --tags
+
+  publish-npm:
+    needs: [release, build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: web-tokens
+          path: web-build/
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          registry-url: https://npm.pkg.github.com
+          scope: '@worldcoin'
+
+      - name: Publish to GitHub Packages
+        working-directory: web-build
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm publish
