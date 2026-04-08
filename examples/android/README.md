@@ -14,7 +14,7 @@ Android sample app with two token source variants:
 
 Run the root `npm run build` first so `build/android` exists.
 
-Open `playground/android` in Android Studio.
+Open `examples/android` in Android Studio.
 
 Use these build variants:
 

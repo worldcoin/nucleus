@@ -8,7 +8,7 @@ iOS sample app with two token source schemes:
 ## Open
 
 1. Run the root `npm run build` so `build/ios` exists.
-2. Open `playground/ios/NucleusApp/NucleusApp.xcodeproj` in Xcode.
+2. Open `examples/ios/NucleusApp/NucleusApp.xcodeproj` in Xcode.
 3. Choose either the `NucleusApp Local` or `NucleusApp Package` shared scheme.
 4. Choose a simulator and run.
 
