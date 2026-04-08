@@ -1,0 +1,53 @@
+import Foundation
+
+public enum NucleusSemanticColorsDark {
+    public static let surfacePrimary = NucleusPrimitiveColors.black
+    public static let surfaceSecondary = NucleusPrimitiveColors.grey950
+    public static let surfaceTertiary = NucleusPrimitiveColors.grey900
+    public static let surfaceOverlay = "000000CC"
+    public static let surfaceElevated = NucleusPrimitiveColors.grey900
+    public static let textPrimary = NucleusPrimitiveColors.white
+    public static let textSecondary = NucleusPrimitiveColors.grey500
+    public static let textTertiary = NucleusPrimitiveColors.grey700
+    public static let textDisabled = NucleusPrimitiveColors.grey800
+    public static let textInverse = NucleusPrimitiveColors.black
+    public static let iconPrimary = NucleusPrimitiveColors.white
+    public static let iconSecondary = NucleusPrimitiveColors.grey500
+    public static let iconTertiary = NucleusPrimitiveColors.grey600
+    public static let iconDisabled = NucleusPrimitiveColors.grey700
+    public static let iconInverse = NucleusPrimitiveColors.black
+    public static let borderSubtle = NucleusPrimitiveColors.grey900
+    public static let borderDefault = NucleusPrimitiveColors.grey800
+    public static let borderStrong = NucleusPrimitiveColors.grey700
+    public static let borderFocus = NucleusPrimitiveColors.white
+    public static let borderDivider = NucleusPrimitiveColors.grey800
+    public static let borderTranslucent = "FFFFFF0A"
+    public static let actionPrimary = NucleusPrimitiveColors.white
+    public static let actionPrimaryContent = NucleusPrimitiveColors.grey950
+    public static let actionSecondary = NucleusPrimitiveColors.grey800
+    public static let actionSecondaryContent = NucleusPrimitiveColors.white
+    public static let actionTertiary = NucleusPrimitiveColors.black
+    public static let actionTertiaryContent = NucleusPrimitiveColors.white
+    public static let actionDestructive = NucleusPrimitiveColors.error600
+    public static let actionDestructiveContent = NucleusPrimitiveColors.white
+    public static let actionDisabled = NucleusPrimitiveColors.grey900
+    public static let actionDisabledContent = NucleusPrimitiveColors.grey600
+    public static let actionGhost = "FFFFFF14"
+    public static let actionGhostContent = NucleusPrimitiveColors.white
+    public static let inputBackground = NucleusPrimitiveColors.grey900
+    public static let inputBackgroundFocus = NucleusPrimitiveColors.grey900
+    public static let inputText = NucleusPrimitiveColors.white
+    public static let inputPlaceholder = NucleusPrimitiveColors.grey400
+    public static let inputDivider = NucleusPrimitiveColors.grey700
+    public static let inputError = NucleusPrimitiveColors.error300
+    public static let statusError = NucleusPrimitiveColors.error300
+    public static let statusWarning = NucleusPrimitiveColors.warning500
+    public static let statusSuccess = NucleusPrimitiveColors.success500
+    public static let statusInfo = NucleusPrimitiveColors.info300
+    public static let statusErrorBackground = NucleusPrimitiveColors.error900
+    public static let statusWarningBackground = NucleusPrimitiveColors.warning900
+    public static let statusSuccessBackground = NucleusPrimitiveColors.success900
+    public static let statusInfoBackground = NucleusPrimitiveColors.info900
+    public static let accentPrimary = NucleusPrimitiveColors.info300
+    public static let accentContent = NucleusPrimitiveColors.black
+}
