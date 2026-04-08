@@ -24,7 +24,7 @@ graph TD
 ## Quick Start
 
 ```bash
-npm install
+npm ci
 npm run build
 ```
 
@@ -36,7 +36,7 @@ Generated files appear in `build/`:
 | iOS      | `build/ios/`     | Standalone Swift enums with hex string constants, `Package.swift` for SPM           |
 | Web      | `build/web/`     | CSS custom properties, JSON token files, `package.json` for npm publishing          |
 
-Release versioning lives in the repo root `VERSION` file. Generated Android and Web artifacts stamp that exact value during `npm run build`, and the publish workflow synchronizes npm metadata from it before tagging a release.
+Release versioning lives in the repo root `VERSION` file. `npm run build` stamps that value into the generated Android and Web package metadata.
 
 ## Token Source Layout
 
@@ -69,15 +69,15 @@ Release versioning lives in the repo root `VERSION` file. Generated Android and 
 
 ## Example Apps
 
-- `examples/android/` – Android demo app that wraps generated Kotlin sources from `build/android`
-- `examples/ios/` – iOS demo app that compiles the generated Swift file from `build/ios`
-- `examples/web/` – Web demo app that reads generated files from `build/web`
+- `examples/android/` – Android demo app with `local` and `package` flavors
+- `examples/ios/` – iOS demo app with `Local` and `Package` schemes
+- `examples/web/` – Next.js demo app with `local` and `package` token sources
 
 ## CI/CD
 
-The GitHub Actions workflow (`.github/workflows/publish.yml`) supports two trigger modes:
+The release workflow lives in `.github/workflows/publish.yml` and supports two trigger modes:
 
-- **Merged PR with a release label** (`major`, `minor`, `patch`) – auto-bumps version, creates a tag, builds, and publishes
+- **Push to `main` after a merged PR with a release label** (`major`, `minor`, `patch`) – the workflow looks up the merged PR for `HEAD`, derives the bump from its labels, then creates a tag, builds, and publishes
 - **Manual dispatch** – choose the bump type from the Actions UI
 
 ### Pipeline Steps
@@ -87,6 +87,8 @@ The GitHub Actions workflow (`.github/workflows/publish.yml`) supports two trigg
 3. **publish-maven** – Publishes Android library to GitHub Packages
 4. **publish-spm** – Commits generated iOS files to the `generated/ios` branch, tags as `v*-ios`
 5. **publish-npm** – Publishes Web package to GitHub Packages npm registry
+
+The verification workflow lives in `.github/workflows/verify.yml` and runs `format:check`, `lint`, `typecheck`, and `build` on pushes to `main` and pull requests.
 
 ## Consuming the Tokens
 
@@ -120,7 +122,7 @@ Add the SPM dependency in your `Package.swift`:
 .package(url: "https://github.com/worldcoin/nucleus.git", branch: "generated/ios")
 ```
 
-Or pin to a specific release tag (e.g. `v0.1.0-ios`).
+Or pin to a specific release tag (for example, `vX.Y.Z-ios`).
 
 Then add `Nucleus` as a dependency on your target:
 
@@ -155,6 +157,8 @@ Then install the package:
 npm install @worldcoin/nucleus
 ```
 
+The published package includes the generated CSS, JSON, and `index.d.ts` files from `build/web`.
+
 **CSS custom properties** – import the stylesheet:
 
 ```css
@@ -181,4 +185,4 @@ import tokens from "@worldcoin/nucleus/nucleus-primitive-colors.json";
 1. Edit the relevant JSON file in `src/tokens/`
 2. Run `npm run build` to verify output
 3. Open a PR with a release label (`patch`, `minor`, or `major`)
-4. On merge, CI auto-tags and publishes to all three platforms
+4. On merge to `main`, CI auto-tags and publishes when the merged PR label resolves to a release bump

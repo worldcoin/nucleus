@@ -8,12 +8,13 @@ Web sample app for Nucleus with two token source modes:
 ## Setup
 
 ```bash
+npm ci
 npm run build
 cd examples/web
 npm install
 ```
 
-Run `npm install` after `npm run build` so the local package artifact in `build/web` can resolve for package mode.
+Run the root install before building, then run `npm install` in `examples/web` after `npm run build` so the local package artifact in `build/web` can resolve for package mode.
 
 ## Development
 
