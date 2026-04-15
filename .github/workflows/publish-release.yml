@@ -161,8 +161,9 @@ jobs:
       - name: Copy files to repo root
         run: |
           cp ios-build/Package.swift .
-          rm -rf Sources
+          rm -rf Sources Plugins
           cp -r ios-build/Sources .
+          cp -r ios-build/Plugins .
 
       - name: Commit and tag
         env:
@@ -170,7 +171,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add Package.swift Sources/
+          git add Package.swift Sources/ Plugins/
           git commit -m "chore: update ios tokens for ${TAG}" || echo "no changes"
           git tag "${TAG}-ios"
           git push origin generated/ios --tags

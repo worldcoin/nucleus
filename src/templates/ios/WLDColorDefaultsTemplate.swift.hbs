@@ -1,0 +1,15 @@
+import Foundation
+
+extension WLDColor {
+    // MARK: - Primitive
+
+{{#each primitiveTokens}}
+    public static let {{name}} = WLDColor("{{hex}}")
+{{/each}}
+
+    // MARK: - Semantic
+
+{{#each semanticTokens}}
+    public static let {{name}} = WLDColor(light: "{{lightHex}}", dark: "{{darkHex}}")
+{{/each}}
+}
