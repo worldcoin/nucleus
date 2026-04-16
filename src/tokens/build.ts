@@ -25,7 +25,7 @@ const primitiveSources: string[] = ['src/tokens/color/primitive.json'];
 const semanticLightSources: string[] = ['src/tokens/color/semantic.light.json'];
 const semanticDarkSources: string[] = ['src/tokens/color/semantic.dark.json'];
 const androidOut = 'build/android/src/main/kotlin/com/worldcoin/nucleus';
-const iosOut = 'build/ios/Sources/Nucleus';
+const iosOut = 'build/ios/Sources/NucleusColors';
 const webOut = 'build/web';
 const BUILD_VERSION = readFileSync(resolve(ROOT, 'VERSION'), 'utf8').trim();
 

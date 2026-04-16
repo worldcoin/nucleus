@@ -3,20 +3,20 @@
 import PackageDescription
 
 let package = Package(
-    name: "Nucleus",
+    name: "NucleusColors",
     platforms: [
         .iOS(.v15),
     ],
     products: [
         .library(
-            name: "Nucleus",
-            targets: ["Nucleus"]
+            name: "NucleusColors",
+            targets: ["NucleusColors"]
         ),
     ],
     targets: [
         .target(
-            name: "Nucleus",
-            path: "Sources/Nucleus"
+            name: "NucleusColors",
+            path: "Sources/NucleusColors"
         ),
     ]
 )

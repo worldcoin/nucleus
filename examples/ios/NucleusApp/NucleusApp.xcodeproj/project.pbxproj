@@ -16,7 +16,7 @@
 		A10000010000000000000008 /* NucleusSemanticColorsDark.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000110000000000000008 /* NucleusSemanticColorsDark.swift */; };
 		A10000010000000000000009 /* DemoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000110000000000000009 /* DemoModels.swift */; };
 		A10000010000000000000010 /* DemoComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000110000000000000010 /* DemoComponents.swift */; };
-		A10000010000000000000006 /* Nucleus in Frameworks */ = {isa = PBXBuildFile; productRef = A10000A10000000000000001 /* Nucleus */; };
+		A10000010000000000000006 /* NucleusColors in Frameworks */ = {isa = PBXBuildFile; productRef = A10000A10000000000000001 /* NucleusColors */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,10 +24,10 @@
 		A10000110000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A10000110000000000000003 /* HexColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexColor.swift; sourceTree = "<group>"; };
 		A10000110000000000000004 /* NucleusApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NucleusApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A10000110000000000000005 /* NucleusPrimitiveColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NucleusPrimitiveColors.swift; path = ../../../build/ios/Sources/Nucleus/NucleusPrimitiveColors.swift; sourceTree = SOURCE_ROOT; };
+		A10000110000000000000005 /* NucleusPrimitiveColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NucleusPrimitiveColors.swift; path = ../../../build/ios/Sources/NucleusColors/NucleusPrimitiveColors.swift; sourceTree = SOURCE_ROOT; };
 		A10000110000000000000006 /* NucleusTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NucleusTokens.swift; sourceTree = "<group>"; };
-		A10000110000000000000007 /* NucleusSemanticColorsLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NucleusSemanticColorsLight.swift; path = ../../../build/ios/Sources/Nucleus/NucleusSemanticColorsLight.swift; sourceTree = SOURCE_ROOT; };
-		A10000110000000000000008 /* NucleusSemanticColorsDark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NucleusSemanticColorsDark.swift; path = ../../../build/ios/Sources/Nucleus/NucleusSemanticColorsDark.swift; sourceTree = SOURCE_ROOT; };
+		A10000110000000000000007 /* NucleusSemanticColorsLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NucleusSemanticColorsLight.swift; path = ../../../build/ios/Sources/NucleusColors/NucleusSemanticColorsLight.swift; sourceTree = SOURCE_ROOT; };
+		A10000110000000000000008 /* NucleusSemanticColorsDark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NucleusSemanticColorsDark.swift; path = ../../../build/ios/Sources/NucleusColors/NucleusSemanticColorsDark.swift; sourceTree = SOURCE_ROOT; };
 		A10000110000000000000009 /* DemoModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoModels.swift; sourceTree = "<group>"; };
 		A10000110000000000000010 /* DemoComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoComponents.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A10000010000000000000006 /* Nucleus in Frameworks */,
+				A10000010000000000000006 /* NucleusColors in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,7 +94,7 @@
 			);
 			name = NucleusApp;
 			packageProductDependencies = (
-				A10000A10000000000000001 /* Nucleus */,
+				A10000A10000000000000001 /* NucleusColors */,
 			);
 			productName = NucleusApp;
 			productReference = A10000110000000000000004 /* NucleusApp.app */;
@@ -155,9 +155,9 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/../../../build/ios/Sources/Nucleus/NucleusPrimitiveColors.swift",
-				"$(SRCROOT)/../../../build/ios/Sources/Nucleus/NucleusSemanticColorsLight.swift",
-				"$(SRCROOT)/../../../build/ios/Sources/Nucleus/NucleusSemanticColorsDark.swift",
+				"$(SRCROOT)/../../../build/ios/Sources/NucleusColors/NucleusPrimitiveColors.swift",
+				"$(SRCROOT)/../../../build/ios/Sources/NucleusColors/NucleusSemanticColorsLight.swift",
+				"$(SRCROOT)/../../../build/ios/Sources/NucleusColors/NucleusSemanticColorsDark.swift",
 			);
 			name = "Copy Generated Token Sources";
 			outputFileListPaths = (
@@ -169,7 +169,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\nTOKEN_SOURCE_DIR=\"${SRCROOT}/../../../build/ios/Sources/Nucleus\"\nTOKEN_DEST_DIR=\"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}\"\ncp \"${TOKEN_SOURCE_DIR}/NucleusPrimitiveColors.swift\" \"${TOKEN_DEST_DIR}/NucleusPrimitiveColors.swift\"\ncp \"${TOKEN_SOURCE_DIR}/NucleusSemanticColorsLight.swift\" \"${TOKEN_DEST_DIR}/NucleusSemanticColorsLight.swift\"\ncp \"${TOKEN_SOURCE_DIR}/NucleusSemanticColorsDark.swift\" \"${TOKEN_DEST_DIR}/NucleusSemanticColorsDark.swift\"\n";
+			shellScript = "set -e\nTOKEN_SOURCE_DIR=\"${SRCROOT}/../../../build/ios/Sources/NucleusColors\"\nTOKEN_DEST_DIR=\"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}\"\ncp \"${TOKEN_SOURCE_DIR}/NucleusPrimitiveColors.swift\" \"${TOKEN_DEST_DIR}/NucleusPrimitiveColors.swift\"\ncp \"${TOKEN_SOURCE_DIR}/NucleusSemanticColorsLight.swift\" \"${TOKEN_DEST_DIR}/NucleusSemanticColorsLight.swift\"\ncp \"${TOKEN_SOURCE_DIR}/NucleusSemanticColorsDark.swift\" \"${TOKEN_DEST_DIR}/NucleusSemanticColorsDark.swift\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -394,10 +394,10 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A10000A10000000000000001 /* Nucleus */ = {
+		A10000A10000000000000001 /* NucleusColors */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A10000A00000000000000001 /* XCLocalSwiftPackageReference "../../../build/ios" */;
-			productName = Nucleus;
+			productName = NucleusColors;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
