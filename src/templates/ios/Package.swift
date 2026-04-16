@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "NucleusColors",
+    name: "Nucleus",
     platforms: [
         .iOS(.v15),
     ],
