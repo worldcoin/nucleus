@@ -1,4 +1,4 @@
-name: Publish Design Token Release
+name: Publish Nucleus Release
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.plan.outputs.version }}
-      tagged: ${{ steps.tag.outputs.tagged }}
+      publish: ${{ steps.tag.outputs.publish }}
     steps:
       - uses: actions/checkout@v5
         with:
@@ -66,17 +66,18 @@ jobs:
           git fetch origin main --tags
 
           if git rev-parse "$VERSION_TAG" >/dev/null 2>&1; then
-            echo "Tag $VERSION_TAG already exists."
-          else
-            git tag "$VERSION_TAG" "$GITHUB_SHA"
-            git push origin "$VERSION_TAG"
+            echo "Tag $VERSION_TAG already exists. Skipping publish jobs."
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+            exit 0
           fi
 
-          echo "tagged=true" >> "$GITHUB_OUTPUT"
+          git tag "$VERSION_TAG" "$GITHUB_SHA"
+          git push origin "$VERSION_TAG"
+          echo "publish=true" >> "$GITHUB_OUTPUT"
 
   build:
     needs: release
-    if: needs.release.outputs.tagged == 'true'
+    if: needs.release.outputs.publish == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -111,6 +112,7 @@ jobs:
 
   publish-mvn:
     needs: [release, build]
+    if: needs.release.outputs.publish == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4
@@ -138,6 +140,7 @@ jobs:
 
   publish-spm:
     needs: [release, build]
+    if: needs.release.outputs.publish == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -177,6 +180,7 @@ jobs:
 
   publish-npm:
     needs: [release, build]
+    if: needs.release.outputs.publish == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4

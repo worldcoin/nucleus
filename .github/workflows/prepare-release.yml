@@ -1,4 +1,4 @@
-name: Prepare Design Token Release
+name: Prepare Nucleus Release
 
 on:
   push:
@@ -57,14 +57,25 @@ jobs:
             esac
           }
 
+          release_exists() {
+            VERSION_TAG="$1"
+            git rev-parse "$VERSION_TAG" >/dev/null 2>&1
+          }
+
           CURRENT_VERSION=$(tr -d '[:space:]' < VERSION)
           PREVIOUS_VERSION="v${CURRENT_VERSION}"
           echo "previous_version=$PREVIOUS_VERSION" >> "$GITHUB_OUTPUT"
 
           if [ -n "$MANUAL_BUMP" ]; then
             NEXT_VERSION=$(next_version "$CURRENT_VERSION" "$MANUAL_BUMP")
+            VERSION_TAG="v${NEXT_VERSION}"
+            if release_exists "$VERSION_TAG"; then
+              echo "Tag $VERSION_TAG already exists. Skipping release preparation."
+              echo "action=skip" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
             echo "action=create_pr" >> "$GITHUB_OUTPUT"
-            echo "version=v${NEXT_VERSION}" >> "$GITHUB_OUTPUT"
+            echo "version=$VERSION_TAG" >> "$GITHUB_OUTPUT"
             echo "source=manual" >> "$GITHUB_OUTPUT"
             exit 0
           fi
@@ -104,8 +115,14 @@ jobs:
           fi
 
           NEXT_VERSION=$(next_version "$CURRENT_VERSION" "$BUMP")
+          VERSION_TAG="v${NEXT_VERSION}"
+          if release_exists "$VERSION_TAG"; then
+            echo "Tag $VERSION_TAG already exists. Skipping release preparation."
+            echo "action=skip" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
           echo "action=create_pr" >> "$GITHUB_OUTPUT"
-          echo "version=v${NEXT_VERSION}" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION_TAG" >> "$GITHUB_OUTPUT"
           echo "source=pr" >> "$GITHUB_OUTPUT"
           echo "source_pr=$PR_NUMBER" >> "$GITHUB_OUTPUT"
 
