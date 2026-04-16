@@ -130,13 +130,13 @@ Add the SPM dependency in your `Package.swift`:
 
 Or pin to a specific release tag (for example, `vX.Y.Z-ios`).
 
-Then add `Nucleus` as a dependency on your target:
+Then add `NucleusColors` as a dependency on your target:
 
 ```swift
 .target(
     name: "YourTarget",
     dependencies: [
-        .product(name: "Nucleus", package: "nucleus"),
+        .product(name: "NucleusColors", package: "nucleus"),
     ]
 )
 ```
@@ -144,7 +144,7 @@ Then add `Nucleus` as a dependency on your target:
 Access primitive colors as hex strings:
 
 ```swift
-import Nucleus
+import NucleusColors
 
 let hex = NucleusPrimitiveColors.grey900 // "181818"
 ```
