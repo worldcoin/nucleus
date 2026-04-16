@@ -80,10 +80,14 @@ Release automation is split across two workflows:
 - `.github/workflows/prepare-release.yml` prepares release PRs
 - `.github/workflows/publish-release.yml` tags and publishes merged release PRs
 
+There are two ways to open a release PR, and one way to publish a release.
+
 The prepare workflow supports two trigger modes:
 
 - **Push to `main` after a merged PR with a release label** (`major`, `minor`, `patch`) – the workflow derives the bump from the merged PR, creates a `release/v*` branch, and opens a release PR
 - **Manual dispatch** – choose the bump type from the Actions UI to create the same release PR flow without a source PR label
+
+If the computed tag already exists, `prepare-release.yml` skips instead of opening a duplicate release PR.
 
 ### Pipeline Steps
 
@@ -93,6 +97,8 @@ The prepare workflow supports two trigger modes:
 4. **publish-mvn** – Publishes Android library to GitHub Packages
 5. **publish-spm** – Commits generated iOS files to the `generated/ios` branch, tags as `v*-ios`
 6. **publish-npm** – Publishes Web package to GitHub Packages npm registry
+
+`publish-release.yml` only publishes the first time it creates the `v*` tag. Rerunning the workflow after that tag already exists will skip the publish jobs instead of attempting duplicate package releases.
 
 The verification workflow lives in `.github/workflows/verify.yml` and runs `format:check`, `lint`, `typecheck`, and `build` on pushes to `main` and pull requests.
 
