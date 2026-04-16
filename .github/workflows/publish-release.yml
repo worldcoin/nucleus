@@ -3,6 +3,12 @@ name: Publish Nucleus Release
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+    inputs:
+      merge_sha:
+        description: Release merge commit SHA to publish. Defaults to the triggering commit on push.
+        required: false
+        type: string
 
 concurrency:
   group: publish-release-main
@@ -18,6 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.plan.outputs.version }}
+      target_sha: ${{ steps.plan.outputs.target_sha }}
       publish: ${{ steps.tag.outputs.publish }}
     steps:
       - uses: actions/checkout@v5
@@ -28,19 +35,50 @@ jobs:
         id: plan
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MERGE_SHA: ${{ github.sha }}
+          MERGE_SHA: ${{ github.event.inputs.merge_sha || github.sha }}
           REPOSITORY: ${{ github.repository }}
         run: |
           git fetch origin main --tags
           git checkout -B main origin/main
 
-          PR_JSON=$(gh api \
-            -H "Accept: application/vnd.github+json" \
-            "/repos/$REPOSITORY/commits/$MERGE_SHA/pulls" \
-            --jq 'map(select(.merged_at != null)) | .[0]')
+          resolve_pr_from_commit() {
+            gh api \
+              -H "Accept: application/vnd.github+json" \
+              "/repos/$REPOSITORY/commits/$MERGE_SHA/pulls" \
+              --jq 'map(select(.merged_at != null)) | .[0]'
+          }
+
+          resolve_pr_from_subject() {
+            local subject pr_number
+            subject=$(git log -1 --pretty=%s "$MERGE_SHA")
+
+            if [[ "$subject" =~ \(#([0-9]+)\)$ ]]; then
+              pr_number="${BASH_REMATCH[1]}"
+            elif [[ "$subject" =~ ^Merge\ pull\ request\ #([0-9]+)\  ]]; then
+              pr_number="${BASH_REMATCH[1]}"
+            else
+              return 1
+            fi
+
+            gh api \
+              -H "Accept: application/vnd.github+json" \
+              "/repos/$REPOSITORY/pulls/$pr_number"
+          }
+
+          PR_JSON=$(resolve_pr_from_commit)
+
+          if [ "$PR_JSON" = "null" ] || [ -z "$PR_JSON" ]; then
+            PR_JSON=$(resolve_pr_from_subject || true)
+          fi
 
           if [ "$PR_JSON" = "null" ] || [ -z "$PR_JSON" ]; then
             echo "No merged PR found for $MERGE_SHA. Skipping publish."
+            echo "action=skip" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if [ "$(echo "$PR_JSON" | jq -r '.merged_at // empty')" = "" ]; then
+            echo "Resolved PR for $MERGE_SHA is not merged. Skipping publish."
             echo "action=skip" >> "$GITHUB_OUTPUT"
             exit 0
           fi
@@ -55,12 +93,14 @@ jobs:
 
           CURRENT_VERSION=$(tr -d '[:space:]' < VERSION)
           echo "action=publish" >> "$GITHUB_OUTPUT"
+          echo "target_sha=$MERGE_SHA" >> "$GITHUB_OUTPUT"
           echo "version=v${CURRENT_VERSION}" >> "$GITHUB_OUTPUT"
 
       - name: Tag merged release commit
         id: tag
         if: steps.plan.outputs.action == 'publish'
         env:
+          TARGET_SHA: ${{ steps.plan.outputs.target_sha }}
           VERSION_TAG: ${{ steps.plan.outputs.version }}
         run: |
           git fetch origin main --tags
@@ -71,7 +111,7 @@ jobs:
             exit 0
           fi
 
-          git tag "$VERSION_TAG" "$GITHUB_SHA"
+          git tag "$VERSION_TAG" "$TARGET_SHA"
           git push origin "$VERSION_TAG"
           echo "publish=true" >> "$GITHUB_OUTPUT"
 
