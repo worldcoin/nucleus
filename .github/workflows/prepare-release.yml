@@ -1,7 +1,8 @@
 name: Prepare Nucleus Release
 
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches: [main]
   workflow_dispatch:
     inputs:
@@ -24,7 +25,18 @@ permissions:
 
 jobs:
   prepare-release:
-    if: github.ref == 'refs/heads/main'
+    if: >-
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
+      (
+        github.event_name == 'pull_request' &&
+        github.event.pull_request.merged == true &&
+        !startsWith(github.event.pull_request.head.ref, 'release/v') &&
+        (
+          contains(github.event.pull_request.labels.*.name, 'major') ||
+          contains(github.event.pull_request.labels.*.name, 'minor') ||
+          contains(github.event.pull_request.labels.*.name, 'patch')
+        )
+      )
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -34,10 +46,9 @@ jobs:
       - name: Plan release PR
         id: plan
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MANUAL_BUMP: ${{ inputs.bump }}
-          MERGE_SHA: ${{ github.sha }}
-          REPOSITORY: ${{ github.repository }}
+          MANUAL_BUMP: ${{ github.event.inputs.bump || '' }}
+          PR_NUMBER: ${{ github.event.pull_request.number || '' }}
+          PR_LABELS: ${{ toJson(github.event.pull_request.labels.*.name) }}
         run: |
           git fetch origin main --tags
           git checkout -B main origin/main
@@ -62,69 +73,45 @@ jobs:
             git rev-parse "$VERSION_TAG" >/dev/null 2>&1
           }
 
+          set_output() {
+            echo "$1=$2" >> "$GITHUB_OUTPUT"
+          }
+
           CURRENT_VERSION=$(tr -d '[:space:]' < VERSION)
           PREVIOUS_VERSION="v${CURRENT_VERSION}"
-          echo "previous_version=$PREVIOUS_VERSION" >> "$GITHUB_OUTPUT"
+          set_output "previous_version" "$PREVIOUS_VERSION"
 
           if [ -n "$MANUAL_BUMP" ]; then
-            NEXT_VERSION=$(next_version "$CURRENT_VERSION" "$MANUAL_BUMP")
-            VERSION_TAG="v${NEXT_VERSION}"
-            if release_exists "$VERSION_TAG"; then
-              echo "Tag $VERSION_TAG already exists. Skipping release preparation."
-              echo "action=skip" >> "$GITHUB_OUTPUT"
+            BUMP="$MANUAL_BUMP"
+            SOURCE="manual"
+            SOURCE_PR=""
+          else
+            RELEASE_LABELS=$(echo "$PR_LABELS" | jq -r '
+              map(select(. == "major" or . == "minor" or . == "patch"))
+            ')
+            RELEASE_LABEL_COUNT=$(echo "$RELEASE_LABELS" | jq 'length')
+            BUMP=$(echo "$RELEASE_LABELS" | jq -r '.[0] // empty')
+            SOURCE="pr"
+            SOURCE_PR="$PR_NUMBER"
+
+            if [ "$RELEASE_LABEL_COUNT" -ne 1 ]; then
+              echo "Expected exactly one release label, found $RELEASE_LABEL_COUNT. Skipping release preparation."
+              set_output "action" "skip"
               exit 0
             fi
-            echo "action=create_pr" >> "$GITHUB_OUTPUT"
-            echo "version=$VERSION_TAG" >> "$GITHUB_OUTPUT"
-            echo "source=manual" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          PR_JSON=$(gh api \
-            -H "Accept: application/vnd.github+json" \
-            "/repos/$REPOSITORY/commits/$MERGE_SHA/pulls" \
-            --jq 'map(select(.merged_at != null)) | .[0]')
-
-          if [ "$PR_JSON" = "null" ] || [ -z "$PR_JSON" ]; then
-            echo "No merged PR found for $MERGE_SHA. Skipping release preparation."
-            echo "action=skip" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          HEAD_REF=$(echo "$PR_JSON" | jq -r '.head.ref')
-          PR_NUMBER=$(echo "$PR_JSON" | jq -r '.number')
-
-          if [[ "$HEAD_REF" == release/v* ]]; then
-            echo "Release PR merge detected from $HEAD_REF. Skipping release preparation."
-            echo "action=skip" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          BUMP=$(echo "$PR_JSON" | jq -r '
-            .labels
-            | map(.name)
-            | map(select(. == "major" or . == "minor" or . == "patch"))
-            | first
-            // empty
-          ')
-
-          if [ -z "$BUMP" ]; then
-            echo "No release label on merged PR. Skipping release preparation."
-            echo "action=skip" >> "$GITHUB_OUTPUT"
-            exit 0
           fi
 
           NEXT_VERSION=$(next_version "$CURRENT_VERSION" "$BUMP")
           VERSION_TAG="v${NEXT_VERSION}"
           if release_exists "$VERSION_TAG"; then
             echo "Tag $VERSION_TAG already exists. Skipping release preparation."
-            echo "action=skip" >> "$GITHUB_OUTPUT"
+            set_output "action" "skip"
             exit 0
           fi
-          echo "action=create_pr" >> "$GITHUB_OUTPUT"
-          echo "version=$VERSION_TAG" >> "$GITHUB_OUTPUT"
-          echo "source=pr" >> "$GITHUB_OUTPUT"
-          echo "source_pr=$PR_NUMBER" >> "$GITHUB_OUTPUT"
+          set_output "action" "create_pr"
+          set_output "version" "$VERSION_TAG"
+          set_output "source" "$SOURCE"
+          set_output "source_pr" "$SOURCE_PR"
 
       - uses: actions/setup-node@v5
         if: steps.plan.outputs.action == 'create_pr'

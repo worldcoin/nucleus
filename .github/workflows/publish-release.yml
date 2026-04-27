@@ -1,14 +1,9 @@
 name: Publish Nucleus Release
 
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches: [main]
-  workflow_dispatch:
-    inputs:
-      merge_sha:
-        description: Release merge commit SHA to publish. Defaults to the triggering commit on push.
-        required: false
-        type: string
 
 concurrency:
   group: publish-release-main
@@ -20,7 +15,9 @@ permissions:
 
 jobs:
   release:
-    if: github.ref == 'refs/heads/main'
+    if: >-
+      github.event.pull_request.merged == true &&
+      startsWith(github.event.pull_request.head.ref, 'release/v')
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.plan.outputs.version }}
@@ -34,67 +31,19 @@ jobs:
       - name: Detect merged release PR
         id: plan
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MERGE_SHA: ${{ github.event.inputs.merge_sha || github.sha }}
-          REPOSITORY: ${{ github.repository }}
+          MERGE_SHA: ${{ github.event.pull_request.merge_commit_sha }}
         run: |
           git fetch origin main --tags
           git checkout -B main origin/main
 
-          resolve_pr_from_commit() {
-            gh api \
-              -H "Accept: application/vnd.github+json" \
-              "/repos/$REPOSITORY/commits/$MERGE_SHA/pulls" \
-              --jq 'map(select(.merged_at != null)) | .[0]'
+          set_output() {
+            echo "$1=$2" >> "$GITHUB_OUTPUT"
           }
-
-          resolve_pr_from_subject() {
-            local subject pr_number
-            subject=$(git log -1 --pretty=%s "$MERGE_SHA")
-
-            if [[ "$subject" =~ \(#([0-9]+)\)$ ]]; then
-              pr_number="${BASH_REMATCH[1]}"
-            elif [[ "$subject" =~ ^Merge\ pull\ request\ #([0-9]+)\  ]]; then
-              pr_number="${BASH_REMATCH[1]}"
-            else
-              return 1
-            fi
-
-            gh api \
-              -H "Accept: application/vnd.github+json" \
-              "/repos/$REPOSITORY/pulls/$pr_number"
-          }
-
-          PR_JSON=$(resolve_pr_from_commit)
-
-          if [ "$PR_JSON" = "null" ] || [ -z "$PR_JSON" ]; then
-            PR_JSON=$(resolve_pr_from_subject || true)
-          fi
-
-          if [ "$PR_JSON" = "null" ] || [ -z "$PR_JSON" ]; then
-            echo "No merged PR found for $MERGE_SHA. Skipping publish."
-            echo "action=skip" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          if [ "$(echo "$PR_JSON" | jq -r '.merged_at // empty')" = "" ]; then
-            echo "Resolved PR for $MERGE_SHA is not merged. Skipping publish."
-            echo "action=skip" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          HEAD_REF=$(echo "$PR_JSON" | jq -r '.head.ref')
-
-          if [[ "$HEAD_REF" != release/v* ]]; then
-            echo "Merged PR was not a release PR ($HEAD_REF). Skipping publish."
-            echo "action=skip" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
 
           CURRENT_VERSION=$(tr -d '[:space:]' < VERSION)
-          echo "action=publish" >> "$GITHUB_OUTPUT"
-          echo "target_sha=$MERGE_SHA" >> "$GITHUB_OUTPUT"
-          echo "version=v${CURRENT_VERSION}" >> "$GITHUB_OUTPUT"
+          set_output "action" "publish"
+          set_output "target_sha" "$MERGE_SHA"
+          set_output "version" "v${CURRENT_VERSION}"
 
       - name: Tag merged release commit
         id: tag
