@@ -1,7 +1,7 @@
 name: Prepare Nucleus Release
 
 on:
-  pull_request_target:
+  pull_request:
     types: [closed]
     branches: [main]
   workflow_dispatch:
@@ -28,7 +28,7 @@ jobs:
     if: >-
       (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
       (
-        github.event_name == 'pull_request_target' &&
+        github.event_name == 'pull_request' &&
         github.event.pull_request.merged == true &&
         !startsWith(github.event.pull_request.head.ref, 'release/v') &&
         (
