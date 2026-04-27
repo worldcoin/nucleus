@@ -12,7 +12,7 @@ import {
 } from './shared.js';
 
 const TEMPLATE = Handlebars.compile(
-  readTemplate('src/templates/ios/NucleusColorsTemplate.swift.hbs'),
+  readTemplate('tokens/templates/ios/NucleusColorsTemplate.swift.hbs'),
 );
 
 function hexOnly(hex: string): string {

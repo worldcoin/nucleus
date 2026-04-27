@@ -1,15 +1,15 @@
 import StyleDictionary from 'style-dictionary';
 import { cpSync, mkdirSync, existsSync, readFileSync, writeFileSync } from 'fs';
-import { resolve, dirname, basename } from 'path';
+import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import type { Format, NameTransform, TransformedToken } from 'style-dictionary/types';
 
-import { composeColorObject } from '../formats/android.js';
-import { swiftColorDefaults } from '../formats/ios.js';
-import { kebabCasePath } from '../formats/shared.js';
-import { cssColorVariables, jsonFlat } from '../formats/web.js';
+import { composeColorObject } from './formats/android.js';
+import { swiftColorDefaults } from './formats/ios.js';
+import { kebabCasePath } from './formats/shared.js';
+import { cssColorVariables, jsonFlat } from './formats/web.js';
 
-const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
+const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const nameTransform: NameTransform = {
   name: 'name/nucleus',
   type: 'name',
@@ -21,9 +21,9 @@ const allFormats: Format[] = [
   cssColorVariables,
   jsonFlat,
 ];
-const primitiveSources: string[] = ['src/tokens/color/primitive.json'];
-const semanticLightSources: string[] = ['src/tokens/color/semantic.light.json'];
-const semanticDarkSources: string[] = ['src/tokens/color/semantic.dark.json'];
+const primitiveSources: string[] = ['tokens/definitions/color/primitive.json'];
+const semanticLightSources: string[] = ['tokens/definitions/color/semantic.light.json'];
+const semanticDarkSources: string[] = ['tokens/definitions/color/semantic.dark.json'];
 const androidOut = 'build/android/src/main/kotlin/com/worldcoin/nucleus';
 const iosOut = 'build/ios/Sources/NucleusColors';
 const webOut = 'build/web';
@@ -160,26 +160,14 @@ interface TemplateCopy {
   to: string;
 }
 
-function copyTemplates(): void {
+function copyWebTemplates(): void {
   const copies: TemplateCopy[] = [
     {
-      from: 'src/templates/android/build.gradle.kts',
-      to: 'build/android/build.gradle.kts',
-    },
-    {
-      from: 'src/templates/android/settings.gradle.kts',
-      to: 'build/android/settings.gradle.kts',
-    },
-    {
-      from: 'src/templates/ios/Package.swift',
-      to: 'build/ios/Package.swift',
-    },
-    {
-      from: 'src/templates/web/package.json',
+      from: 'tokens/templates/web/package.json',
       to: 'build/web/package.json',
     },
     {
-      from: 'src/templates/web/index.d.ts',
+      from: 'tokens/templates/web/index.d.ts',
       to: 'build/web/index.d.ts',
     },
   ];
@@ -202,22 +190,60 @@ function copyTemplates(): void {
     writeFileSync(webPackagePath, `${JSON.stringify(webPackage, null, 2)}\n`);
   }
 
-  const androidBuildScriptPath = resolve(ROOT, 'build/android/build.gradle.kts');
-  if (existsSync(androidBuildScriptPath)) {
-    const androidBuildScript = readFileSync(androidBuildScriptPath, 'utf8').replace(
-      '__VERSION__',
-      BUILD_VERSION,
-    );
-    writeFileSync(androidBuildScriptPath, androidBuildScript);
+  console.log('\u2713 Web templates copied');
+}
+
+function copyComponentSource(from: string, to: string): void {
+  const src = resolve(ROOT, from);
+  const dest = resolve(ROOT, to);
+  if (!existsSync(src)) {
+    console.warn(`  \u26A0 component source not found: ${from}`);
+    return;
   }
 
-  console.log('\u2713 Templates copied');
+  mkdirSync(dest, { recursive: true });
+  cpSync(src, dest, { recursive: true });
+}
+
+function copyNativePackageFiles(): void {
+  const copies: TemplateCopy[] = [
+    {
+      from: 'components/android/build.gradle.kts',
+      to: 'build/android/build.gradle.kts',
+    },
+    {
+      from: 'components/android/settings.gradle.kts',
+      to: 'build/android/settings.gradle.kts',
+    },
+    {
+      from: 'components/ios/Package.swift',
+      to: 'build/ios/Package.swift',
+    },
+  ];
+
+  for (const { from, to } of copies) {
+    const src = resolve(ROOT, from);
+    const dest = resolve(ROOT, to);
+    if (!existsSync(src)) {
+      console.warn(`  \u26A0 native package file not found: ${from}`);
+      continue;
+    }
+    mkdirSync(dirname(dest), { recursive: true });
+    cpSync(src, dest);
+  }
+
+  copyComponentSource('components/android/src/main/kotlin/com/worldcoin/nucleus', androidOut);
+  copyComponentSource('components/ios/Sources/NucleusComponents', 'build/ios/Sources/NucleusComponents');
+  cpSync(resolve(ROOT, 'VERSION'), resolve(ROOT, 'build/android/VERSION'));
+
+  console.log('\u2713 Native package files copied');
 }
 
 async function main(): Promise<void> {
   console.log('Building Nucleus tokens\u2026');
   await buildTokens();
-  copyTemplates();
+  copyWebTemplates();
+  copyNativePackageFiles();
   console.log('\nDone!');
 }
 
