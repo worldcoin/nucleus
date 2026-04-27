@@ -13,7 +13,7 @@ import {
 
 const PACKAGE_NAME = 'com.worldcoin.nucleus';
 const TEMPLATE = Handlebars.compile(
-  readTemplate('src/templates/android/NucleusColorsTemplate.kt.hbs'),
+  readTemplate('tokens/templates/android/NucleusColorsTemplate.kt.hbs'),
 );
 
 function hexToArgb(hex: string): string {

@@ -42,9 +42,9 @@ Release versioning lives in the repo root `VERSION` file. `npm run build` stamps
 
 | Path                                   | Description                                          |
 | -------------------------------------- | ---------------------------------------------------- |
-| `src/tokens/color/primitive.json`      | Primitive color tokens under `primitive.color.*`     |
-| `src/tokens/color/semantic.light.json` | Light semantic color tokens under `semantic.color.*` |
-| `src/tokens/color/semantic.dark.json`  | Dark semantic color tokens under `semantic.color.*`  |
+| `tokens/definitions/color/primitive.json`      | Primitive color tokens under `primitive.color.*`     |
+| `tokens/definitions/color/semantic.light.json` | Light semantic color tokens under `semantic.color.*` |
+| `tokens/definitions/color/semantic.dark.json`  | Dark semantic color tokens under `semantic.color.*`  |
 
 ## Generated Output
 
@@ -194,7 +194,7 @@ import tokens from "@worldcoin/nucleus/nucleus-primitive-colors.json";
 
 ## Adding / Modifying Tokens
 
-1. Edit the relevant JSON file in `src/tokens/`
+1. Edit the relevant JSON file in `tokens/definitions/`
 2. Run `npm run build` to verify output
 3. Open a PR with a release label (`patch`, `minor`, or `major`)
 4. On merge to `main`, CI opens a `release/v*` PR with the version and changelog updates

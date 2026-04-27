@@ -21,9 +21,9 @@ const allFormats: Format[] = [
   cssColorVariables,
   jsonFlat,
 ];
-const primitiveSources: string[] = ['src/tokens/color/primitive.json'];
-const semanticLightSources: string[] = ['src/tokens/color/semantic.light.json'];
-const semanticDarkSources: string[] = ['src/tokens/color/semantic.dark.json'];
+const primitiveSources: string[] = ['tokens/definitions/color/primitive.json'];
+const semanticLightSources: string[] = ['tokens/definitions/color/semantic.light.json'];
+const semanticDarkSources: string[] = ['tokens/definitions/color/semantic.dark.json'];
 const androidOut = 'build/android/src/main/kotlin/com/worldcoin/nucleus';
 const iosOut = 'build/ios/Sources/NucleusColors';
 const webOut = 'build/web';
@@ -163,23 +163,23 @@ interface TemplateCopy {
 function copyTemplates(): void {
   const copies: TemplateCopy[] = [
     {
-      from: 'src/templates/android/build.gradle.kts',
+      from: 'tokens/templates/android/build.gradle.kts',
       to: 'build/android/build.gradle.kts',
     },
     {
-      from: 'src/templates/android/settings.gradle.kts',
+      from: 'tokens/templates/android/settings.gradle.kts',
       to: 'build/android/settings.gradle.kts',
     },
     {
-      from: 'src/templates/ios/Package.swift',
+      from: 'tokens/templates/ios/Package.swift',
       to: 'build/ios/Package.swift',
     },
     {
-      from: 'src/templates/web/package.json',
+      from: 'tokens/templates/web/package.json',
       to: 'build/web/package.json',
     },
     {
-      from: 'src/templates/web/index.d.ts',
+      from: 'tokens/templates/web/index.d.ts',
       to: 'build/web/index.d.ts',
     },
   ];
