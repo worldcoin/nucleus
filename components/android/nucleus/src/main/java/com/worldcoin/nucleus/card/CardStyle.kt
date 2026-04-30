@@ -1,4 +1,4 @@
-package com.worldcoin.nucleus
+package com.worldcoin.nucleus.card
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.runtime.Stable
@@ -7,10 +7,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.worldcoin.nucleus.card.CardAspectRatio
-import com.worldcoin.nucleus.card.CardSize
-import com.worldcoin.nucleus.card.CardTextPlacement
-import com.worldcoin.nucleus.card.CardTheme
 
 @Stable
 data class CardStyle(

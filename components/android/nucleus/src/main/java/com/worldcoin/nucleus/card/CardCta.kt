@@ -1,4 +1,4 @@
-package com.worldcoin.nucleus
+package com.worldcoin.nucleus.card
 
 import androidx.compose.runtime.Stable
 

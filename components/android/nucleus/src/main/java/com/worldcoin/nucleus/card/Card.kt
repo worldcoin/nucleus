@@ -36,9 +36,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
-import com.worldcoin.nucleus.CardCta
 import com.worldcoin.nucleus.CardEvent
-import com.worldcoin.nucleus.CardStyle
 
 @Composable
 fun Card(
