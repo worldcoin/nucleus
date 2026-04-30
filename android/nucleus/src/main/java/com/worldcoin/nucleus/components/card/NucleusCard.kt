@@ -10,6 +10,33 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+/**
+ * A clickable card displaying a primary image alongside a title, optional description, optional
+ * logo, and optional call-to-action.
+ *
+ * The layout is selected by [textPlacement]: [NucleusCardConfigs.TextPlacement.Overlay] floats the
+ * info row over the image, while [NucleusCardConfigs.TextPlacement.Below] stacks it underneath.
+ * Width fills the parent and height is derived from [aspectRatio].
+ *
+ * @param title Primary text shown in the info row.
+ * @param primaryImageUrl URL of the card's main image.
+ * @param titleStyle Text style for [title]; the color is overridden by [theme].
+ * @param subtitleStyle Text style for [description]; the color is overridden by [theme].
+ * @param modifier Modifier applied to the card root.
+ * @param description Optional secondary text shown below [title].
+ * @param logoUrl Optional logo image shown next to the title. Only rendered in the overlay layout.
+ * @param ctaTitle Optional call-to-action label. Only rendered in the overlay layout.
+ * @param ctaTextStyle Text style for the CTA label.
+ * @param size Controls inner padding of the info row.
+ * @param theme Controls primary and secondary text colors.
+ * @param aspectRatio Width-to-height ratio of the card.
+ * @param textPlacement Whether the info row floats over the image or sits below it.
+ * @param cornerRadius Corner radius of the card surface.
+ * @param border Optional border stroke applied to the card surface.
+ * @param onClick Invoked when the card is clicked.
+ * @param onCtaClick Invoked when the CTA is clicked. Ignored when [ctaTitle] is null or when
+ *   [textPlacement] is [NucleusCardConfigs.TextPlacement.Below].
+ */
 @Composable
 fun NucleusCard(
     title: String,

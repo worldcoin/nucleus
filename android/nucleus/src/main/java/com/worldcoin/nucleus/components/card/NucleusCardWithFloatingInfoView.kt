@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalMaterialApi::class)
-
 package com.worldcoin.nucleus.components.card
 
 import androidx.compose.animation.core.animateDpAsState
@@ -16,9 +14,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.Text
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -56,12 +53,12 @@ internal fun NucleusCardWithFloatingInfoView(
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
-    val elevation by animateDpAsState(if (isPressed) 4.dp else 0.dp)
-    val shape = RoundedCornerShape(cornerRadius)
+    val elevation by animateDpAsState(targetValue = if (isPressed) 4.dp else 0.dp)
+    val shape = RoundedCornerShape(size = cornerRadius)
 
     Surface(
         shape = shape,
-        elevation = elevation,
+        shadowElevation = elevation,
         border = border,
         color = NucleusCardPalette.Grey500,
         modifier = modifier
@@ -74,35 +71,32 @@ internal fun NucleusCardWithFloatingInfoView(
         Box {
             AsyncImage(
                 modifier = Modifier.fillMaxSize(),
-                model = ImageRequest.Builder(LocalContext.current)
+                model = ImageRequest.Builder(context = LocalContext.current)
                     .data(primaryImageUrl)
                     .build(),
                 contentDescription = title,
                 contentScale = ContentScale.Crop,
             )
-
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .align(Alignment.BottomCenter)
-                    .padding(if (size === NucleusCardConfigs.Size.SMALL) 16.dp else 20.dp),
+                    .padding(all = if (size === NucleusCardConfigs.Size.SMALL) 16.dp else 20.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 logoUrl?.let {
                     AsyncImage(
                         modifier = Modifier
                             .size(40.dp)
-                            .clip(RoundedCornerShape(12.dp))
+                            .clip(shape = RoundedCornerShape(size = 12.dp))
                             .background(color = NucleusCardPalette.Grey700),
-                        model = ImageRequest.Builder(LocalContext.current)
+                        model = ImageRequest.Builder(context = LocalContext.current)
                             .data(it)
                             .build(),
                         contentDescription = title,
                     )
-
-                    HorizontalSpacer(12.dp)
+                    HorizontalSpacer(distance = 12.dp)
                 }
-
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
                         text = title,
@@ -110,7 +104,6 @@ internal fun NucleusCardWithFloatingInfoView(
                         maxLines = 2,
                         overflow = TextOverflow.Ellipsis,
                     )
-
                     description?.let {
                         Text(
                             text = it,
@@ -121,7 +114,6 @@ internal fun NucleusCardWithFloatingInfoView(
                         )
                     }
                 }
-
                 ctaTitle?.let {
                     NucleusCardCtaView(
                         title = it,

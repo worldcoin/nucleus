@@ -14,7 +14,7 @@ android {
     }
 
     defaultConfig {
-        minSdk = 32
+        minSdk = 23
     }
 
     buildFeatures {
@@ -45,7 +45,6 @@ dependencies {
     api(libs.androidx.compose.ui)
     api(libs.androidx.compose.ui.graphics)
     api(libs.androidx.compose.material3)
-    api(libs.androidx.compose.material)
     api(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
     implementation(libs.androidx.compose.ui.tooling.preview)

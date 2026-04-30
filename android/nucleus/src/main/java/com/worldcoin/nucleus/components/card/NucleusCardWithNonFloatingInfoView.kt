@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalMaterialApi::class)
-
 package com.worldcoin.nucleus.components.card
 
 import androidx.compose.animation.core.animateDpAsState
@@ -12,9 +10,8 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -44,11 +41,11 @@ internal fun NucleusCardWithNonFloatingInfoView(
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed = interactionSource.collectIsPressedAsState().value
-    val elevation by animateDpAsState(if (isPressed) 2.dp else 0.dp)
-    val shape = RoundedCornerShape(cornerRadius)
+    val elevation by animateDpAsState(targetValue = if (isPressed) 2.dp else 0.dp)
+    val shape = RoundedCornerShape(size = cornerRadius)
 
     Surface(
-        elevation = elevation,
+        shadowElevation = elevation,
         color = NucleusCardPalette.White,
         shape = shape,
         border = border,
@@ -58,7 +55,7 @@ internal fun NucleusCardWithNonFloatingInfoView(
         interactionSource = interactionSource,
         onClick = onClick,
     ) {
-        Column(modifier = Modifier.padding(8.dp)) {
+        Column(modifier = Modifier.padding(all = 8.dp)) {
             AsyncImage(
                 modifier = Modifier
                     .aspectRatio(aspectRatio.ratio)
@@ -71,7 +68,6 @@ internal fun NucleusCardWithNonFloatingInfoView(
                 contentDescription = title,
                 contentScale = ContentScale.Crop,
             )
-
             Column(
                 modifier = Modifier.padding(top = 12.dp),
             ) {
@@ -83,9 +79,7 @@ internal fun NucleusCardWithNonFloatingInfoView(
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                 )
-
-                VerticalSpacer(2.dp)
-
+                VerticalSpacer(distance = 2.dp)
                 description?.let {
                     Text(
                         text = it,
