@@ -1,0 +1,135 @@
+package com.worldcoin.nucleus.card
+
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.zIndex
+import coil3.compose.AsyncImage
+import coil3.request.ImageRequest
+
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+internal fun NucleusCardWithFloatingInfoView(
+    title: String,
+    primaryImageUrl: String,
+    titleStyle: TextStyle,
+    subtitleStyle: TextStyle,
+    modifier: Modifier = Modifier,
+    description: String? = null,
+    logoUrl: String? = null,
+    ctaTitle: String? = null,
+    ctaTextStyle: TextStyle = DefaultCtaTextStyle,
+    size: NucleusCardConfigs.Size = NucleusCardConfigs.Size.MEDIUM,
+    theme: NucleusCardConfigs.Theme = NucleusCardConfigs.Theme.Dark,
+    aspectRatio: NucleusCardConfigs.AspectRatio = NucleusCardConfigs.AspectRatio.Landscape,
+    cornerRadius: Dp = 16.dp,
+    border: BorderStroke? = null,
+    onClick: () -> Unit = {},
+    onCtaClick: () -> Unit = {},
+) {
+    val interactionSource = remember { MutableInteractionSource() }
+    val isPressed by interactionSource.collectIsPressedAsState()
+    val elevation by animateDpAsState(if (isPressed) 4.dp else 0.dp)
+    val shape = RoundedCornerShape(cornerRadius)
+    Surface(
+        shape = shape,
+        elevation = elevation,
+        border = border,
+        color = NucleusCardPalette.Grey500,
+        modifier = modifier
+            .fillMaxWidth()
+            .aspectRatio(aspectRatio.ratio)
+            .zIndex(elevation.toPx()),
+        interactionSource = interactionSource,
+        onClick = onClick,
+    ) {
+        Box {
+            AsyncImage(
+                modifier = Modifier.fillMaxSize(),
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(primaryImageUrl)
+                    .build(),
+                contentDescription = title,
+                contentScale = ContentScale.Crop,
+            )
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.BottomCenter)
+                    .padding(if (size === NucleusCardConfigs.Size.SMALL) 16.dp else 20.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                logoUrl?.let {
+                    AsyncImage(
+                        modifier = Modifier
+                            .size(40.dp)
+                            .clip(RoundedCornerShape(12.dp))
+                            .background(color = NucleusCardPalette.Grey700),
+                        model = ImageRequest.Builder(LocalContext.current)
+                            .data(it)
+                            .build(),
+                        contentDescription = title,
+                    )
+
+                    HorizontalSpacer(12.dp)
+                }
+
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = title,
+                        style = titleStyle.copy(color = theme.toPrimaryTextColor()),
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+
+                    description?.let {
+                        Text(
+                            text = it,
+                            style = subtitleStyle.copy(color = theme.toSecondaryTextColor()),
+                            maxLines = 2,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.padding(top = if (ctaTitle == null) 8.dp else 2.dp),
+                        )
+                    }
+                }
+
+                ctaTitle?.let {
+                    NucleusCardCtaView(
+                        title = it,
+                        theme = theme,
+                        textStyle = ctaTextStyle,
+                        onClick = onCtaClick,
+                        modifier = Modifier.padding(start = 8.dp),
+                    )
+                }
+            }
+        }
+    }
+}
