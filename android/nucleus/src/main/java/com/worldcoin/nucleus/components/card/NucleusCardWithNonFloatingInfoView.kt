@@ -1,4 +1,6 @@
-package com.worldcoin.nucleus.card
+@file:OptIn(ExperimentalMaterialApi::class)
+
+package com.worldcoin.nucleus.components.card
 
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.BorderStroke
@@ -26,7 +28,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import coil3.compose.AsyncImage
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 internal fun NucleusCardWithNonFloatingInfoView(
     title: String,

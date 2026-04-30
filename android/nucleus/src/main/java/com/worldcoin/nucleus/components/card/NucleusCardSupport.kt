@@ -1,4 +1,4 @@
-package com.worldcoin.nucleus.card
+package com.worldcoin.nucleus.components.card
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -22,9 +22,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 internal object NucleusCardPalette {
-    // TODO: use tokens
-    val Grey500 = Color(0xFF9FA2A5)
-    val Grey700 = Color(0xFF747679)
+    // TODO: use tokens eventually after moving tokens into platform source sets and remove this
+    val Grey500 = Color(0xFFB8B8B8)
+    val Grey700 = Color(0xFF7D7D7D)
     val White = Color(0xFFFFFFFF)
 }
 

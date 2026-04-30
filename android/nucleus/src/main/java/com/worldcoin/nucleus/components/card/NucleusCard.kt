@@ -1,4 +1,4 @@
-package com.worldcoin.nucleus.card
+package com.worldcoin.nucleus.components.card
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.runtime.Composable

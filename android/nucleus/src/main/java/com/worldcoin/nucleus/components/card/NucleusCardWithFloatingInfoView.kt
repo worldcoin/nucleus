@@ -1,4 +1,6 @@
-package com.worldcoin.nucleus.card
+@file:OptIn(ExperimentalMaterialApi::class)
+
+package com.worldcoin.nucleus.components.card
 
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.BorderStroke
@@ -33,7 +35,6 @@ import androidx.compose.ui.zIndex
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 internal fun NucleusCardWithFloatingInfoView(
     title: String,
@@ -57,6 +58,7 @@ internal fun NucleusCardWithFloatingInfoView(
     val isPressed by interactionSource.collectIsPressedAsState()
     val elevation by animateDpAsState(if (isPressed) 4.dp else 0.dp)
     val shape = RoundedCornerShape(cornerRadius)
+
     Surface(
         shape = shape,
         elevation = elevation,

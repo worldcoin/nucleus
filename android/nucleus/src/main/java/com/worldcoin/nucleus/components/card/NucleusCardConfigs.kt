@@ -1,4 +1,4 @@
-package com.worldcoin.nucleus.card
+package com.worldcoin.nucleus.components.card
 
 import androidx.compose.ui.graphics.Color
 
@@ -16,7 +16,6 @@ object NucleusCardConfigs {
         }
     }
 
-    @Suppress("MagicNumber")
     enum class AspectRatio(val value: String, val ratio: Float) {
         Landscape("Landscape", 16 / 11f),
         Portrait("Portrait", 3 / 4f),
@@ -38,7 +37,6 @@ object NucleusCardConfigs {
         }
     }
 
-    @Suppress("MagicNumber")
     enum class Theme(
         val value: String,
         val primaryTextColor: ColorWithAlpha,
