@@ -11,7 +11,7 @@ import {
   tokenValue,
 } from './shared.js';
 
-const PACKAGE_NAME = 'com.worldcoin.nucleus';
+const PACKAGE_NAME = 'com.worldcoin.nucleus.tokens';
 const TEMPLATE = Handlebars.compile(
   readTemplate('tokens/templates/android/NucleusColorsTemplate.kt.hbs'),
 );

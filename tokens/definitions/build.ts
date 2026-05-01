@@ -24,7 +24,7 @@ const allFormats: Format[] = [
 const primitiveSources: string[] = ['tokens/definitions/color/primitive.json'];
 const semanticLightSources: string[] = ['tokens/definitions/color/semantic.light.json'];
 const semanticDarkSources: string[] = ['tokens/definitions/color/semantic.dark.json'];
-const androidOut = 'build/android/src/main/kotlin/com/worldcoin/nucleus';
+const androidOut = 'android/nucleus/src/main/java/com/worldcoin/nucleus/tokens';
 const iosOut = 'build/ios/Sources/NucleusColors';
 const webOut = 'build/web';
 const BUILD_VERSION = readFileSync(resolve(ROOT, 'VERSION'), 'utf8').trim();
@@ -163,14 +163,6 @@ interface TemplateCopy {
 function copyTemplates(): void {
   const copies: TemplateCopy[] = [
     {
-      from: 'tokens/templates/android/build.gradle.kts',
-      to: 'build/android/build.gradle.kts',
-    },
-    {
-      from: 'tokens/templates/android/settings.gradle.kts',
-      to: 'build/android/settings.gradle.kts',
-    },
-    {
       from: 'tokens/templates/ios/Package.swift',
       to: 'build/ios/Package.swift',
     },
@@ -200,15 +192,6 @@ function copyTemplates(): void {
     const webPackage = JSON.parse(readFileSync(webPackagePath, 'utf8')) as Record<string, unknown>;
     webPackage.version = BUILD_VERSION;
     writeFileSync(webPackagePath, `${JSON.stringify(webPackage, null, 2)}\n`);
-  }
-
-  const androidBuildScriptPath = resolve(ROOT, 'build/android/build.gradle.kts');
-  if (existsSync(androidBuildScriptPath)) {
-    const androidBuildScript = readFileSync(androidBuildScriptPath, 'utf8').replace(
-      '__VERSION__',
-      BUILD_VERSION,
-    );
-    writeFileSync(androidBuildScriptPath, androidBuildScript);
   }
 
   console.log('\u2713 Templates copied');

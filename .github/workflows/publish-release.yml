@@ -86,11 +86,6 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: android-tokens
-          path: build/android/
-
-      - uses: actions/upload-artifact@v4
-        with:
           name: ios-tokens
           path: build/ios/
 
@@ -104,10 +99,17 @@ jobs:
     if: needs.release.outputs.publish == 'true'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/checkout@v5
         with:
-          name: android-tokens
-          path: android-build/
+          ref: ${{ needs.release.outputs.version }}
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
 
       - uses: actions/setup-java@v4
         with:
@@ -116,16 +118,12 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v3
 
-      - name: Generate Gradle wrapper
-        working-directory: android-build
-        run: gradle wrapper
-
       - name: Publish to GitHub Packages
-        working-directory: android-build
+        working-directory: android
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./gradlew publish
+        run: ./gradlew :nucleus:publishReleasePublicationToGitHubPackagesRepository
 
   publish-spm:
     needs: [release, build]
