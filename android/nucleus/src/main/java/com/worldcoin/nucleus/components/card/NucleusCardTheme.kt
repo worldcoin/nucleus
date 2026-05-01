@@ -47,8 +47,7 @@ enum class NucleusCardTheme(
  *
  * @return The primary text color as a Compose [Color].
  */
-fun NucleusCardTheme.toPrimaryTextColor(): Color =
-    Color(primaryTextColor.color).copy(alpha = primaryTextColor.alpha)
+fun NucleusCardTheme.toPrimaryTextColor(): Color = Color(primaryTextColor.color).copy(alpha = primaryTextColor.alpha)
 
 /**
  * Resolves [NucleusCardTheme.secondaryTextColor] to a Compose [Color], applying its alpha.

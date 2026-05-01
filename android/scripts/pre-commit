@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -e
+
+repo_root=$(git rev-parse --show-toplevel)
+cd "$repo_root/android"
+
+./gradlew --quiet copyPreCommitHook
+
+staged=$(git diff --cached --name-only --diff-filter=ACMR -- 'android/***.kt' 'android/***.kts')
+[ -z "$staged" ] && exit 0
+
+echo "Running ktlint format..."
+if ! make format; then
+    echo "ktlintFormat failed. Aborting commit."
+    exit 1
+fi
+
+echo "$staged" | sed 's|^android/||' | xargs git add
+
+echo "Running ktlint check..."
+if ! make lint; then
+    echo "ktlint check failed. Please fix the issues above and try again."
+    exit 1
+fi
+
+echo "All checks passed."

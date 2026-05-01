@@ -18,8 +18,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Text
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -78,7 +78,8 @@ internal fun NucleusCardWithFloatingInfoView(
         Box {
             AsyncImage(
                 modifier = Modifier.fillMaxSize(),
-                model = ImageRequest.Builder(context = LocalContext.current)
+                model = ImageRequest
+                    .Builder(context = LocalContext.current)
                     .data(primaryImageUrl)
                     .build(),
                 contentDescription = title,
@@ -97,7 +98,8 @@ internal fun NucleusCardWithFloatingInfoView(
                             .size(40.dp)
                             .clip(shape = RoundedCornerShape(size = 12.dp))
                             .background(color = NucleusColorPalette.Grey700),
-                        model = ImageRequest.Builder(context = LocalContext.current)
+                        model = ImageRequest
+                            .Builder(context = LocalContext.current)
                             .data(it)
                             .build(),
                         contentDescription = title,
