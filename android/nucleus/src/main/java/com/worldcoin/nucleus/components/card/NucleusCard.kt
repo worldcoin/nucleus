@@ -22,11 +22,11 @@ import androidx.compose.ui.unit.sp
  * @param primaryImageUrl URL of the card's main image.
  * @param titleStyle Text style for [title]; the color is overridden by [theme].
  * @param subtitleStyle Text style for [description]; the color is overridden by [theme].
+ * @param ctaTextStyle Text style for the CTA label; the color is overridden by [theme].
  * @param modifier Modifier applied to the card root.
  * @param description Optional secondary text shown below [title].
  * @param logoUrl Optional logo image shown next to the title. Only rendered in the overlay layout.
  * @param ctaTitle Optional call-to-action label. Only rendered in the overlay layout.
- * @param ctaTextStyle Text style for the CTA label.
  * @param size Controls inner padding of the info row.
  * @param theme Controls primary and secondary text colors.
  * @param aspectRatio Width-to-height ratio of the card.
@@ -43,15 +43,11 @@ fun NucleusCard(
     primaryImageUrl: String,
     titleStyle: TextStyle,
     subtitleStyle: TextStyle,
+    ctaTextStyle: TextStyle,
     modifier: Modifier = Modifier,
     description: String? = null,
     logoUrl: String? = null,
     ctaTitle: String? = null,
-    ctaTextStyle: TextStyle = TextStyle(
-        fontSize = 15.sp,
-        lineHeight = 18.sp,
-        fontWeight = FontWeight.Medium,
-    ),
     size: NucleusCardSize = NucleusCardSize.Medium,
     theme: NucleusCardTheme = NucleusCardTheme.Dark,
     aspectRatio: NucleusCardAspectRatio = NucleusCardAspectRatio.Landscape,
@@ -108,6 +104,12 @@ private val previewSubtitleStyle = TextStyle(
     fontWeight = FontWeight.Normal,
 )
 
+private val previewCtaStyle = TextStyle(
+    fontSize = 15.sp,
+    lineHeight = 18.sp,
+    fontWeight = FontWeight.Medium,
+)
+
 @Preview
 @Composable
 private fun NucleusCardOverlayLandscapePreview() {
@@ -116,6 +118,7 @@ private fun NucleusCardOverlayLandscapePreview() {
         primaryImageUrl = "",
         titleStyle = previewTitleStyle,
         subtitleStyle = previewSubtitleStyle,
+        ctaTextStyle = previewCtaStyle,
         description = "Description goes here",
         ctaTitle = "Verify",
         size = NucleusCardSize.Large,
@@ -133,6 +136,7 @@ private fun NucleusCardOverlayPortraitPreview() {
         primaryImageUrl = "",
         titleStyle = previewTitleStyle,
         subtitleStyle = previewSubtitleStyle,
+        ctaTextStyle = previewCtaStyle,
         description = "Description goes here",
         ctaTitle = "Verify",
         size = NucleusCardSize.Small,
@@ -150,6 +154,7 @@ private fun NucleusCardOverlaySquareNoCtaPreview() {
         primaryImageUrl = "",
         titleStyle = previewTitleStyle,
         subtitleStyle = previewSubtitleStyle,
+        ctaTextStyle = previewCtaStyle,
         description = "Description goes here",
         size = NucleusCardSize.Small,
         theme = NucleusCardTheme.Light,
@@ -166,6 +171,7 @@ private fun NucleusCardBelowPreview() {
         primaryImageUrl = "",
         titleStyle = previewTitleStyle,
         subtitleStyle = previewSubtitleStyle,
+        ctaTextStyle = previewCtaStyle,
         description = "Description goes here",
         theme = NucleusCardTheme.Dark,
         aspectRatio = NucleusCardAspectRatio.Landscape,
