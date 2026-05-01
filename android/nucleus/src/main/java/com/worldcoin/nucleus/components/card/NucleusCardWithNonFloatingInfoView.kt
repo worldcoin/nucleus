@@ -6,8 +6,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
@@ -24,6 +26,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import coil3.compose.AsyncImage
+import com.worldcoin.nucleus.components.utils.NucleusColorPalette
+import com.worldcoin.nucleus.components.utils.toPx
 
 @Composable
 internal fun NucleusCardWithNonFloatingInfoView(
@@ -32,12 +36,12 @@ internal fun NucleusCardWithNonFloatingInfoView(
     titleStyle: TextStyle,
     subtitleStyle: TextStyle,
     modifier: Modifier = Modifier,
-    description: String? = null,
-    theme: NucleusCardConfigs.Theme = NucleusCardConfigs.Theme.Dark,
-    aspectRatio: NucleusCardConfigs.AspectRatio = NucleusCardConfigs.AspectRatio.Landscape,
-    cornerRadius: Dp = 16.dp,
-    border: BorderStroke? = null,
-    onClick: () -> Unit = {},
+    description: String?,
+    theme: NucleusCardTheme,
+    aspectRatio: NucleusCardAspectRatio,
+    cornerRadius: Dp,
+    border: BorderStroke?,
+    onClick: () -> Unit,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed = interactionSource.collectIsPressedAsState().value
@@ -46,7 +50,7 @@ internal fun NucleusCardWithNonFloatingInfoView(
 
     Surface(
         shadowElevation = elevation,
-        color = NucleusCardPalette.White,
+        color = NucleusColorPalette.White,
         shape = shape,
         border = border,
         modifier = modifier
@@ -61,7 +65,7 @@ internal fun NucleusCardWithNonFloatingInfoView(
                     .aspectRatio(aspectRatio.ratio)
                     .clip(shape)
                     .background(
-                        color = NucleusCardPalette.Grey500,
+                        color = NucleusColorPalette.Grey500,
                         shape = shape,
                     ),
                 model = primaryImageUrl,
@@ -79,7 +83,7 @@ internal fun NucleusCardWithNonFloatingInfoView(
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                 )
-                VerticalSpacer(distance = 2.dp)
+                Spacer(modifier = Modifier.height(2.dp))
                 description?.let {
                     Text(
                         text = it,

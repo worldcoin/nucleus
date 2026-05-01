@@ -8,9 +8,11 @@ import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -31,6 +33,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
+import com.worldcoin.nucleus.components.utils.NucleusColorPalette
+import com.worldcoin.nucleus.components.utils.toPx
 
 @Composable
 internal fun NucleusCardWithFloatingInfoView(
@@ -39,17 +43,17 @@ internal fun NucleusCardWithFloatingInfoView(
     titleStyle: TextStyle,
     subtitleStyle: TextStyle,
     modifier: Modifier = Modifier,
-    description: String? = null,
-    logoUrl: String? = null,
-    ctaTitle: String? = null,
-    ctaTextStyle: TextStyle = DefaultCtaTextStyle,
-    size: NucleusCardConfigs.Size = NucleusCardConfigs.Size.MEDIUM,
-    theme: NucleusCardConfigs.Theme = NucleusCardConfigs.Theme.Dark,
-    aspectRatio: NucleusCardConfigs.AspectRatio = NucleusCardConfigs.AspectRatio.Landscape,
-    cornerRadius: Dp = 16.dp,
-    border: BorderStroke? = null,
-    onClick: () -> Unit = {},
-    onCtaClick: () -> Unit = {},
+    description: String?,
+    logoUrl: String?,
+    ctaTitle: String?,
+    ctaTextStyle: TextStyle,
+    size: NucleusCardSize,
+    theme: NucleusCardTheme,
+    aspectRatio: NucleusCardAspectRatio,
+    cornerRadius: Dp,
+    border: BorderStroke?,
+    onClick: () -> Unit,
+    onCtaClick: () -> Unit,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
@@ -60,7 +64,7 @@ internal fun NucleusCardWithFloatingInfoView(
         shape = shape,
         shadowElevation = elevation,
         border = border,
-        color = NucleusCardPalette.Grey500,
+        color = NucleusColorPalette.Grey500,
         modifier = modifier
             .fillMaxWidth()
             .aspectRatio(aspectRatio.ratio)
@@ -81,7 +85,7 @@ internal fun NucleusCardWithFloatingInfoView(
                 modifier = Modifier
                     .fillMaxWidth()
                     .align(Alignment.BottomCenter)
-                    .padding(all = if (size === NucleusCardConfigs.Size.SMALL) 16.dp else 20.dp),
+                    .padding(all = if (size === NucleusCardSize.Small) 16.dp else 20.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 logoUrl?.let {
@@ -89,13 +93,13 @@ internal fun NucleusCardWithFloatingInfoView(
                         modifier = Modifier
                             .size(40.dp)
                             .clip(shape = RoundedCornerShape(size = 12.dp))
-                            .background(color = NucleusCardPalette.Grey700),
+                            .background(color = NucleusColorPalette.Grey700),
                         model = ImageRequest.Builder(context = LocalContext.current)
                             .data(it)
                             .build(),
                         contentDescription = title,
                     )
-                    HorizontalSpacer(distance = 12.dp)
+                    Spacer(modifier = Modifier.height(12.dp))
                 }
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
@@ -115,7 +119,7 @@ internal fun NucleusCardWithFloatingInfoView(
                     }
                 }
                 ctaTitle?.let {
-                    NucleusCardCtaView(
+                    NucleusCardCta(
                         title = it,
                         theme = theme,
                         textStyle = ctaTextStyle,

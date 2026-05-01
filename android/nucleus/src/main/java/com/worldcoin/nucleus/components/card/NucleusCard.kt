@@ -14,8 +14,8 @@ import androidx.compose.ui.unit.sp
  * A clickable card displaying a primary image alongside a title, optional description, optional
  * logo, and optional call-to-action.
  *
- * The layout is selected by [textPlacement]: [NucleusCardConfigs.TextPlacement.Overlay] floats the
- * info row over the image, while [NucleusCardConfigs.TextPlacement.Below] stacks it underneath.
+ * The layout is selected by [textPlacement]: [NucleusCardTextPlacement.Overlay] floats the
+ * info row over the image, while [NucleusCardTextPlacement.Below] stacks it underneath.
  * Width fills the parent and height is derived from [aspectRatio].
  *
  * @param title Primary text shown in the info row.
@@ -35,7 +35,7 @@ import androidx.compose.ui.unit.sp
  * @param border Optional border stroke applied to the card surface.
  * @param onClick Invoked when the card is clicked.
  * @param onCtaClick Invoked when the CTA is clicked. Ignored when [ctaTitle] is null or when
- *   [textPlacement] is [NucleusCardConfigs.TextPlacement.Below].
+ *   [textPlacement] is [NucleusCardTextPlacement.Below].
  */
 @Composable
 fun NucleusCard(
@@ -47,18 +47,22 @@ fun NucleusCard(
     description: String? = null,
     logoUrl: String? = null,
     ctaTitle: String? = null,
-    ctaTextStyle: TextStyle = DefaultCtaTextStyle,
-    size: NucleusCardConfigs.Size = NucleusCardConfigs.Size.MEDIUM,
-    theme: NucleusCardConfigs.Theme = NucleusCardConfigs.Theme.Dark,
-    aspectRatio: NucleusCardConfigs.AspectRatio = NucleusCardConfigs.AspectRatio.Landscape,
-    textPlacement: NucleusCardConfigs.TextPlacement = NucleusCardConfigs.TextPlacement.Below,
+    ctaTextStyle: TextStyle = TextStyle(
+        fontSize = 15.sp,
+        lineHeight = 18.sp,
+        fontWeight = FontWeight.Medium
+    ),
+    size: NucleusCardSize = NucleusCardSize.Medium,
+    theme: NucleusCardTheme = NucleusCardTheme.Dark,
+    aspectRatio: NucleusCardAspectRatio = NucleusCardAspectRatio.Landscape,
+    textPlacement: NucleusCardTextPlacement = NucleusCardTextPlacement.Below,
     cornerRadius: Dp = 16.dp,
     border: BorderStroke? = null,
     onClick: () -> Unit = {},
     onCtaClick: () -> Unit = {},
 ) {
     when (textPlacement) {
-        NucleusCardConfigs.TextPlacement.Overlay -> NucleusCardWithFloatingInfoView(
+        NucleusCardTextPlacement.Overlay -> NucleusCardWithFloatingInfoView(
             title = title,
             primaryImageUrl = primaryImageUrl,
             titleStyle = titleStyle,
@@ -76,7 +80,8 @@ fun NucleusCard(
             onClick = onClick,
             onCtaClick = onCtaClick,
         )
-        NucleusCardConfigs.TextPlacement.Below -> NucleusCardWithNonFloatingInfoView(
+
+        NucleusCardTextPlacement.Below -> NucleusCardWithNonFloatingInfoView(
             title = title,
             primaryImageUrl = primaryImageUrl,
             titleStyle = titleStyle,
@@ -92,8 +97,16 @@ fun NucleusCard(
     }
 }
 
-private val previewTitleStyle = TextStyle(fontSize = 19.sp, lineHeight = 22.8.sp, fontWeight = FontWeight.SemiBold)
-private val previewSubtitleStyle = TextStyle(fontSize = 19.sp, lineHeight = 24.7.sp, fontWeight = FontWeight.Normal)
+private val previewTitleStyle = TextStyle(
+    fontSize = 19.sp,
+    lineHeight = 22.8.sp,
+    fontWeight = FontWeight.SemiBold,
+)
+private val previewSubtitleStyle = TextStyle(
+    fontSize = 19.sp,
+    lineHeight = 24.7.sp,
+    fontWeight = FontWeight.Normal,
+)
 
 @Preview
 @Composable
@@ -105,10 +118,10 @@ private fun NucleusCardOverlayLandscapePreview() {
         subtitleStyle = previewSubtitleStyle,
         description = "Description goes here",
         ctaTitle = "Verify",
-        size = NucleusCardConfigs.Size.LARGE,
-        theme = NucleusCardConfigs.Theme.Dark,
-        aspectRatio = NucleusCardConfigs.AspectRatio.Landscape,
-        textPlacement = NucleusCardConfigs.TextPlacement.Overlay,
+        size = NucleusCardSize.Large,
+        theme = NucleusCardTheme.Dark,
+        aspectRatio = NucleusCardAspectRatio.Landscape,
+        textPlacement = NucleusCardTextPlacement.Overlay,
     )
 }
 
@@ -122,10 +135,10 @@ private fun NucleusCardOverlayPortraitPreview() {
         subtitleStyle = previewSubtitleStyle,
         description = "Description goes here",
         ctaTitle = "Verify",
-        size = NucleusCardConfigs.Size.SMALL,
-        theme = NucleusCardConfigs.Theme.Light,
-        aspectRatio = NucleusCardConfigs.AspectRatio.Portrait,
-        textPlacement = NucleusCardConfigs.TextPlacement.Overlay,
+        size = NucleusCardSize.Small,
+        theme = NucleusCardTheme.Light,
+        aspectRatio = NucleusCardAspectRatio.Portrait,
+        textPlacement = NucleusCardTextPlacement.Overlay,
     )
 }
 
@@ -138,10 +151,10 @@ private fun NucleusCardOverlaySquareNoCtaPreview() {
         titleStyle = previewTitleStyle,
         subtitleStyle = previewSubtitleStyle,
         description = "Description goes here",
-        size = NucleusCardConfigs.Size.SMALL,
-        theme = NucleusCardConfigs.Theme.Light,
-        aspectRatio = NucleusCardConfigs.AspectRatio.Square,
-        textPlacement = NucleusCardConfigs.TextPlacement.Overlay,
+        size = NucleusCardSize.Small,
+        theme = NucleusCardTheme.Light,
+        aspectRatio = NucleusCardAspectRatio.Square,
+        textPlacement = NucleusCardTextPlacement.Overlay,
     )
 }
 
@@ -154,8 +167,8 @@ private fun NucleusCardBelowPreview() {
         titleStyle = previewTitleStyle,
         subtitleStyle = previewSubtitleStyle,
         description = "Description goes here",
-        theme = NucleusCardConfigs.Theme.Dark,
-        aspectRatio = NucleusCardConfigs.AspectRatio.Landscape,
-        textPlacement = NucleusCardConfigs.TextPlacement.Below,
+        theme = NucleusCardTheme.Dark,
+        aspectRatio = NucleusCardAspectRatio.Landscape,
+        textPlacement = NucleusCardTextPlacement.Below,
     )
 }
