@@ -26,8 +26,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import coil3.compose.AsyncImage
-import com.worldcoin.nucleus.components.utils.NucleusColorPalette
 import com.worldcoin.nucleus.components.utils.toPx
+import com.worldcoin.nucleus.tokens.NucleusPrimitiveColors
 
 @Composable
 internal fun NucleusCardWithNonFloatingInfoView(
@@ -50,7 +50,7 @@ internal fun NucleusCardWithNonFloatingInfoView(
 
     Surface(
         shadowElevation = elevation,
-        color = NucleusColorPalette.White,
+        color = NucleusPrimitiveColors.white,
         shape = shape,
         border = border,
         modifier = modifier
@@ -65,7 +65,7 @@ internal fun NucleusCardWithNonFloatingInfoView(
                     .aspectRatio(aspectRatio.ratio)
                     .clip(shape)
                     .background(
-                        color = NucleusColorPalette.Grey500,
+                        color = NucleusPrimitiveColors.grey500,
                         shape = shape,
                     ),
                 model = primaryImageUrl,

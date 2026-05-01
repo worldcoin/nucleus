@@ -2,7 +2,7 @@
 
 Android sample app with two token source variants:
 
-- `local` wraps generated Kotlin sources from `build/android`
+- `local` wraps the `android/nucleus` library (tokens + components) directly from this repo
 - `package` resolves the Maven artifact `com.worldcoin:nucleus`
 
 ## Requirements
@@ -13,7 +13,7 @@ Android sample app with two token source variants:
 
 ## Open
 
-Run the root build first so `build/android` exists:
+Run the root build first so the Kotlin token sources are generated into `android/nucleus/`:
 
 ```bash
 npm ci
