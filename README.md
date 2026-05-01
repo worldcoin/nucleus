@@ -28,15 +28,15 @@ npm ci
 npm run build
 ```
 
-Generated files appear in `build/`:
+Generated files appear in:
 
-| Platform | Path             | Contents                                                                            |
-| -------- | ---------------- | ----------------------------------------------------------------------------------- |
-| Android  | `build/android/` | Kotlin objects with Compose `Color` values, `build.gradle.kts` for Maven publishing |
-| iOS      | `build/ios/`     | Standalone Swift enums with hex string constants, `Package.swift` for SPM           |
-| Web      | `build/web/`     | CSS custom properties, JSON token files, `package.json` for npm publishing          |
+| Platform | Path                                                | Contents                                                                            |
+| -------- | --------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| Android  | `android/nucleus/src/main/java/com/worldcoin/nucleus/tokens/` | Kotlin objects with Compose `Color` values, bundled into the `android/nucleus` library Maven artifact |
+| iOS      | `build/ios/`                                        | Standalone Swift enums with hex string constants, `Package.swift` for SPM           |
+| Web      | `build/web/`                                        | CSS custom properties, JSON token files, `package.json` for npm publishing          |
 
-Release versioning lives in the repo root `VERSION` file. `npm run build` stamps that value into the generated Android and Web package metadata.
+Release versioning lives in the repo root `VERSION` file. `npm run build` stamps that value into the generated Web package metadata; the Android library reads `VERSION` directly from its `build.gradle.kts`.
 
 ## Token Source Layout
 
