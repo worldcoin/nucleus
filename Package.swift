@@ -16,7 +16,7 @@ let package = Package(
     targets: [
         .target(
             name: "NucleusColors",
-            path: "Sources/NucleusColors"
+            path: "ios/Sources/NucleusColors"
         ),
     ]
 )

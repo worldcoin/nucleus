@@ -86,11 +86,6 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: ios-tokens
-          path: build/ios/
-
-      - uses: actions/upload-artifact@v4
-        with:
           name: web-tokens
           path: build/web/
 
@@ -124,46 +119,6 @@ jobs:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./gradlew :nucleus:publishReleasePublicationToGitHubPackagesRepository
-
-  publish-spm:
-    needs: [release, build]
-    if: needs.release.outputs.publish == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          ref: generated/ios
-          fetch-depth: 0
-        continue-on-error: true
-
-      - name: Init branch if needed
-        run: |
-          if ! git rev-parse --verify generated/ios 2>/dev/null; then
-            git checkout --orphan generated/ios
-            git rm -rf . || true
-          fi
-
-      - uses: actions/download-artifact@v4
-        with:
-          name: ios-tokens
-          path: ios-build/
-
-      - name: Copy files to repo root
-        run: |
-          cp ios-build/Package.swift .
-          rm -rf Sources
-          cp -r ios-build/Sources .
-
-      - name: Commit and tag
-        env:
-          TAG: ${{ needs.release.outputs.version }}
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add Package.swift Sources/
-          git commit -m "chore: update ios tokens for ${TAG}" || echo "no changes"
-          git tag "${TAG}-ios"
-          git push origin generated/ios --tags
 
   publish-npm:
     needs: [release, build]

@@ -10,7 +10,7 @@
     "lint": "oxlint",
     "format": "prettier --write \"**/*.json\"",
     "format:check": "prettier --check \"**/*.json\"",
-    "clean": "rm -rf build"
+    "clean": "rm -rf build ios/Sources/NucleusColors"
   },
   "dependencies": {
     "handlebars": "^4.7.9",
