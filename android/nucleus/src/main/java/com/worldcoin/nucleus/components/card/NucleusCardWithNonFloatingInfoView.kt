@@ -31,11 +31,11 @@ import com.worldcoin.nucleus.components.utils.toPx
 
 @Composable
 internal fun NucleusCardWithNonFloatingInfoView(
+    modifier: Modifier = Modifier,
     title: String,
     primaryImageUrl: String,
     titleStyle: TextStyle,
     subtitleStyle: TextStyle,
-    modifier: Modifier = Modifier,
     description: String?,
     theme: NucleusCardTheme,
     aspectRatio: NucleusCardAspectRatio,
