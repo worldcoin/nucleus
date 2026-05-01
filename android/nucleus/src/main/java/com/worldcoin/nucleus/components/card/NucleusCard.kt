@@ -50,7 +50,7 @@ fun NucleusCard(
     ctaTextStyle: TextStyle = TextStyle(
         fontSize = 15.sp,
         lineHeight = 18.sp,
-        fontWeight = FontWeight.Medium
+        fontWeight = FontWeight.Medium,
     ),
     size: NucleusCardSize = NucleusCardSize.Medium,
     theme: NucleusCardTheme = NucleusCardTheme.Dark,

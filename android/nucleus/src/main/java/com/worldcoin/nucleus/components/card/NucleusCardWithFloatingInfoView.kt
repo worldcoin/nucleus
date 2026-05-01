@@ -18,8 +18,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Text
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -36,8 +36,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
-import com.worldcoin.nucleus.components.utils.NucleusColorPalette
 import com.worldcoin.nucleus.components.utils.toPx
+import com.worldcoin.nucleus.tokens.NucleusPrimitiveColors
 
 @Composable
 internal fun NucleusCardWithFloatingInfoView(
@@ -67,7 +67,7 @@ internal fun NucleusCardWithFloatingInfoView(
         shape = shape,
         shadowElevation = elevation,
         border = border,
-        color = NucleusColorPalette.Grey500,
+        color = NucleusPrimitiveColors.grey500,
         modifier = modifier
             .fillMaxWidth()
             .aspectRatio(aspectRatio.ratio)
@@ -78,7 +78,8 @@ internal fun NucleusCardWithFloatingInfoView(
         Box {
             AsyncImage(
                 modifier = Modifier.fillMaxSize(),
-                model = ImageRequest.Builder(context = LocalContext.current)
+                model = ImageRequest
+                    .Builder(context = LocalContext.current)
                     .data(primaryImageUrl)
                     .build(),
                 contentDescription = title,
@@ -96,8 +97,9 @@ internal fun NucleusCardWithFloatingInfoView(
                         modifier = Modifier
                             .size(40.dp)
                             .clip(shape = RoundedCornerShape(size = 12.dp))
-                            .background(color = NucleusColorPalette.Grey700),
-                        model = ImageRequest.Builder(context = LocalContext.current)
+                            .background(color = NucleusPrimitiveColors.grey700),
+                        model = ImageRequest
+                            .Builder(context = LocalContext.current)
                             .data(it)
                             .build(),
                         contentDescription = title,
