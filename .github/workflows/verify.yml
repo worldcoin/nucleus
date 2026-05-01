@@ -48,3 +48,11 @@ jobs:
       - name: Run Android checks
         working-directory: android
         run: ./gradlew :nucleus:check
+
+  ios:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Build SPM package
+        run: xcodebuild build -scheme Nucleus -destination 'generic/platform=iOS' -skipPackagePluginValidation

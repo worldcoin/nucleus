@@ -131,8 +131,7 @@ internal fun NucleusCardWithFloatingInfoView(
                             .background(
                                 color = theme.toPrimaryContainerColor(),
                                 shape = CircleShape,
-                            )
-                            .clickable { onCtaClick() }
+                            ).clickable { onCtaClick() }
                             .padding(horizontal = 16.dp, vertical = 8.dp),
                         text = it,
                         textAlign = TextAlign.Center,
