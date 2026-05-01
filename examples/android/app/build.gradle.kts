@@ -8,6 +8,12 @@ android {
     namespace = "com.worldcoin.nucleusapp"
     compileSdk = 35
 
+    sourceSets {
+        getByName("main") {
+            assets.srcDir("../../../build/android/src/main/kotlin")
+        }
+    }
+
     defaultConfig {
         applicationId = "com.worldcoin.nucleusapp"
         minSdk = 26

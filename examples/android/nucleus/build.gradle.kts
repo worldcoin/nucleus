@@ -1,7 +1,6 @@
 plugins {
     id("com.android.library")
     kotlin("android")
-    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 android {
@@ -10,10 +9,6 @@ android {
 
     defaultConfig {
         minSdk = 26
-    }
-
-    buildFeatures {
-        compose = true
     }
 
     compileOptions {
@@ -26,24 +21,10 @@ android {
     }
 
     sourceSets {
-        getByName("main") {
-            java.srcDir("../../../android/nucleus/src/main/java")
-        }
+        getByName("main").java.srcDir("../../../build/android/src/main/kotlin")
     }
 }
 
 dependencies {
-    val composeBom = platform("androidx.compose:compose-bom:2024.10.01")
-    api(composeBom)
-
-    api("androidx.compose.foundation:foundation")
-    api("androidx.compose.ui:ui")
-    api("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("io.coil-kt.coil3:coil-compose:3.0.4")
-    implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.4")
-    implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("androidx.core:core-ktx:1.13.1")
-    implementation("com.google.android.material:material:1.12.0")
+    api("androidx.compose.ui:ui-graphics:1.7.6")
 }
