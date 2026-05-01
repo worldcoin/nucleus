@@ -3,6 +3,7 @@ package com.worldcoin.nucleus.components.card
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Box
@@ -15,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.material3.Surface
@@ -27,6 +29,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -119,12 +122,21 @@ internal fun NucleusCardWithFloatingInfoView(
                     }
                 }
                 ctaTitle?.let {
-                    NucleusCardCta(
-                        title = it,
-                        theme = theme,
-                        textStyle = ctaTextStyle,
-                        onClick = onCtaClick,
-                        modifier = Modifier.padding(start = 8.dp),
+                    Text(
+                        modifier = Modifier
+                            .padding(start = 8.dp)
+                            .clip(CircleShape)
+                            .background(
+                                color = theme.toPrimaryContainerColor(),
+                                shape = CircleShape,
+                            )
+                            .clickable { onCtaClick() }
+                            .padding(horizontal = 16.dp, vertical = 8.dp),
+                        text = it,
+                        textAlign = TextAlign.Center,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        style = ctaTextStyle.copy(color = theme.toPrimaryContainerTextColor()),
                     )
                 }
             }
