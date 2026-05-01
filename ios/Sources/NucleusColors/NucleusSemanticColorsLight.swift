@@ -1,3 +1,5 @@
+// This file is auto-generated. Do not edit manually.
+
 import Foundation
 
 public enum NucleusSemanticColorsLight {
