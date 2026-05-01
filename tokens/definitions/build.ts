@@ -25,7 +25,7 @@ const primitiveSources: string[] = ['tokens/definitions/color/primitive.json'];
 const semanticLightSources: string[] = ['tokens/definitions/color/semantic.light.json'];
 const semanticDarkSources: string[] = ['tokens/definitions/color/semantic.dark.json'];
 const androidOut = 'android/nucleus/src/main/java/com/worldcoin/nucleus/tokens';
-const iosOut = 'build/ios/Sources/NucleusColors';
+const iosOut = 'ios/Sources/NucleusColors';
 const webOut = 'build/web';
 const BUILD_VERSION = readFileSync(resolve(ROOT, 'VERSION'), 'utf8').trim();
 
@@ -162,10 +162,6 @@ interface TemplateCopy {
 
 function copyTemplates(): void {
   const copies: TemplateCopy[] = [
-    {
-      from: 'tokens/templates/ios/Package.swift',
-      to: 'build/ios/Package.swift',
-    },
     {
       from: 'tokens/templates/web/package.json',
       to: 'build/web/package.json',
