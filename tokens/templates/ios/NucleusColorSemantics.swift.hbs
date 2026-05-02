@@ -1,0 +1,11 @@
+// This file is auto-generated. Do not edit manually.
+
+public extension NucleusColor {
+{{#each tokens}}
+{{#if sameForBoth}}
+    static let {{name}} = NucleusColor(hex: "{{lightHex}}")
+{{else}}
+    static let {{name}} = NucleusColor(light: "{{lightHex}}", dark: "{{darkHex}}")
+{{/if}}
+{{/each}}
+}

@@ -1,11 +1,11 @@
 import StyleDictionary from 'style-dictionary';
 import { cpSync, mkdirSync, existsSync, readFileSync, writeFileSync } from 'fs';
-import { resolve, dirname, basename } from 'path';
+import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import type { Format, NameTransform, TransformedToken } from 'style-dictionary/types';
 
 import { composeColorObject } from '../formats/android.js';
-import { swiftColorDefaults } from '../formats/ios.js';
+import { generateIOSColors } from '../formats/ios.js';
 import { kebabCasePath } from '../formats/shared.js';
 import { cssColorVariables, jsonFlat } from '../formats/web.js';
 
@@ -17,13 +17,12 @@ const nameTransform: NameTransform = {
 };
 const allFormats: Format[] = [
   composeColorObject,
-  swiftColorDefaults,
   cssColorVariables,
   jsonFlat,
 ];
-const primitiveSources: string[] = ['tokens/definitions/color/primitive.json'];
-const semanticLightSources: string[] = ['tokens/definitions/color/semantic.light.json'];
-const semanticDarkSources: string[] = ['tokens/definitions/color/semantic.dark.json'];
+const primitiveSource = 'tokens/definitions/color/primitive.json';
+const semanticLightSource = 'tokens/definitions/color/semantic.light.json';
+const semanticDarkSource = 'tokens/definitions/color/semantic.dark.json';
 const androidOut = 'android/nucleus/src/main/java/com/worldcoin/nucleus/tokens';
 const iosOut = 'ios/Sources/NucleusColors';
 const webOut = 'build/web';
@@ -37,39 +36,31 @@ interface TokenBuildTarget {
   tokenRoot: TokenRoot;
   androidDestination: string;
   androidObjectName: string;
-  iosDestination: string;
-  iosEnumName: string;
   webBaseName: string;
 }
 
 const buildTargets: TokenBuildTarget[] = [
   {
-    source: primitiveSources,
+    source: [primitiveSource],
     tokenRoot: 'primitive',
     androidDestination: 'NucleusPrimitiveColors.kt',
     androidObjectName: 'NucleusPrimitiveColors',
-    iosDestination: 'NucleusPrimitiveColors.swift',
-    iosEnumName: 'NucleusPrimitiveColors',
     webBaseName: 'nucleus-primitive-colors',
   },
   {
-    source: semanticLightSources,
-    include: primitiveSources,
+    source: [semanticLightSource],
+    include: [primitiveSource],
     tokenRoot: 'semantic',
     androidDestination: 'NucleusSemanticColorsLight.kt',
     androidObjectName: 'NucleusSemanticColorsLight',
-    iosDestination: 'NucleusSemanticColorsLight.swift',
-    iosEnumName: 'NucleusSemanticColorsLight',
     webBaseName: 'nucleus-semantic-colors-light',
   },
   {
-    source: semanticDarkSources,
-    include: primitiveSources,
+    source: [semanticDarkSource],
+    include: [primitiveSource],
     tokenRoot: 'semantic',
     androidDestination: 'NucleusSemanticColorsDark.kt',
     androidObjectName: 'NucleusSemanticColorsDark',
-    iosDestination: 'NucleusSemanticColorsDark.swift',
-    iosEnumName: 'NucleusSemanticColorsDark',
     webBaseName: 'nucleus-semantic-colors-dark',
   },
 ];
@@ -78,11 +69,10 @@ function isTokenInRoot(token: TransformedToken, root: TokenRoot): boolean {
   return token.$type === 'color' && token.path[0] === root;
 }
 
-function logBuiltFiles(target: TokenBuildTarget): void {
+function logBuiltAndroidWeb(target: TokenBuildTarget): void {
   const header = target.source[0];
   const files = [
     ['android', `${androidOut}/${target.androidDestination}`],
-    ['ios', `${iosOut}/${target.iosDestination}`],
     ['web', `${webOut}/${target.webBaseName}.css`],
     ['web', `${webOut}/${target.webBaseName}.json`],
   ] as const;
@@ -93,7 +83,7 @@ function logBuiltFiles(target: TokenBuildTarget): void {
   }
 }
 
-async function buildTokens(): Promise<void> {
+async function buildAndroidAndWebTokens(): Promise<void> {
   for (const target of buildTargets) {
     const sd = new StyleDictionary({
       log: { verbosity: 'silent' },
@@ -108,18 +98,6 @@ async function buildTokens(): Promise<void> {
               destination: target.androidDestination,
               format: 'compose/colorObject',
               options: { objectName: target.androidObjectName },
-              filter: (token: TransformedToken) => isTokenInRoot(token, target.tokenRoot),
-            },
-          ],
-        },
-        ios: {
-          buildPath: `${iosOut}/`,
-          transforms: [nameTransform.name],
-          files: [
-            {
-              destination: target.iosDestination,
-              format: 'swift/nucleusColorDefaults',
-              options: { enumName: target.iosEnumName },
               filter: (token: TransformedToken) => isTokenInRoot(token, target.tokenRoot),
             },
           ],
@@ -149,10 +127,28 @@ async function buildTokens(): Promise<void> {
     sd.registerTransform(nameTransform);
 
     await sd.buildAllPlatforms();
-    logBuiltFiles(target);
+    logBuiltAndroidWeb(target);
   }
+}
 
-  console.log('\n\u2713 Tokens built');
+// the iOS build sits outside the per-source loop because the generated
+// NucleusColor+Semantics.swift merges light + dark into a single file.
+function buildIOSTokens(): void {
+  const { primitivesContent, semanticsContent } = generateIOSColors({
+    primitiveSource,
+    semanticLightSource,
+    semanticDarkSource,
+  });
+
+  const targetDir = resolve(ROOT, iosOut);
+  mkdirSync(targetDir, { recursive: true });
+
+  writeFileSync(resolve(targetDir, 'NucleusColor+Primitives.swift'), primitivesContent);
+  writeFileSync(resolve(targetDir, 'NucleusColor+Semantics.swift'), semanticsContent);
+
+  console.log('\ntokens/definitions/color (ios)');
+  console.log(`  ios     ✔︎ ${iosOut}/NucleusColor+Primitives.swift`);
+  console.log(`  ios     ✔︎ ${iosOut}/NucleusColor+Semantics.swift`);
 }
 
 interface TemplateCopy {
@@ -176,7 +172,7 @@ function copyTemplates(): void {
     const src = resolve(ROOT, from);
     const dest = resolve(ROOT, to);
     if (!existsSync(src)) {
-      console.warn(`  \u26A0 template not found: ${from}`);
+      console.warn(`  ⚠ template not found: ${from}`);
       continue;
     }
     mkdirSync(dirname(dest), { recursive: true });
@@ -190,12 +186,14 @@ function copyTemplates(): void {
     writeFileSync(webPackagePath, `${JSON.stringify(webPackage, null, 2)}\n`);
   }
 
-  console.log('\u2713 Templates copied');
+  console.log('✓ Templates copied');
 }
 
 async function main(): Promise<void> {
-  console.log('Building Nucleus tokens\u2026');
-  await buildTokens();
+  console.log('Building Nucleus tokens…');
+  await buildAndroidAndWebTokens();
+  buildIOSTokens();
+  console.log('\n✓ Tokens built');
   copyTemplates();
   console.log('\nDone!');
 }

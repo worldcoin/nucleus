@@ -8,7 +8,7 @@ A cross-platform design system for the World ecosystem.
 
 **Primitive and semantic colors are exported** – Primitive values remain public, and light/dark semantic layers now build as separate themed outputs.
 
-**Platform outputs are standalone** – no dependency on app-specific types. Android gets Compose `Color` objects; iOS gets raw hex `String` constants; Web gets CSS custom properties and JSON files. The consuming app bridges these to its own types.
+**Platform outputs are standalone** – no dependency on app-specific types. Android gets Compose `Color` objects; iOS gets a `NucleusColor` struct with light/dark variants and SwiftUI/UIKit accessors; Web gets CSS custom properties and JSON files.
 
 ## Token Build Pipeline
 
@@ -33,7 +33,7 @@ Generated files appear in:
 | Platform | Path                                                | Contents                                                                            |
 | -------- | --------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | Android  | `android/nucleus/src/main/java/com/worldcoin/nucleus/tokens/` | Kotlin objects with Compose `Color` values, bundled into the `android/nucleus` library Maven artifact |
-| iOS      | `build/ios/`                                        | Standalone Swift enums with hex string constants, `Package.swift` for SPM           |
+| iOS      | `ios/Sources/NucleusColors/`                        | `NucleusColor` struct plus generated `NucleusColor+Primitives.swift` and `NucleusColor+Semantics.swift`, exposed via the `NucleusColors` SPM library |
 | Web      | `build/web/`                                        | CSS custom properties, JSON token files, `package.json` for npm publishing          |
 
 Release versioning lives in the repo root `VERSION` file. `npm run build` stamps that value into the generated Web package metadata; the Android library reads `VERSION` directly from its `build.gradle.kts`.
@@ -56,9 +56,9 @@ Release versioning lives in the repo root `VERSION` file. `npm run build` stamps
 
 ### iOS
 
-- `NucleusPrimitiveColors` – Primitive colors as hex `String` constants
-- `NucleusSemanticColorsLight` – Light semantic colors as hex `String` constants
-- `NucleusSemanticColorsDark` – Dark semantic colors as hex `String` constants
+- `NucleusColor` – `Sendable` struct with `light` / optional `dark` `ColorComponents`, plus `.color` (SwiftUI) and `.uiColor` (UIKit) accessors. Resolves to the right variant based on the active trait collection.
+- `NucleusColor+Primitives.swift` – every primitive token as a `static let` on `NucleusColor` (e.g. `NucleusColor.grey900`).
+- `NucleusColor+Semantics.swift` – every semantic token as a `static let` on `NucleusColor` with light/dark merged into a single declaration.
 
 ### Web
 
@@ -124,7 +124,7 @@ Then add the dependency:
 implementation "com.worldcoin:nucleus:<version>"
 ```
 
-Access primitive colors via `NucleusPrimitiveColors`.
+Access primitive colors via `NucleusPrimitiveColors`. Semantic light/dark variants live on `NucleusSemanticColorsLight` and `NucleusSemanticColorsDark`.
 
 ### iOS
 
@@ -147,12 +147,17 @@ Then add `NucleusColors` as a dependency on your target:
 )
 ```
 
-Access primitive colors as hex strings:
+Access tokens as `NucleusColor` values and resolve to a SwiftUI `Color` or `UIColor`:
 
 ```swift
 import NucleusColors
+import SwiftUI
 
-let hex = NucleusPrimitiveColors.grey900 // "181818"
+let grey = NucleusColor.grey900           // primitive
+let surface = NucleusColor.surfacePrimary // semantic, picks light/dark automatically
+
+Text("Hello")
+    .foregroundStyle(surface.color)
 ```
 
 ### Web
