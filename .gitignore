@@ -4,4 +4,4 @@ node_modules/
 .next/
 *.DS_Store
 *.idea/
-.swiftpm/
+.swiftpm/*
