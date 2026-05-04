@@ -2,7 +2,7 @@
 
 public extension NucleusFont {
 {{#each families}}
-    public enum {{name}} {
+    enum {{name}} {
 {{#each tokens}}
         public static let {{name}} = NucleusFont(
             fontName: "{{fontName}}",
