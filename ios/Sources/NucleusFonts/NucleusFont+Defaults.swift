@@ -1,7 +1,7 @@
 // This file is auto-generated. Do not edit manually.
 
 public extension NucleusFont {
-    enum WorldPro {
+    public enum WorldPro {
         public static let d1 = NucleusFont(
             fontName: "WorldPro",
             size: 56,
