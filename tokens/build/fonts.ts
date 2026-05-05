@@ -1,4 +1,4 @@
-import { cpSync, mkdirSync, writeFileSync } from 'fs';
+import { cpSync, mkdirSync, readdirSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
 
 import { generateAndroidFonts } from '../formats/fonts-android.js';
@@ -18,10 +18,27 @@ import {
 const FONT_SOURCE = 'tokens/definitions/font/fonts.json';
 const FONT_DEFINITIONS_DIR = 'tokens/definitions/font';
 
-// One ttf file per nucleus font family. Keep keys aligned with the top-level keys in fonts.json so the family lookups resolve.
-const FONT_FILES: Record<string, string> = {
-  WorldPro: 'WorldProMVP.ttf',
-};
+interface FontFile {
+  fileName: string;          // e.g. "WorldProMVP.ttf"
+  androidResourceName: string; // e.g. "world_pro_mvp" — lowercase / underscore for res/font/
+}
+
+function snakeCaseFileBase(fileName: string): string {
+  return fileName
+    .replace(/\.[^./]+$/, '')
+    .replace(/([a-z0-9])([A-Z])/g, '$1_$2')
+    .toLowerCase();
+}
+
+function discoverFontFiles(): FontFile[] {
+  const dir = resolve(ROOT, FONT_DEFINITIONS_DIR);
+  return readdirSync(dir)
+    .filter((name) => name.toLowerCase().endsWith('.ttf'))
+    .map((fileName) => ({
+      fileName,
+      androidResourceName: snakeCaseFileBase(fileName),
+    }));
+}
 
 function copyFile(fromRel: string, toRel: string): void {
   const from = resolve(ROOT, fromRel);
@@ -30,77 +47,71 @@ function copyFile(fromRel: string, toRel: string): void {
   cpSync(from, to);
 }
 
-function buildIOSFonts(): void {
+function buildIOSFonts(fontFiles: FontFile[]): void {
   const swiftContent = generateIOSFonts(FONT_SOURCE);
 
   const swiftDir = resolve(ROOT, IOS_FONTS_OUT);
   mkdirSync(swiftDir, { recursive: true });
   writeFileSync(resolve(swiftDir, 'NucleusFont+Defaults.swift'), swiftContent);
 
-  const resourceFiles: string[] = [];
-  for (const fileName of Object.values(FONT_FILES)) {
-    copyFile(`${FONT_DEFINITIONS_DIR}/${fileName}`, `${IOS_FONTS_RESOURCES_OUT}/${fileName}`);
-    resourceFiles.push(`${IOS_FONTS_RESOURCES_OUT}/${fileName}`);
+  const copied: string[] = [];
+  for (const { fileName } of fontFiles) {
+    const dest = `${IOS_FONTS_RESOURCES_OUT}/${fileName}`;
+    copyFile(`${FONT_DEFINITIONS_DIR}/${fileName}`, dest);
+    copied.push(dest);
   }
 
   logStage('tokens/definitions/font (ios)', [
     ['ios', `${IOS_FONTS_OUT}/NucleusFont+Defaults.swift`],
-    ...resourceFiles.map((path) => ['ios', path] as const),
+    ...copied.map((path) => ['ios', path] as const),
   ]);
 }
 
-function buildAndroidFonts(): void {
-  const { content, resources } = generateAndroidFonts(FONT_SOURCE, FONT_FILES);
+function buildAndroidFonts(fontFiles: FontFile[]): void {
+  const content = generateAndroidFonts(FONT_SOURCE);
 
   const tokensDir = resolve(ROOT, ANDROID_TOKENS_OUT);
   mkdirSync(tokensDir, { recursive: true });
   writeFileSync(resolve(tokensDir, 'NucleusFonts.kt'), content);
 
-  const resourceFiles: string[] = [];
-  for (const { fileName, resourceName } of resources) {
-    const dest = `${ANDROID_RES_OUT}/font/${resourceName}.ttf`;
+  const copied: string[] = [];
+  for (const { fileName, androidResourceName } of fontFiles) {
+    const dest = `${ANDROID_RES_OUT}/font/${androidResourceName}.ttf`;
     copyFile(`${FONT_DEFINITIONS_DIR}/${fileName}`, dest);
-    resourceFiles.push(dest);
+    copied.push(dest);
   }
 
   logStage('tokens/definitions/font (android)', [
     ['android', `${ANDROID_TOKENS_OUT}/NucleusFonts.kt`],
-    ...resourceFiles.map((path) => ['android', path] as const),
+    ...copied.map((path) => ['android', path] as const),
   ]);
 }
 
-function buildWebFonts(): void {
-  const faces = Object.entries(FONT_FILES).map(([family, fileName]) => ({
-    family,
-    fileName,
-    format: 'truetype',
-  }));
-
-  const { variablesCss, fontFacesCss, json } = generateWebFonts(FONT_SOURCE, faces);
+function buildWebFonts(fontFiles: FontFile[]): void {
+  const { variablesCss, json } = generateWebFonts(FONT_SOURCE);
 
   const webDir = resolve(ROOT, WEB_OUT);
   mkdirSync(webDir, { recursive: true });
   writeFileSync(resolve(webDir, 'nucleus-fonts.css'), variablesCss);
-  writeFileSync(resolve(webDir, 'nucleus-font-faces.css'), fontFacesCss);
   writeFileSync(resolve(webDir, 'nucleus-fonts.json'), json);
 
-  const resourceFiles: string[] = [];
-  for (const fileName of Object.values(FONT_FILES)) {
+  const copied: string[] = [];
+  for (const { fileName } of fontFiles) {
     const dest = `${WEB_FONTS_OUT}/${fileName}`;
     copyFile(`${FONT_DEFINITIONS_DIR}/${fileName}`, dest);
-    resourceFiles.push(dest);
+    copied.push(dest);
   }
 
   logStage('tokens/definitions/font (web)', [
     ['web', `${WEB_OUT}/nucleus-fonts.css`],
-    ['web', `${WEB_OUT}/nucleus-font-faces.css`],
     ['web', `${WEB_OUT}/nucleus-fonts.json`],
-    ...resourceFiles.map((path) => ['web', path] as const),
+    ...copied.map((path) => ['web', path] as const),
   ]);
 }
 
 export async function buildFonts(): Promise<void> {
-  buildIOSFonts();
-  buildAndroidFonts();
-  buildWebFonts();
+  const fontFiles = discoverFontFiles();
+  buildIOSFonts(fontFiles);
+  buildAndroidFonts(fontFiles);
+  buildWebFonts(fontFiles);
 }

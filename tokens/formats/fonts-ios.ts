@@ -18,15 +18,10 @@ interface IOSFontEntry {
   dynamicTypeStyle: string;
 }
 
-interface IOSFontFamily {
-  name: string;
-  tokens: IOSFontEntry[];
-}
-
 function toIOSEntry(token: FontToken): IOSFontEntry {
   return {
     name: token.name,
-    fontName: token.fontFamily,
+    fontName: token.fontName,
     size: token.size.toString(),
     weight: token.weight.toString(),
     letterSpacing: token.letterSpacing.toString(),
@@ -35,17 +30,7 @@ function toIOSEntry(token: FontToken): IOSFontEntry {
   };
 }
 
-function groupByFamily(tokens: FontToken[]): IOSFontFamily[] {
-  const families = new Map<string, IOSFontEntry[]>();
-  for (const token of tokens) {
-    const list = families.get(token.fontFamily) ?? [];
-    list.push(toIOSEntry(token));
-    families.set(token.fontFamily, list);
-  }
-  return Array.from(families, ([name, tokens]) => ({ name, tokens }));
-}
-
 export function generateIOSFonts(jsonPath: string): string {
-  const families = groupByFamily(loadFontTokens(jsonPath));
-  return TEMPLATE({ families });
+  const tokens = loadFontTokens(jsonPath).map(toIOSEntry);
+  return TEMPLATE({ tokens });
 }
