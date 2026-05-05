@@ -12,11 +12,22 @@ let package = Package(
             name: "NucleusColors",
             targets: ["NucleusColors"]
         ),
+        .library(
+            name: "NucleusFonts",
+            targets: ["NucleusFonts"]
+        ),
     ],
     targets: [
         .target(
             name: "NucleusColors",
             path: "ios/Sources/NucleusColors"
+        ),
+        .target(
+            name: "NucleusFonts",
+            path: "ios/Sources/NucleusFonts",
+            resources: [
+                .process("Resources/Fonts"),
+            ]
         ),
     ]
 )

@@ -1,0 +1,14 @@
+// This file is auto-generated. Do not edit manually.
+
+public extension NucleusFont {
+{{#each tokens}}
+    static let {{name}} = NucleusFont(
+        fontName: "{{fontName}}",
+        size: {{size}},
+        weight: {{weight}},
+        letterSpacing: {{letterSpacing}},
+        lineHeight: {{lineHeight}},
+        dynamicTypeStyle: .{{dynamicTypeStyle}}
+    )
+{{/each}}
+}

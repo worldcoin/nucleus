@@ -1,0 +1,33 @@
+// This file is auto-generated. Do not edit manually.
+
+package {{packageName}}
+
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.em
+import androidx.compose.ui.unit.sp
+
+/**
+ * A nucleus design-token font.
+ *
+ * Each value carries enough information to construct a Compose `TextStyle`. Nucleus stays unopinionated about how the font is loaded or applied. Pick the fields you need and pass them into your own `TextStyle` / `Typography` setup.
+ */
+data class NucleusFontStyle(
+    val fontName: String,
+    val fontSize: TextUnit,
+    val fontWeight: FontWeight,
+    val letterSpacing: TextUnit,
+    val lineHeight: TextUnit,
+)
+
+object NucleusFonts {
+{{#each tokens}}
+    val {{name}} = NucleusFontStyle(
+        fontName = "{{fontName}}",
+        fontSize = {{size}}.sp,
+        fontWeight = FontWeight({{weight}}),
+        letterSpacing = ({{letterSpacing}}).em,
+        lineHeight = ({{lineHeight}}).em,
+    )
+{{/each}}
+}
