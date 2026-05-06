@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import SwiftUI
 
 /// A nucleus design-token font.
 ///
@@ -28,9 +29,9 @@ public struct NucleusFont: Equatable, Hashable, Sendable {
     public init(
         fontName: String,
         size: Double,
-        weight: Weight,
-        letterSpacing: Double,
-        lineHeight: LineHeight,
+        weight: Weight = .regular,
+        letterSpacing: Double = 0,
+        lineHeight: LineHeight = .regular,
         monospacedDigits: Bool = false,
         dynamicTypeStyle: UIFont.TextStyle = .body
     ) {
@@ -44,24 +45,80 @@ public struct NucleusFont: Equatable, Hashable, Sendable {
     }
 }
 
-// MARK: - Helper Types
+// MARK: - Mutating Methods
 
-public extension NucleusFont {
-    struct LineHeight: Equatable, Hashable, Sendable, ExpressibleByFloatLiteral {
-        public let value: Double
-
-        public init(floatLiteral value: Double) {
-            self.value = value
-        }
+extension NucleusFont {
+    /// Mutate an existing NucleusFont with a specified variable weight. This can either be an integer between 300...800 or a predetermined value like `.regular` or `.bold`.
+    public func weight(_ weight: Weight) -> NucleusFont {
+        return NucleusFont(fontName: fontName, size: size, weight: weight, letterSpacing: letterSpacing, lineHeight: lineHeight, monospacedDigits: usesMonospacedDigits, dynamicTypeStyle: dynamicTypeStyle)
     }
 
-    struct Weight: Equatable, Hashable, Sendable, ExpressibleByIntegerLiteral {
-        public let value: Int
-
-        public init(integerLiteral value: IntegerLiteralType) {
-            self.value = value
-        }
+    /// Mutate the letter-spacing multiplier of an existing NucleusFont. Use negative values for tighter spacing and positive values for looser spacing. This value is multiplied by the font size, so a letter spacing of `-0.02` with a font size of `56` results in a kerning value of `-1.12` points.
+    public func letterSpacing(_ letterSpacing: Double) -> NucleusFont {
+        return NucleusFont(fontName: fontName, size: size, weight: weight, letterSpacing: letterSpacing, lineHeight: lineHeight, monospacedDigits: usesMonospacedDigits, dynamicTypeStyle: dynamicTypeStyle)
     }
+
+    /// Mutate the line-height multiplier of an existing NucleusFont. A value of `1.2` results in a line height 20% larger than the font's default line height.
+    public func lineHeight(_ lineHeight: LineHeight) -> NucleusFont {
+        return NucleusFont(fontName: fontName, size: size, weight: weight, letterSpacing: letterSpacing, lineHeight: lineHeight, monospacedDigits: usesMonospacedDigits, dynamicTypeStyle: dynamicTypeStyle)
+    }
+
+    /// Make the numbers in the font monospaced.
+    public func monospacedDigits() -> NucleusFont {
+        return NucleusFont(fontName: fontName, size: size, weight: weight, letterSpacing: letterSpacing, lineHeight: lineHeight, monospacedDigits: true, dynamicTypeStyle: dynamicTypeStyle)
+    }
+}
+
+// MARK: - Font Construction
+
+extension NucleusFont {
+    public func asUIFont(compatibleWith traitCollection: UITraitCollection? = nil) -> UIFont {
+        var descriptor: UIFontDescriptor
+
+        if let font = UIFont(name: fontName, size: size) {
+            descriptor = font.fontDescriptor
+
+            // apply the variable `wght` axis.
+            let variationAttributes: [NSNumber: Any] = [
+                NSNumber(value: Self.weightAxisTag): Double(weight.value)
+            ]
+
+            // Create the descriptor and apply the attributes
+            descriptor = descriptor.addingAttributes([
+                kCTFontVariationAttribute as UIFontDescriptor.AttributeName: variationAttributes
+            ])
+        } else {
+            descriptor = UIFont.systemFont(ofSize: size).fontDescriptor
+        }
+
+        // Apply monospacing if needed
+        var featureSettings: [[UIFontDescriptor.FeatureKey: Int]] = []
+
+        if usesMonospacedDigits {
+            featureSettings.append([
+                UIFontDescriptor.FeatureKey.type: kNumberSpacingType,
+                UIFontDescriptor.FeatureKey.selector: kMonospacedNumbersSelector,
+            ])
+        }
+
+        if !featureSettings.isEmpty {
+            descriptor = descriptor.addingAttributes([.featureSettings: featureSettings])
+        }
+
+        // Create dynamically scaled font
+        let font = UIFont(descriptor: descriptor, size: size)
+        let metrics = UIFontMetrics(forTextStyle: dynamicTypeStyle)
+        return metrics.scaledFont(for: font, compatibleWith: traitCollection)
+    }
+
+    public func asFont() -> Font {
+        return Font(asUIFont())
+    }
+
+    private static let weightAxisTag: Int = {
+        let bytes = Array("wght".utf8)
+        return (Int(bytes[0]) << 24) | (Int(bytes[1]) << 16) | (Int(bytes[2]) << 8) | Int(bytes[3])
+    }()
 }
 
 // MARK: - Font Loading
