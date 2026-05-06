@@ -16,6 +16,10 @@ let package = Package(
             name: "NucleusFonts",
             targets: ["NucleusFonts"]
         ),
+        .library(
+            name: "NucleusIcons",
+            targets: ["NucleusIcons"]
+        ),
     ],
     targets: [
         .target(
@@ -27,6 +31,13 @@ let package = Package(
             path: "ios/Sources/NucleusFonts",
             resources: [
                 .process("Resources/Fonts"),
+            ]
+        ),
+        .target(
+            name: "NucleusIcons",
+            path: "ios/Sources/NucleusIcons",
+            resources: [
+                .process("Resources/Icons.xcassets"),
             ]
         ),
     ]
