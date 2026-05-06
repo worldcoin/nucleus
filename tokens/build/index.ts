@@ -1,5 +1,6 @@
 import { buildColors } from './colors.js';
 import { buildFonts } from './fonts.js';
+import { buildIcons } from './icons.js';
 import { copyWebPackageTemplates } from './web-package.js';
 
 async function main(): Promise<void> {
@@ -7,6 +8,7 @@ async function main(): Promise<void> {
 
   await buildColors();
   await buildFonts();
+  buildIcons();
 
   console.log('\n✓ Tokens built');
   copyWebPackageTemplates();
