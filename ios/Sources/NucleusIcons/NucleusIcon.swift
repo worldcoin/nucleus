@@ -17,8 +17,8 @@ public extension NucleusIcon {
     /// - Parameter variant: The variant to load. Defaults to ``Variant/regular``.
     /// - Returns: A SwiftUI `Image`. The image is rendered as a template by default and responds to `.foregroundColor` / `.foregroundStyle`.
     func image(_ variant: Variant = .regular) -> Image? {
-        guard availableVariants.contains(variant) else { return nil }
-        return Image(assetName(for: variant), bundle: .module)
+        guard let name = assetName(for: variant) else { return nil }
+        return Image(name, bundle: .module)
             .renderingMode(.template)
     }
 
@@ -27,12 +27,13 @@ public extension NucleusIcon {
     /// - Parameter variant: The variant to load. Defaults to ``Variant/regular``.
     /// - Returns: A template-rendered `UIImage` that respects the view's `tintColor`, or `nil` if the asset cannot be located in the bundle.
     func uiImage(_ variant: Variant = .regular) -> UIImage? {
-        guard availableVariants.contains(variant) else { return nil }
-        return UIImage(named: assetName(for: variant), in: .module, with: nil)?
+        guard let name = assetName(for: variant) else { return nil }
+        return UIImage(named: name, in: .module, with: nil)?
             .withRenderingMode(.alwaysTemplate)
     }
 
-    private func assetName(for variant: Variant) -> String {
-        "\(rawValue)-\(variant.rawValue)"
+    private func assetName(for variant: Variant) -> String? {
+        guard availableVariants.contains(variant) else { return nil }
+        return "\(rawValue)-\(variant.rawValue)"
     }
 }
