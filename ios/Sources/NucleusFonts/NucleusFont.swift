@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import SwiftUI
 
 /// A nucleus design-token font.
 ///
@@ -44,24 +45,56 @@ public struct NucleusFont: Equatable, Hashable, Sendable {
     }
 }
 
-// MARK: - Helper Types
+// MARK: - Font Construction
 
-public extension NucleusFont {
-    struct LineHeight: Equatable, Hashable, Sendable, ExpressibleByFloatLiteral {
-        public let value: Double
+extension NucleusFont {
+    public func asUIFont(compatibleWith traitCollection: UITraitCollection? = nil) -> UIFont {
+        var descriptor: UIFontDescriptor
 
-        public init(floatLiteral value: Double) {
-            self.value = value
+        if let font = UIFont(name: fontName, size: size) {
+            descriptor = font.fontDescriptor
+
+            // apply the variable `wght` axis.
+            let variationAttributes: [NSNumber: Any] = [
+                NSNumber(value: Self.weightAxisTag): Double(weight.value)
+            ]
+
+            // Create the descriptor and apply the attributes
+            descriptor = descriptor.addingAttributes([
+                kCTFontVariationAttribute as UIFontDescriptor.AttributeName: variationAttributes
+            ])
+        } else {
+            descriptor = UIFont.systemFont(ofSize: size).fontDescriptor
         }
+
+        // Apply monospacing if needed
+        var featureSettings: [[UIFontDescriptor.FeatureKey: Int]] = []
+
+        if usesMonospacedDigits {
+            featureSettings.append([
+                UIFontDescriptor.FeatureKey.type: kNumberSpacingType,
+                UIFontDescriptor.FeatureKey.selector: kMonospacedNumbersSelector,
+            ])
+        }
+
+        if !featureSettings.isEmpty {
+            descriptor = descriptor.addingAttributes([.featureSettings: featureSettings])
+        }
+
+        // Create dynamically scaled font
+        let font = UIFont(descriptor: descriptor, size: size)
+        let metrics = UIFontMetrics(forTextStyle: dynamicTypeStyle)
+        return metrics.scaledFont(for: font, compatibleWith: traitCollection)
     }
 
-    struct Weight: Equatable, Hashable, Sendable, ExpressibleByIntegerLiteral {
-        public let value: Int
-
-        public init(integerLiteral value: IntegerLiteralType) {
-            self.value = value
-        }
+    public func asFont() -> Font {
+        return Font(asUIFont())
     }
+
+    private static let weightAxisTag: Int = {
+        let bytes = Array("wght".utf8)
+        return (Int(bytes[0]) << 24) | (Int(bytes[1]) << 16) | (Int(bytes[2]) << 8) | Int(bytes[3])
+    }()
 }
 
 // MARK: - Font Loading
