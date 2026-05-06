@@ -55,4 +55,4 @@ jobs:
       - uses: actions/checkout@v5
 
       - name: Build SPM package
-        run: xcodebuild build -scheme Nucleus -destination 'generic/platform=iOS' -skipPackagePluginValidation
+        run: xcodebuild build -scheme Nucleus-Package -destination 'generic/platform=iOS' -skipPackagePluginValidation

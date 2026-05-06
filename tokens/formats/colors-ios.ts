@@ -8,10 +8,10 @@ import { camelCasePath, publicColorPath, readTemplate } from './shared.js';
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 
 const PRIMITIVES_TEMPLATE = Handlebars.compile(
-  readTemplate('tokens/templates/ios/NucleusColorPrimitives.swift.hbs'),
+  readTemplate('tokens/templates/ios/NucleusColor+Primitives.swift.hbs'),
 );
 const SEMANTICS_TEMPLATE = Handlebars.compile(
-  readTemplate('tokens/templates/ios/NucleusColorSemantics.swift.hbs'),
+  readTemplate('tokens/templates/ios/NucleusColor+Semantics.swift.hbs'),
 );
 
 interface ColorLeaf {
