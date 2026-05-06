@@ -1,0 +1,58 @@
+// This file is auto-generated. Do not edit manually.
+
+package {{packageName}}
+
+import androidx.annotation.DrawableRes
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
+import com.worldcoin.nucleus.R
+
+/**
+ * A nucleus design-token icon.
+ *
+ * Each entry exposes the available drawable resource IDs for this icon's variants.
+ * Use [drawableRes] to look up a specific variant or [painter] to obtain a Compose
+ * [Painter]. Tint the painter at the call site (for example with `Icon(painter, tint = ...)`)
+ * — the underlying drawable ships with a black placeholder fill.
+ */
+enum class NucleusIcon(
+    val resourceName: String,
+    @DrawableRes val outlineRes: Int?,
+    @DrawableRes val regularRes: Int?,
+    @DrawableRes val solidRes: Int?,
+) {
+{{#each tokens}}
+    {{kotlinCase}}(
+        resourceName = "{{resourceName}}",
+        outlineRes = {{#if outline}}{{outline}}{{else}}null{{/if}},
+        regularRes = {{#if regular}}{{regular}}{{else}}null{{/if}},
+        solidRes = {{#if solid}}{{solid}}{{else}}null{{/if}},
+    ){{#unless @last}},{{/unless}}{{#if @last}};{{/if}}
+{{/each}}
+
+    enum class Variant { Outline, Regular, Solid }
+
+    /**
+     * Returns the drawable resource ID for [variant], or null if this icon does not ship
+     * in that variant.
+     */
+    @DrawableRes
+    fun drawableRes(variant: Variant = Variant.Regular): Int? = when (variant) {
+        Variant.Outline -> outlineRes
+        Variant.Regular -> regularRes
+        Variant.Solid -> solidRes
+    }
+
+    /**
+     * Returns a Compose [Painter] for [variant]. Throws if the icon does not ship in
+     * the requested variant — check [drawableRes] first if you want a graceful fallback.
+     */
+    @Composable
+    fun painter(variant: Variant = Variant.Regular): Painter {
+        val res = requireNotNull(drawableRes(variant)) {
+            "$name does not ship a $variant variant"
+        }
+        return painterResource(id = res)
+    }
+}
