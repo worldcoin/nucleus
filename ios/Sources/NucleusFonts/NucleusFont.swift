@@ -29,9 +29,9 @@ public struct NucleusFont: Equatable, Hashable, Sendable {
     public init(
         fontName: String,
         size: Double,
-        weight: Weight,
-        letterSpacing: Double,
-        lineHeight: LineHeight,
+        weight: Weight = .regular,
+        letterSpacing: Double = 0,
+        lineHeight: LineHeight = .regular,
         monospacedDigits: Bool = false,
         dynamicTypeStyle: UIFont.TextStyle = .body
     ) {
