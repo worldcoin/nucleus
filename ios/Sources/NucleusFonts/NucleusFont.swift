@@ -63,3 +63,21 @@ public extension NucleusFont {
         }
     }
 }
+
+// MARK: - Font Loading
+
+@MainActor
+extension NucleusFont {
+    private static var isRegistered = false
+
+    public static func registerFonts() {
+        guard !isRegistered else { return }
+        guard let fonts = Bundle.module.urls(forResourcesWithExtension: "ttf", subdirectory: nil) else {
+            return
+        }
+        for fontURL in fonts {
+            CTFontManagerRegisterFontsForURL(fontURL as CFURL, .process, nil)
+        }
+        isRegistered = true
+    }
+}
