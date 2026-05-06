@@ -45,6 +45,30 @@ public struct NucleusFont: Equatable, Hashable, Sendable {
     }
 }
 
+// MARK: - Mutating Methods
+
+extension NucleusFont {
+    /// Mutate an existing NucleusFont with a specified variable weight. This can either be an integer between 300...800 or a predetermined value like `.regular` or `.bold`.
+    public func weight(_ weight: Weight) -> NucleusFont {
+        return NucleusFont(fontName: fontName, size: size, weight: weight, letterSpacing: letterSpacing, lineHeight: lineHeight, monospacedDigits: usesMonospacedDigits, dynamicTypeStyle: dynamicTypeStyle)
+    }
+
+    /// Mutate the letter-spacing multiplier of an existing NucleusFont. Use negative values for tighter spacing and positive values for looser spacing. This value is multiplied by the font size, so a letter spacing of `-0.02` with a font size of `56` results in a kerning value of `-1.12` points.
+    public func letterSpacing(_ letterSpacing: Double) -> NucleusFont {
+        return NucleusFont(fontName: fontName, size: size, weight: weight, letterSpacing: letterSpacing, lineHeight: lineHeight, monospacedDigits: usesMonospacedDigits, dynamicTypeStyle: dynamicTypeStyle)
+    }
+
+    /// Mutate the line-height multiplier of an existing NucleusFont. A value of `1.2` results in a line height 20% larger than the font's default line height.
+    public func lineHeight(_ lineHeight: LineHeight) -> NucleusFont {
+        return NucleusFont(fontName: fontName, size: size, weight: weight, letterSpacing: letterSpacing, lineHeight: lineHeight, monospacedDigits: usesMonospacedDigits, dynamicTypeStyle: dynamicTypeStyle)
+    }
+
+    /// Make the numbers in the font monospaced.
+    public func monospacedDigits() -> NucleusFont {
+        return NucleusFont(fontName: fontName, size: size, weight: weight, letterSpacing: letterSpacing, lineHeight: lineHeight, monospacedDigits: true, dynamicTypeStyle: dynamicTypeStyle)
+    }
+}
+
 // MARK: - Font Construction
 
 extension NucleusFont {
