@@ -13,8 +13,7 @@
     "clean": "rm -rf build"
   },
   "dependencies": {
-    "handlebars": "^4.7.9",
-    "style-dictionary": "^5.3.3"
+    "handlebars": "^4.7.9"
   },
   "devDependencies": {
     "@types/node": "^25.3.3",

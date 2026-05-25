@@ -1,8 +1,7 @@
 import Handlebars from 'handlebars';
 
 import { readTemplate } from './shared.js';
-import { loadFontTokens } from './fonts-shared.js';
-import type { FontToken } from './fonts-shared.js';
+import type { FontToken } from './loaders.js';
 
 const TEMPLATE = Handlebars.compile(
   readTemplate('tokens/templates/ios/NucleusFont+Defaults.swift.hbs'),
@@ -21,7 +20,7 @@ interface IOSFontEntry {
 function toIOSEntry(token: FontToken): IOSFontEntry {
   return {
     name: token.name,
-    fontName: token.fontName,
+    fontName: token.family.postscriptName,
     size: token.size.toString(),
     weight: token.weight.toString(),
     letterSpacing: token.letterSpacing.toString(),
@@ -30,7 +29,6 @@ function toIOSEntry(token: FontToken): IOSFontEntry {
   };
 }
 
-export function generateIOSFonts(jsonPath: string): string {
-  const tokens = loadFontTokens(jsonPath).map(toIOSEntry);
-  return TEMPLATE({ tokens });
+export function generateIOSFonts(tokens: FontToken[]): string {
+  return TEMPLATE({ tokens: tokens.map(toIOSEntry) });
 }

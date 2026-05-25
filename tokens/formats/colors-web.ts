@@ -1,53 +1,32 @@
-import type { Format, FormatFnArguments } from 'style-dictionary/types';
-
 import {
   camelCasePath,
-  colorTokens,
   kebabCasePath,
-  originalTokenValue,
+  parseReference,
   publicColorPath,
-  referencedTokenPath,
-  tokenValue,
 } from './shared.js';
+import type { ColorLeaf } from './loaders.js';
 
 function cssVariableName(path: string[]): string {
   return `--nucleus-${kebabCasePath(publicColorPath(path))}`;
 }
 
-function cssColorValue(token: FormatFnArguments['dictionary']['allTokens'][number]): string {
-  const referencePath = referencedTokenPath(token);
-
-  if (referencePath) {
-    return `var(${cssVariableName(referencePath)})`;
-  }
-
-  return tokenValue(token);
+function cssColorValue(rawValue: string): string {
+  const referencePath = parseReference(rawValue);
+  if (referencePath) return `var(${cssVariableName(referencePath)})`;
+  return rawValue;
 }
 
-export const cssColorVariables: Format = {
-  name: 'css/colorVariables',
-  format: ({ dictionary }: FormatFnArguments) => {
-    const lines = colorTokens(dictionary).map((token) => (
-      `  ${cssVariableName(token.path)}: ${cssColorValue(token)};`
-    ));
+export function generateWebColorCss(tokens: ColorLeaf[]): string {
+  const lines = tokens.map(
+    (token) => `  ${cssVariableName(token.path)}: ${cssColorValue(token.rawValue)};`,
+  );
+  return [':root {', ...lines, '}', ''].join('\n');
+}
 
-    return [
-      ':root {',
-      ...lines,
-      '}',
-      '',
-    ].join('\n');
-  },
-};
-export const jsonFlat: Format = {
-  name: 'json/flat',
-  format: ({ dictionary }: FormatFnArguments) => {
-    const result: Record<string, unknown> = {};
-
-    for (const token of dictionary.allTokens) {
-      result[camelCasePath(publicColorPath(token.path))] = originalTokenValue(token) ?? tokenValue(token);
-    }
-
-    return JSON.stringify(result, null, 2) + '\n';
-  },
-};
+export function generateWebColorJson(tokens: ColorLeaf[]): string {
+  const result: Record<string, string> = {};
+  for (const token of tokens) {
+    result[camelCasePath(publicColorPath(token.path))] = token.rawValue;
+  }
+  return JSON.stringify(result, null, 2) + '\n';
+}

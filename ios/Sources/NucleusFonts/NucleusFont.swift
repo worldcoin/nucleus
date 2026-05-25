@@ -2,11 +2,16 @@ import Foundation
 import UIKit
 import SwiftUI
 
-/// A nucleus design-token font.
+/// A Nucleus design token font.
 ///
-/// `NucleusFont` is the building block for every typography token in Nucleus. The full set of font tokens is exposed as `static let`s on this type - for example `NucleusFont.WorldPro.b1`. Downstream apps can extend it with their own tokens the same way.
+/// `NucleusFont` is the building block for every typography token in Nucleus. The full set of font
+/// tokens is exposed as `static let`s on this type — for example `NucleusFont.b1`. Downstream apps
+/// can extend it with their own tokens the same way.
 ///
-/// Nucleus only describes the token and how the font is actually rendered is up to the consumer. Each token carries the values needed to construct a `UIFont` or SwiftUI `Font`: a font name, a size, a numeric weight, a letter-spacing multiplier, a line-height multiplier, and the Dynamic Type style that the token should scale against.
+/// Nucleus only describes the token; how the font is actually rendered is up to the consumer. Each
+/// token carries the values needed to construct a `UIFont` or SwiftUI `Font`: a font name, a size,
+/// a numeric weight, a letter-spacing multiplier, a line-height multiplier, and the Dynamic Type
+/// style that the token should scale against.
 public struct NucleusFont: Equatable, Hashable, Sendable {
     public let fontName: String
     public let size: Double
