@@ -11,7 +11,7 @@
       "size": 56,
       "weight": 600,
       "letterSpacing": -0.02,
-      "lineHeight": 1.2,
+      "lineHeight": 1.0,
       "dynamicTypeStyle": "largeTitle"
     },
     "n1": {
@@ -57,52 +57,52 @@
     "h1": {
       "family": "worldProMVP",
       "size": 34,
-      "weight": 600,
-      "letterSpacing": -0.01,
+      "weight": 550,
+      "letterSpacing": -0.02,
       "lineHeight": 1.2,
       "dynamicTypeStyle": "largeTitle"
     },
     "h2": {
       "family": "worldProMVP",
       "size": 30,
-      "weight": 600,
-      "letterSpacing": -0.01,
+      "weight": 550,
+      "letterSpacing": -0.02,
       "lineHeight": 1.2,
       "dynamicTypeStyle": "title1"
     },
     "h3": {
       "family": "worldProMVP",
       "size": 26,
-      "weight": 600,
-      "letterSpacing": -0.01,
+      "weight": 550,
+      "letterSpacing": -0.015,
       "lineHeight": 1.2,
       "dynamicTypeStyle": "title1"
     },
     "h4": {
       "family": "worldProMVP",
-      "size": 20,
-      "weight": 600,
+      "size": 22,
+      "weight": 550,
+      "letterSpacing": -0.01,
+      "lineHeight": 1.2,
+      "dynamicTypeStyle": "title2"
+    },
+    "h5": {
+      "family": "worldProMVP",
+      "size": 19,
+      "weight": 550,
       "letterSpacing": -0.01,
       "lineHeight": 1.2,
       "dynamicTypeStyle": "title3"
     },
     "s1": {
       "family": "worldProMVP",
-      "size": 19,
-      "weight": 500,
-      "letterSpacing": 0.0,
-      "lineHeight": 1.2,
-      "dynamicTypeStyle": "title3"
-    },
-    "s2": {
-      "family": "worldProMVP",
       "size": 17,
       "weight": 500,
-      "letterSpacing": 0.0,
+      "letterSpacing": -0.01,
       "lineHeight": 1.2,
       "dynamicTypeStyle": "headline"
     },
-    "s3": {
+    "s2": {
       "family": "worldProMVP",
       "size": 15,
       "weight": 500,
@@ -110,13 +110,13 @@
       "lineHeight": 1.2,
       "dynamicTypeStyle": "subheadline"
     },
-    "s4": {
+    "s3": {
       "family": "worldProMVP",
-      "size": 12,
+      "size": 13,
       "weight": 500,
       "letterSpacing": 0.0,
       "lineHeight": 1.2,
-      "dynamicTypeStyle": "caption1"
+      "dynamicTypeStyle": "footnote"
     },
     "l1": {
       "family": "worldProMVP",
@@ -144,35 +144,35 @@
     },
     "b1": {
       "family": "worldProMVP",
-      "size": 19,
-      "weight": 325,
+      "size": 17,
+      "weight": 350,
       "letterSpacing": 0.0,
       "lineHeight": 1.3,
       "dynamicTypeStyle": "body"
     },
     "b2": {
       "family": "worldProMVP",
-      "size": 17,
-      "weight": 325,
+      "size": 15,
+      "weight": 350,
       "letterSpacing": 0.0,
       "lineHeight": 1.3,
-      "dynamicTypeStyle": "body"
+      "dynamicTypeStyle": "callout"
     },
     "b3": {
       "family": "worldProMVP",
-      "size": 15,
-      "weight": 325,
-      "letterSpacing": 0.0,
-      "lineHeight": 1.3,
-      "dynamicTypeStyle": "subheadline"
-    },
-    "b4": {
-      "family": "worldProMVP",
       "size": 13,
-      "weight": 325,
+      "weight": 350,
       "letterSpacing": 0.0,
       "lineHeight": 1.3,
-      "dynamicTypeStyle": "caption2"
+      "dynamicTypeStyle": "footnote"
+    },
+    "c1": {
+      "family": "worldProMVP",
+      "size": 11,
+      "weight": 350,
+      "letterSpacing": 0.003,
+      "lineHeight": 1.4,
+      "dynamicTypeStyle": "caption1"
     }
   }
 }
