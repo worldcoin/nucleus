@@ -43,7 +43,7 @@ object NucleusFonts {
     )
     val n2 = NucleusFontStyle(
         fontFamily = FontFamily(Font(R.font.world_pro_mvp)),
-        fontSize = 34.sp,
+        fontSize = 40.sp,
         fontWeight = FontWeight(600),
         letterSpacing = (-0.02).em,
         lineHeight = (1.2).em,
@@ -57,14 +57,14 @@ object NucleusFonts {
     )
     val n4 = NucleusFontStyle(
         fontFamily = FontFamily(Font(R.font.world_pro_mvp)),
-        fontSize = 26.sp,
+        fontSize = 21.sp,
         fontWeight = FontWeight(600),
         letterSpacing = (-0.02).em,
         lineHeight = (1.2).em,
     )
     val n5 = NucleusFontStyle(
         fontFamily = FontFamily(Font(R.font.world_pro_mvp)),
-        fontSize = 19.sp,
+        fontSize = 17.sp,
         fontWeight = FontWeight(600),
         letterSpacing = (-0.02).em,
         lineHeight = (1.2).em,
@@ -92,7 +92,7 @@ object NucleusFonts {
     )
     val h4 = NucleusFontStyle(
         fontFamily = FontFamily(Font(R.font.world_pro_mvp)),
-        fontSize = 20.sp,
+        fontSize = 22.sp,
         fontWeight = FontWeight(600),
         letterSpacing = (-0.01).em,
         lineHeight = (1.2).em,
@@ -120,7 +120,7 @@ object NucleusFonts {
     )
     val s4 = NucleusFontStyle(
         fontFamily = FontFamily(Font(R.font.world_pro_mvp)),
-        fontSize = 12.sp,
+        fontSize = 13.sp,
         fontWeight = FontWeight(500),
         letterSpacing = (0).em,
         lineHeight = (1.2).em,

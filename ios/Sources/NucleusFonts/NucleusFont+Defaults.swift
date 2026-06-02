@@ -19,7 +19,7 @@ public extension NucleusFont {
     )
     static let n2 = NucleusFont(
         fontName: "WorldProMVPLH-Regular",
-        size: 34,
+        size: 40,
         weight: 600,
         letterSpacing: -0.02,
         lineHeight: 1.2,
@@ -35,7 +35,7 @@ public extension NucleusFont {
     )
     static let n4 = NucleusFont(
         fontName: "WorldProMVPLH-Regular",
-        size: 26,
+        size: 21,
         weight: 600,
         letterSpacing: -0.02,
         lineHeight: 1.2,
@@ -43,7 +43,7 @@ public extension NucleusFont {
     )
     static let n5 = NucleusFont(
         fontName: "WorldProMVPLH-Regular",
-        size: 19,
+        size: 17,
         weight: 600,
         letterSpacing: -0.02,
         lineHeight: 1.2,
@@ -75,7 +75,7 @@ public extension NucleusFont {
     )
     static let h4 = NucleusFont(
         fontName: "WorldProMVPLH-Regular",
-        size: 20,
+        size: 22,
         weight: 600,
         letterSpacing: -0.01,
         lineHeight: 1.2,
@@ -107,7 +107,7 @@ public extension NucleusFont {
     )
     static let s4 = NucleusFont(
         fontName: "WorldProMVPLH-Regular",
-        size: 12,
+        size: 13,
         weight: 500,
         letterSpacing: 0,
         lineHeight: 1.2,
