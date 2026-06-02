@@ -47,17 +47,16 @@ export function parseReference(rawValue: string): string[] | null {
 
 const FONT_CATEGORY: Record<string, string> = {
   d: 'display',
-  n: 'numeric',
+  n: 'number',
   h: 'headline',
   s: 'subtitle',
   l: 'label',
   b: 'body',
-  c: 'caption',
 };
 
 /**
  * Grouped typography path for a flat font-token id, e.g. `s1` → `typography.subtitle.s1`.
- * The category is derived from the id prefix (UI Kit 5 grouping).
+ * The category is derived from the id prefix (UI Kit 4.0 grouping).
  */
 export function typographyTokenPath(fontName: string): string {
   const category = FONT_CATEGORY[fontName[0]];

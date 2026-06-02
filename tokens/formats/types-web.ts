@@ -8,7 +8,7 @@ import type { ColorLeaf, FontToken } from './loaders.js';
  * compile-time safety instead of `Record<string, string>` when referencing token
  * paths. The wire value for each token is its canonical path:
  *   - colors: the full definition path, e.g. `semantic.color.text.primary`
- *   - typography: a grouped path `typography.{category}.{id}` (UI Kit 5 grouping)
+ *   - typography: a grouped path `typography.{category}.{id}` (UI Kit 4.0 grouping)
  *   - buttons: a combined path `component.button.{variant}.{size}`
  */
 
