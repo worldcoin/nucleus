@@ -1,8 +1,13 @@
 import { mkdirSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
 
+import {
+  loadButtonDefinition,
+  resolveButtonStyles,
+} from '../formats/buttons.js';
 import { loadColorTokens, loadFontDefinitions } from '../formats/loaders.js';
 import { generateWebTypes } from '../formats/types-web.js';
+import { BUTTON_SOURCE } from './buttons.js';
 import { ROOT, WEB_OUT, logStage } from './shared.js';
 
 const PRIMITIVE_SOURCE = 'tokens/definitions/color/primitive.json';
@@ -26,9 +31,12 @@ export function buildWebTypes(): void {
     ...loadColorTokens(SEMANTIC_LIGHT_SOURCE),
   ];
   const { tokens: fontTokens } = loadFontDefinitions(FONT_SOURCE);
+  const buttonStyleTokens = resolveButtonStyles(
+    loadButtonDefinition(BUTTON_SOURCE),
+  ).map((style) => style.token);
 
   const out = `${WEB_OUT}/index.d.ts`;
-  writeOut(out, generateWebTypes({ colorTokens, fontTokens }));
+  writeOut(out, generateWebTypes({ colorTokens, fontTokens, buttonStyleTokens }));
 
   logStage('token types (web)', [['web', out]]);
 }

@@ -1,3 +1,4 @@
+import { buildButtons } from './buttons.js';
 import { buildColors } from './colors.js';
 import { buildFonts } from './fonts.js';
 import { buildWebTypes } from './types.js';
@@ -8,6 +9,7 @@ function main(): void {
 
   buildColors();
   buildFonts();
+  buildButtons();
   buildWebTypes();
 
   console.log('\n✓ Tokens built');
