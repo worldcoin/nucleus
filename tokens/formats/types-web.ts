@@ -8,17 +8,16 @@ import type { ColorLeaf, FontToken } from './loaders.js';
  * paths. The wire value for each token is its canonical path:
  *   - colors: the full definition path, e.g. `semantic.color.text.primary`
  *   - typography: a grouped path `typography.{category}.{id}`, where the category is
- *     derived from the font-token id prefix (UI Kit 5 grouping).
+ *     derived from the font-token id prefix (UI Kit 4.0 grouping).
  */
 
 const FONT_CATEGORY: Record<string, string> = {
   d: 'display',
-  n: 'numeric',
+  n: 'number',
   h: 'headline',
   s: 'subtitle',
   l: 'label',
   b: 'body',
-  c: 'caption',
 };
 
 function typographyPath(token: FontToken): string {
