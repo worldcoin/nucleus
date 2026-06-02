@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "npm run clean && tsx tokens/build/index.ts",
+    "fetch:icons": "tsx tokens/scripts/fetch-icons.ts",
     "typecheck": "tsc --noEmit",
     "lint": "oxlint",
     "format": "prettier --write \"**/*.json\"",

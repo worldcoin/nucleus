@@ -1,0 +1,941 @@
+{
+  "figmaFileKey": "w4tJNJK5PKXQAksXgfnKsM",
+  "iconSize": 24,
+  "icons": {
+    "airplane": {
+      "dynamic": "220:35",
+      "regular": "220:38",
+      "solid": "220:41"
+    },
+    "antenna-signal": {
+      "dynamic": "220:1512",
+      "regular": "220:1516",
+      "solid": "220:1523"
+    },
+    "apple-mac": {
+      "dynamic": "220:1212",
+      "regular": "220:1216",
+      "solid": "220:1221"
+    },
+    "arrow-down": {
+      "dynamic": "220:680",
+      "regular": "220:684",
+      "solid": "220:687"
+    },
+    "arrow-down-circle": {
+      "dynamic": "220:4895",
+      "regular": "220:4898",
+      "solid": "220:4901"
+    },
+    "arrow-down-left": {
+      "dynamic": "220:713",
+      "regular": "220:717",
+      "solid": "220:720"
+    },
+    "arrow-down-right": {
+      "dynamic": "220:724",
+      "regular": "220:728",
+      "solid": "220:733"
+    },
+    "arrow-email-forward": {
+      "dynamic": "220:4727",
+      "regular": "220:4729",
+      "solid": "220:4731"
+    },
+    "arrow-left": {
+      "dynamic": "220:649",
+      "regular": "220:652",
+      "solid": "220:655"
+    },
+    "arrow-reply": {
+      "dynamic": "778:498",
+      "regular": "778:501",
+      "solid": "778:504"
+    },
+    "arrow-right": {
+      "dynamic": "220:670",
+      "regular": "220:673",
+      "solid": "220:676"
+    },
+    "arrow-separate-vertical": {
+      "dynamic": "220:3942",
+      "regular": "220:3945",
+      "solid": "220:3948"
+    },
+    "arrow-split": {
+      "dynamic": "220:844",
+      "regular": "220:847",
+      "solid": "220:850"
+    },
+    "arrow-union-vertical": {
+      "dynamic": "220:4414",
+      "regular": "220:4417",
+      "solid": "220:4420"
+    },
+    "arrow-up": {
+      "dynamic": "220:659",
+      "regular": "220:663",
+      "solid": "220:666"
+    },
+    "arrow-up-circle": {
+      "dynamic": "220:4644",
+      "regular": "220:4647",
+      "solid": "220:4650"
+    },
+    "arrow-up-left": {
+      "dynamic": "220:702",
+      "regular": "220:706",
+      "solid": "220:709"
+    },
+    "arrow-up-right": {
+      "dynamic": "220:691",
+      "growth": "220:695",
+      "regular": "220:698"
+    },
+    "arrows-tx": {
+      "dynamic": "1021:9666",
+      "regular": "1021:9669",
+      "solid": "1021:9672"
+    },
+    "at-sign": {
+      "dynamic": "220:1730",
+      "regular": "220:1736",
+      "solid": "220:1739"
+    },
+    "badge-check": {
+      "dynamic": "220:232",
+      "regular": "220:235",
+      "solid": "220:238"
+    },
+    "badge-not-checked": {
+      "dynamic": "220:242",
+      "regular": "220:247",
+      "solid": "220:250"
+    },
+    "bag": {
+      "dynamic": "220:1151",
+      "regular": "220:1155",
+      "solid": "220:1158"
+    },
+    "bank": {
+      "dynamic": "220:1115",
+      "regular": "220:1122",
+      "solid": "220:1130"
+    },
+    "bell": {
+      "dynamic": "220:1663",
+      "regular": "220:1667",
+      "solid": "220:1670"
+    },
+    "bell-notification": {
+      "dynamic": "220:1674",
+      "regular": "220:1678",
+      "solid": "220:1681"
+    },
+    "bell-slash": {
+      "dynamic": "220:1685",
+      "regular": "220:1689",
+      "solid": "220:1692"
+    },
+    "book": {
+      "dynamic": "220:4673",
+      "regular": "220:4679",
+      "solid": "220:4685"
+    },
+    "bookmark": {
+      "dynamic": "220:801",
+      "regular": "220:804",
+      "solid": "220:807"
+    },
+    "box-iso": {
+      "dynamic": "220:6",
+      "weight4": "220:10",
+      "solid": "220:13"
+    },
+    "bus": {
+      "dynamic": "220:4791",
+      "regular": "220:4799",
+      "solid": "220:4807"
+    },
+    "calendar": {
+      "dynamic": "220:167",
+      "regular": "220:173",
+      "solid": "220:177"
+    },
+    "calendar-plus": {
+      "dynamic": "220:185",
+      "regular": "220:193",
+      "solid": "220:196"
+    },
+    "camera": {
+      "dynamic": "220:1255",
+      "regular": "220:1259",
+      "solid": "220:1262"
+    },
+    "card-shield": {
+      "dynamic": "220:4255",
+      "regular": "220:4258",
+      "solid": "220:4261"
+    },
+    "cash": {
+      "dynamic": "220:1057",
+      "regular": "220:1061",
+      "solid": "220:1065"
+    },
+    "cash-multi": {
+      "dynamic": "220:1071",
+      "regular": "220:1079",
+      "solid": "220:1087"
+    },
+    "cellular": {
+      "dynamic": "220:1480",
+      "regular": "220:1483",
+      "solid": "220:1489"
+    },
+    "cellular-no-signal": {
+      "dynamic": "220:1496",
+      "regular": "220:1499",
+      "solid": "220:1505"
+    },
+    "chat-bubble": {
+      "dynamic": "220:1536",
+      "regular": "220:1542",
+      "solid": "220:1549"
+    },
+    "chat-bubble-empty": {
+      "dynamic": "220:1604",
+      "regular": "220:1607",
+      "solid": "220:1610"
+    },
+    "chat-bubble-question": {
+      "dynamic": "220:1570",
+      "regular": "220:1575",
+      "solid": "220:1580"
+    },
+    "chat-bubble-translate": {
+      "dynamic": "220:1614",
+      "regular": "220:1621",
+      "solid": "220:1629"
+    },
+    "chat-bubble-warning": {
+      "dynamic": "220:1587",
+      "regular": "220:1592",
+      "solid": "220:1597"
+    },
+    "chat-lines": {
+      "dynamic": "220:1553",
+      "regular": "220:1558",
+      "solid": "220:1563"
+    },
+    "check": {
+      "dynamic": "220:256",
+      "regular": "220:259",
+      "solid": "220:262"
+    },
+    "check-circle": {
+      "dynamic": "220:219",
+      "regular": "220:223",
+      "solid": "220:226"
+    },
+    "circle": {
+      "dynamic": "778:538",
+      "regular": "778:541",
+      "solid": "778:544"
+    },
+    "clock": {
+      "dynamic": "220:143",
+      "regular": "220:146",
+      "solid": "220:151"
+    },
+    "clock-rotate-right": {
+      "dynamic": "220:155",
+      "regular": "220:160",
+      "solid": "220:163"
+    },
+    "close-full-screen": {
+      "dynamic": "764:34999",
+      "regular": "764:35002",
+      "solid": "764:35005"
+    },
+    "cloud": {
+      "dynamic": "220:1526",
+      "regular": "220:1529",
+      "solid": "220:1532"
+    },
+    "cloud-download": {
+      "dynamic": "762:33783",
+      "regular": "762:33786",
+      "solid": "762:33789"
+    },
+    "coins": {
+      "dynamic": "220:4043",
+      "regular": "220:4052",
+      "solid": "220:4061"
+    },
+    "commodity": {
+      "dynamic": "220:4781",
+      "regular": "220:4785",
+      "solid": "220:4789"
+    },
+    "compass": {
+      "dynamic": "220:79",
+      "regular": "220:83",
+      "solid": "220:87"
+    },
+    "compose": {
+      "dynamic": "764:35130",
+      "regular": "764:35133",
+      "solid": "764:35136"
+    },
+    "contact-book": {
+      "dynamic": "764:34933",
+      "regular": "764:34938",
+      "solid": "764:34941"
+    },
+    "copy": {
+      "dynamic": "220:1763",
+      "regular": "220:1766",
+      "solid": "220:1769"
+    },
+    "coupon": {
+      "dynamic": "220:1178",
+      "regular": "220:1184",
+      "solid": "220:1191"
+    },
+    "credential": {
+      "dynamic": "220:638",
+      "regular": "220:642",
+      "solid": "220:645"
+    },
+    "credit-card": {
+      "dynamic": "220:3976",
+      "regular": "220:3978",
+      "solid": "220:3980"
+    },
+    "cube": {
+      "dynamic": "220:458",
+      "regular": "220:463",
+      "solid": "220:468"
+    },
+    "cursor-pointer": {
+      "dynamic": "220:4350",
+      "regular": "220:4352",
+      "solid": "220:4354"
+    },
+    "decorative-spark": {
+      "dynamic": "764:34870",
+      "regular": "764:34873",
+      "solid": "764:34876"
+    },
+    "delivery-check": {
+      "dynamic": "220:17",
+      "regular": "220:22",
+      "solid": "220:27"
+    },
+    "delivery-truck": {
+      "dynamic": "220:45",
+      "regular": "220:56",
+      "solid": "220:67"
+    },
+    "diamond-orb": {
+      "dynamic": "220:1236",
+      "regular": "220:1241",
+      "solid": "220:1247"
+    },
+    "dollar": {
+      "dynamic": "220:4953",
+      "regular": "220:4955",
+      "solid": "220:4957"
+    },
+    "double-check": {
+      "dynamic": "220:266",
+      "regular": "220:271",
+      "solid": "220:274"
+    },
+    "download": {
+      "dynamic": "220:1830",
+      "regular": "220:1833",
+      "solid": "220:1839"
+    },
+    "edit-pencil": {
+      "dynamic": "220:1753",
+      "regular": "220:1756",
+      "solid": "220:1759"
+    },
+    "empty-page": {
+      "dynamic": "220:975",
+      "regular": "220:979",
+      "solid": "220:982"
+    },
+    "enlarge": {
+      "dynamic": "778:384",
+      "regular": "778:387",
+      "solid": "778:390"
+    },
+    "eye": {
+      "dynamic": "220:583",
+      "regular": "220:587",
+      "solid": "220:592"
+    },
+    "eye-closed": {
+      "dynamic": "220:598",
+      "regular": "220:601",
+      "solid": "220:604"
+    },
+    "face-id": {
+      "dynamic": "220:573",
+      "regular": "220:576",
+      "solid": "220:579"
+    },
+    "filter-list": {
+      "dynamic": "220:1298",
+      "regular": "220:1301",
+      "solid": "220:1304"
+    },
+    "flash": {
+      "dynamic": "220:448",
+      "regular": "220:451",
+      "solid": "220:454"
+    },
+    "flashlight": {
+      "dynamic": "778:51",
+      "regular": "778:56",
+      "solid": "778:59"
+    },
+    "full-screen": {
+      "dynamic": "764:34964",
+      "regular": "764:34968",
+      "solid": "764:34971"
+    },
+    "gif": {
+      "dynamic": "220:1020",
+      "regular": "220:1026",
+      "solid": "220:1029"
+    },
+    "gift": {
+      "dynamic": "220:925",
+      "regular": "220:932",
+      "solid": "763:34018"
+    },
+    "gift-card": {
+      "dynamic": "778:76",
+      "regular": "778:90",
+      "solid": "778:109"
+    },
+    "glasses": {
+      "dynamic": "220:4740",
+      "regular": "220:4744",
+      "solid": "220:4748"
+    },
+    "globe": {
+      "dynamic": "220:93",
+      "regular": "220:99",
+      "solid": "220:102"
+    },
+    "graduation-cap": {
+      "dynamic": "220:854",
+      "regular": "220:858",
+      "solid": "220:862"
+    },
+    "graph-down": {
+      "dynamic": "220:1356",
+      "regular": "220:1359",
+      "solid": "220:1362"
+    },
+    "graph-up": {
+      "dynamic": "220:1346",
+      "regular": "220:1349",
+      "solid": "220:1352"
+    },
+    "group": {
+      "dynamic": "220:1743",
+      "regular": "220:1746",
+      "solid": "220:1749"
+    },
+    "half-moon": {
+      "dynamic": "779:937",
+      "regular": "779:940",
+      "solid": "779:943"
+    },
+    "heart": {
+      "dynamic": "220:376",
+      "regular": "220:379",
+      "solid": "220:382"
+    },
+    "help-circle": {
+      "dynamic": "220:315",
+      "regular": "220:319",
+      "solid": "220:322"
+    },
+    "home": {
+      "dynamic": "220:791",
+      "regular": "220:794",
+      "solid": "220:797"
+    },
+    "human-emblem": {
+      "dynamic": "764:34897",
+      "regular": "764:34900",
+      "solid": "764:34903"
+    },
+    "info-circle": {
+      "dynamic": "220:329",
+      "regular": "220:334",
+      "solid": "220:337"
+    },
+    "instagram": {
+      "dynamic": "220:988",
+      "regular": "220:993",
+      "solid": "220:996"
+    },
+    "key": {
+      "dynamic": "220:623",
+      "regular": "220:628",
+      "solid": "220:634"
+    },
+    "key-real": {
+      "dynamic": "763:34159",
+      "regular": "763:34164",
+      "solid": "763:34170"
+    },
+    "language": {
+      "dynamic": "220:1711",
+      "regular": "220:1718",
+      "solid": "220:1726"
+    },
+    "legal": {
+      "dynamic": "778:373",
+      "regular": "778:376",
+      "solid": "778:379"
+    },
+    "link": {
+      "dynamic": "764:34185",
+      "regular": "764:34191",
+      "solid": "764:34197"
+    },
+    "link-slash": {
+      "dynamic": "220:829",
+      "regular": "220:835",
+      "solid": "220:841"
+    },
+    "list": {
+      "dynamic": "220:1311",
+      "regular": "220:1317",
+      "solid": "220:1326"
+    },
+    "lock": {
+      "dynamic": "220:546",
+      "regular": "220:550",
+      "solid": "220:555"
+    },
+    "log-in": {
+      "dynamic": "220:1920",
+      "regular": "220:1923",
+      "solid": "220:1926"
+    },
+    "log-out": {
+      "dynamic": "220:1930",
+      "regular": "220:1933",
+      "solid": "220:1936"
+    },
+    "magic-wand": {
+      "dynamic": "220:883",
+      "regular": "220:889",
+      "solid": "220:892"
+    },
+    "mail": {
+      "dynamic": "220:1640",
+      "regular": "220:1643",
+      "solid": "220:1646"
+    },
+    "map": {
+      "dynamic": "220:131",
+      "regular": "220:136",
+      "solid": "220:139"
+    },
+    "map-pin": {
+      "dynamic": "220:116",
+      "regular": "220:120",
+      "solid": "220:125"
+    },
+    "maps-arrow": {
+      "dynamic": "220:106",
+      "regular": "220:109",
+      "solid": "220:112"
+    },
+    "maps-arrow-diagonal": {
+      "dynamic": "220:4221",
+      "regular": "220:4223",
+      "solid": "220:4225"
+    },
+    "media-image": {
+      "dynamic": "220:941",
+      "regular": "220:946",
+      "solid": "220:952"
+    },
+    "microphone": {
+      "dynamic": "220:1268",
+      "regular": "220:1271",
+      "solid": "220:1274"
+    },
+    "minus": {
+      "dynamic": "220:1910",
+      "regular": "220:1913",
+      "solid": "220:1916"
+    },
+    "minus-circle": {
+      "dynamic": "220:4537",
+      "regular": "220:4540",
+      "solid": "220:4543"
+    },
+    "more-horiz": {
+      "dynamic": "220:1804",
+      "regular": "220:1809",
+      "solid": "220:1812"
+    },
+    "more-horiz-circle": {
+      "dynamic": "220:1791",
+      "regular": "220:1797",
+      "solid": "220:1800"
+    },
+    "more-vert": {
+      "dynamic": "778:346",
+      "regular": "778:351",
+      "solid": "778:359"
+    },
+    "nav-arrow-down": {
+      "dynamic": "220:739",
+      "regular": "220:742",
+      "solid": "220:745"
+    },
+    "nav-arrow-left": {
+      "dynamic": "220:769",
+      "regular": "220:772",
+      "solid": "220:775"
+    },
+    "nav-arrow-right": {
+      "dynamic": "220:759",
+      "regular": "220:762",
+      "solid": "220:765"
+    },
+    "nav-arrow-up": {
+      "dynamic": "220:749",
+      "regular": "220:752",
+      "solid": "220:755"
+    },
+    "open-new-window": {
+      "dynamic": "220:1866",
+      "regular": "220:1869",
+      "solid": "220:1877"
+    },
+    "page": {
+      "dynamic": "220:1000",
+      "regular": "220:1006",
+      "solid": "220:1013"
+    },
+    "passkey": {
+      "dynamic": "220:559",
+      "regular": "220:566",
+      "solid": "220:569"
+    },
+    "password": {
+      "dynamic": "1229:919",
+      "regular": "1229:922",
+      "solid": "1229:925"
+    },
+    "pearl-orb": {
+      "dynamic": "764:35069",
+      "regular": "764:35072",
+      "solid": "764:35075"
+    },
+    "percentage": {
+      "dynamic": "220:1139",
+      "weight4": "220:1144",
+      "solid": "220:1147"
+    },
+    "pin": {
+      "dynamic": "220:896",
+      "regular": "220:901",
+      "solid": "220:907"
+    },
+    "play": {
+      "dynamic": "220:1033",
+      "regular": "220:1036",
+      "solid": "220:1039"
+    },
+    "plus": {
+      "dynamic": "220:1896",
+      "regular": "220:1899",
+      "solid": "220:1904"
+    },
+    "plus-circle": {
+      "dynamic": "778:554",
+      "regular": "778:557",
+      "solid": "778:560"
+    },
+    "post": {
+      "dynamic": "220:1697",
+      "regular": "220:1700",
+      "solid": "220:1703"
+    },
+    "power": {
+      "dynamic": "764:35108",
+      "regular": "764:35112",
+      "solid": "764:35115"
+    },
+    "profile-circle": {
+      "dynamic": "220:485",
+      "regular": "220:490",
+      "solid": "220:493"
+    },
+    "prohibition": {
+      "dynamic": "220:344",
+      "regular": "220:348",
+      "solid": "220:353"
+    },
+    "qr-code": {
+      "dynamic": "220:1959",
+      "regular": "220:1964",
+      "solid": "220:1967"
+    },
+    "refresh": {
+      "dynamic": "220:1816",
+      "regular": "220:1819",
+      "solid": "220:1824"
+    },
+    "refresh-double": {
+      "dynamic": "220:4063",
+      "regular": "220:4068",
+      "solid": "220:4073"
+    },
+    "reports": {
+      "dynamic": "220:1447",
+      "regular": "220:1452",
+      "solid": "220:1455"
+    },
+    "safe": {
+      "dynamic": "220:608",
+      "regular": "220:616",
+      "solid": "220:619"
+    },
+    "scan": {
+      "dynamic": "220:1886",
+      "regular": "220:1889",
+      "solid": "220:1892"
+    },
+    "search": {
+      "dynamic": "220:1437",
+      "regular": "220:1440",
+      "solid": "220:1443"
+    },
+    "send": {
+      "dynamic": "220:1940",
+      "regular": "220:1945",
+      "solid": "220:1951"
+    },
+    "send-mail": {
+      "dynamic": "220:1650",
+      "regular": "220:1656",
+      "solid": "220:1659"
+    },
+    "settings": {
+      "dynamic": "220:1278",
+      "regular": "220:1281",
+      "solid": "220:1284"
+    },
+    "share-ios": {
+      "dynamic": "220:1846",
+      "regular": "220:1849",
+      "solid": "220:1852"
+    },
+    "shield": {
+      "dynamic": "220:536",
+      "regular": "220:539",
+      "solid": "220:542"
+    },
+    "shield-3": {
+      "dynamic": "220:497",
+      "disabled": "220:501",
+      "solid": "220:504"
+    },
+    "shield-alert": {
+      "dynamic": "220:508",
+      "regular": "220:513",
+      "solid": "220:519"
+    },
+    "shield-check": {
+      "dynamic": "220:523",
+      "regular": "220:527",
+      "solid": "220:530"
+    },
+    "smartphone-device": {
+      "dynamic": "220:1199",
+      "regular": "220:1203",
+      "solid": "220:1206"
+    },
+    "snow-flake": {
+      "dynamic": "220:396",
+      "regular": "220:404",
+      "solid": "220:413"
+    },
+    "social-x": {
+      "dynamic": "764:35037",
+      "regular": "764:35040",
+      "solid": "764:35043"
+    },
+    "software-update-setting": {
+      "dynamic": "220:1225",
+      "regular": "220:1229",
+      "solid": "220:1232"
+    },
+    "sort": {
+      "dynamic": "220:1383",
+      "regular": "220:1386",
+      "solid": "220:1389"
+    },
+    "sort-down": {
+      "dynamic": "220:1393",
+      "regular": "220:1396",
+      "solid": "220:1404"
+    },
+    "sort-up": {
+      "dynamic": "220:1413",
+      "regular": "220:1420",
+      "solid": "220:1428"
+    },
+    "spark": {
+      "dynamic": "220:423",
+      "regular": "220:426",
+      "solid": "220:429"
+    },
+    "sparks": {
+      "dynamic": "220:433",
+      "regular": "220:438",
+      "solid": "220:442"
+    },
+    "star": {
+      "dynamic": "220:386",
+      "regular": "220:389",
+      "solid": "220:392"
+    },
+    "stats-up-square": {
+      "dynamic": "220:1366",
+      "regular": "220:1369",
+      "solid": "220:1375"
+    },
+    "suitcase": {
+      "dynamic": "220:1162",
+      "regular": "220:1166",
+      "solid": "220:1171"
+    },
+    "sun-light": {
+      "dynamic": "779:911",
+      "regular": "779:922",
+      "solid": "779:933"
+    },
+    "tag": {
+      "dynamic": "764:35155",
+      "regular": "764:35158",
+      "solid": "764:35161"
+    },
+    "text": {
+      "dynamic": "220:915",
+      "regular": "220:919",
+      "solid": "764:34571"
+    },
+    "timer": {
+      "dynamic": "220:5071",
+      "regular": "220:5075",
+      "solid": "220:5079"
+    },
+    "timer-dots": {
+      "dynamic": "220:200",
+      "regular": "220:206",
+      "solid": "220:212"
+    },
+    "toolkit": {
+      "dynamic": "764:34838",
+      "regular": "764:34841",
+      "solid": "764:34844"
+    },
+    "trash": {
+      "dynamic": "220:1778",
+      "regular": "220:1781",
+      "solid": "220:1787"
+    },
+    "trophy": {
+      "dynamic": "220:866",
+      "regular": "220:872",
+      "solid": "220:879"
+    },
+    "user": {
+      "dynamic": "220:472",
+      "regular": "220:476",
+      "solid": "220:480"
+    },
+    "video-camera": {
+      "dynamic": "220:1288",
+      "regular": "220:1291",
+      "solid": "220:1294"
+    },
+    "view-grid": {
+      "dynamic": "220:1336",
+      "regular": "220:1339",
+      "solid": "220:1342"
+    },
+    "voice": {
+      "dynamic": "220:4906",
+      "regular": "220:4912",
+      "solid": "220:4918"
+    },
+    "wallet": {
+      "dynamic": "220:1045",
+      "regular": "220:1048",
+      "solid": "220:1053"
+    },
+    "warning-circle": {
+      "dynamic": "220:359",
+      "regular": "220:364",
+      "solid": "220:369"
+    },
+    "warning-hexagon": {
+      "dynamic": "220:298",
+      "regular": "220:303",
+      "solid": "220:308"
+    },
+    "warning-triangle": {
+      "dynamic": "220:289",
+      "regular": "764:34658",
+      "solid": "220:294"
+    },
+    "wifi": {
+      "dynamic": "220:1469",
+      "regular": "220:1473",
+      "solid": "220:1476"
+    },
+    "wifi-signal-none": {
+      "dynamic": "220:1459",
+      "regular": "220:1462",
+      "solid": "220:1465"
+    },
+    "world": {
+      "dynamic": "764:34814",
+      "regular": "764:34817",
+      "solid": "764:34820"
+    },
+    "world-card": {
+      "dynamic": "764:34789",
+      "regular": "764:34792",
+      "solid": "764:34795"
+    },
+    "xmark": {
+      "dynamic": "220:779",
+      "regular": "220:782",
+      "solid": "220:785"
+    },
+    "xmark-circle": {
+      "dynamic": "778:573",
+      "regular": "778:576",
+      "solid": "778:579"
+    }
+  }
+}

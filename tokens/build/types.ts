@@ -5,9 +5,11 @@ import {
   loadButtonDefinition,
   resolveButtonStyles,
 } from '../formats/buttons.js';
+import { iconTokenEntries, loadIconRegistry } from '../formats/icons.js';
 import { loadColorTokens, loadFontDefinitions } from '../formats/loaders.js';
 import { generateWebTypes } from '../formats/types-web.js';
 import { BUTTON_SOURCE } from './buttons.js';
+import { ICON_SOURCE } from './icons.js';
 import { ROOT, WEB_OUT, logStage } from './shared.js';
 
 const PRIMITIVE_SOURCE = 'tokens/definitions/color/primitive.json';
@@ -34,9 +36,15 @@ export function buildWebTypes(): void {
   const buttonStyleTokens = resolveButtonStyles(
     loadButtonDefinition(BUTTON_SOURCE),
   ).map((style) => style.token);
+  const iconTokens = iconTokenEntries(loadIconRegistry(ICON_SOURCE)).map(
+    (entry) => entry.token,
+  );
 
   const out = `${WEB_OUT}/index.d.ts`;
-  writeOut(out, generateWebTypes({ colorTokens, fontTokens, buttonStyleTokens }));
+  writeOut(
+    out,
+    generateWebTypes({ colorTokens, fontTokens, buttonStyleTokens, iconTokens }),
+  );
 
   logStage('token types (web)', [['web', out]]);
 }
