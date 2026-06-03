@@ -24,7 +24,7 @@
     },
     "n2": {
       "family": "worldProMVP",
-      "size": 34,
+      "size": 40,
       "weight": 600,
       "letterSpacing": -0.02,
       "lineHeight": 1.2,
@@ -40,7 +40,7 @@
     },
     "n4": {
       "family": "worldProMVP",
-      "size": 26,
+      "size": 21,
       "weight": 600,
       "letterSpacing": -0.02,
       "lineHeight": 1.2,
@@ -48,7 +48,7 @@
     },
     "n5": {
       "family": "worldProMVP",
-      "size": 19,
+      "size": 17,
       "weight": 600,
       "letterSpacing": -0.02,
       "lineHeight": 1.2,
@@ -80,7 +80,7 @@
     },
     "h4": {
       "family": "worldProMVP",
-      "size": 20,
+      "size": 22,
       "weight": 600,
       "letterSpacing": -0.01,
       "lineHeight": 1.2,
@@ -112,7 +112,7 @@
     },
     "s4": {
       "family": "worldProMVP",
-      "size": 12,
+      "size": 13,
       "weight": 500,
       "letterSpacing": 0.0,
       "lineHeight": 1.2,
