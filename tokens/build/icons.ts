@@ -88,10 +88,10 @@ function buildAndroidIcons(tokens: IconToken[]): void {
 
   const tokensDir = resolve(ROOT, ANDROID_TOKENS_OUT);
   mkdirSync(tokensDir, { recursive: true });
-  writeFileSync(resolve(tokensDir, 'NucleusIcons.kt'), generateAndroidIcons(tokens));
+  writeFileSync(resolve(tokensDir, 'NucleusIcon.kt'), generateAndroidIcons(tokens));
 
   logStage('tokens/definitions/icons (android)', [
-    ['android', `${ANDROID_TOKENS_OUT}/NucleusIcons.kt`],
+    ['android', `${ANDROID_TOKENS_OUT}/NucleusIcon.kt`],
     ['android', `${ANDROID_RES_OUT}/drawable (${drawableCount} vector drawables)`],
   ]);
 }

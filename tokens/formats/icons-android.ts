@@ -5,7 +5,7 @@ import type { IconToken, IconVariant } from './icons-shared.js';
 
 const PACKAGE_NAME = 'com.worldcoin.nucleus.tokens';
 const TEMPLATE = Handlebars.compile(
-  readTemplate('tokens/templates/android/NucleusIcons.kt.hbs'),
+  readTemplate('tokens/templates/android/NucleusIcon.kt.hbs'),
 );
 
 // android resource names must be [a-z0-9_]; we prefix with `nucleus_icon_` so the

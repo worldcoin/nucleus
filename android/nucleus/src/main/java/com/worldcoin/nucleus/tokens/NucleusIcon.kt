@@ -867,7 +867,8 @@ enum class NucleusIcon(
         outlineRes = R.drawable.nucleus_icon_xmark_outline,
         regularRes = R.drawable.nucleus_icon_xmark_regular,
         solidRes = R.drawable.nucleus_icon_xmark_solid,
-    );
+    ),
+    ;
 
     enum class Variant { Outline, Regular, Solid }
 
@@ -876,11 +877,12 @@ enum class NucleusIcon(
      * in that variant.
      */
     @DrawableRes
-    fun drawableRes(variant: Variant = Variant.Regular): Int? = when (variant) {
-        Variant.Outline -> outlineRes
-        Variant.Regular -> regularRes
-        Variant.Solid -> solidRes
-    }
+    fun drawableRes(variant: Variant = Variant.Regular): Int? =
+        when (variant) {
+            Variant.Outline -> outlineRes
+            Variant.Regular -> regularRes
+            Variant.Solid -> solidRes
+        }
 
     /**
      * Returns a Compose [Painter] for [variant]. Throws if the icon does not ship in
