@@ -9,7 +9,7 @@ import androidx.compose.ui.res.painterResource
 import com.worldcoin.nucleus.R
 
 /**
- * A nucleus design-token icon.
+ * A Nucleus design token icon.
  *
  * Each entry exposes the available drawable resource IDs for this icon's variants.
  * Use [drawableRes] to look up a specific variant or [painter] to obtain a Compose

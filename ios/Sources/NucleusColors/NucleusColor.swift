@@ -1,7 +1,7 @@
 import SwiftUI
 import UIKit
 
-/// A nucleus design-token color.
+/// A Nucleus design token color.
 ///
 /// `NucleusColor` is the building block for every color in nucleus. The full set of nucleus tokens is exposed as `static let`s on this type — primitives (`NucleusColor.grey900`) and semantics (`NucleusColor.surfacePrimary`) — and downstream apps can extend it with their own colors the same way.
 ///
