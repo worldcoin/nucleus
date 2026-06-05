@@ -1,5 +1,6 @@
 import { buildColors } from './colors.js';
 import { buildFonts } from './fonts.js';
+import { buildIcons } from './icons.js';
 import { copyWebPackageTemplates } from './web-package.js';
 
 function main(): void {
@@ -7,6 +8,7 @@ function main(): void {
 
   buildColors();
   buildFonts();
+  buildIcons();
 
   console.log('\n✓ Tokens built');
   copyWebPackageTemplates();
