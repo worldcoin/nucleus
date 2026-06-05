@@ -15,10 +15,18 @@ function fontAccessor(path: string): string {
   return path.split('.').at(-1) ?? path;
 }
 
-/** Theme-aware color pair referencing the existing semantic-color objects. */
-function colorExpr(path: string): string {
+/**
+ * Theme-aware color pair referencing the existing semantic-color objects, wrapped across
+ * lines so generated Kotlin stays within ktlint's 120-char limit (android/.editorconfig).
+ */
+function colorField(field: string, path: string): string[] {
   const accessor = colorAccessor(path);
-  return `NucleusButtonColor(NucleusSemanticColorsLight.${accessor}, NucleusSemanticColorsDark.${accessor})`;
+  return [
+    `        ${field} = NucleusButtonColor(`,
+    `            NucleusSemanticColorsLight.${accessor},`,
+    `            NucleusSemanticColorsDark.${accessor},`,
+    `        ),`,
+  ];
 }
 
 export function generateAndroidButtons(styles: ResolvedButtonStyle[]): string {
@@ -53,12 +61,15 @@ export function generateAndroidButtons(styles: ResolvedButtonStyle[]): string {
   ];
 
   for (const style of styles) {
-    const border = style.border ? colorExpr(style.border) : 'null';
+    lines.push(`    val ${valName(style)} = NucleusButtonStyle(`);
+    lines.push(...colorField('background', style.background));
+    lines.push(...colorField('content', style.content));
+    if (style.border) {
+      lines.push(...colorField('border', style.border));
+    } else {
+      lines.push('        border = null,');
+    }
     lines.push(
-      `    val ${valName(style)} = NucleusButtonStyle(`,
-      `        background = ${colorExpr(style.background)},`,
-      `        content = ${colorExpr(style.content)},`,
-      `        border = ${border},`,
       `        height = ${style.height}.dp,`,
       `        cornerRadius = ${style.cornerRadius}.dp,`,
       `        paddingHorizontal = ${style.paddingHorizontal}.dp,`,

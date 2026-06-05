@@ -26,8 +26,14 @@ data class NucleusButtonStyle(
 
 object NucleusButtons {
     val primary32 = NucleusButtonStyle(
-        background = NucleusButtonColor(NucleusSemanticColorsLight.actionPrimary, NucleusSemanticColorsDark.actionPrimary),
-        content = NucleusButtonColor(NucleusSemanticColorsLight.actionPrimaryContent, NucleusSemanticColorsDark.actionPrimaryContent),
+        background = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionPrimary,
+            NucleusSemanticColorsDark.actionPrimary,
+        ),
+        content = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionPrimaryContent,
+            NucleusSemanticColorsDark.actionPrimaryContent,
+        ),
         border = null,
         height = 32.dp,
         cornerRadius = 16.dp,
@@ -37,8 +43,14 @@ object NucleusButtons {
         pressedInset = 1.dp,
     )
     val primary40 = NucleusButtonStyle(
-        background = NucleusButtonColor(NucleusSemanticColorsLight.actionPrimary, NucleusSemanticColorsDark.actionPrimary),
-        content = NucleusButtonColor(NucleusSemanticColorsLight.actionPrimaryContent, NucleusSemanticColorsDark.actionPrimaryContent),
+        background = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionPrimary,
+            NucleusSemanticColorsDark.actionPrimary,
+        ),
+        content = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionPrimaryContent,
+            NucleusSemanticColorsDark.actionPrimaryContent,
+        ),
         border = null,
         height = 40.dp,
         cornerRadius = 20.dp,
@@ -48,8 +60,14 @@ object NucleusButtons {
         pressedInset = 1.dp,
     )
     val primary48 = NucleusButtonStyle(
-        background = NucleusButtonColor(NucleusSemanticColorsLight.actionPrimary, NucleusSemanticColorsDark.actionPrimary),
-        content = NucleusButtonColor(NucleusSemanticColorsLight.actionPrimaryContent, NucleusSemanticColorsDark.actionPrimaryContent),
+        background = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionPrimary,
+            NucleusSemanticColorsDark.actionPrimary,
+        ),
+        content = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionPrimaryContent,
+            NucleusSemanticColorsDark.actionPrimaryContent,
+        ),
         border = null,
         height = 48.dp,
         cornerRadius = 24.dp,
@@ -59,8 +77,14 @@ object NucleusButtons {
         pressedInset = 1.dp,
     )
     val secondary32 = NucleusButtonStyle(
-        background = NucleusButtonColor(NucleusSemanticColorsLight.actionSecondary, NucleusSemanticColorsDark.actionSecondary),
-        content = NucleusButtonColor(NucleusSemanticColorsLight.actionSecondaryContent, NucleusSemanticColorsDark.actionSecondaryContent),
+        background = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionSecondary,
+            NucleusSemanticColorsDark.actionSecondary,
+        ),
+        content = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionSecondaryContent,
+            NucleusSemanticColorsDark.actionSecondaryContent,
+        ),
         border = null,
         height = 32.dp,
         cornerRadius = 16.dp,
@@ -70,8 +94,14 @@ object NucleusButtons {
         pressedInset = 1.dp,
     )
     val secondary40 = NucleusButtonStyle(
-        background = NucleusButtonColor(NucleusSemanticColorsLight.actionSecondary, NucleusSemanticColorsDark.actionSecondary),
-        content = NucleusButtonColor(NucleusSemanticColorsLight.actionSecondaryContent, NucleusSemanticColorsDark.actionSecondaryContent),
+        background = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionSecondary,
+            NucleusSemanticColorsDark.actionSecondary,
+        ),
+        content = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionSecondaryContent,
+            NucleusSemanticColorsDark.actionSecondaryContent,
+        ),
         border = null,
         height = 40.dp,
         cornerRadius = 20.dp,
@@ -81,8 +111,14 @@ object NucleusButtons {
         pressedInset = 1.dp,
     )
     val secondary48 = NucleusButtonStyle(
-        background = NucleusButtonColor(NucleusSemanticColorsLight.actionSecondary, NucleusSemanticColorsDark.actionSecondary),
-        content = NucleusButtonColor(NucleusSemanticColorsLight.actionSecondaryContent, NucleusSemanticColorsDark.actionSecondaryContent),
+        background = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionSecondary,
+            NucleusSemanticColorsDark.actionSecondary,
+        ),
+        content = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionSecondaryContent,
+            NucleusSemanticColorsDark.actionSecondaryContent,
+        ),
         border = null,
         height = 48.dp,
         cornerRadius = 24.dp,
@@ -92,9 +128,18 @@ object NucleusButtons {
         pressedInset = 1.dp,
     )
     val tertiary32 = NucleusButtonStyle(
-        background = NucleusButtonColor(NucleusSemanticColorsLight.actionTertiary, NucleusSemanticColorsDark.actionTertiary),
-        content = NucleusButtonColor(NucleusSemanticColorsLight.actionTertiaryContent, NucleusSemanticColorsDark.actionTertiaryContent),
-        border = NucleusButtonColor(NucleusSemanticColorsLight.borderDefault, NucleusSemanticColorsDark.borderDefault),
+        background = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionTertiary,
+            NucleusSemanticColorsDark.actionTertiary,
+        ),
+        content = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionTertiaryContent,
+            NucleusSemanticColorsDark.actionTertiaryContent,
+        ),
+        border = NucleusButtonColor(
+            NucleusSemanticColorsLight.borderDefault,
+            NucleusSemanticColorsDark.borderDefault,
+        ),
         height = 32.dp,
         cornerRadius = 16.dp,
         paddingHorizontal = 16.dp,
@@ -103,9 +148,18 @@ object NucleusButtons {
         pressedInset = 1.dp,
     )
     val tertiary40 = NucleusButtonStyle(
-        background = NucleusButtonColor(NucleusSemanticColorsLight.actionTertiary, NucleusSemanticColorsDark.actionTertiary),
-        content = NucleusButtonColor(NucleusSemanticColorsLight.actionTertiaryContent, NucleusSemanticColorsDark.actionTertiaryContent),
-        border = NucleusButtonColor(NucleusSemanticColorsLight.borderDefault, NucleusSemanticColorsDark.borderDefault),
+        background = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionTertiary,
+            NucleusSemanticColorsDark.actionTertiary,
+        ),
+        content = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionTertiaryContent,
+            NucleusSemanticColorsDark.actionTertiaryContent,
+        ),
+        border = NucleusButtonColor(
+            NucleusSemanticColorsLight.borderDefault,
+            NucleusSemanticColorsDark.borderDefault,
+        ),
         height = 40.dp,
         cornerRadius = 20.dp,
         paddingHorizontal = 20.dp,
@@ -114,9 +168,18 @@ object NucleusButtons {
         pressedInset = 1.dp,
     )
     val tertiary48 = NucleusButtonStyle(
-        background = NucleusButtonColor(NucleusSemanticColorsLight.actionTertiary, NucleusSemanticColorsDark.actionTertiary),
-        content = NucleusButtonColor(NucleusSemanticColorsLight.actionTertiaryContent, NucleusSemanticColorsDark.actionTertiaryContent),
-        border = NucleusButtonColor(NucleusSemanticColorsLight.borderDefault, NucleusSemanticColorsDark.borderDefault),
+        background = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionTertiary,
+            NucleusSemanticColorsDark.actionTertiary,
+        ),
+        content = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionTertiaryContent,
+            NucleusSemanticColorsDark.actionTertiaryContent,
+        ),
+        border = NucleusButtonColor(
+            NucleusSemanticColorsLight.borderDefault,
+            NucleusSemanticColorsDark.borderDefault,
+        ),
         height = 48.dp,
         cornerRadius = 24.dp,
         paddingHorizontal = 24.dp,
@@ -125,8 +188,14 @@ object NucleusButtons {
         pressedInset = 1.dp,
     )
     val ghost32 = NucleusButtonStyle(
-        background = NucleusButtonColor(NucleusSemanticColorsLight.actionGhost, NucleusSemanticColorsDark.actionGhost),
-        content = NucleusButtonColor(NucleusSemanticColorsLight.actionGhostContent, NucleusSemanticColorsDark.actionGhostContent),
+        background = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionGhost,
+            NucleusSemanticColorsDark.actionGhost,
+        ),
+        content = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionGhostContent,
+            NucleusSemanticColorsDark.actionGhostContent,
+        ),
         border = null,
         height = 32.dp,
         cornerRadius = 16.dp,
@@ -136,8 +205,14 @@ object NucleusButtons {
         pressedInset = 1.dp,
     )
     val ghost40 = NucleusButtonStyle(
-        background = NucleusButtonColor(NucleusSemanticColorsLight.actionGhost, NucleusSemanticColorsDark.actionGhost),
-        content = NucleusButtonColor(NucleusSemanticColorsLight.actionGhostContent, NucleusSemanticColorsDark.actionGhostContent),
+        background = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionGhost,
+            NucleusSemanticColorsDark.actionGhost,
+        ),
+        content = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionGhostContent,
+            NucleusSemanticColorsDark.actionGhostContent,
+        ),
         border = null,
         height = 40.dp,
         cornerRadius = 20.dp,
@@ -147,8 +222,14 @@ object NucleusButtons {
         pressedInset = 1.dp,
     )
     val ghost48 = NucleusButtonStyle(
-        background = NucleusButtonColor(NucleusSemanticColorsLight.actionGhost, NucleusSemanticColorsDark.actionGhost),
-        content = NucleusButtonColor(NucleusSemanticColorsLight.actionGhostContent, NucleusSemanticColorsDark.actionGhostContent),
+        background = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionGhost,
+            NucleusSemanticColorsDark.actionGhost,
+        ),
+        content = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionGhostContent,
+            NucleusSemanticColorsDark.actionGhostContent,
+        ),
         border = null,
         height = 48.dp,
         cornerRadius = 24.dp,
@@ -158,8 +239,14 @@ object NucleusButtons {
         pressedInset = 1.dp,
     )
     val inverse32 = NucleusButtonStyle(
-        background = NucleusButtonColor(NucleusSemanticColorsLight.surfaceElevated, NucleusSemanticColorsDark.surfaceElevated),
-        content = NucleusButtonColor(NucleusSemanticColorsLight.textPrimary, NucleusSemanticColorsDark.textPrimary),
+        background = NucleusButtonColor(
+            NucleusSemanticColorsLight.surfaceElevated,
+            NucleusSemanticColorsDark.surfaceElevated,
+        ),
+        content = NucleusButtonColor(
+            NucleusSemanticColorsLight.textPrimary,
+            NucleusSemanticColorsDark.textPrimary,
+        ),
         border = null,
         height = 32.dp,
         cornerRadius = 16.dp,
@@ -169,8 +256,14 @@ object NucleusButtons {
         pressedInset = 1.dp,
     )
     val inverse40 = NucleusButtonStyle(
-        background = NucleusButtonColor(NucleusSemanticColorsLight.surfaceElevated, NucleusSemanticColorsDark.surfaceElevated),
-        content = NucleusButtonColor(NucleusSemanticColorsLight.textPrimary, NucleusSemanticColorsDark.textPrimary),
+        background = NucleusButtonColor(
+            NucleusSemanticColorsLight.surfaceElevated,
+            NucleusSemanticColorsDark.surfaceElevated,
+        ),
+        content = NucleusButtonColor(
+            NucleusSemanticColorsLight.textPrimary,
+            NucleusSemanticColorsDark.textPrimary,
+        ),
         border = null,
         height = 40.dp,
         cornerRadius = 20.dp,
@@ -180,8 +273,14 @@ object NucleusButtons {
         pressedInset = 1.dp,
     )
     val inverse48 = NucleusButtonStyle(
-        background = NucleusButtonColor(NucleusSemanticColorsLight.surfaceElevated, NucleusSemanticColorsDark.surfaceElevated),
-        content = NucleusButtonColor(NucleusSemanticColorsLight.textPrimary, NucleusSemanticColorsDark.textPrimary),
+        background = NucleusButtonColor(
+            NucleusSemanticColorsLight.surfaceElevated,
+            NucleusSemanticColorsDark.surfaceElevated,
+        ),
+        content = NucleusButtonColor(
+            NucleusSemanticColorsLight.textPrimary,
+            NucleusSemanticColorsDark.textPrimary,
+        ),
         border = null,
         height = 48.dp,
         cornerRadius = 24.dp,
@@ -191,8 +290,14 @@ object NucleusButtons {
         pressedInset = 1.dp,
     )
     val disabled32 = NucleusButtonStyle(
-        background = NucleusButtonColor(NucleusSemanticColorsLight.actionDisabled, NucleusSemanticColorsDark.actionDisabled),
-        content = NucleusButtonColor(NucleusSemanticColorsLight.actionDisabledContent, NucleusSemanticColorsDark.actionDisabledContent),
+        background = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionDisabled,
+            NucleusSemanticColorsDark.actionDisabled,
+        ),
+        content = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionDisabledContent,
+            NucleusSemanticColorsDark.actionDisabledContent,
+        ),
         border = null,
         height = 32.dp,
         cornerRadius = 16.dp,
@@ -202,8 +307,14 @@ object NucleusButtons {
         pressedInset = 1.dp,
     )
     val disabled40 = NucleusButtonStyle(
-        background = NucleusButtonColor(NucleusSemanticColorsLight.actionDisabled, NucleusSemanticColorsDark.actionDisabled),
-        content = NucleusButtonColor(NucleusSemanticColorsLight.actionDisabledContent, NucleusSemanticColorsDark.actionDisabledContent),
+        background = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionDisabled,
+            NucleusSemanticColorsDark.actionDisabled,
+        ),
+        content = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionDisabledContent,
+            NucleusSemanticColorsDark.actionDisabledContent,
+        ),
         border = null,
         height = 40.dp,
         cornerRadius = 20.dp,
@@ -213,8 +324,14 @@ object NucleusButtons {
         pressedInset = 1.dp,
     )
     val disabled48 = NucleusButtonStyle(
-        background = NucleusButtonColor(NucleusSemanticColorsLight.actionDisabled, NucleusSemanticColorsDark.actionDisabled),
-        content = NucleusButtonColor(NucleusSemanticColorsLight.actionDisabledContent, NucleusSemanticColorsDark.actionDisabledContent),
+        background = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionDisabled,
+            NucleusSemanticColorsDark.actionDisabled,
+        ),
+        content = NucleusButtonColor(
+            NucleusSemanticColorsLight.actionDisabledContent,
+            NucleusSemanticColorsDark.actionDisabledContent,
+        ),
         border = null,
         height = 48.dp,
         cornerRadius = 24.dp,
