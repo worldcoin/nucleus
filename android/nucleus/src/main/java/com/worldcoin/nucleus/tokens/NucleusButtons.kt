@@ -6,12 +6,23 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
-/** A theme-aware color pair for a button token. */
+/**
+ * A theme-aware color pair for a button token.
+ *
+ * Holds the light and dark semantic colors for a single button slot; `color(isDark)`
+ * resolves to the value for the active theme.
+ */
 data class NucleusButtonColor(val light: Color, val dark: Color) {
     fun color(isDark: Boolean): Color = if (isDark) dark else light
 }
 
-/** A Nucleus button style token: colors, geometry, and label font for a variant × size. */
+/**
+ * A Nucleus button style token.
+ *
+ * Carries the colors, geometry, and label font for a button variant × size. Colors are
+ * theme-aware `NucleusButtonColor` pairs; `pressedInset` is the inset the client applies for
+ * the pressed state. See `NucleusButtons` for the available tokens.
+ */
 data class NucleusButtonStyle(
     val background: NucleusButtonColor,
     val content: NucleusButtonColor,

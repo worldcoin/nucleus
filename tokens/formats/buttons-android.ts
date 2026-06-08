@@ -1,85 +1,49 @@
-import { camelCasePath, publicColorPath } from './shared.js';
+import Handlebars from 'handlebars';
+
+import { camelCasePath, publicColorPath, readTemplate } from './shared.js';
 import type { ResolvedButtonStyle } from './buttons.js';
 
 const PACKAGE_NAME = 'com.worldcoin.nucleus.tokens';
+const TEMPLATE = Handlebars.compile(
+  readTemplate('tokens/templates/android/NucleusButtons.kt.hbs'),
+);
+
+interface AndroidButtonEntry {
+  name: string;
+  background: string;
+  content: string;
+  border: string | null;
+  height: number;
+  cornerRadius: number;
+  paddingHorizontal: number;
+  paddingVertical: number;
+  font: string;
+  pressedInset: number;
+}
 
 function colorAccessor(path: string): string {
   return camelCasePath(publicColorPath(path.split('.')));
-}
-
-function valName(style: ResolvedButtonStyle): string {
-  return `${style.variant}${style.size}`;
 }
 
 function fontAccessor(path: string): string {
   return path.split('.').at(-1) ?? path;
 }
 
-/**
- * Theme-aware color pair referencing the existing semantic-color objects, wrapped across
- * lines so generated Kotlin stays within ktlint's 120-char limit (android/.editorconfig).
- */
-function colorField(field: string, path: string): string[] {
-  const accessor = colorAccessor(path);
-  return [
-    `        ${field} = NucleusButtonColor(`,
-    `            NucleusSemanticColorsLight.${accessor},`,
-    `            NucleusSemanticColorsDark.${accessor},`,
-    `        ),`,
-  ];
+function toEntry(style: ResolvedButtonStyle): AndroidButtonEntry {
+  return {
+    name: `${style.variant}${style.size}`,
+    background: colorAccessor(style.background),
+    content: colorAccessor(style.content),
+    border: style.border ? colorAccessor(style.border) : null,
+    height: style.height,
+    cornerRadius: style.cornerRadius,
+    paddingHorizontal: style.paddingHorizontal,
+    paddingVertical: style.paddingVertical,
+    font: fontAccessor(style.font),
+    pressedInset: style.pressedInset,
+  };
 }
 
 export function generateAndroidButtons(styles: ResolvedButtonStyle[]): string {
-  const lines: string[] = [
-    '// This file is auto-generated. Do not edit manually.',
-    '',
-    `package ${PACKAGE_NAME}`,
-    '',
-    'import androidx.compose.ui.graphics.Color',
-    'import androidx.compose.ui.unit.Dp',
-    'import androidx.compose.ui.unit.dp',
-    '',
-    '/** A theme-aware color pair for a button token. */',
-    'data class NucleusButtonColor(val light: Color, val dark: Color) {',
-    '    fun color(isDark: Boolean): Color = if (isDark) dark else light',
-    '}',
-    '',
-    '/** A Nucleus button style token: colors, geometry, and label font for a variant × size. */',
-    'data class NucleusButtonStyle(',
-    '    val background: NucleusButtonColor,',
-    '    val content: NucleusButtonColor,',
-    '    val border: NucleusButtonColor?,',
-    '    val height: Dp,',
-    '    val cornerRadius: Dp,',
-    '    val paddingHorizontal: Dp,',
-    '    val paddingVertical: Dp,',
-    '    val font: NucleusFontStyle,',
-    '    val pressedInset: Dp,',
-    ')',
-    '',
-    'object NucleusButtons {',
-  ];
-
-  for (const style of styles) {
-    lines.push(`    val ${valName(style)} = NucleusButtonStyle(`);
-    lines.push(...colorField('background', style.background));
-    lines.push(...colorField('content', style.content));
-    if (style.border) {
-      lines.push(...colorField('border', style.border));
-    } else {
-      lines.push('        border = null,');
-    }
-    lines.push(
-      `        height = ${style.height}.dp,`,
-      `        cornerRadius = ${style.cornerRadius}.dp,`,
-      `        paddingHorizontal = ${style.paddingHorizontal}.dp,`,
-      `        paddingVertical = ${style.paddingVertical}.dp,`,
-      `        font = NucleusFonts.${fontAccessor(style.font)},`,
-      `        pressedInset = ${style.pressedInset}.dp,`,
-      `    )`,
-    );
-  }
-
-  lines.push('}', '');
-  return lines.join('\n');
+  return TEMPLATE({ packageName: PACKAGE_NAME, styles: styles.map(toEntry) });
 }
