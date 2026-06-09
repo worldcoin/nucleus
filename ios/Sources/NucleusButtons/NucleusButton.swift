@@ -9,7 +9,7 @@ import NucleusFonts
 /// button tokens is exposed as `static let`s — for example `NucleusButton.primary48`.
 ///
 /// Nucleus only describes the token; assembling the actual button view is up to the consumer.
-public struct NucleusButton {
+public struct NucleusButton: Sendable {
     public let background: NucleusColor
     public let content: NucleusColor
     public let border: NucleusColor?
