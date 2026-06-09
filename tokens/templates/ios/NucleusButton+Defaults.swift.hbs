@@ -1,0 +1,20 @@
+// This file is auto-generated. Do not edit manually.
+
+import NucleusColors
+import NucleusFonts
+
+public extension NucleusButton {
+{{#each styles}}
+    static let {{name}} = NucleusButton(
+        background: .{{background}},
+        content: .{{content}},
+        border: {{#if border}}.{{border}}{{else}}nil{{/if}},
+        height: {{height}},
+        cornerRadius: {{cornerRadius}},
+        paddingHorizontal: {{paddingHorizontal}},
+        paddingVertical: {{paddingVertical}},
+        font: .{{font}},
+        pressedInset: {{pressedInset}}
+    )
+{{/each}}
+}

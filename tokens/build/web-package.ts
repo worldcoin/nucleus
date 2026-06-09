@@ -8,9 +8,9 @@ interface TemplateCopy {
   to: string;
 }
 
+// `index.d.ts` is generated from the token definitions (see build/types.ts).
 const copies: TemplateCopy[] = [
   { from: 'tokens/templates/web/package.json', to: 'build/web/package.json' },
-  { from: 'tokens/templates/web/index.d.ts', to: 'build/web/index.d.ts' },
 ];
 
 export function copyWebPackageTemplates(): void {
