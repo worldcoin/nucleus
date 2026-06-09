@@ -5,6 +5,7 @@ import {
   loadButtonDefinition,
   resolveButtonStyles,
 } from '../formats/buttons.js';
+import { discoverIconTokens } from '../formats/icons-shared.js';
 import { loadColorTokens, loadFontDefinitions } from '../formats/loaders.js';
 import { generateWebTypes } from '../formats/types-web.js';
 import { BUTTON_SOURCE } from './buttons.js';
@@ -34,9 +35,15 @@ export function buildWebTypes(): void {
   const buttonStyleTokens = resolveButtonStyles(
     loadButtonDefinition(BUTTON_SOURCE),
   ).map((style) => style.token);
+  const iconTokens = discoverIconTokens().flatMap((icon) =>
+    icon.variants.map((variant) => `icon.${icon.name}.${variant}`),
+  );
 
   const out = `${WEB_OUT}/index.d.ts`;
-  writeOut(out, generateWebTypes({ colorTokens, fontTokens, buttonStyleTokens }));
+  writeOut(
+    out,
+    generateWebTypes({ colorTokens, fontTokens, buttonStyleTokens, iconTokens }),
+  );
 
   logStage('token types (web)', [['web', out]]);
 }

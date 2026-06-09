@@ -10,6 +10,7 @@ import type { ColorLeaf, FontToken } from './loaders.js';
  *   - colors: the full definition path, e.g. `semantic.color.text.primary`
  *   - typography: a grouped path `typography.{category}.{id}` (UI Kit 4.0 grouping)
  *   - buttons: a combined path `component.button.{variant}.{size}`
+ *   - icons: a combined path `icon.{name}.{variant}`
  */
 
 function unionType(name: string, values: string[]): string {
@@ -26,12 +27,15 @@ export interface WebTypesInput {
   fontTokens: FontToken[];
   /** Combined button style token paths, e.g. `component.button.primary.48`. */
   buttonStyleTokens: string[];
+  /** Icon token paths, e.g. `icon.arrow-right.regular`. */
+  iconTokens: string[];
 }
 
 export function generateWebTypes({
   colorTokens,
   fontTokens,
   buttonStyleTokens,
+  iconTokens,
 }: WebTypesInput): string {
   const colorPaths = colorTokens.map((token) => token.path.join('.'));
   const typographyPaths = fontTokens.map((token) =>
@@ -50,6 +54,9 @@ export function generateWebTypes({
     '',
     '/** Combined button style token path, e.g. `component.button.primary.48`. */',
     unionType('ButtonStyleToken', buttonStyleTokens),
+    '',
+    '/** Icon token path, e.g. `icon.arrow-right.regular`. */',
+    unionType('IconToken', iconTokens),
     '',
     '/** Runtime token maps are published as JSON modules (camelCase keys → values). */',
     'declare const tokens: Record<string, string>;',
