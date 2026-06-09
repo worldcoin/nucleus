@@ -20,6 +20,10 @@ let package = Package(
             name: "NucleusButtons",
             targets: ["NucleusButtons"]
         ),
+        .library(
+            name: "NucleusIcons",
+            targets: ["NucleusIcons"]
+        ),
     ],
     targets: [
         .target(
@@ -37,6 +41,13 @@ let package = Package(
             name: "NucleusButtons",
             dependencies: ["NucleusColors", "NucleusFonts"],
             path: "ios/Sources/NucleusButtons"
+        ),
+        .target(
+            name: "NucleusIcons",
+            path: "ios/Sources/NucleusIcons",
+            resources: [
+                .process("Resources/Icons.xcassets"),
+            ]
         ),
     ]
 )
