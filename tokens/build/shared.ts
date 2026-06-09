@@ -10,6 +10,7 @@ export const ANDROID_RES_OUT = 'android/nucleus/src/main/res';
 export const IOS_COLORS_OUT = 'ios/Sources/NucleusColors';
 export const IOS_FONTS_OUT = 'ios/Sources/NucleusFonts';
 export const IOS_FONTS_RESOURCES_OUT = `${IOS_FONTS_OUT}/Resources/Fonts`;
+export const IOS_BUTTONS_OUT = 'ios/Sources/NucleusButtons';
 export const WEB_OUT = 'build/web';
 export const WEB_FONTS_OUT = `${WEB_OUT}/fonts`;
 
