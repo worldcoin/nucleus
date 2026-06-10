@@ -16,24 +16,34 @@ export function androidDrawableName(token: IconToken, variant: IconVariant): str
   return `${ANDROID_DRAWABLE_PREFIX}_${token.androidStem}_${variant}`;
 }
 
+// Kotlin marker interface + resource property generated for each variant an icon ships.
+// Icons that don't ship a variant simply don't implement that interface, so accessing the
+// missing variant's res property is a compile error in consuming code — no nullable res
+// IDs and no runtime variant resolution.
+const VARIANT_KOTLIN: Record<IconVariant, { markerInterface: string; property: string }> = {
+  outline: { markerInterface: 'HasOutline', property: 'outlineRes' },
+  regular: { markerInterface: 'HasRegular', property: 'regularRes' },
+  solid: { markerInterface: 'HasSolid', property: 'solidRes' },
+};
+
 interface AndroidIconEntry {
   kotlinCase: string;
   resourceName: string;
-  outline: string | null;
-  regular: string | null;
-  solid: string | null;
+  // marker interfaces for the variants this icon ships, e.g. ['HasOutline', 'HasRegular']
+  interfaces: string[];
+  // one non-null res property override per shipped variant
+  properties: Array<{ property: string; drawable: string }>;
 }
 
 function toAndroidEntry(token: IconToken): AndroidIconEntry {
-  const drawableFor = (variant: IconVariant): string | null =>
-    token.variants.includes(variant) ? `R.drawable.${androidDrawableName(token, variant)}` : null;
-
   return {
     kotlinCase: token.kotlinCase,
     resourceName: token.name,
-    outline: drawableFor('outline'),
-    regular: drawableFor('regular'),
-    solid: drawableFor('solid'),
+    interfaces: token.variants.map((variant) => VARIANT_KOTLIN[variant].markerInterface),
+    properties: token.variants.map((variant) => ({
+      property: VARIANT_KOTLIN[variant].property,
+      drawable: `R.drawable.${androidDrawableName(token, variant)}`,
+    })),
   };
 }
 
