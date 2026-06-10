@@ -3,896 +3,1038 @@
 package com.worldcoin.nucleus.tokens
 
 import androidx.annotation.DrawableRes
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.res.painterResource
 import com.worldcoin.nucleus.R
 
 /**
  * A Nucleus design token icon.
  *
- * Each entry exposes the available drawable resource IDs for this icon's variants.
- * Use [drawableRes] to look up a specific variant or [painter] to obtain a Compose
- * [Painter]. Tint the painter at the call site (for example with `Icon(painter, tint = ...)`)
- * — the underlying drawable ships with a black placeholder fill.
+ * Each icon is a singleton object whose variant availability is encoded in the type system:
+ * an icon implements [HasOutline], [HasRegular], and/or [HasSolid] exactly for the variants
+ * it ships, so the per-variant resource IDs are non-null and accessing a variant an icon
+ * does not ship is a compile error — never a runtime crash.
+ *
+ * ```
+ * Icon(
+ *     painter = painterResource(NucleusIcon.ProfileCircle.solidRes),
+ *     contentDescription = null,
+ *     tint = ..., // drawables ship with a black placeholder fill — tint at the call site
+ * )
+ * ```
+ *
+ * When handling icons generically, branch on availability with a type check, for example
+ * `if (icon is NucleusIcon.HasSolid) painterResource(icon.solidRes)`.
  */
-enum class NucleusIcon(
-    val resourceName: String,
-    @DrawableRes val outlineRes: Int?,
-    @DrawableRes val regularRes: Int?,
-    @DrawableRes val solidRes: Int?,
-) {
-    Airplane(
-        resourceName = "airplane",
-        outlineRes = R.drawable.nucleus_icon_airplane_outline,
-        regularRes = R.drawable.nucleus_icon_airplane_regular,
-        solidRes = R.drawable.nucleus_icon_airplane_solid,
-    ),
-    AntennaSignal(
-        resourceName = "antenna-signal",
-        outlineRes = R.drawable.nucleus_icon_antenna_signal_outline,
-        regularRes = R.drawable.nucleus_icon_antenna_signal_regular,
-        solidRes = null,
-    ),
-    AppleMac(
-        resourceName = "apple-mac",
-        outlineRes = R.drawable.nucleus_icon_apple_mac_outline,
-        regularRes = R.drawable.nucleus_icon_apple_mac_regular,
-        solidRes = R.drawable.nucleus_icon_apple_mac_solid,
-    ),
-    ArrowDown(
-        resourceName = "arrow-down",
-        outlineRes = R.drawable.nucleus_icon_arrow_down_outline,
-        regularRes = R.drawable.nucleus_icon_arrow_down_regular,
-        solidRes = R.drawable.nucleus_icon_arrow_down_solid,
-    ),
-    ArrowDownLeft(
-        resourceName = "arrow-down-left",
-        outlineRes = R.drawable.nucleus_icon_arrow_down_left_outline,
-        regularRes = R.drawable.nucleus_icon_arrow_down_left_regular,
-        solidRes = R.drawable.nucleus_icon_arrow_down_left_solid,
-    ),
-    ArrowDownRight(
-        resourceName = "arrow-down-right",
-        outlineRes = R.drawable.nucleus_icon_arrow_down_right_outline,
-        regularRes = R.drawable.nucleus_icon_arrow_down_right_regular,
-        solidRes = R.drawable.nucleus_icon_arrow_down_right_solid,
-    ),
-    ArrowLeft(
-        resourceName = "arrow-left",
-        outlineRes = R.drawable.nucleus_icon_arrow_left_outline,
-        regularRes = R.drawable.nucleus_icon_arrow_left_regular,
-        solidRes = R.drawable.nucleus_icon_arrow_left_solid,
-    ),
-    ArrowRight(
-        resourceName = "arrow-right",
-        outlineRes = R.drawable.nucleus_icon_arrow_right_outline,
-        regularRes = R.drawable.nucleus_icon_arrow_right_regular,
-        solidRes = R.drawable.nucleus_icon_arrow_right_solid,
-    ),
-    ArrowSplit(
-        resourceName = "arrow-split",
-        outlineRes = R.drawable.nucleus_icon_arrow_split_outline,
-        regularRes = R.drawable.nucleus_icon_arrow_split_regular,
-        solidRes = R.drawable.nucleus_icon_arrow_split_solid,
-    ),
-    ArrowUp(
-        resourceName = "arrow-up",
-        outlineRes = R.drawable.nucleus_icon_arrow_up_outline,
-        regularRes = R.drawable.nucleus_icon_arrow_up_regular,
-        solidRes = R.drawable.nucleus_icon_arrow_up_solid,
-    ),
-    ArrowUpLeft(
-        resourceName = "arrow-up-left",
-        outlineRes = R.drawable.nucleus_icon_arrow_up_left_outline,
-        regularRes = R.drawable.nucleus_icon_arrow_up_left_regular,
-        solidRes = R.drawable.nucleus_icon_arrow_up_left_solid,
-    ),
-    ArrowUpRight(
-        resourceName = "arrow-up-right",
-        outlineRes = R.drawable.nucleus_icon_arrow_up_right_outline,
-        regularRes = R.drawable.nucleus_icon_arrow_up_right_regular,
-        solidRes = null,
-    ),
-    AtSign(
-        resourceName = "at-sign",
-        outlineRes = R.drawable.nucleus_icon_at_sign_outline,
-        regularRes = R.drawable.nucleus_icon_at_sign_regular,
-        solidRes = R.drawable.nucleus_icon_at_sign_solid,
-    ),
-    BadgeCheck(
-        resourceName = "badge-check",
-        outlineRes = R.drawable.nucleus_icon_badge_check_outline,
-        regularRes = R.drawable.nucleus_icon_badge_check_regular,
-        solidRes = R.drawable.nucleus_icon_badge_check_solid,
-    ),
-    BadgeNotChecked(
-        resourceName = "badge-not-checked",
-        outlineRes = R.drawable.nucleus_icon_badge_not_checked_outline,
-        regularRes = R.drawable.nucleus_icon_badge_not_checked_regular,
-        solidRes = R.drawable.nucleus_icon_badge_not_checked_solid,
-    ),
-    Bag(
-        resourceName = "bag",
-        outlineRes = R.drawable.nucleus_icon_bag_outline,
-        regularRes = R.drawable.nucleus_icon_bag_regular,
-        solidRes = R.drawable.nucleus_icon_bag_solid,
-    ),
-    Bank(
-        resourceName = "bank",
-        outlineRes = R.drawable.nucleus_icon_bank_outline,
-        regularRes = R.drawable.nucleus_icon_bank_regular,
-        solidRes = R.drawable.nucleus_icon_bank_solid,
-    ),
-    Bell(
-        resourceName = "bell",
-        outlineRes = R.drawable.nucleus_icon_bell_outline,
-        regularRes = R.drawable.nucleus_icon_bell_regular,
-        solidRes = R.drawable.nucleus_icon_bell_solid,
-    ),
-    BellNotification(
-        resourceName = "bell-notification",
-        outlineRes = R.drawable.nucleus_icon_bell_notification_outline,
-        regularRes = R.drawable.nucleus_icon_bell_notification_regular,
-        solidRes = R.drawable.nucleus_icon_bell_notification_solid,
-    ),
-    BellSlash(
-        resourceName = "bell-slash",
-        outlineRes = R.drawable.nucleus_icon_bell_slash_outline,
-        regularRes = R.drawable.nucleus_icon_bell_slash_regular,
-        solidRes = R.drawable.nucleus_icon_bell_slash_solid,
-    ),
-    Bookmark(
-        resourceName = "bookmark",
-        outlineRes = R.drawable.nucleus_icon_bookmark_outline,
-        regularRes = R.drawable.nucleus_icon_bookmark_regular,
-        solidRes = R.drawable.nucleus_icon_bookmark_solid,
-    ),
-    BoxIso(
-        resourceName = "box-iso",
-        outlineRes = R.drawable.nucleus_icon_box_iso_outline,
-        regularRes = R.drawable.nucleus_icon_box_iso_regular,
-        solidRes = R.drawable.nucleus_icon_box_iso_solid,
-    ),
-    Calendar(
-        resourceName = "calendar",
-        outlineRes = R.drawable.nucleus_icon_calendar_outline,
-        regularRes = R.drawable.nucleus_icon_calendar_regular,
-        solidRes = R.drawable.nucleus_icon_calendar_solid,
-    ),
-    CalendarPlus(
-        resourceName = "calendar-plus",
-        outlineRes = R.drawable.nucleus_icon_calendar_plus_outline,
-        regularRes = R.drawable.nucleus_icon_calendar_plus_regular,
-        solidRes = R.drawable.nucleus_icon_calendar_plus_solid,
-    ),
-    Camera(
-        resourceName = "camera",
-        outlineRes = R.drawable.nucleus_icon_camera_outline,
-        regularRes = R.drawable.nucleus_icon_camera_regular,
-        solidRes = R.drawable.nucleus_icon_camera_solid,
-    ),
-    Cash(
-        resourceName = "cash",
-        outlineRes = R.drawable.nucleus_icon_cash_outline,
-        regularRes = R.drawable.nucleus_icon_cash_regular,
-        solidRes = R.drawable.nucleus_icon_cash_solid,
-    ),
-    CashMulti(
-        resourceName = "cash-multi",
-        outlineRes = R.drawable.nucleus_icon_cash_multi_outline,
-        regularRes = R.drawable.nucleus_icon_cash_multi_regular,
-        solidRes = R.drawable.nucleus_icon_cash_multi_solid,
-    ),
-    Cellular(
-        resourceName = "cellular",
-        outlineRes = R.drawable.nucleus_icon_cellular_outline,
-        regularRes = R.drawable.nucleus_icon_cellular_regular,
-        solidRes = R.drawable.nucleus_icon_cellular_solid,
-    ),
-    CellularNoSignal(
-        resourceName = "cellular-no-signal",
-        outlineRes = R.drawable.nucleus_icon_cellular_no_signal_outline,
-        regularRes = R.drawable.nucleus_icon_cellular_no_signal_regular,
-        solidRes = R.drawable.nucleus_icon_cellular_no_signal_solid,
-    ),
-    ChatBubble(
-        resourceName = "chat-bubble",
-        outlineRes = R.drawable.nucleus_icon_chat_bubble_outline,
-        regularRes = R.drawable.nucleus_icon_chat_bubble_regular,
-        solidRes = R.drawable.nucleus_icon_chat_bubble_solid,
-    ),
-    ChatBubbleEmpty(
-        resourceName = "chat-bubble-empty",
-        outlineRes = R.drawable.nucleus_icon_chat_bubble_empty_outline,
-        regularRes = R.drawable.nucleus_icon_chat_bubble_empty_regular,
-        solidRes = R.drawable.nucleus_icon_chat_bubble_empty_solid,
-    ),
-    ChatBubbleQuestion(
-        resourceName = "chat-bubble-question",
-        outlineRes = R.drawable.nucleus_icon_chat_bubble_question_outline,
-        regularRes = R.drawable.nucleus_icon_chat_bubble_question_regular,
-        solidRes = R.drawable.nucleus_icon_chat_bubble_question_solid,
-    ),
-    ChatBubbleTranslate(
-        resourceName = "chat-bubble-translate",
-        outlineRes = R.drawable.nucleus_icon_chat_bubble_translate_outline,
-        regularRes = R.drawable.nucleus_icon_chat_bubble_translate_regular,
-        solidRes = R.drawable.nucleus_icon_chat_bubble_translate_solid,
-    ),
-    ChatBubbleWarning(
-        resourceName = "chat-bubble-warning",
-        outlineRes = R.drawable.nucleus_icon_chat_bubble_warning_outline,
-        regularRes = R.drawable.nucleus_icon_chat_bubble_warning_regular,
-        solidRes = R.drawable.nucleus_icon_chat_bubble_warning_solid,
-    ),
-    ChatLines(
-        resourceName = "chat-lines",
-        outlineRes = R.drawable.nucleus_icon_chat_lines_outline,
-        regularRes = R.drawable.nucleus_icon_chat_lines_regular,
-        solidRes = R.drawable.nucleus_icon_chat_lines_solid,
-    ),
-    Check(
-        resourceName = "check",
-        outlineRes = R.drawable.nucleus_icon_check_outline,
-        regularRes = R.drawable.nucleus_icon_check_regular,
-        solidRes = R.drawable.nucleus_icon_check_solid,
-    ),
-    CheckCircle(
-        resourceName = "check-circle",
-        outlineRes = R.drawable.nucleus_icon_check_circle_outline,
-        regularRes = R.drawable.nucleus_icon_check_circle_regular,
-        solidRes = R.drawable.nucleus_icon_check_circle_solid,
-    ),
-    Clock(
-        resourceName = "clock",
-        outlineRes = R.drawable.nucleus_icon_clock_outline,
-        regularRes = R.drawable.nucleus_icon_clock_regular,
-        solidRes = R.drawable.nucleus_icon_clock_solid,
-    ),
-    ClockRotateRight(
-        resourceName = "clock-rotate-right",
-        outlineRes = R.drawable.nucleus_icon_clock_rotate_right_outline,
-        regularRes = R.drawable.nucleus_icon_clock_rotate_right_regular,
-        solidRes = R.drawable.nucleus_icon_clock_rotate_right_solid,
-    ),
-    Cloud(
-        resourceName = "cloud",
-        outlineRes = R.drawable.nucleus_icon_cloud_outline,
-        regularRes = R.drawable.nucleus_icon_cloud_regular,
-        solidRes = R.drawable.nucleus_icon_cloud_solid,
-    ),
-    CloudDownload(
-        resourceName = "cloud-download",
-        outlineRes = R.drawable.nucleus_icon_cloud_download_outline,
-        regularRes = R.drawable.nucleus_icon_cloud_download_regular,
-        solidRes = R.drawable.nucleus_icon_cloud_download_solid,
-    ),
-    Coins(
-        resourceName = "coins",
-        outlineRes = R.drawable.nucleus_icon_coins_outline,
-        regularRes = R.drawable.nucleus_icon_coins_regular,
-        solidRes = R.drawable.nucleus_icon_coins_solid,
-    ),
-    Compass(
-        resourceName = "compass",
-        outlineRes = R.drawable.nucleus_icon_compass_outline,
-        regularRes = R.drawable.nucleus_icon_compass_regular,
-        solidRes = R.drawable.nucleus_icon_compass_solid,
-    ),
-    Copy(
-        resourceName = "copy",
-        outlineRes = R.drawable.nucleus_icon_copy_outline,
-        regularRes = R.drawable.nucleus_icon_copy_regular,
-        solidRes = R.drawable.nucleus_icon_copy_solid,
-    ),
-    Coupon(
-        resourceName = "coupon",
-        outlineRes = R.drawable.nucleus_icon_coupon_outline,
-        regularRes = R.drawable.nucleus_icon_coupon_regular,
-        solidRes = R.drawable.nucleus_icon_coupon_solid,
-    ),
-    Cube(
-        resourceName = "cube",
-        outlineRes = R.drawable.nucleus_icon_cube_outline,
-        regularRes = R.drawable.nucleus_icon_cube_regular,
-        solidRes = R.drawable.nucleus_icon_cube_solid,
-    ),
-    DeliveryCheck(
-        resourceName = "delivery-check",
-        outlineRes = R.drawable.nucleus_icon_delivery_check_outline,
-        regularRes = R.drawable.nucleus_icon_delivery_check_regular,
-        solidRes = R.drawable.nucleus_icon_delivery_check_solid,
-    ),
-    DeliveryTruck(
-        resourceName = "delivery-truck",
-        outlineRes = R.drawable.nucleus_icon_delivery_truck_outline,
-        regularRes = R.drawable.nucleus_icon_delivery_truck_regular,
-        solidRes = R.drawable.nucleus_icon_delivery_truck_solid,
-    ),
-    DoubleCheck(
-        resourceName = "double-check",
-        outlineRes = R.drawable.nucleus_icon_double_check_outline,
-        regularRes = R.drawable.nucleus_icon_double_check_regular,
-        solidRes = R.drawable.nucleus_icon_double_check_solid,
-    ),
-    Download(
-        resourceName = "download",
-        outlineRes = R.drawable.nucleus_icon_download_outline,
-        regularRes = R.drawable.nucleus_icon_download_regular,
-        solidRes = R.drawable.nucleus_icon_download_solid,
-    ),
-    EditPencil(
-        resourceName = "edit-pencil",
-        outlineRes = R.drawable.nucleus_icon_edit_pencil_outline,
-        regularRes = R.drawable.nucleus_icon_edit_pencil_regular,
-        solidRes = R.drawable.nucleus_icon_edit_pencil_solid,
-    ),
-    EmptyPage(
-        resourceName = "empty-page",
-        outlineRes = R.drawable.nucleus_icon_empty_page_outline,
-        regularRes = R.drawable.nucleus_icon_empty_page_regular,
-        solidRes = R.drawable.nucleus_icon_empty_page_solid,
-    ),
-    Eye(
-        resourceName = "eye",
-        outlineRes = R.drawable.nucleus_icon_eye_outline,
-        regularRes = R.drawable.nucleus_icon_eye_regular,
-        solidRes = R.drawable.nucleus_icon_eye_solid,
-    ),
-    EyeClosed(
-        resourceName = "eye-closed",
-        outlineRes = R.drawable.nucleus_icon_eye_closed_outline,
-        regularRes = R.drawable.nucleus_icon_eye_closed_regular,
-        solidRes = R.drawable.nucleus_icon_eye_closed_solid,
-    ),
-    FaceId(
-        resourceName = "face-id",
-        outlineRes = R.drawable.nucleus_icon_face_id_outline,
-        regularRes = R.drawable.nucleus_icon_face_id_regular,
-        solidRes = R.drawable.nucleus_icon_face_id_solid,
-    ),
-    FilterList(
-        resourceName = "filter-list",
-        outlineRes = R.drawable.nucleus_icon_filter_list_outline,
-        regularRes = R.drawable.nucleus_icon_filter_list_regular,
-        solidRes = R.drawable.nucleus_icon_filter_list_solid,
-    ),
-    Flash(
-        resourceName = "flash",
-        outlineRes = R.drawable.nucleus_icon_flash_outline,
-        regularRes = R.drawable.nucleus_icon_flash_regular,
-        solidRes = R.drawable.nucleus_icon_flash_solid,
-    ),
-    Gif(
-        resourceName = "gif",
-        outlineRes = R.drawable.nucleus_icon_gif_outline,
-        regularRes = R.drawable.nucleus_icon_gif_regular,
-        solidRes = R.drawable.nucleus_icon_gif_solid,
-    ),
-    Gift(
-        resourceName = "gift",
-        outlineRes = R.drawable.nucleus_icon_gift_outline,
-        regularRes = null,
-        solidRes = R.drawable.nucleus_icon_gift_solid,
-    ),
-    Globe(
-        resourceName = "globe",
-        outlineRes = R.drawable.nucleus_icon_globe_outline,
-        regularRes = R.drawable.nucleus_icon_globe_regular,
-        solidRes = R.drawable.nucleus_icon_globe_solid,
-    ),
-    GraduationCap(
-        resourceName = "graduation-cap",
-        outlineRes = R.drawable.nucleus_icon_graduation_cap_outline,
-        regularRes = R.drawable.nucleus_icon_graduation_cap_regular,
-        solidRes = R.drawable.nucleus_icon_graduation_cap_solid,
-    ),
-    GraphDown(
-        resourceName = "graph-down",
-        outlineRes = R.drawable.nucleus_icon_graph_down_outline,
-        regularRes = R.drawable.nucleus_icon_graph_down_regular,
-        solidRes = R.drawable.nucleus_icon_graph_down_solid,
-    ),
-    GraphUp(
-        resourceName = "graph-up",
-        outlineRes = R.drawable.nucleus_icon_graph_up_outline,
-        regularRes = R.drawable.nucleus_icon_graph_up_regular,
-        solidRes = R.drawable.nucleus_icon_graph_up_solid,
-    ),
-    Group(
-        resourceName = "group",
-        outlineRes = R.drawable.nucleus_icon_group_outline,
-        regularRes = R.drawable.nucleus_icon_group_regular,
-        solidRes = R.drawable.nucleus_icon_group_solid,
-    ),
-    Heart(
-        resourceName = "heart",
-        outlineRes = R.drawable.nucleus_icon_heart_outline,
-        regularRes = R.drawable.nucleus_icon_heart_regular,
-        solidRes = R.drawable.nucleus_icon_heart_solid,
-    ),
-    HelpCircle(
-        resourceName = "help-circle",
-        outlineRes = R.drawable.nucleus_icon_help_circle_outline,
-        regularRes = R.drawable.nucleus_icon_help_circle_regular,
-        solidRes = R.drawable.nucleus_icon_help_circle_solid,
-    ),
-    Home(
-        resourceName = "home",
-        outlineRes = R.drawable.nucleus_icon_home_outline,
-        regularRes = R.drawable.nucleus_icon_home_regular,
-        solidRes = R.drawable.nucleus_icon_home_solid,
-    ),
-    InfoCircle(
-        resourceName = "info-circle",
-        outlineRes = R.drawable.nucleus_icon_info_circle_outline,
-        regularRes = R.drawable.nucleus_icon_info_circle_regular,
-        solidRes = R.drawable.nucleus_icon_info_circle_solid,
-    ),
-    Instagram(
-        resourceName = "instagram",
-        outlineRes = R.drawable.nucleus_icon_instagram_outline,
-        regularRes = R.drawable.nucleus_icon_instagram_regular,
-        solidRes = R.drawable.nucleus_icon_instagram_solid,
-    ),
-    Key(
-        resourceName = "key",
-        outlineRes = R.drawable.nucleus_icon_key_outline,
-        regularRes = R.drawable.nucleus_icon_key_regular,
-        solidRes = R.drawable.nucleus_icon_key_solid,
-    ),
-    Language(
-        resourceName = "language",
-        outlineRes = R.drawable.nucleus_icon_language_outline,
-        regularRes = R.drawable.nucleus_icon_language_regular,
-        solidRes = R.drawable.nucleus_icon_language_solid,
-    ),
-    Link(
-        resourceName = "link",
-        outlineRes = R.drawable.nucleus_icon_link_outline,
-        regularRes = R.drawable.nucleus_icon_link_regular,
-        solidRes = R.drawable.nucleus_icon_link_solid,
-    ),
-    LinkSlash(
-        resourceName = "link-slash",
-        outlineRes = R.drawable.nucleus_icon_link_slash_outline,
-        regularRes = R.drawable.nucleus_icon_link_slash_regular,
-        solidRes = null,
-    ),
-    List(
-        resourceName = "list",
-        outlineRes = R.drawable.nucleus_icon_list_outline,
-        regularRes = R.drawable.nucleus_icon_list_regular,
-        solidRes = R.drawable.nucleus_icon_list_solid,
-    ),
-    Lock(
-        resourceName = "lock",
-        outlineRes = R.drawable.nucleus_icon_lock_outline,
-        regularRes = R.drawable.nucleus_icon_lock_regular,
-        solidRes = R.drawable.nucleus_icon_lock_solid,
-    ),
-    LogIn(
-        resourceName = "log-in",
-        outlineRes = R.drawable.nucleus_icon_log_in_outline,
-        regularRes = R.drawable.nucleus_icon_log_in_regular,
-        solidRes = R.drawable.nucleus_icon_log_in_solid,
-    ),
-    LogOut(
-        resourceName = "log-out",
-        outlineRes = R.drawable.nucleus_icon_log_out_outline,
-        regularRes = R.drawable.nucleus_icon_log_out_regular,
-        solidRes = R.drawable.nucleus_icon_log_out_solid,
-    ),
-    MagicWand(
-        resourceName = "magic-wand",
-        outlineRes = R.drawable.nucleus_icon_magic_wand_outline,
-        regularRes = R.drawable.nucleus_icon_magic_wand_regular,
-        solidRes = R.drawable.nucleus_icon_magic_wand_solid,
-    ),
-    Mail(
-        resourceName = "mail",
-        outlineRes = R.drawable.nucleus_icon_mail_outline,
-        regularRes = R.drawable.nucleus_icon_mail_regular,
-        solidRes = R.drawable.nucleus_icon_mail_solid,
-    ),
-    Map(
-        resourceName = "map",
-        outlineRes = R.drawable.nucleus_icon_map_outline,
-        regularRes = R.drawable.nucleus_icon_map_regular,
-        solidRes = R.drawable.nucleus_icon_map_solid,
-    ),
-    MapPin(
-        resourceName = "map-pin",
-        outlineRes = R.drawable.nucleus_icon_map_pin_outline,
-        regularRes = R.drawable.nucleus_icon_map_pin_regular,
-        solidRes = R.drawable.nucleus_icon_map_pin_solid,
-    ),
-    MapsArrow(
-        resourceName = "maps-arrow",
-        outlineRes = R.drawable.nucleus_icon_maps_arrow_outline,
-        regularRes = R.drawable.nucleus_icon_maps_arrow_regular,
-        solidRes = R.drawable.nucleus_icon_maps_arrow_solid,
-    ),
-    MediaImage(
-        resourceName = "media-image",
-        outlineRes = R.drawable.nucleus_icon_media_image_outline,
-        regularRes = R.drawable.nucleus_icon_media_image_regular,
-        solidRes = R.drawable.nucleus_icon_media_image_solid,
-    ),
-    Microphone(
-        resourceName = "microphone",
-        outlineRes = R.drawable.nucleus_icon_microphone_outline,
-        regularRes = R.drawable.nucleus_icon_microphone_regular,
-        solidRes = R.drawable.nucleus_icon_microphone_solid,
-    ),
-    Minus(
-        resourceName = "minus",
-        outlineRes = R.drawable.nucleus_icon_minus_outline,
-        regularRes = R.drawable.nucleus_icon_minus_regular,
-        solidRes = R.drawable.nucleus_icon_minus_solid,
-    ),
-    MoreHoriz(
-        resourceName = "more-horiz",
-        outlineRes = R.drawable.nucleus_icon_more_horiz_outline,
-        regularRes = R.drawable.nucleus_icon_more_horiz_regular,
-        solidRes = R.drawable.nucleus_icon_more_horiz_solid,
-    ),
-    MoreHorizCircle(
-        resourceName = "more-horiz-circle",
-        outlineRes = R.drawable.nucleus_icon_more_horiz_circle_outline,
-        regularRes = R.drawable.nucleus_icon_more_horiz_circle_regular,
-        solidRes = R.drawable.nucleus_icon_more_horiz_circle_solid,
-    ),
-    NavArrowDown(
-        resourceName = "nav-arrow-down",
-        outlineRes = R.drawable.nucleus_icon_nav_arrow_down_outline,
-        regularRes = R.drawable.nucleus_icon_nav_arrow_down_regular,
-        solidRes = R.drawable.nucleus_icon_nav_arrow_down_solid,
-    ),
-    NavArrowLeft(
-        resourceName = "nav-arrow-left",
-        outlineRes = R.drawable.nucleus_icon_nav_arrow_left_outline,
-        regularRes = R.drawable.nucleus_icon_nav_arrow_left_regular,
-        solidRes = R.drawable.nucleus_icon_nav_arrow_left_solid,
-    ),
-    NavArrowRight(
-        resourceName = "nav-arrow-right",
-        outlineRes = R.drawable.nucleus_icon_nav_arrow_right_outline,
-        regularRes = R.drawable.nucleus_icon_nav_arrow_right_regular,
-        solidRes = R.drawable.nucleus_icon_nav_arrow_right_solid,
-    ),
-    NavArrowUp(
-        resourceName = "nav-arrow-up",
-        outlineRes = R.drawable.nucleus_icon_nav_arrow_up_outline,
-        regularRes = R.drawable.nucleus_icon_nav_arrow_up_regular,
-        solidRes = R.drawable.nucleus_icon_nav_arrow_up_solid,
-    ),
-    OpenNewWindow(
-        resourceName = "open-new-window",
-        outlineRes = R.drawable.nucleus_icon_open_new_window_outline,
-        regularRes = R.drawable.nucleus_icon_open_new_window_regular,
-        solidRes = R.drawable.nucleus_icon_open_new_window_solid,
-    ),
-    Orb(
-        resourceName = "orb",
-        outlineRes = R.drawable.nucleus_icon_orb_outline,
-        regularRes = R.drawable.nucleus_icon_orb_regular,
-        solidRes = R.drawable.nucleus_icon_orb_solid,
-    ),
-    Page(
-        resourceName = "page",
-        outlineRes = R.drawable.nucleus_icon_page_outline,
-        regularRes = R.drawable.nucleus_icon_page_regular,
-        solidRes = R.drawable.nucleus_icon_page_solid,
-    ),
-    Passkey(
-        resourceName = "passkey",
-        outlineRes = R.drawable.nucleus_icon_passkey_outline,
-        regularRes = R.drawable.nucleus_icon_passkey_regular,
-        solidRes = R.drawable.nucleus_icon_passkey_solid,
-    ),
-    Percentage(
-        resourceName = "percentage",
-        outlineRes = R.drawable.nucleus_icon_percentage_outline,
-        regularRes = R.drawable.nucleus_icon_percentage_regular,
-        solidRes = R.drawable.nucleus_icon_percentage_solid,
-    ),
-    Pin(
-        resourceName = "pin",
-        outlineRes = R.drawable.nucleus_icon_pin_outline,
-        regularRes = R.drawable.nucleus_icon_pin_regular,
-        solidRes = R.drawable.nucleus_icon_pin_solid,
-    ),
-    Play(
-        resourceName = "play",
-        outlineRes = R.drawable.nucleus_icon_play_outline,
-        regularRes = R.drawable.nucleus_icon_play_regular,
-        solidRes = R.drawable.nucleus_icon_play_solid,
-    ),
-    Plus(
-        resourceName = "plus",
-        outlineRes = R.drawable.nucleus_icon_plus_outline,
-        regularRes = R.drawable.nucleus_icon_plus_regular,
-        solidRes = R.drawable.nucleus_icon_plus_solid,
-    ),
-    Post(
-        resourceName = "post",
-        outlineRes = R.drawable.nucleus_icon_post_outline,
-        regularRes = R.drawable.nucleus_icon_post_regular,
-        solidRes = R.drawable.nucleus_icon_post_solid,
-    ),
-    ProfileCircle(
-        resourceName = "profile-circle",
-        outlineRes = R.drawable.nucleus_icon_profile_circle_outline,
-        regularRes = R.drawable.nucleus_icon_profile_circle_regular,
-        solidRes = R.drawable.nucleus_icon_profile_circle_solid,
-    ),
-    Prohibition(
-        resourceName = "prohibition",
-        outlineRes = R.drawable.nucleus_icon_prohibition_outline,
-        regularRes = R.drawable.nucleus_icon_prohibition_regular,
-        solidRes = R.drawable.nucleus_icon_prohibition_solid,
-    ),
-    QrCode(
-        resourceName = "qr-code",
-        outlineRes = R.drawable.nucleus_icon_qr_code_outline,
-        regularRes = R.drawable.nucleus_icon_qr_code_regular,
-        solidRes = R.drawable.nucleus_icon_qr_code_solid,
-    ),
-    Refresh(
-        resourceName = "refresh",
-        outlineRes = R.drawable.nucleus_icon_refresh_outline,
-        regularRes = R.drawable.nucleus_icon_refresh_regular,
-        solidRes = R.drawable.nucleus_icon_refresh_solid,
-    ),
-    Reports(
-        resourceName = "reports",
-        outlineRes = R.drawable.nucleus_icon_reports_outline,
-        regularRes = R.drawable.nucleus_icon_reports_regular,
-        solidRes = R.drawable.nucleus_icon_reports_solid,
-    ),
-    Safe(
-        resourceName = "safe",
-        outlineRes = R.drawable.nucleus_icon_safe_outline,
-        regularRes = R.drawable.nucleus_icon_safe_regular,
-        solidRes = R.drawable.nucleus_icon_safe_solid,
-    ),
-    Scan(
-        resourceName = "scan",
-        outlineRes = R.drawable.nucleus_icon_scan_outline,
-        regularRes = R.drawable.nucleus_icon_scan_regular,
-        solidRes = R.drawable.nucleus_icon_scan_solid,
-    ),
-    Search(
-        resourceName = "search",
-        outlineRes = R.drawable.nucleus_icon_search_outline,
-        regularRes = R.drawable.nucleus_icon_search_regular,
-        solidRes = R.drawable.nucleus_icon_search_solid,
-    ),
-    SendMail(
-        resourceName = "send-mail",
-        outlineRes = R.drawable.nucleus_icon_send_mail_outline,
-        regularRes = R.drawable.nucleus_icon_send_mail_regular,
-        solidRes = R.drawable.nucleus_icon_send_mail_solid,
-    ),
-    Settings(
-        resourceName = "settings",
-        outlineRes = R.drawable.nucleus_icon_settings_outline,
-        regularRes = R.drawable.nucleus_icon_settings_regular,
-        solidRes = R.drawable.nucleus_icon_settings_solid,
-    ),
-    ShareIos(
-        resourceName = "share-ios",
-        outlineRes = R.drawable.nucleus_icon_share_ios_outline,
-        regularRes = R.drawable.nucleus_icon_share_ios_regular,
-        solidRes = R.drawable.nucleus_icon_share_ios_solid,
-    ),
-    Shield(
-        resourceName = "shield",
-        outlineRes = R.drawable.nucleus_icon_shield_outline,
-        regularRes = R.drawable.nucleus_icon_shield_regular,
-        solidRes = R.drawable.nucleus_icon_shield_solid,
-    ),
-    Shield2(
-        resourceName = "shield-2",
-        outlineRes = R.drawable.nucleus_icon_shield_2_outline,
-        regularRes = R.drawable.nucleus_icon_shield_2_regular,
-        solidRes = R.drawable.nucleus_icon_shield_2_solid,
-    ),
-    ShieldAlert(
-        resourceName = "shield-alert",
-        outlineRes = R.drawable.nucleus_icon_shield_alert_outline,
-        regularRes = R.drawable.nucleus_icon_shield_alert_regular,
-        solidRes = R.drawable.nucleus_icon_shield_alert_solid,
-    ),
-    ShieldCheck(
-        resourceName = "shield-check",
-        outlineRes = R.drawable.nucleus_icon_shield_check_outline,
-        regularRes = null,
-        solidRes = R.drawable.nucleus_icon_shield_check_solid,
-    ),
-    SmartphoneDevice(
-        resourceName = "smartphone-device",
-        outlineRes = R.drawable.nucleus_icon_smartphone_device_outline,
-        regularRes = R.drawable.nucleus_icon_smartphone_device_regular,
-        solidRes = R.drawable.nucleus_icon_smartphone_device_solid,
-    ),
-    SnowFlake(
-        resourceName = "snow-flake",
-        outlineRes = R.drawable.nucleus_icon_snow_flake_outline,
-        regularRes = R.drawable.nucleus_icon_snow_flake_regular,
-        solidRes = R.drawable.nucleus_icon_snow_flake_solid,
-    ),
-    SoftwareUpdateSetting(
-        resourceName = "software-update-setting",
-        outlineRes = R.drawable.nucleus_icon_software_update_setting_outline,
-        regularRes = R.drawable.nucleus_icon_software_update_setting_regular,
-        solidRes = R.drawable.nucleus_icon_software_update_setting_solid,
-    ),
-    Sort(
-        resourceName = "sort",
-        outlineRes = R.drawable.nucleus_icon_sort_outline,
-        regularRes = R.drawable.nucleus_icon_sort_regular,
-        solidRes = R.drawable.nucleus_icon_sort_solid,
-    ),
-    SortDown(
-        resourceName = "sort-down",
-        outlineRes = R.drawable.nucleus_icon_sort_down_outline,
-        regularRes = R.drawable.nucleus_icon_sort_down_regular,
-        solidRes = R.drawable.nucleus_icon_sort_down_solid,
-    ),
-    SortUp(
-        resourceName = "sort-up",
-        outlineRes = R.drawable.nucleus_icon_sort_up_outline,
-        regularRes = R.drawable.nucleus_icon_sort_up_regular,
-        solidRes = R.drawable.nucleus_icon_sort_up_solid,
-    ),
-    Spark(
-        resourceName = "spark",
-        outlineRes = R.drawable.nucleus_icon_spark_outline,
-        regularRes = R.drawable.nucleus_icon_spark_regular,
-        solidRes = R.drawable.nucleus_icon_spark_solid,
-    ),
-    Sparks(
-        resourceName = "sparks",
-        outlineRes = R.drawable.nucleus_icon_sparks_outline,
-        regularRes = R.drawable.nucleus_icon_sparks_regular,
-        solidRes = R.drawable.nucleus_icon_sparks_solid,
-    ),
-    Star(
-        resourceName = "star",
-        outlineRes = R.drawable.nucleus_icon_star_outline,
-        regularRes = R.drawable.nucleus_icon_star_regular,
-        solidRes = R.drawable.nucleus_icon_star_solid,
-    ),
-    StatsUpSquare(
-        resourceName = "stats-up-square",
-        outlineRes = R.drawable.nucleus_icon_stats_up_square_outline,
-        regularRes = R.drawable.nucleus_icon_stats_up_square_regular,
-        solidRes = R.drawable.nucleus_icon_stats_up_square_solid,
-    ),
-    Suitcase(
-        resourceName = "suitcase",
-        outlineRes = R.drawable.nucleus_icon_suitcase_outline,
-        regularRes = R.drawable.nucleus_icon_suitcase_regular,
-        solidRes = R.drawable.nucleus_icon_suitcase_solid,
-    ),
-    Text(
-        resourceName = "text",
-        outlineRes = R.drawable.nucleus_icon_text_outline,
-        regularRes = null,
-        solidRes = R.drawable.nucleus_icon_text_solid,
-    ),
-    TimerDots(
-        resourceName = "timer-dots",
-        outlineRes = R.drawable.nucleus_icon_timer_dots_outline,
-        regularRes = R.drawable.nucleus_icon_timer_dots_regular,
-        solidRes = R.drawable.nucleus_icon_timer_dots_solid,
-    ),
-    Trash(
-        resourceName = "trash",
-        outlineRes = R.drawable.nucleus_icon_trash_outline,
-        regularRes = R.drawable.nucleus_icon_trash_regular,
-        solidRes = R.drawable.nucleus_icon_trash_solid,
-    ),
-    Trophy(
-        resourceName = "trophy",
-        outlineRes = R.drawable.nucleus_icon_trophy_outline,
-        regularRes = R.drawable.nucleus_icon_trophy_regular,
-        solidRes = R.drawable.nucleus_icon_trophy_solid,
-    ),
-    User(
-        resourceName = "user",
-        outlineRes = R.drawable.nucleus_icon_user_outline,
-        regularRes = R.drawable.nucleus_icon_user_regular,
-        solidRes = R.drawable.nucleus_icon_user_solid,
-    ),
-    VideoCamera(
-        resourceName = "video-camera",
-        outlineRes = R.drawable.nucleus_icon_video_camera_outline,
-        regularRes = R.drawable.nucleus_icon_video_camera_regular,
-        solidRes = R.drawable.nucleus_icon_video_camera_solid,
-    ),
-    ViewGrid(
-        resourceName = "view-grid",
-        outlineRes = R.drawable.nucleus_icon_view_grid_outline,
-        regularRes = R.drawable.nucleus_icon_view_grid_regular,
-        solidRes = R.drawable.nucleus_icon_view_grid_solid,
-    ),
-    Wallet(
-        resourceName = "wallet",
-        outlineRes = R.drawable.nucleus_icon_wallet_outline,
-        regularRes = R.drawable.nucleus_icon_wallet_regular,
-        solidRes = R.drawable.nucleus_icon_wallet_solid,
-    ),
-    WarningCircle(
-        resourceName = "warning-circle",
-        outlineRes = R.drawable.nucleus_icon_warning_circle_outline,
-        regularRes = R.drawable.nucleus_icon_warning_circle_regular,
-        solidRes = R.drawable.nucleus_icon_warning_circle_solid,
-    ),
-    WarningHexagon(
-        resourceName = "warning-hexagon",
-        outlineRes = R.drawable.nucleus_icon_warning_hexagon_outline,
-        regularRes = R.drawable.nucleus_icon_warning_hexagon_regular,
-        solidRes = R.drawable.nucleus_icon_warning_hexagon_solid,
-    ),
-    WarningTriangle(
-        resourceName = "warning-triangle",
-        outlineRes = R.drawable.nucleus_icon_warning_triangle_outline,
-        regularRes = R.drawable.nucleus_icon_warning_triangle_regular,
-        solidRes = R.drawable.nucleus_icon_warning_triangle_solid,
-    ),
-    WarningTriangle2(
-        resourceName = "warning-triangle-2",
-        outlineRes = null,
-        regularRes = R.drawable.nucleus_icon_warning_triangle_2_regular,
-        solidRes = R.drawable.nucleus_icon_warning_triangle_2_solid,
-    ),
-    Wifi(
-        resourceName = "wifi",
-        outlineRes = R.drawable.nucleus_icon_wifi_outline,
-        regularRes = R.drawable.nucleus_icon_wifi_regular,
-        solidRes = R.drawable.nucleus_icon_wifi_solid,
-    ),
-    WifiSignalNone(
-        resourceName = "wifi-signal-none",
-        outlineRes = R.drawable.nucleus_icon_wifi_signal_none_outline,
-        regularRes = R.drawable.nucleus_icon_wifi_signal_none_regular,
-        solidRes = R.drawable.nucleus_icon_wifi_signal_none_solid,
-    ),
-    Xmark(
-        resourceName = "xmark",
-        outlineRes = R.drawable.nucleus_icon_xmark_outline,
-        regularRes = R.drawable.nucleus_icon_xmark_regular,
-        solidRes = R.drawable.nucleus_icon_xmark_solid,
-    ),
-    ;
-
-    enum class Variant { Outline, Regular, Solid }
+sealed class NucleusIcon(val resourceName: String) {
+    /**
+     * Implemented by icons that ship an outline variant.
+     */
+    sealed interface HasOutline {
+        @get:DrawableRes
+        val outlineRes: Int
+    }
 
     /**
-     * Returns the drawable resource ID for [variant], or null if this icon does not ship
-     * in that variant.
+     * Implemented by icons that ship a regular variant.
      */
-    @DrawableRes
-    fun drawableRes(variant: Variant = Variant.Regular): Int? =
-        when (variant) {
-            Variant.Outline -> outlineRes
-            Variant.Regular -> regularRes
-            Variant.Solid -> solidRes
-        }
+    sealed interface HasRegular {
+        @get:DrawableRes
+        val regularRes: Int
+    }
 
     /**
-     * Returns a Compose [Painter] for [variant]. Throws if the icon does not ship in
-     * the requested variant — check [drawableRes] first if you want a graceful fallback.
+     * Implemented by icons that ship a solid variant.
      */
-    @Composable
-    fun painter(variant: Variant = Variant.Regular): Painter {
-        val res = requireNotNull(drawableRes(variant)) {
-            "$name does not ship a $variant variant"
-        }
-        return painterResource(id = res)
+    sealed interface HasSolid {
+        @get:DrawableRes
+        val solidRes: Int
+    }
+
+    data object Airplane : NucleusIcon("airplane"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_airplane_outline
+        override val regularRes get() = R.drawable.nucleus_icon_airplane_regular
+        override val solidRes get() = R.drawable.nucleus_icon_airplane_solid
+    }
+
+    data object AntennaSignal : NucleusIcon("antenna-signal"), HasOutline, HasRegular {
+        override val outlineRes get() = R.drawable.nucleus_icon_antenna_signal_outline
+        override val regularRes get() = R.drawable.nucleus_icon_antenna_signal_regular
+    }
+
+    data object AppleMac : NucleusIcon("apple-mac"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_apple_mac_outline
+        override val regularRes get() = R.drawable.nucleus_icon_apple_mac_regular
+        override val solidRes get() = R.drawable.nucleus_icon_apple_mac_solid
+    }
+
+    data object ArrowDown : NucleusIcon("arrow-down"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_arrow_down_outline
+        override val regularRes get() = R.drawable.nucleus_icon_arrow_down_regular
+        override val solidRes get() = R.drawable.nucleus_icon_arrow_down_solid
+    }
+
+    data object ArrowDownLeft : NucleusIcon("arrow-down-left"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_arrow_down_left_outline
+        override val regularRes get() = R.drawable.nucleus_icon_arrow_down_left_regular
+        override val solidRes get() = R.drawable.nucleus_icon_arrow_down_left_solid
+    }
+
+    data object ArrowDownRight : NucleusIcon("arrow-down-right"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_arrow_down_right_outline
+        override val regularRes get() = R.drawable.nucleus_icon_arrow_down_right_regular
+        override val solidRes get() = R.drawable.nucleus_icon_arrow_down_right_solid
+    }
+
+    data object ArrowLeft : NucleusIcon("arrow-left"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_arrow_left_outline
+        override val regularRes get() = R.drawable.nucleus_icon_arrow_left_regular
+        override val solidRes get() = R.drawable.nucleus_icon_arrow_left_solid
+    }
+
+    data object ArrowRight : NucleusIcon("arrow-right"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_arrow_right_outline
+        override val regularRes get() = R.drawable.nucleus_icon_arrow_right_regular
+        override val solidRes get() = R.drawable.nucleus_icon_arrow_right_solid
+    }
+
+    data object ArrowSplit : NucleusIcon("arrow-split"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_arrow_split_outline
+        override val regularRes get() = R.drawable.nucleus_icon_arrow_split_regular
+        override val solidRes get() = R.drawable.nucleus_icon_arrow_split_solid
+    }
+
+    data object ArrowUp : NucleusIcon("arrow-up"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_arrow_up_outline
+        override val regularRes get() = R.drawable.nucleus_icon_arrow_up_regular
+        override val solidRes get() = R.drawable.nucleus_icon_arrow_up_solid
+    }
+
+    data object ArrowUpLeft : NucleusIcon("arrow-up-left"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_arrow_up_left_outline
+        override val regularRes get() = R.drawable.nucleus_icon_arrow_up_left_regular
+        override val solidRes get() = R.drawable.nucleus_icon_arrow_up_left_solid
+    }
+
+    data object ArrowUpRight : NucleusIcon("arrow-up-right"), HasOutline, HasRegular {
+        override val outlineRes get() = R.drawable.nucleus_icon_arrow_up_right_outline
+        override val regularRes get() = R.drawable.nucleus_icon_arrow_up_right_regular
+    }
+
+    data object AtSign : NucleusIcon("at-sign"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_at_sign_outline
+        override val regularRes get() = R.drawable.nucleus_icon_at_sign_regular
+        override val solidRes get() = R.drawable.nucleus_icon_at_sign_solid
+    }
+
+    data object BadgeCheck : NucleusIcon("badge-check"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_badge_check_outline
+        override val regularRes get() = R.drawable.nucleus_icon_badge_check_regular
+        override val solidRes get() = R.drawable.nucleus_icon_badge_check_solid
+    }
+
+    data object BadgeNotChecked : NucleusIcon("badge-not-checked"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_badge_not_checked_outline
+        override val regularRes get() = R.drawable.nucleus_icon_badge_not_checked_regular
+        override val solidRes get() = R.drawable.nucleus_icon_badge_not_checked_solid
+    }
+
+    data object Bag : NucleusIcon("bag"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_bag_outline
+        override val regularRes get() = R.drawable.nucleus_icon_bag_regular
+        override val solidRes get() = R.drawable.nucleus_icon_bag_solid
+    }
+
+    data object Bank : NucleusIcon("bank"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_bank_outline
+        override val regularRes get() = R.drawable.nucleus_icon_bank_regular
+        override val solidRes get() = R.drawable.nucleus_icon_bank_solid
+    }
+
+    data object Bell : NucleusIcon("bell"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_bell_outline
+        override val regularRes get() = R.drawable.nucleus_icon_bell_regular
+        override val solidRes get() = R.drawable.nucleus_icon_bell_solid
+    }
+
+    data object BellNotification : NucleusIcon("bell-notification"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_bell_notification_outline
+        override val regularRes get() = R.drawable.nucleus_icon_bell_notification_regular
+        override val solidRes get() = R.drawable.nucleus_icon_bell_notification_solid
+    }
+
+    data object BellSlash : NucleusIcon("bell-slash"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_bell_slash_outline
+        override val regularRes get() = R.drawable.nucleus_icon_bell_slash_regular
+        override val solidRes get() = R.drawable.nucleus_icon_bell_slash_solid
+    }
+
+    data object Bookmark : NucleusIcon("bookmark"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_bookmark_outline
+        override val regularRes get() = R.drawable.nucleus_icon_bookmark_regular
+        override val solidRes get() = R.drawable.nucleus_icon_bookmark_solid
+    }
+
+    data object BoxIso : NucleusIcon("box-iso"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_box_iso_outline
+        override val regularRes get() = R.drawable.nucleus_icon_box_iso_regular
+        override val solidRes get() = R.drawable.nucleus_icon_box_iso_solid
+    }
+
+    data object Calendar : NucleusIcon("calendar"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_calendar_outline
+        override val regularRes get() = R.drawable.nucleus_icon_calendar_regular
+        override val solidRes get() = R.drawable.nucleus_icon_calendar_solid
+    }
+
+    data object CalendarPlus : NucleusIcon("calendar-plus"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_calendar_plus_outline
+        override val regularRes get() = R.drawable.nucleus_icon_calendar_plus_regular
+        override val solidRes get() = R.drawable.nucleus_icon_calendar_plus_solid
+    }
+
+    data object Camera : NucleusIcon("camera"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_camera_outline
+        override val regularRes get() = R.drawable.nucleus_icon_camera_regular
+        override val solidRes get() = R.drawable.nucleus_icon_camera_solid
+    }
+
+    data object Cash : NucleusIcon("cash"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_cash_outline
+        override val regularRes get() = R.drawable.nucleus_icon_cash_regular
+        override val solidRes get() = R.drawable.nucleus_icon_cash_solid
+    }
+
+    data object CashMulti : NucleusIcon("cash-multi"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_cash_multi_outline
+        override val regularRes get() = R.drawable.nucleus_icon_cash_multi_regular
+        override val solidRes get() = R.drawable.nucleus_icon_cash_multi_solid
+    }
+
+    data object Cellular : NucleusIcon("cellular"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_cellular_outline
+        override val regularRes get() = R.drawable.nucleus_icon_cellular_regular
+        override val solidRes get() = R.drawable.nucleus_icon_cellular_solid
+    }
+
+    data object CellularNoSignal : NucleusIcon("cellular-no-signal"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_cellular_no_signal_outline
+        override val regularRes get() = R.drawable.nucleus_icon_cellular_no_signal_regular
+        override val solidRes get() = R.drawable.nucleus_icon_cellular_no_signal_solid
+    }
+
+    data object ChatBubble : NucleusIcon("chat-bubble"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_chat_bubble_outline
+        override val regularRes get() = R.drawable.nucleus_icon_chat_bubble_regular
+        override val solidRes get() = R.drawable.nucleus_icon_chat_bubble_solid
+    }
+
+    data object ChatBubbleEmpty : NucleusIcon("chat-bubble-empty"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_chat_bubble_empty_outline
+        override val regularRes get() = R.drawable.nucleus_icon_chat_bubble_empty_regular
+        override val solidRes get() = R.drawable.nucleus_icon_chat_bubble_empty_solid
+    }
+
+    data object ChatBubbleQuestion : NucleusIcon("chat-bubble-question"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_chat_bubble_question_outline
+        override val regularRes get() = R.drawable.nucleus_icon_chat_bubble_question_regular
+        override val solidRes get() = R.drawable.nucleus_icon_chat_bubble_question_solid
+    }
+
+    data object ChatBubbleTranslate : NucleusIcon("chat-bubble-translate"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_chat_bubble_translate_outline
+        override val regularRes get() = R.drawable.nucleus_icon_chat_bubble_translate_regular
+        override val solidRes get() = R.drawable.nucleus_icon_chat_bubble_translate_solid
+    }
+
+    data object ChatBubbleWarning : NucleusIcon("chat-bubble-warning"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_chat_bubble_warning_outline
+        override val regularRes get() = R.drawable.nucleus_icon_chat_bubble_warning_regular
+        override val solidRes get() = R.drawable.nucleus_icon_chat_bubble_warning_solid
+    }
+
+    data object ChatLines : NucleusIcon("chat-lines"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_chat_lines_outline
+        override val regularRes get() = R.drawable.nucleus_icon_chat_lines_regular
+        override val solidRes get() = R.drawable.nucleus_icon_chat_lines_solid
+    }
+
+    data object Check : NucleusIcon("check"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_check_outline
+        override val regularRes get() = R.drawable.nucleus_icon_check_regular
+        override val solidRes get() = R.drawable.nucleus_icon_check_solid
+    }
+
+    data object CheckCircle : NucleusIcon("check-circle"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_check_circle_outline
+        override val regularRes get() = R.drawable.nucleus_icon_check_circle_regular
+        override val solidRes get() = R.drawable.nucleus_icon_check_circle_solid
+    }
+
+    data object Clock : NucleusIcon("clock"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_clock_outline
+        override val regularRes get() = R.drawable.nucleus_icon_clock_regular
+        override val solidRes get() = R.drawable.nucleus_icon_clock_solid
+    }
+
+    data object ClockRotateRight : NucleusIcon("clock-rotate-right"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_clock_rotate_right_outline
+        override val regularRes get() = R.drawable.nucleus_icon_clock_rotate_right_regular
+        override val solidRes get() = R.drawable.nucleus_icon_clock_rotate_right_solid
+    }
+
+    data object Cloud : NucleusIcon("cloud"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_cloud_outline
+        override val regularRes get() = R.drawable.nucleus_icon_cloud_regular
+        override val solidRes get() = R.drawable.nucleus_icon_cloud_solid
+    }
+
+    data object CloudDownload : NucleusIcon("cloud-download"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_cloud_download_outline
+        override val regularRes get() = R.drawable.nucleus_icon_cloud_download_regular
+        override val solidRes get() = R.drawable.nucleus_icon_cloud_download_solid
+    }
+
+    data object Coins : NucleusIcon("coins"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_coins_outline
+        override val regularRes get() = R.drawable.nucleus_icon_coins_regular
+        override val solidRes get() = R.drawable.nucleus_icon_coins_solid
+    }
+
+    data object Compass : NucleusIcon("compass"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_compass_outline
+        override val regularRes get() = R.drawable.nucleus_icon_compass_regular
+        override val solidRes get() = R.drawable.nucleus_icon_compass_solid
+    }
+
+    data object Copy : NucleusIcon("copy"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_copy_outline
+        override val regularRes get() = R.drawable.nucleus_icon_copy_regular
+        override val solidRes get() = R.drawable.nucleus_icon_copy_solid
+    }
+
+    data object Coupon : NucleusIcon("coupon"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_coupon_outline
+        override val regularRes get() = R.drawable.nucleus_icon_coupon_regular
+        override val solidRes get() = R.drawable.nucleus_icon_coupon_solid
+    }
+
+    data object Cube : NucleusIcon("cube"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_cube_outline
+        override val regularRes get() = R.drawable.nucleus_icon_cube_regular
+        override val solidRes get() = R.drawable.nucleus_icon_cube_solid
+    }
+
+    data object DeliveryCheck : NucleusIcon("delivery-check"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_delivery_check_outline
+        override val regularRes get() = R.drawable.nucleus_icon_delivery_check_regular
+        override val solidRes get() = R.drawable.nucleus_icon_delivery_check_solid
+    }
+
+    data object DeliveryTruck : NucleusIcon("delivery-truck"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_delivery_truck_outline
+        override val regularRes get() = R.drawable.nucleus_icon_delivery_truck_regular
+        override val solidRes get() = R.drawable.nucleus_icon_delivery_truck_solid
+    }
+
+    data object DoubleCheck : NucleusIcon("double-check"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_double_check_outline
+        override val regularRes get() = R.drawable.nucleus_icon_double_check_regular
+        override val solidRes get() = R.drawable.nucleus_icon_double_check_solid
+    }
+
+    data object Download : NucleusIcon("download"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_download_outline
+        override val regularRes get() = R.drawable.nucleus_icon_download_regular
+        override val solidRes get() = R.drawable.nucleus_icon_download_solid
+    }
+
+    data object EditPencil : NucleusIcon("edit-pencil"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_edit_pencil_outline
+        override val regularRes get() = R.drawable.nucleus_icon_edit_pencil_regular
+        override val solidRes get() = R.drawable.nucleus_icon_edit_pencil_solid
+    }
+
+    data object EmptyPage : NucleusIcon("empty-page"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_empty_page_outline
+        override val regularRes get() = R.drawable.nucleus_icon_empty_page_regular
+        override val solidRes get() = R.drawable.nucleus_icon_empty_page_solid
+    }
+
+    data object Eye : NucleusIcon("eye"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_eye_outline
+        override val regularRes get() = R.drawable.nucleus_icon_eye_regular
+        override val solidRes get() = R.drawable.nucleus_icon_eye_solid
+    }
+
+    data object EyeClosed : NucleusIcon("eye-closed"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_eye_closed_outline
+        override val regularRes get() = R.drawable.nucleus_icon_eye_closed_regular
+        override val solidRes get() = R.drawable.nucleus_icon_eye_closed_solid
+    }
+
+    data object FaceId : NucleusIcon("face-id"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_face_id_outline
+        override val regularRes get() = R.drawable.nucleus_icon_face_id_regular
+        override val solidRes get() = R.drawable.nucleus_icon_face_id_solid
+    }
+
+    data object FilterList : NucleusIcon("filter-list"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_filter_list_outline
+        override val regularRes get() = R.drawable.nucleus_icon_filter_list_regular
+        override val solidRes get() = R.drawable.nucleus_icon_filter_list_solid
+    }
+
+    data object Flash : NucleusIcon("flash"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_flash_outline
+        override val regularRes get() = R.drawable.nucleus_icon_flash_regular
+        override val solidRes get() = R.drawable.nucleus_icon_flash_solid
+    }
+
+    data object Gif : NucleusIcon("gif"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_gif_outline
+        override val regularRes get() = R.drawable.nucleus_icon_gif_regular
+        override val solidRes get() = R.drawable.nucleus_icon_gif_solid
+    }
+
+    data object Gift : NucleusIcon("gift"), HasOutline, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_gift_outline
+        override val solidRes get() = R.drawable.nucleus_icon_gift_solid
+    }
+
+    data object Globe : NucleusIcon("globe"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_globe_outline
+        override val regularRes get() = R.drawable.nucleus_icon_globe_regular
+        override val solidRes get() = R.drawable.nucleus_icon_globe_solid
+    }
+
+    data object GraduationCap : NucleusIcon("graduation-cap"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_graduation_cap_outline
+        override val regularRes get() = R.drawable.nucleus_icon_graduation_cap_regular
+        override val solidRes get() = R.drawable.nucleus_icon_graduation_cap_solid
+    }
+
+    data object GraphDown : NucleusIcon("graph-down"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_graph_down_outline
+        override val regularRes get() = R.drawable.nucleus_icon_graph_down_regular
+        override val solidRes get() = R.drawable.nucleus_icon_graph_down_solid
+    }
+
+    data object GraphUp : NucleusIcon("graph-up"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_graph_up_outline
+        override val regularRes get() = R.drawable.nucleus_icon_graph_up_regular
+        override val solidRes get() = R.drawable.nucleus_icon_graph_up_solid
+    }
+
+    data object Group : NucleusIcon("group"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_group_outline
+        override val regularRes get() = R.drawable.nucleus_icon_group_regular
+        override val solidRes get() = R.drawable.nucleus_icon_group_solid
+    }
+
+    data object Heart : NucleusIcon("heart"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_heart_outline
+        override val regularRes get() = R.drawable.nucleus_icon_heart_regular
+        override val solidRes get() = R.drawable.nucleus_icon_heart_solid
+    }
+
+    data object HelpCircle : NucleusIcon("help-circle"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_help_circle_outline
+        override val regularRes get() = R.drawable.nucleus_icon_help_circle_regular
+        override val solidRes get() = R.drawable.nucleus_icon_help_circle_solid
+    }
+
+    data object Home : NucleusIcon("home"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_home_outline
+        override val regularRes get() = R.drawable.nucleus_icon_home_regular
+        override val solidRes get() = R.drawable.nucleus_icon_home_solid
+    }
+
+    data object InfoCircle : NucleusIcon("info-circle"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_info_circle_outline
+        override val regularRes get() = R.drawable.nucleus_icon_info_circle_regular
+        override val solidRes get() = R.drawable.nucleus_icon_info_circle_solid
+    }
+
+    data object Instagram : NucleusIcon("instagram"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_instagram_outline
+        override val regularRes get() = R.drawable.nucleus_icon_instagram_regular
+        override val solidRes get() = R.drawable.nucleus_icon_instagram_solid
+    }
+
+    data object Key : NucleusIcon("key"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_key_outline
+        override val regularRes get() = R.drawable.nucleus_icon_key_regular
+        override val solidRes get() = R.drawable.nucleus_icon_key_solid
+    }
+
+    data object Language : NucleusIcon("language"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_language_outline
+        override val regularRes get() = R.drawable.nucleus_icon_language_regular
+        override val solidRes get() = R.drawable.nucleus_icon_language_solid
+    }
+
+    data object Link : NucleusIcon("link"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_link_outline
+        override val regularRes get() = R.drawable.nucleus_icon_link_regular
+        override val solidRes get() = R.drawable.nucleus_icon_link_solid
+    }
+
+    data object LinkSlash : NucleusIcon("link-slash"), HasOutline, HasRegular {
+        override val outlineRes get() = R.drawable.nucleus_icon_link_slash_outline
+        override val regularRes get() = R.drawable.nucleus_icon_link_slash_regular
+    }
+
+    data object List : NucleusIcon("list"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_list_outline
+        override val regularRes get() = R.drawable.nucleus_icon_list_regular
+        override val solidRes get() = R.drawable.nucleus_icon_list_solid
+    }
+
+    data object Lock : NucleusIcon("lock"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_lock_outline
+        override val regularRes get() = R.drawable.nucleus_icon_lock_regular
+        override val solidRes get() = R.drawable.nucleus_icon_lock_solid
+    }
+
+    data object LogIn : NucleusIcon("log-in"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_log_in_outline
+        override val regularRes get() = R.drawable.nucleus_icon_log_in_regular
+        override val solidRes get() = R.drawable.nucleus_icon_log_in_solid
+    }
+
+    data object LogOut : NucleusIcon("log-out"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_log_out_outline
+        override val regularRes get() = R.drawable.nucleus_icon_log_out_regular
+        override val solidRes get() = R.drawable.nucleus_icon_log_out_solid
+    }
+
+    data object MagicWand : NucleusIcon("magic-wand"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_magic_wand_outline
+        override val regularRes get() = R.drawable.nucleus_icon_magic_wand_regular
+        override val solidRes get() = R.drawable.nucleus_icon_magic_wand_solid
+    }
+
+    data object Mail : NucleusIcon("mail"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_mail_outline
+        override val regularRes get() = R.drawable.nucleus_icon_mail_regular
+        override val solidRes get() = R.drawable.nucleus_icon_mail_solid
+    }
+
+    data object Map : NucleusIcon("map"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_map_outline
+        override val regularRes get() = R.drawable.nucleus_icon_map_regular
+        override val solidRes get() = R.drawable.nucleus_icon_map_solid
+    }
+
+    data object MapPin : NucleusIcon("map-pin"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_map_pin_outline
+        override val regularRes get() = R.drawable.nucleus_icon_map_pin_regular
+        override val solidRes get() = R.drawable.nucleus_icon_map_pin_solid
+    }
+
+    data object MapsArrow : NucleusIcon("maps-arrow"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_maps_arrow_outline
+        override val regularRes get() = R.drawable.nucleus_icon_maps_arrow_regular
+        override val solidRes get() = R.drawable.nucleus_icon_maps_arrow_solid
+    }
+
+    data object MediaImage : NucleusIcon("media-image"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_media_image_outline
+        override val regularRes get() = R.drawable.nucleus_icon_media_image_regular
+        override val solidRes get() = R.drawable.nucleus_icon_media_image_solid
+    }
+
+    data object Microphone : NucleusIcon("microphone"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_microphone_outline
+        override val regularRes get() = R.drawable.nucleus_icon_microphone_regular
+        override val solidRes get() = R.drawable.nucleus_icon_microphone_solid
+    }
+
+    data object Minus : NucleusIcon("minus"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_minus_outline
+        override val regularRes get() = R.drawable.nucleus_icon_minus_regular
+        override val solidRes get() = R.drawable.nucleus_icon_minus_solid
+    }
+
+    data object MoreHoriz : NucleusIcon("more-horiz"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_more_horiz_outline
+        override val regularRes get() = R.drawable.nucleus_icon_more_horiz_regular
+        override val solidRes get() = R.drawable.nucleus_icon_more_horiz_solid
+    }
+
+    data object MoreHorizCircle : NucleusIcon("more-horiz-circle"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_more_horiz_circle_outline
+        override val regularRes get() = R.drawable.nucleus_icon_more_horiz_circle_regular
+        override val solidRes get() = R.drawable.nucleus_icon_more_horiz_circle_solid
+    }
+
+    data object NavArrowDown : NucleusIcon("nav-arrow-down"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_nav_arrow_down_outline
+        override val regularRes get() = R.drawable.nucleus_icon_nav_arrow_down_regular
+        override val solidRes get() = R.drawable.nucleus_icon_nav_arrow_down_solid
+    }
+
+    data object NavArrowLeft : NucleusIcon("nav-arrow-left"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_nav_arrow_left_outline
+        override val regularRes get() = R.drawable.nucleus_icon_nav_arrow_left_regular
+        override val solidRes get() = R.drawable.nucleus_icon_nav_arrow_left_solid
+    }
+
+    data object NavArrowRight : NucleusIcon("nav-arrow-right"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_nav_arrow_right_outline
+        override val regularRes get() = R.drawable.nucleus_icon_nav_arrow_right_regular
+        override val solidRes get() = R.drawable.nucleus_icon_nav_arrow_right_solid
+    }
+
+    data object NavArrowUp : NucleusIcon("nav-arrow-up"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_nav_arrow_up_outline
+        override val regularRes get() = R.drawable.nucleus_icon_nav_arrow_up_regular
+        override val solidRes get() = R.drawable.nucleus_icon_nav_arrow_up_solid
+    }
+
+    data object OpenNewWindow : NucleusIcon("open-new-window"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_open_new_window_outline
+        override val regularRes get() = R.drawable.nucleus_icon_open_new_window_regular
+        override val solidRes get() = R.drawable.nucleus_icon_open_new_window_solid
+    }
+
+    data object Orb : NucleusIcon("orb"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_orb_outline
+        override val regularRes get() = R.drawable.nucleus_icon_orb_regular
+        override val solidRes get() = R.drawable.nucleus_icon_orb_solid
+    }
+
+    data object Page : NucleusIcon("page"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_page_outline
+        override val regularRes get() = R.drawable.nucleus_icon_page_regular
+        override val solidRes get() = R.drawable.nucleus_icon_page_solid
+    }
+
+    data object Passkey : NucleusIcon("passkey"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_passkey_outline
+        override val regularRes get() = R.drawable.nucleus_icon_passkey_regular
+        override val solidRes get() = R.drawable.nucleus_icon_passkey_solid
+    }
+
+    data object Percentage : NucleusIcon("percentage"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_percentage_outline
+        override val regularRes get() = R.drawable.nucleus_icon_percentage_regular
+        override val solidRes get() = R.drawable.nucleus_icon_percentage_solid
+    }
+
+    data object Pin : NucleusIcon("pin"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_pin_outline
+        override val regularRes get() = R.drawable.nucleus_icon_pin_regular
+        override val solidRes get() = R.drawable.nucleus_icon_pin_solid
+    }
+
+    data object Play : NucleusIcon("play"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_play_outline
+        override val regularRes get() = R.drawable.nucleus_icon_play_regular
+        override val solidRes get() = R.drawable.nucleus_icon_play_solid
+    }
+
+    data object Plus : NucleusIcon("plus"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_plus_outline
+        override val regularRes get() = R.drawable.nucleus_icon_plus_regular
+        override val solidRes get() = R.drawable.nucleus_icon_plus_solid
+    }
+
+    data object Post : NucleusIcon("post"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_post_outline
+        override val regularRes get() = R.drawable.nucleus_icon_post_regular
+        override val solidRes get() = R.drawable.nucleus_icon_post_solid
+    }
+
+    data object ProfileCircle : NucleusIcon("profile-circle"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_profile_circle_outline
+        override val regularRes get() = R.drawable.nucleus_icon_profile_circle_regular
+        override val solidRes get() = R.drawable.nucleus_icon_profile_circle_solid
+    }
+
+    data object Prohibition : NucleusIcon("prohibition"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_prohibition_outline
+        override val regularRes get() = R.drawable.nucleus_icon_prohibition_regular
+        override val solidRes get() = R.drawable.nucleus_icon_prohibition_solid
+    }
+
+    data object QrCode : NucleusIcon("qr-code"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_qr_code_outline
+        override val regularRes get() = R.drawable.nucleus_icon_qr_code_regular
+        override val solidRes get() = R.drawable.nucleus_icon_qr_code_solid
+    }
+
+    data object Refresh : NucleusIcon("refresh"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_refresh_outline
+        override val regularRes get() = R.drawable.nucleus_icon_refresh_regular
+        override val solidRes get() = R.drawable.nucleus_icon_refresh_solid
+    }
+
+    data object Reports : NucleusIcon("reports"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_reports_outline
+        override val regularRes get() = R.drawable.nucleus_icon_reports_regular
+        override val solidRes get() = R.drawable.nucleus_icon_reports_solid
+    }
+
+    data object Safe : NucleusIcon("safe"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_safe_outline
+        override val regularRes get() = R.drawable.nucleus_icon_safe_regular
+        override val solidRes get() = R.drawable.nucleus_icon_safe_solid
+    }
+
+    data object Scan : NucleusIcon("scan"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_scan_outline
+        override val regularRes get() = R.drawable.nucleus_icon_scan_regular
+        override val solidRes get() = R.drawable.nucleus_icon_scan_solid
+    }
+
+    data object Search : NucleusIcon("search"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_search_outline
+        override val regularRes get() = R.drawable.nucleus_icon_search_regular
+        override val solidRes get() = R.drawable.nucleus_icon_search_solid
+    }
+
+    data object SendMail : NucleusIcon("send-mail"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_send_mail_outline
+        override val regularRes get() = R.drawable.nucleus_icon_send_mail_regular
+        override val solidRes get() = R.drawable.nucleus_icon_send_mail_solid
+    }
+
+    data object Settings : NucleusIcon("settings"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_settings_outline
+        override val regularRes get() = R.drawable.nucleus_icon_settings_regular
+        override val solidRes get() = R.drawable.nucleus_icon_settings_solid
+    }
+
+    data object ShareIos : NucleusIcon("share-ios"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_share_ios_outline
+        override val regularRes get() = R.drawable.nucleus_icon_share_ios_regular
+        override val solidRes get() = R.drawable.nucleus_icon_share_ios_solid
+    }
+
+    data object Shield : NucleusIcon("shield"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_shield_outline
+        override val regularRes get() = R.drawable.nucleus_icon_shield_regular
+        override val solidRes get() = R.drawable.nucleus_icon_shield_solid
+    }
+
+    data object Shield2 : NucleusIcon("shield-2"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_shield_2_outline
+        override val regularRes get() = R.drawable.nucleus_icon_shield_2_regular
+        override val solidRes get() = R.drawable.nucleus_icon_shield_2_solid
+    }
+
+    data object ShieldAlert : NucleusIcon("shield-alert"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_shield_alert_outline
+        override val regularRes get() = R.drawable.nucleus_icon_shield_alert_regular
+        override val solidRes get() = R.drawable.nucleus_icon_shield_alert_solid
+    }
+
+    data object ShieldCheck : NucleusIcon("shield-check"), HasOutline, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_shield_check_outline
+        override val solidRes get() = R.drawable.nucleus_icon_shield_check_solid
+    }
+
+    data object SmartphoneDevice : NucleusIcon("smartphone-device"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_smartphone_device_outline
+        override val regularRes get() = R.drawable.nucleus_icon_smartphone_device_regular
+        override val solidRes get() = R.drawable.nucleus_icon_smartphone_device_solid
+    }
+
+    data object SnowFlake : NucleusIcon("snow-flake"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_snow_flake_outline
+        override val regularRes get() = R.drawable.nucleus_icon_snow_flake_regular
+        override val solidRes get() = R.drawable.nucleus_icon_snow_flake_solid
+    }
+
+    data object SoftwareUpdateSetting : NucleusIcon("software-update-setting"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_software_update_setting_outline
+        override val regularRes get() = R.drawable.nucleus_icon_software_update_setting_regular
+        override val solidRes get() = R.drawable.nucleus_icon_software_update_setting_solid
+    }
+
+    data object Sort : NucleusIcon("sort"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_sort_outline
+        override val regularRes get() = R.drawable.nucleus_icon_sort_regular
+        override val solidRes get() = R.drawable.nucleus_icon_sort_solid
+    }
+
+    data object SortDown : NucleusIcon("sort-down"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_sort_down_outline
+        override val regularRes get() = R.drawable.nucleus_icon_sort_down_regular
+        override val solidRes get() = R.drawable.nucleus_icon_sort_down_solid
+    }
+
+    data object SortUp : NucleusIcon("sort-up"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_sort_up_outline
+        override val regularRes get() = R.drawable.nucleus_icon_sort_up_regular
+        override val solidRes get() = R.drawable.nucleus_icon_sort_up_solid
+    }
+
+    data object Spark : NucleusIcon("spark"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_spark_outline
+        override val regularRes get() = R.drawable.nucleus_icon_spark_regular
+        override val solidRes get() = R.drawable.nucleus_icon_spark_solid
+    }
+
+    data object Sparks : NucleusIcon("sparks"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_sparks_outline
+        override val regularRes get() = R.drawable.nucleus_icon_sparks_regular
+        override val solidRes get() = R.drawable.nucleus_icon_sparks_solid
+    }
+
+    data object Star : NucleusIcon("star"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_star_outline
+        override val regularRes get() = R.drawable.nucleus_icon_star_regular
+        override val solidRes get() = R.drawable.nucleus_icon_star_solid
+    }
+
+    data object StatsUpSquare : NucleusIcon("stats-up-square"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_stats_up_square_outline
+        override val regularRes get() = R.drawable.nucleus_icon_stats_up_square_regular
+        override val solidRes get() = R.drawable.nucleus_icon_stats_up_square_solid
+    }
+
+    data object Suitcase : NucleusIcon("suitcase"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_suitcase_outline
+        override val regularRes get() = R.drawable.nucleus_icon_suitcase_regular
+        override val solidRes get() = R.drawable.nucleus_icon_suitcase_solid
+    }
+
+    data object Text : NucleusIcon("text"), HasOutline, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_text_outline
+        override val solidRes get() = R.drawable.nucleus_icon_text_solid
+    }
+
+    data object TimerDots : NucleusIcon("timer-dots"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_timer_dots_outline
+        override val regularRes get() = R.drawable.nucleus_icon_timer_dots_regular
+        override val solidRes get() = R.drawable.nucleus_icon_timer_dots_solid
+    }
+
+    data object Trash : NucleusIcon("trash"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_trash_outline
+        override val regularRes get() = R.drawable.nucleus_icon_trash_regular
+        override val solidRes get() = R.drawable.nucleus_icon_trash_solid
+    }
+
+    data object Trophy : NucleusIcon("trophy"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_trophy_outline
+        override val regularRes get() = R.drawable.nucleus_icon_trophy_regular
+        override val solidRes get() = R.drawable.nucleus_icon_trophy_solid
+    }
+
+    data object User : NucleusIcon("user"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_user_outline
+        override val regularRes get() = R.drawable.nucleus_icon_user_regular
+        override val solidRes get() = R.drawable.nucleus_icon_user_solid
+    }
+
+    data object VideoCamera : NucleusIcon("video-camera"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_video_camera_outline
+        override val regularRes get() = R.drawable.nucleus_icon_video_camera_regular
+        override val solidRes get() = R.drawable.nucleus_icon_video_camera_solid
+    }
+
+    data object ViewGrid : NucleusIcon("view-grid"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_view_grid_outline
+        override val regularRes get() = R.drawable.nucleus_icon_view_grid_regular
+        override val solidRes get() = R.drawable.nucleus_icon_view_grid_solid
+    }
+
+    data object Wallet : NucleusIcon("wallet"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_wallet_outline
+        override val regularRes get() = R.drawable.nucleus_icon_wallet_regular
+        override val solidRes get() = R.drawable.nucleus_icon_wallet_solid
+    }
+
+    data object WarningCircle : NucleusIcon("warning-circle"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_warning_circle_outline
+        override val regularRes get() = R.drawable.nucleus_icon_warning_circle_regular
+        override val solidRes get() = R.drawable.nucleus_icon_warning_circle_solid
+    }
+
+    data object WarningHexagon : NucleusIcon("warning-hexagon"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_warning_hexagon_outline
+        override val regularRes get() = R.drawable.nucleus_icon_warning_hexagon_regular
+        override val solidRes get() = R.drawable.nucleus_icon_warning_hexagon_solid
+    }
+
+    data object WarningTriangle : NucleusIcon("warning-triangle"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_warning_triangle_outline
+        override val regularRes get() = R.drawable.nucleus_icon_warning_triangle_regular
+        override val solidRes get() = R.drawable.nucleus_icon_warning_triangle_solid
+    }
+
+    data object WarningTriangle2 : NucleusIcon("warning-triangle-2"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_warning_triangle_2_regular
+        override val solidRes get() = R.drawable.nucleus_icon_warning_triangle_2_solid
+    }
+
+    data object Wifi : NucleusIcon("wifi"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_wifi_outline
+        override val regularRes get() = R.drawable.nucleus_icon_wifi_regular
+        override val solidRes get() = R.drawable.nucleus_icon_wifi_solid
+    }
+
+    data object WifiSignalNone : NucleusIcon("wifi-signal-none"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_wifi_signal_none_outline
+        override val regularRes get() = R.drawable.nucleus_icon_wifi_signal_none_regular
+        override val solidRes get() = R.drawable.nucleus_icon_wifi_signal_none_solid
+    }
+
+    data object Xmark : NucleusIcon("xmark"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_xmark_outline
+        override val regularRes get() = R.drawable.nucleus_icon_xmark_regular
+        override val solidRes get() = R.drawable.nucleus_icon_xmark_solid
+    }
+
+    companion object {
+        /**
+         * Every Nucleus icon, in stable alphabetical order. The type is fully qualified because
+         * the [List] icon object shadows `kotlin.collections.List` inside this class body.
+         */
+        val all: kotlin.collections.List<NucleusIcon> = listOf(
+            Airplane,
+            AntennaSignal,
+            AppleMac,
+            ArrowDown,
+            ArrowDownLeft,
+            ArrowDownRight,
+            ArrowLeft,
+            ArrowRight,
+            ArrowSplit,
+            ArrowUp,
+            ArrowUpLeft,
+            ArrowUpRight,
+            AtSign,
+            BadgeCheck,
+            BadgeNotChecked,
+            Bag,
+            Bank,
+            Bell,
+            BellNotification,
+            BellSlash,
+            Bookmark,
+            BoxIso,
+            Calendar,
+            CalendarPlus,
+            Camera,
+            Cash,
+            CashMulti,
+            Cellular,
+            CellularNoSignal,
+            ChatBubble,
+            ChatBubbleEmpty,
+            ChatBubbleQuestion,
+            ChatBubbleTranslate,
+            ChatBubbleWarning,
+            ChatLines,
+            Check,
+            CheckCircle,
+            Clock,
+            ClockRotateRight,
+            Cloud,
+            CloudDownload,
+            Coins,
+            Compass,
+            Copy,
+            Coupon,
+            Cube,
+            DeliveryCheck,
+            DeliveryTruck,
+            DoubleCheck,
+            Download,
+            EditPencil,
+            EmptyPage,
+            Eye,
+            EyeClosed,
+            FaceId,
+            FilterList,
+            Flash,
+            Gif,
+            Gift,
+            Globe,
+            GraduationCap,
+            GraphDown,
+            GraphUp,
+            Group,
+            Heart,
+            HelpCircle,
+            Home,
+            InfoCircle,
+            Instagram,
+            Key,
+            Language,
+            Link,
+            LinkSlash,
+            List,
+            Lock,
+            LogIn,
+            LogOut,
+            MagicWand,
+            Mail,
+            Map,
+            MapPin,
+            MapsArrow,
+            MediaImage,
+            Microphone,
+            Minus,
+            MoreHoriz,
+            MoreHorizCircle,
+            NavArrowDown,
+            NavArrowLeft,
+            NavArrowRight,
+            NavArrowUp,
+            OpenNewWindow,
+            Orb,
+            Page,
+            Passkey,
+            Percentage,
+            Pin,
+            Play,
+            Plus,
+            Post,
+            ProfileCircle,
+            Prohibition,
+            QrCode,
+            Refresh,
+            Reports,
+            Safe,
+            Scan,
+            Search,
+            SendMail,
+            Settings,
+            ShareIos,
+            Shield,
+            Shield2,
+            ShieldAlert,
+            ShieldCheck,
+            SmartphoneDevice,
+            SnowFlake,
+            SoftwareUpdateSetting,
+            Sort,
+            SortDown,
+            SortUp,
+            Spark,
+            Sparks,
+            Star,
+            StatsUpSquare,
+            Suitcase,
+            Text,
+            TimerDots,
+            Trash,
+            Trophy,
+            User,
+            VideoCamera,
+            ViewGrid,
+            Wallet,
+            WarningCircle,
+            WarningHexagon,
+            WarningTriangle,
+            WarningTriangle2,
+            Wifi,
+            WifiSignalNone,
+            Xmark,
+        )
     }
 }
