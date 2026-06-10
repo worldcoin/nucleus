@@ -25,19 +25,25 @@ import com.worldcoin.nucleus.R
  * `if (icon is NucleusIcon.HasSolid) painterResource(icon.solidRes)`.
  */
 sealed class NucleusIcon(val resourceName: String) {
-    /** Implemented by icons that ship an outline variant. */
+    /**
+     * Implemented by icons that ship an outline variant.
+     */
     sealed interface HasOutline {
         @get:DrawableRes
         val outlineRes: Int
     }
 
-    /** Implemented by icons that ship a regular variant. */
+    /**
+     * Implemented by icons that ship a regular variant.
+     */
     sealed interface HasRegular {
         @get:DrawableRes
         val regularRes: Int
     }
 
-    /** Implemented by icons that ship a solid variant. */
+    /**
+     * Implemented by icons that ship a solid variant.
+     */
     sealed interface HasSolid {
         @get:DrawableRes
         val solidRes: Int
@@ -53,9 +59,8 @@ sealed class NucleusIcon(val resourceName: String) {
 {{/each}}
     companion object {
         /**
-         * Every Nucleus icon, in stable alphabetical order (replaces the former enum `entries`).
-         * The type is fully qualified because the [List] icon object shadows `kotlin.collections.List`
-         * inside this class body.
+         * Every Nucleus icon, in stable alphabetical order. The type is fully qualified because
+         * the [List] icon object shadows `kotlin.collections.List` inside this class body.
          */
         val all: kotlin.collections.List<NucleusIcon> = listOf(
 {{#each tokens}}
