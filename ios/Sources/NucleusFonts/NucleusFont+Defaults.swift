@@ -170,3 +170,30 @@ public extension NucleusFont {
         dynamicTypeStyle: .caption2
     )
 }
+
+extension NucleusFont {
+    // map for token-string resolution
+    static let tokenDefaults: [String: NucleusFont] = [
+        "d1": .d1,
+        "n1": .n1,
+        "n2": .n2,
+        "n3": .n3,
+        "n4": .n4,
+        "n5": .n5,
+        "h1": .h1,
+        "h2": .h2,
+        "h3": .h3,
+        "h4": .h4,
+        "s1": .s1,
+        "s2": .s2,
+        "s3": .s3,
+        "s4": .s4,
+        "l1": .l1,
+        "l2": .l2,
+        "l3": .l3,
+        "b1": .b1,
+        "b2": .b2,
+        "b3": .b3,
+        "b4": .b4,
+    ]
+}

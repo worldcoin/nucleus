@@ -50,6 +50,23 @@ public struct NucleusFont: Equatable, Hashable, Sendable {
     }
 }
 
+// MARK: - Token Resolution
+
+extension NucleusFont {
+    /// Resolves a token string like `"n2"` into its matching Nucleus font.
+    ///
+    /// Returns `nil` if the token doesn't map to a known default. In debug builds an unknown token also trips an assertion failure, so a stale or mistyped token surfaces during development rather than silently falling through.
+    ///
+    /// - Parameter token: The token string to resolve, e.g. `"n2"`.
+    public init?(token: String) {
+        guard let font = Self.tokenDefaults[token] else {
+            assertionFailure("unknown NucleusFont token: \(token)")
+            return nil
+        }
+        self = font
+    }
+}
+
 // MARK: - Mutating Methods
 
 extension NucleusFont {

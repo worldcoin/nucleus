@@ -12,3 +12,12 @@ public extension NucleusFont {
     )
 {{/each}}
 }
+
+extension NucleusFont {
+    // map for token-string resolution
+    static let tokenDefaults: [String: NucleusFont] = [
+{{#each tokens}}
+        "{{name}}": .{{name}},
+{{/each}}
+    ]
+}
