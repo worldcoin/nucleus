@@ -9,7 +9,9 @@
     "*.json",
     "fonts/*",
     "icons/*",
-    "index.d.ts"
+    "index.d.ts",
+    "token-paths.js",
+    "token-paths.d.ts"
   ],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
