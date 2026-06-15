@@ -5,9 +5,9 @@ import type { TokenCatalog } from './resolver-shared.js';
  *
  * Emits a runtime CommonJS module (`token-paths.js`) plus literal-typed declarations
  * (`token-paths.d.ts`) exporting one frozen object per token family, keyed by descriptive
- * camelCase, value = the canonical path string. This is the source of truth the app-backend
- * SDUI library imports instead of hand-writing path literals — so the backend maintains no
- * mapping of its own.
+ * camelCase, value = the type-scoped wire token (e.g. `text.primary`, `s3`, `inverse.32`,
+ * `arrow-right.regular`). This is the source of truth the app-backend SDUI library imports
+ * instead of hand-writing token literals — so the backend maintains no mapping of its own.
  */
 
 interface ConstObject {
@@ -20,28 +20,28 @@ function constObjects(catalog: TokenCatalog): ConstObject[] {
   const objects: ConstObject[] = [
     {
       name: 'ColorTokens',
-      doc: 'Semantic color token paths, e.g. `semantic.color.text.primary`.',
-      entries: catalog.semanticColors.map((c) => ({ key: c.accessor, value: c.token })),
+      doc: 'Type-scoped semantic color tokens, e.g. `text.primary`.',
+      entries: catalog.semanticColors.map((c) => ({ key: c.accessor, value: c.wireToken })),
     },
     {
       name: 'PrimitiveColorTokens',
-      doc: 'Primitive color token paths, e.g. `primitive.color.grey.900`.',
-      entries: catalog.primitiveColors.map((c) => ({ key: c.accessor, value: c.token })),
+      doc: 'Type-scoped primitive color tokens, e.g. `grey.900`.',
+      entries: catalog.primitiveColors.map((c) => ({ key: c.accessor, value: c.wireToken })),
     },
     {
       name: 'TypographyTokens',
-      doc: 'Grouped typography token paths, e.g. `typography.subtitle.s3`.',
-      entries: catalog.fonts.map((f) => ({ key: f.key, value: f.token })),
+      doc: 'Type-scoped typography tokens (bare id), e.g. `s3`.',
+      entries: catalog.fonts.map((f) => ({ key: f.key, value: f.wireToken })),
     },
     {
       name: 'ButtonTokens',
-      doc: 'Button style token paths, e.g. `component.button.inverse.32`.',
-      entries: catalog.buttons.map((b) => ({ key: b.accessor, value: b.token })),
+      doc: 'Type-scoped button style tokens, e.g. `inverse.32`.',
+      entries: catalog.buttons.map((b) => ({ key: b.accessor, value: b.wireToken })),
     },
     {
       name: 'IconTokens',
-      doc: 'Icon token paths, e.g. `icon.arrow-right.regular`.',
-      entries: catalog.icons.map((i) => ({ key: i.key, value: i.token })),
+      doc: 'Type-scoped icon tokens, e.g. `arrow-right.regular`.',
+      entries: catalog.icons.map((i) => ({ key: i.key, value: i.wireToken })),
     },
   ];
   return objects.map((object) => ({

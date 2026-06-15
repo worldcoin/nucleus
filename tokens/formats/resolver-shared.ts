@@ -4,10 +4,14 @@ import { loadColorTokens, loadFontDefinitions } from './loaders.js';
 import { camelCasePath, publicColorPath, typographyTokenPath } from './shared.js';
 
 /**
- * Shared catalog for the token-path ↔ token resolvers. Enumerates every published token as a
- * `(canonical path string, platform accessor)` pair, reusing the exact same path-builders and
- * accessor-naming the platform token generators use, so the resolver can never drift from the
- * static accessors it points at. Consumed by `resolver-{web,ios,android}.ts`.
+ * Shared catalog for the token-path ↔ token resolvers. Enumerates every published token with both
+ * its canonical path (for reference) and the **type-scoped wire token** the backend emits and the
+ * resolvers key on — the namespace that the resolver type already implies is stripped:
+ *   - color:      `semantic.color.text.primary` → `text.primary`  (and `primitive.color.grey.900` → `grey.900`)
+ *   - typography: `typography.subtitle.s3`       → `s3`
+ *   - button:     `component.button.inverse.32`  → `inverse.32`
+ *   - icon:       `icon.arrow-right.regular`      → `arrow-right.regular`
+ * Reuses the same accessor-naming the platform token generators use, so the resolver can't drift.
  */
 
 const PRIMITIVE_SOURCE = 'tokens/definitions/color/primitive.json';
@@ -16,33 +20,33 @@ const FONT_SOURCE = 'tokens/definitions/font/fonts.json';
 const BUTTON_SOURCE = 'tokens/definitions/component/button.json';
 
 export interface ColorEntry {
-  /** Canonical wire path, e.g. `semantic.color.text.primary`. */
-  token: string;
+  /** Type-scoped wire token, e.g. `text.primary` / `grey.900`. */
+  wireToken: string;
   /** `NucleusColor` / `NucleusSemanticColors*` accessor, e.g. `textPrimary`. */
   accessor: string;
 }
 
 export interface FontEntry {
-  /** Canonical wire path, e.g. `typography.subtitle.s3`. */
-  token: string;
-  /** `NucleusFont` / `NucleusFonts` accessor (bare id), e.g. `s3`. */
-  accessor: string;
+  /** Type-scoped wire token (bare id), e.g. `s3`. Also the `NucleusFont(s)` accessor. */
+  wireToken: string;
   /** camelCase web-constant key, e.g. `subtitleS3`. */
   key: string;
 }
 
 export interface ButtonEntry {
-  /** Canonical wire path, e.g. `component.button.inverse.32`. */
-  token: string;
-  /** `NucleusButton` / `NucleusButtons` accessor, e.g. `inverse32`. Also the web-constant key. */
+  /** Type-scoped wire token, e.g. `inverse.32`. */
+  wireToken: string;
+  /** `NucleusButton(s)` accessor + web-constant key, e.g. `inverse32`. */
   accessor: string;
 }
 
 export interface IconEntry {
-  /** Canonical wire path, e.g. `icon.arrow-right.regular`. */
-  token: string;
+  /** Type-scoped wire token, e.g. `arrow-right.regular`. */
+  wireToken: string;
   /** camelCase web-constant key, e.g. `arrowRightRegular`. */
   key: string;
+  /** kebab-case icon name, e.g. `arrow-right`. */
+  name: string;
   /** `NucleusIcon` Swift case, e.g. `arrowRight`. */
   swiftCase: string;
   /** `NucleusIcon` Kotlin object, e.g. `ArrowRight`. */
@@ -52,17 +56,29 @@ export interface IconEntry {
   variant: IconVariant;
 }
 
+export interface IconNameEntry {
+  /** kebab-case wire name, e.g. `arrow-right`. */
+  name: string;
+  swiftCase: string;
+  kotlinCase: string;
+  androidStem: string;
+}
+
 export interface TokenCatalog {
   semanticColors: ColorEntry[];
   primitiveColors: ColorEntry[];
   fonts: FontEntry[];
   buttons: ButtonEntry[];
   icons: IconEntry[];
+  /** Distinct icon names (for the iOS name → NucleusIcon map). */
+  iconNames: IconNameEntry[];
+  /** Icon variants present across the set (for the iOS variant map). */
+  iconVariants: IconVariant[];
 }
 
 function colorEntries(source: string): ColorEntry[] {
   return loadColorTokens(source).map((leaf) => ({
-    token: leaf.path.join('.'),
+    wireToken: publicColorPath(leaf.path).join('.'),
     accessor: camelCasePath(publicColorPath(leaf.path)),
   }));
 }
@@ -79,8 +95,7 @@ export function buildTokenCatalog(): TokenCatalog {
   const fonts: FontEntry[] = loadFontDefinitions(FONT_SOURCE).tokens.map((token) => {
     const path = typographyTokenPath(token.name); // typography.subtitle.s3
     return {
-      token: path,
-      accessor: token.name, // bare id (native), e.g. s3
+      wireToken: token.name, // bare id, e.g. s3
       key: camelCasePath(path.split('.').slice(1)), // subtitleS3 (web)
     };
   });
@@ -88,67 +103,74 @@ export function buildTokenCatalog(): TokenCatalog {
   const buttons: ButtonEntry[] = resolveButtonStyles(
     loadButtonDefinition(BUTTON_SOURCE),
   ).map((style) => ({
-    token: style.token, // component.button.inverse.32
+    wireToken: `${style.variant}.${style.size}`, // inverse.32
     accessor: `${style.variant}${style.size}`, // inverse32
   }));
 
-  const icons: IconEntry[] = discoverIconTokens().flatMap((icon) =>
+  const discovered = discoverIconTokens();
+  const icons: IconEntry[] = discovered.flatMap((icon) =>
     icon.variants.map((variant) => ({
-      token: `icon.${icon.name}.${variant}`,
+      wireToken: `${icon.name}.${variant}`, // arrow-right.regular
       key: `${icon.swiftCase}${capitalize(variant)}`, // arrowRightRegular
+      name: icon.name,
       swiftCase: icon.swiftCase,
       kotlinCase: icon.kotlinCase,
       androidStem: icon.androidStem,
       variant,
     })),
   );
+  const iconNames: IconNameEntry[] = discovered.map((icon) => ({
+    name: icon.name,
+    swiftCase: icon.swiftCase,
+    kotlinCase: icon.kotlinCase,
+    androidStem: icon.androidStem,
+  }));
+  const iconVariants = [...new Set(discovered.flatMap((icon) => icon.variants))].sort();
 
-  const catalog = { semanticColors, primitiveColors, fonts, buttons, icons };
+  const catalog = {
+    semanticColors,
+    primitiveColors,
+    fonts,
+    buttons,
+    icons,
+    iconNames,
+    iconVariants,
+  };
   validateCatalog(catalog);
   return catalog;
 }
 
 /**
- * Generation-time round-trip guard: every canonical path is unique across the whole catalog and
- * every per-family web key is unique. (Wrong-accessor regressions are caught by the native builds
- * in CI; this catches path/key collisions and empty values before anything is written.)
+ * Generation-time round-trip guard: the wire tokens a single resolver keys on must be unique
+ * (colors merge semantic + primitive into one `NucleusColor` map), and every per-family web key
+ * must be unique. (Wrong-accessor regressions are caught by the native builds in CI.)
  */
 function validateCatalog(catalog: TokenCatalog): void {
-  const tokens = [
-    ...catalog.semanticColors.map((e) => e.token),
-    ...catalog.primitiveColors.map((e) => e.token),
-    ...catalog.fonts.map((e) => e.token),
-    ...catalog.buttons.map((e) => e.token),
-    ...catalog.icons.map((e) => e.token),
+  const groups: Array<[string, string[]]> = [
+    // NucleusColor.resolve keys on one merged map → must be unique across semantic + primitive.
+    [
+      'color wire tokens',
+      [...catalog.semanticColors, ...catalog.primitiveColors].map((e) => e.wireToken),
+    ],
+    ['font wire tokens', catalog.fonts.map((e) => e.wireToken)],
+    ['button wire tokens', catalog.buttons.map((e) => e.wireToken)],
+    ['icon wire tokens', catalog.icons.map((e) => e.wireToken)],
+    ['ColorTokens keys', catalog.semanticColors.map((e) => e.accessor)],
+    ['PrimitiveColorTokens keys', catalog.primitiveColors.map((e) => e.accessor)],
+    ['TypographyTokens keys', catalog.fonts.map((e) => e.key)],
+    ['ButtonTokens keys', catalog.buttons.map((e) => e.accessor)],
+    ['IconTokens keys', catalog.icons.map((e) => e.key)],
   ];
-  const seenTokens = new Set<string>();
-  for (const token of tokens) {
-    if (!token) {
-      throw new Error('resolver catalog: empty token path');
-    }
-    if (seenTokens.has(token)) {
-      throw new Error(`resolver catalog: duplicate token path "${token}"`);
-    }
-    seenTokens.add(token);
-  }
-
-  const keyGroups: Array<[string, string[]]> = [
-    ['ColorTokens', catalog.semanticColors.map((e) => e.accessor)],
-    ['PrimitiveColorTokens', catalog.primitiveColors.map((e) => e.accessor)],
-    ['TypographyTokens', catalog.fonts.map((e) => e.key)],
-    ['ButtonTokens', catalog.buttons.map((e) => e.accessor)],
-    ['IconTokens', catalog.icons.map((e) => e.key)],
-  ];
-  for (const [name, keys] of keyGroups) {
+  for (const [label, values] of groups) {
     const seen = new Set<string>();
-    for (const key of keys) {
-      if (!key) {
-        throw new Error(`resolver catalog: empty key in ${name}`);
+    for (const value of values) {
+      if (!value) {
+        throw new Error(`resolver catalog: empty value in ${label}`);
       }
-      if (seen.has(key)) {
-        throw new Error(`resolver catalog: duplicate key "${key}" in ${name}`);
+      if (seen.has(value)) {
+        throw new Error(`resolver catalog: duplicate "${value}" in ${label}`);
       }
-      seen.add(key);
+      seen.add(value);
     }
   }
 }

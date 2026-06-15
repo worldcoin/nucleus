@@ -2,12 +2,14 @@ import { ANDROID_DRAWABLE_PREFIX } from './icons-android.js';
 import type { TokenCatalog } from './resolver-shared.js';
 
 /**
- * Android token-path resolver generator.
+ * Android token resolver generator.
  *
- * Emits `NucleusTokenResolver.kt` — an object with `when`-based lookups mapping each canonical path
- * to its compile-time Nucleus accessor. Colors are theme-aware (`isDark`); icons resolve straight to
- * a `@DrawableRes` id (Android has no runtime icon `Variant` enum — variant availability is encoded
- * in the type system). Forward-only; returns null for unknown paths so callers fall back + report.
+ * Emits `NucleusTokenResolver.kt` — a single object (Android ships one artifact, so there's no
+ * cross-module coupling to avoid) with `when`-based lookups mapping each type-scoped wire token to
+ * its compile-time Nucleus accessor. Colors are theme-aware (`isDark`); icons resolve straight to a
+ * `@DrawableRes` id (Android has no runtime icon `Variant` enum — variant availability is encoded in
+ * the type system). Tokens are type-scoped: font `s3`, color `text.primary`, button `inverse.32`,
+ * icon `name.variant`. Forward-only; returns null for unknown tokens so callers fall back + report.
  */
 
 const PACKAGE_NAME = 'com.worldcoin.nucleus.tokens';
@@ -32,34 +34,34 @@ export function generateAndroidResolver(catalog: TokenCatalog): string {
   // behind a one-line `color(token, isDark)` dispatcher; primitives resolve the same in both.
   const colorLightBranches: Branch[] = [
     ...catalog.semanticColors.map((c) => ({
-      token: c.token,
+      token: c.wireToken,
       value: `NucleusSemanticColorsLight.${c.accessor}`,
     })),
     ...catalog.primitiveColors.map((c) => ({
-      token: c.token,
+      token: c.wireToken,
       value: `NucleusPrimitiveColors.${c.accessor}`,
     })),
   ];
   const colorDarkBranches: Branch[] = [
     ...catalog.semanticColors.map((c) => ({
-      token: c.token,
+      token: c.wireToken,
       value: `NucleusSemanticColorsDark.${c.accessor}`,
     })),
     ...catalog.primitiveColors.map((c) => ({
-      token: c.token,
+      token: c.wireToken,
       value: `NucleusPrimitiveColors.${c.accessor}`,
     })),
   ];
   const fontBranches: Branch[] = catalog.fonts.map((f) => ({
-    token: f.token,
-    value: `NucleusFonts.${f.accessor}`,
+    token: f.wireToken,
+    value: `NucleusFonts.${f.wireToken}`,
   }));
   const buttonBranches: Branch[] = catalog.buttons.map((b) => ({
-    token: b.token,
+    token: b.wireToken,
     value: `NucleusButtons.${b.accessor}`,
   }));
   const iconBranches: Branch[] = catalog.icons.map((i) => ({
-    token: i.token,
+    token: i.wireToken,
     value: `R.drawable.${ANDROID_DRAWABLE_PREFIX}_${i.androidStem}_${i.variant}`,
   }));
 
