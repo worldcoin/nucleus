@@ -79,38 +79,44 @@ import com.worldcoin.nucleus.R
  */
 object NucleusTokenResolver {
     /** Resolves a color token path, e.g. \`semantic.color.text.primary\`, for the active theme. */
-    fun color(token: String, isDark: Boolean): Color? {
-        return if (isDark) colorDark(token) else colorLight(token)
-    }
+    fun color(
+        token: String,
+        isDark: Boolean,
+    ): Color? = if (isDark) colorDark(token) else colorLight(token)
 
     /** Resolves a typography token path, e.g. \`typography.subtitle.s3\`. */
-    fun font(token: String): NucleusFontStyle? = when (token) {
-${whenBody(fontBranches, '        ')}
-        else -> null
-    }
+    fun font(token: String): NucleusFontStyle? =
+        when (token) {
+${whenBody(fontBranches, '            ')}
+            else -> null
+        }
 
     /** Resolves a button style token path, e.g. \`component.button.inverse.32\`. */
-    fun button(token: String): NucleusButtonStyle? = when (token) {
-${whenBody(buttonBranches, '        ')}
-        else -> null
-    }
+    fun button(token: String): NucleusButtonStyle? =
+        when (token) {
+${whenBody(buttonBranches, '            ')}
+            else -> null
+        }
 
     /** Resolves an icon token path, e.g. \`icon.arrow-right.regular\`, to a drawable resource id. */
     @DrawableRes
-    fun iconRes(token: String): Int? = when (token) {
-${whenBody(iconBranches, '        ')}
-        else -> null
-    }
+    fun iconRes(token: String): Int? =
+        when (token) {
+${whenBody(iconBranches, '            ')}
+            else -> null
+        }
 
-    private fun colorLight(token: String): Color? = when (token) {
-${whenBody(colorLightBranches, '        ')}
-        else -> null
-    }
+    private fun colorLight(token: String): Color? =
+        when (token) {
+${whenBody(colorLightBranches, '            ')}
+            else -> null
+        }
 
-    private fun colorDark(token: String): Color? = when (token) {
-${whenBody(colorDarkBranches, '        ')}
-        else -> null
-    }
+    private fun colorDark(token: String): Color? =
+        when (token) {
+${whenBody(colorDarkBranches, '            ')}
+            else -> null
+        }
 }
 `;
 }
