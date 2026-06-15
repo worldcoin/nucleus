@@ -1,19 +1,9 @@
 import { mkdirSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
 
-import {
-  loadButtonDefinition,
-  resolveButtonStyles,
-} from '../formats/buttons.js';
-import { discoverIconTokens } from '../formats/icons-shared.js';
-import { loadColorTokens, loadFontDefinitions } from '../formats/loaders.js';
+import { buildTokenCatalog } from '../formats/resolver-shared.js';
 import { generateWebTypes } from '../formats/types-web.js';
-import { BUTTON_SOURCE } from './buttons.js';
 import { ROOT, WEB_OUT, logStage } from './shared.js';
-
-const PRIMITIVE_SOURCE = 'tokens/definitions/color/primitive.json';
-const SEMANTIC_LIGHT_SOURCE = 'tokens/definitions/color/semantic.light.json';
-const FONT_SOURCE = 'tokens/definitions/font/fonts.json';
 
 function writeOut(relPath: string, content: string): void {
   const absolute = resolve(ROOT, relPath);
@@ -22,27 +12,25 @@ function writeOut(relPath: string, content: string): void {
 }
 
 /**
- * Generate the web package's `index.d.ts` from the token definitions. Light and dark
- * semantic palettes share the same key paths, so the light source is sufficient for
- * the color path set.
+ * Generate the web package's `index.d.ts` literal-union types. The members are sourced from the
+ * shared token catalog (`buildTokenCatalog`) — the exact same `wireToken` values that drive the
+ * `token-paths` constants and the native resolvers — so the union types stay in lockstep with the
+ * runtime constants and the resolver keys.
  */
 export function buildWebTypes(): void {
-  const colorTokens = [
-    ...loadColorTokens(PRIMITIVE_SOURCE),
-    ...loadColorTokens(SEMANTIC_LIGHT_SOURCE),
-  ];
-  const { tokens: fontTokens } = loadFontDefinitions(FONT_SOURCE);
-  const buttonStyleTokens = resolveButtonStyles(
-    loadButtonDefinition(BUTTON_SOURCE),
-  ).map((style) => style.token);
-  const iconTokens = discoverIconTokens().flatMap((icon) =>
-    icon.variants.map((variant) => `icon.${icon.name}.${variant}`),
-  );
+  const catalog = buildTokenCatalog();
 
   const out = `${WEB_OUT}/index.d.ts`;
   writeOut(
     out,
-    generateWebTypes({ colorTokens, fontTokens, buttonStyleTokens, iconTokens }),
+    generateWebTypes({
+      colorTokens: [...catalog.semanticColors, ...catalog.primitiveColors].map(
+        (c) => c.wireToken,
+      ),
+      typographyTokens: catalog.fonts.map((f) => f.wireToken),
+      buttonStyleTokens: catalog.buttons.map((b) => b.wireToken),
+      iconTokens: catalog.icons.map((i) => i.wireToken),
+    }),
   );
 
   logStage('token types (web)', [['web', out]]);
