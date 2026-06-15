@@ -28,10 +28,22 @@ function whenBody(branches: Branch[], indent: string): string {
 }
 
 export function generateAndroidResolver(catalog: TokenCatalog): string {
-  const colorBranches: Branch[] = [
+  // Colors are split into single-param colorLight/colorDark `when`s (kept short and ktlint-clean)
+  // behind a one-line `color(token, isDark)` dispatcher; primitives resolve the same in both.
+  const colorLightBranches: Branch[] = [
     ...catalog.semanticColors.map((c) => ({
       token: c.token,
-      value: `if (isDark) NucleusSemanticColorsDark.${c.accessor} else NucleusSemanticColorsLight.${c.accessor}`,
+      value: `NucleusSemanticColorsLight.${c.accessor}`,
+    })),
+    ...catalog.primitiveColors.map((c) => ({
+      token: c.token,
+      value: `NucleusPrimitiveColors.${c.accessor}`,
+    })),
+  ];
+  const colorDarkBranches: Branch[] = [
+    ...catalog.semanticColors.map((c) => ({
+      token: c.token,
+      value: `NucleusSemanticColorsDark.${c.accessor}`,
     })),
     ...catalog.primitiveColors.map((c) => ({
       token: c.token,
@@ -67,9 +79,8 @@ import com.worldcoin.nucleus.R
  */
 object NucleusTokenResolver {
     /** Resolves a color token path, e.g. \`semantic.color.text.primary\`, for the active theme. */
-    fun color(token: String, isDark: Boolean): Color? = when (token) {
-${whenBody(colorBranches, '        ')}
-        else -> null
+    fun color(token: String, isDark: Boolean): Color? {
+        return if (isDark) colorDark(token) else colorLight(token)
     }
 
     /** Resolves a typography token path, e.g. \`typography.subtitle.s3\`. */
@@ -88,6 +99,16 @@ ${whenBody(buttonBranches, '        ')}
     @DrawableRes
     fun iconRes(token: String): Int? = when (token) {
 ${whenBody(iconBranches, '        ')}
+        else -> null
+    }
+
+    private fun colorLight(token: String): Color? = when (token) {
+${whenBody(colorLightBranches, '        ')}
+        else -> null
+    }
+
+    private fun colorDark(token: String): Color? = when (token) {
+${whenBody(colorDarkBranches, '        ')}
         else -> null
     }
 }

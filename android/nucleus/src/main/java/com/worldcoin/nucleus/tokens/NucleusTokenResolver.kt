@@ -14,109 +14,8 @@ import com.worldcoin.nucleus.R
  */
 object NucleusTokenResolver {
     /** Resolves a color token path, e.g. `semantic.color.text.primary`, for the active theme. */
-    fun color(token: String, isDark: Boolean): Color? = when (token) {
-        "primitive.color.black" -> NucleusPrimitiveColors.black
-        "primitive.color.error.100" -> NucleusPrimitiveColors.error100
-        "primitive.color.error.200" -> NucleusPrimitiveColors.error200
-        "primitive.color.error.300" -> NucleusPrimitiveColors.error300
-        "primitive.color.error.400" -> NucleusPrimitiveColors.error400
-        "primitive.color.error.500" -> NucleusPrimitiveColors.error500
-        "primitive.color.error.600" -> NucleusPrimitiveColors.error600
-        "primitive.color.error.700" -> NucleusPrimitiveColors.error700
-        "primitive.color.error.800" -> NucleusPrimitiveColors.error800
-        "primitive.color.error.900" -> NucleusPrimitiveColors.error900
-        "primitive.color.error.950" -> NucleusPrimitiveColors.error950
-        "primitive.color.grey.100" -> NucleusPrimitiveColors.grey100
-        "primitive.color.grey.200" -> NucleusPrimitiveColors.grey200
-        "primitive.color.grey.300" -> NucleusPrimitiveColors.grey300
-        "primitive.color.grey.400" -> NucleusPrimitiveColors.grey400
-        "primitive.color.grey.500" -> NucleusPrimitiveColors.grey500
-        "primitive.color.grey.600" -> NucleusPrimitiveColors.grey600
-        "primitive.color.grey.700" -> NucleusPrimitiveColors.grey700
-        "primitive.color.grey.800" -> NucleusPrimitiveColors.grey800
-        "primitive.color.grey.900" -> NucleusPrimitiveColors.grey900
-        "primitive.color.grey.950" -> NucleusPrimitiveColors.grey950
-        "primitive.color.info.100" -> NucleusPrimitiveColors.info100
-        "primitive.color.info.200" -> NucleusPrimitiveColors.info200
-        "primitive.color.info.300" -> NucleusPrimitiveColors.info300
-        "primitive.color.info.400" -> NucleusPrimitiveColors.info400
-        "primitive.color.info.500" -> NucleusPrimitiveColors.info500
-        "primitive.color.info.600" -> NucleusPrimitiveColors.info600
-        "primitive.color.info.700" -> NucleusPrimitiveColors.info700
-        "primitive.color.info.800" -> NucleusPrimitiveColors.info800
-        "primitive.color.info.900" -> NucleusPrimitiveColors.info900
-        "primitive.color.info.950" -> NucleusPrimitiveColors.info950
-        "primitive.color.success.100" -> NucleusPrimitiveColors.success100
-        "primitive.color.success.200" -> NucleusPrimitiveColors.success200
-        "primitive.color.success.300" -> NucleusPrimitiveColors.success300
-        "primitive.color.success.400" -> NucleusPrimitiveColors.success400
-        "primitive.color.success.500" -> NucleusPrimitiveColors.success500
-        "primitive.color.success.600" -> NucleusPrimitiveColors.success600
-        "primitive.color.success.700" -> NucleusPrimitiveColors.success700
-        "primitive.color.success.800" -> NucleusPrimitiveColors.success800
-        "primitive.color.success.900" -> NucleusPrimitiveColors.success900
-        "primitive.color.success.950" -> NucleusPrimitiveColors.success950
-        "primitive.color.warning.100" -> NucleusPrimitiveColors.warning100
-        "primitive.color.warning.200" -> NucleusPrimitiveColors.warning200
-        "primitive.color.warning.300" -> NucleusPrimitiveColors.warning300
-        "primitive.color.warning.400" -> NucleusPrimitiveColors.warning400
-        "primitive.color.warning.500" -> NucleusPrimitiveColors.warning500
-        "primitive.color.warning.600" -> NucleusPrimitiveColors.warning600
-        "primitive.color.warning.700" -> NucleusPrimitiveColors.warning700
-        "primitive.color.warning.800" -> NucleusPrimitiveColors.warning800
-        "primitive.color.warning.900" -> NucleusPrimitiveColors.warning900
-        "primitive.color.warning.950" -> NucleusPrimitiveColors.warning950
-        "primitive.color.white" -> NucleusPrimitiveColors.white
-        "semantic.color.accent.content" -> if (isDark) NucleusSemanticColorsDark.accentContent else NucleusSemanticColorsLight.accentContent
-        "semantic.color.accent.primary" -> if (isDark) NucleusSemanticColorsDark.accentPrimary else NucleusSemanticColorsLight.accentPrimary
-        "semantic.color.action.destructive" -> if (isDark) NucleusSemanticColorsDark.actionDestructive else NucleusSemanticColorsLight.actionDestructive
-        "semantic.color.action.destructiveContent" -> if (isDark) NucleusSemanticColorsDark.actionDestructiveContent else NucleusSemanticColorsLight.actionDestructiveContent
-        "semantic.color.action.disabled" -> if (isDark) NucleusSemanticColorsDark.actionDisabled else NucleusSemanticColorsLight.actionDisabled
-        "semantic.color.action.disabledContent" -> if (isDark) NucleusSemanticColorsDark.actionDisabledContent else NucleusSemanticColorsLight.actionDisabledContent
-        "semantic.color.action.ghost" -> if (isDark) NucleusSemanticColorsDark.actionGhost else NucleusSemanticColorsLight.actionGhost
-        "semantic.color.action.ghostContent" -> if (isDark) NucleusSemanticColorsDark.actionGhostContent else NucleusSemanticColorsLight.actionGhostContent
-        "semantic.color.action.primary" -> if (isDark) NucleusSemanticColorsDark.actionPrimary else NucleusSemanticColorsLight.actionPrimary
-        "semantic.color.action.primaryContent" -> if (isDark) NucleusSemanticColorsDark.actionPrimaryContent else NucleusSemanticColorsLight.actionPrimaryContent
-        "semantic.color.action.secondary" -> if (isDark) NucleusSemanticColorsDark.actionSecondary else NucleusSemanticColorsLight.actionSecondary
-        "semantic.color.action.secondaryContent" -> if (isDark) NucleusSemanticColorsDark.actionSecondaryContent else NucleusSemanticColorsLight.actionSecondaryContent
-        "semantic.color.action.tertiary" -> if (isDark) NucleusSemanticColorsDark.actionTertiary else NucleusSemanticColorsLight.actionTertiary
-        "semantic.color.action.tertiaryContent" -> if (isDark) NucleusSemanticColorsDark.actionTertiaryContent else NucleusSemanticColorsLight.actionTertiaryContent
-        "semantic.color.border.default" -> if (isDark) NucleusSemanticColorsDark.borderDefault else NucleusSemanticColorsLight.borderDefault
-        "semantic.color.border.divider" -> if (isDark) NucleusSemanticColorsDark.borderDivider else NucleusSemanticColorsLight.borderDivider
-        "semantic.color.border.focus" -> if (isDark) NucleusSemanticColorsDark.borderFocus else NucleusSemanticColorsLight.borderFocus
-        "semantic.color.border.strong" -> if (isDark) NucleusSemanticColorsDark.borderStrong else NucleusSemanticColorsLight.borderStrong
-        "semantic.color.border.subtle" -> if (isDark) NucleusSemanticColorsDark.borderSubtle else NucleusSemanticColorsLight.borderSubtle
-        "semantic.color.border.translucent" -> if (isDark) NucleusSemanticColorsDark.borderTranslucent else NucleusSemanticColorsLight.borderTranslucent
-        "semantic.color.icon.disabled" -> if (isDark) NucleusSemanticColorsDark.iconDisabled else NucleusSemanticColorsLight.iconDisabled
-        "semantic.color.icon.inverse" -> if (isDark) NucleusSemanticColorsDark.iconInverse else NucleusSemanticColorsLight.iconInverse
-        "semantic.color.icon.primary" -> if (isDark) NucleusSemanticColorsDark.iconPrimary else NucleusSemanticColorsLight.iconPrimary
-        "semantic.color.icon.secondary" -> if (isDark) NucleusSemanticColorsDark.iconSecondary else NucleusSemanticColorsLight.iconSecondary
-        "semantic.color.icon.tertiary" -> if (isDark) NucleusSemanticColorsDark.iconTertiary else NucleusSemanticColorsLight.iconTertiary
-        "semantic.color.input.background" -> if (isDark) NucleusSemanticColorsDark.inputBackground else NucleusSemanticColorsLight.inputBackground
-        "semantic.color.input.backgroundFocus" -> if (isDark) NucleusSemanticColorsDark.inputBackgroundFocus else NucleusSemanticColorsLight.inputBackgroundFocus
-        "semantic.color.input.divider" -> if (isDark) NucleusSemanticColorsDark.inputDivider else NucleusSemanticColorsLight.inputDivider
-        "semantic.color.input.error" -> if (isDark) NucleusSemanticColorsDark.inputError else NucleusSemanticColorsLight.inputError
-        "semantic.color.input.placeholder" -> if (isDark) NucleusSemanticColorsDark.inputPlaceholder else NucleusSemanticColorsLight.inputPlaceholder
-        "semantic.color.input.text" -> if (isDark) NucleusSemanticColorsDark.inputText else NucleusSemanticColorsLight.inputText
-        "semantic.color.status.error" -> if (isDark) NucleusSemanticColorsDark.statusError else NucleusSemanticColorsLight.statusError
-        "semantic.color.status.errorBackground" -> if (isDark) NucleusSemanticColorsDark.statusErrorBackground else NucleusSemanticColorsLight.statusErrorBackground
-        "semantic.color.status.info" -> if (isDark) NucleusSemanticColorsDark.statusInfo else NucleusSemanticColorsLight.statusInfo
-        "semantic.color.status.infoBackground" -> if (isDark) NucleusSemanticColorsDark.statusInfoBackground else NucleusSemanticColorsLight.statusInfoBackground
-        "semantic.color.status.success" -> if (isDark) NucleusSemanticColorsDark.statusSuccess else NucleusSemanticColorsLight.statusSuccess
-        "semantic.color.status.successBackground" -> if (isDark) NucleusSemanticColorsDark.statusSuccessBackground else NucleusSemanticColorsLight.statusSuccessBackground
-        "semantic.color.status.warning" -> if (isDark) NucleusSemanticColorsDark.statusWarning else NucleusSemanticColorsLight.statusWarning
-        "semantic.color.status.warningBackground" -> if (isDark) NucleusSemanticColorsDark.statusWarningBackground else NucleusSemanticColorsLight.statusWarningBackground
-        "semantic.color.surface.elevated" -> if (isDark) NucleusSemanticColorsDark.surfaceElevated else NucleusSemanticColorsLight.surfaceElevated
-        "semantic.color.surface.overlay" -> if (isDark) NucleusSemanticColorsDark.surfaceOverlay else NucleusSemanticColorsLight.surfaceOverlay
-        "semantic.color.surface.primary" -> if (isDark) NucleusSemanticColorsDark.surfacePrimary else NucleusSemanticColorsLight.surfacePrimary
-        "semantic.color.surface.secondary" -> if (isDark) NucleusSemanticColorsDark.surfaceSecondary else NucleusSemanticColorsLight.surfaceSecondary
-        "semantic.color.surface.tertiary" -> if (isDark) NucleusSemanticColorsDark.surfaceTertiary else NucleusSemanticColorsLight.surfaceTertiary
-        "semantic.color.text.disabled" -> if (isDark) NucleusSemanticColorsDark.textDisabled else NucleusSemanticColorsLight.textDisabled
-        "semantic.color.text.inverse" -> if (isDark) NucleusSemanticColorsDark.textInverse else NucleusSemanticColorsLight.textInverse
-        "semantic.color.text.primary" -> if (isDark) NucleusSemanticColorsDark.textPrimary else NucleusSemanticColorsLight.textPrimary
-        "semantic.color.text.secondary" -> if (isDark) NucleusSemanticColorsDark.textSecondary else NucleusSemanticColorsLight.textSecondary
-        "semantic.color.text.tertiary" -> if (isDark) NucleusSemanticColorsDark.textTertiary else NucleusSemanticColorsLight.textTertiary
-        else -> null
+    fun color(token: String, isDark: Boolean): Color? {
+        return if (isDark) colorDark(token) else colorLight(token)
     }
 
     /** Resolves a typography token path, e.g. `typography.subtitle.s3`. */
@@ -587,6 +486,216 @@ object NucleusTokenResolver {
         "icon.xmark.outline" -> R.drawable.nucleus_icon_xmark_outline
         "icon.xmark.regular" -> R.drawable.nucleus_icon_xmark_regular
         "icon.xmark.solid" -> R.drawable.nucleus_icon_xmark_solid
+        else -> null
+    }
+
+    private fun colorLight(token: String): Color? = when (token) {
+        "primitive.color.black" -> NucleusPrimitiveColors.black
+        "primitive.color.error.100" -> NucleusPrimitiveColors.error100
+        "primitive.color.error.200" -> NucleusPrimitiveColors.error200
+        "primitive.color.error.300" -> NucleusPrimitiveColors.error300
+        "primitive.color.error.400" -> NucleusPrimitiveColors.error400
+        "primitive.color.error.500" -> NucleusPrimitiveColors.error500
+        "primitive.color.error.600" -> NucleusPrimitiveColors.error600
+        "primitive.color.error.700" -> NucleusPrimitiveColors.error700
+        "primitive.color.error.800" -> NucleusPrimitiveColors.error800
+        "primitive.color.error.900" -> NucleusPrimitiveColors.error900
+        "primitive.color.error.950" -> NucleusPrimitiveColors.error950
+        "primitive.color.grey.100" -> NucleusPrimitiveColors.grey100
+        "primitive.color.grey.200" -> NucleusPrimitiveColors.grey200
+        "primitive.color.grey.300" -> NucleusPrimitiveColors.grey300
+        "primitive.color.grey.400" -> NucleusPrimitiveColors.grey400
+        "primitive.color.grey.500" -> NucleusPrimitiveColors.grey500
+        "primitive.color.grey.600" -> NucleusPrimitiveColors.grey600
+        "primitive.color.grey.700" -> NucleusPrimitiveColors.grey700
+        "primitive.color.grey.800" -> NucleusPrimitiveColors.grey800
+        "primitive.color.grey.900" -> NucleusPrimitiveColors.grey900
+        "primitive.color.grey.950" -> NucleusPrimitiveColors.grey950
+        "primitive.color.info.100" -> NucleusPrimitiveColors.info100
+        "primitive.color.info.200" -> NucleusPrimitiveColors.info200
+        "primitive.color.info.300" -> NucleusPrimitiveColors.info300
+        "primitive.color.info.400" -> NucleusPrimitiveColors.info400
+        "primitive.color.info.500" -> NucleusPrimitiveColors.info500
+        "primitive.color.info.600" -> NucleusPrimitiveColors.info600
+        "primitive.color.info.700" -> NucleusPrimitiveColors.info700
+        "primitive.color.info.800" -> NucleusPrimitiveColors.info800
+        "primitive.color.info.900" -> NucleusPrimitiveColors.info900
+        "primitive.color.info.950" -> NucleusPrimitiveColors.info950
+        "primitive.color.success.100" -> NucleusPrimitiveColors.success100
+        "primitive.color.success.200" -> NucleusPrimitiveColors.success200
+        "primitive.color.success.300" -> NucleusPrimitiveColors.success300
+        "primitive.color.success.400" -> NucleusPrimitiveColors.success400
+        "primitive.color.success.500" -> NucleusPrimitiveColors.success500
+        "primitive.color.success.600" -> NucleusPrimitiveColors.success600
+        "primitive.color.success.700" -> NucleusPrimitiveColors.success700
+        "primitive.color.success.800" -> NucleusPrimitiveColors.success800
+        "primitive.color.success.900" -> NucleusPrimitiveColors.success900
+        "primitive.color.success.950" -> NucleusPrimitiveColors.success950
+        "primitive.color.warning.100" -> NucleusPrimitiveColors.warning100
+        "primitive.color.warning.200" -> NucleusPrimitiveColors.warning200
+        "primitive.color.warning.300" -> NucleusPrimitiveColors.warning300
+        "primitive.color.warning.400" -> NucleusPrimitiveColors.warning400
+        "primitive.color.warning.500" -> NucleusPrimitiveColors.warning500
+        "primitive.color.warning.600" -> NucleusPrimitiveColors.warning600
+        "primitive.color.warning.700" -> NucleusPrimitiveColors.warning700
+        "primitive.color.warning.800" -> NucleusPrimitiveColors.warning800
+        "primitive.color.warning.900" -> NucleusPrimitiveColors.warning900
+        "primitive.color.warning.950" -> NucleusPrimitiveColors.warning950
+        "primitive.color.white" -> NucleusPrimitiveColors.white
+        "semantic.color.accent.content" -> NucleusSemanticColorsLight.accentContent
+        "semantic.color.accent.primary" -> NucleusSemanticColorsLight.accentPrimary
+        "semantic.color.action.destructive" -> NucleusSemanticColorsLight.actionDestructive
+        "semantic.color.action.destructiveContent" -> NucleusSemanticColorsLight.actionDestructiveContent
+        "semantic.color.action.disabled" -> NucleusSemanticColorsLight.actionDisabled
+        "semantic.color.action.disabledContent" -> NucleusSemanticColorsLight.actionDisabledContent
+        "semantic.color.action.ghost" -> NucleusSemanticColorsLight.actionGhost
+        "semantic.color.action.ghostContent" -> NucleusSemanticColorsLight.actionGhostContent
+        "semantic.color.action.primary" -> NucleusSemanticColorsLight.actionPrimary
+        "semantic.color.action.primaryContent" -> NucleusSemanticColorsLight.actionPrimaryContent
+        "semantic.color.action.secondary" -> NucleusSemanticColorsLight.actionSecondary
+        "semantic.color.action.secondaryContent" -> NucleusSemanticColorsLight.actionSecondaryContent
+        "semantic.color.action.tertiary" -> NucleusSemanticColorsLight.actionTertiary
+        "semantic.color.action.tertiaryContent" -> NucleusSemanticColorsLight.actionTertiaryContent
+        "semantic.color.border.default" -> NucleusSemanticColorsLight.borderDefault
+        "semantic.color.border.divider" -> NucleusSemanticColorsLight.borderDivider
+        "semantic.color.border.focus" -> NucleusSemanticColorsLight.borderFocus
+        "semantic.color.border.strong" -> NucleusSemanticColorsLight.borderStrong
+        "semantic.color.border.subtle" -> NucleusSemanticColorsLight.borderSubtle
+        "semantic.color.border.translucent" -> NucleusSemanticColorsLight.borderTranslucent
+        "semantic.color.icon.disabled" -> NucleusSemanticColorsLight.iconDisabled
+        "semantic.color.icon.inverse" -> NucleusSemanticColorsLight.iconInverse
+        "semantic.color.icon.primary" -> NucleusSemanticColorsLight.iconPrimary
+        "semantic.color.icon.secondary" -> NucleusSemanticColorsLight.iconSecondary
+        "semantic.color.icon.tertiary" -> NucleusSemanticColorsLight.iconTertiary
+        "semantic.color.input.background" -> NucleusSemanticColorsLight.inputBackground
+        "semantic.color.input.backgroundFocus" -> NucleusSemanticColorsLight.inputBackgroundFocus
+        "semantic.color.input.divider" -> NucleusSemanticColorsLight.inputDivider
+        "semantic.color.input.error" -> NucleusSemanticColorsLight.inputError
+        "semantic.color.input.placeholder" -> NucleusSemanticColorsLight.inputPlaceholder
+        "semantic.color.input.text" -> NucleusSemanticColorsLight.inputText
+        "semantic.color.status.error" -> NucleusSemanticColorsLight.statusError
+        "semantic.color.status.errorBackground" -> NucleusSemanticColorsLight.statusErrorBackground
+        "semantic.color.status.info" -> NucleusSemanticColorsLight.statusInfo
+        "semantic.color.status.infoBackground" -> NucleusSemanticColorsLight.statusInfoBackground
+        "semantic.color.status.success" -> NucleusSemanticColorsLight.statusSuccess
+        "semantic.color.status.successBackground" -> NucleusSemanticColorsLight.statusSuccessBackground
+        "semantic.color.status.warning" -> NucleusSemanticColorsLight.statusWarning
+        "semantic.color.status.warningBackground" -> NucleusSemanticColorsLight.statusWarningBackground
+        "semantic.color.surface.elevated" -> NucleusSemanticColorsLight.surfaceElevated
+        "semantic.color.surface.overlay" -> NucleusSemanticColorsLight.surfaceOverlay
+        "semantic.color.surface.primary" -> NucleusSemanticColorsLight.surfacePrimary
+        "semantic.color.surface.secondary" -> NucleusSemanticColorsLight.surfaceSecondary
+        "semantic.color.surface.tertiary" -> NucleusSemanticColorsLight.surfaceTertiary
+        "semantic.color.text.disabled" -> NucleusSemanticColorsLight.textDisabled
+        "semantic.color.text.inverse" -> NucleusSemanticColorsLight.textInverse
+        "semantic.color.text.primary" -> NucleusSemanticColorsLight.textPrimary
+        "semantic.color.text.secondary" -> NucleusSemanticColorsLight.textSecondary
+        "semantic.color.text.tertiary" -> NucleusSemanticColorsLight.textTertiary
+        else -> null
+    }
+
+    private fun colorDark(token: String): Color? = when (token) {
+        "primitive.color.black" -> NucleusPrimitiveColors.black
+        "primitive.color.error.100" -> NucleusPrimitiveColors.error100
+        "primitive.color.error.200" -> NucleusPrimitiveColors.error200
+        "primitive.color.error.300" -> NucleusPrimitiveColors.error300
+        "primitive.color.error.400" -> NucleusPrimitiveColors.error400
+        "primitive.color.error.500" -> NucleusPrimitiveColors.error500
+        "primitive.color.error.600" -> NucleusPrimitiveColors.error600
+        "primitive.color.error.700" -> NucleusPrimitiveColors.error700
+        "primitive.color.error.800" -> NucleusPrimitiveColors.error800
+        "primitive.color.error.900" -> NucleusPrimitiveColors.error900
+        "primitive.color.error.950" -> NucleusPrimitiveColors.error950
+        "primitive.color.grey.100" -> NucleusPrimitiveColors.grey100
+        "primitive.color.grey.200" -> NucleusPrimitiveColors.grey200
+        "primitive.color.grey.300" -> NucleusPrimitiveColors.grey300
+        "primitive.color.grey.400" -> NucleusPrimitiveColors.grey400
+        "primitive.color.grey.500" -> NucleusPrimitiveColors.grey500
+        "primitive.color.grey.600" -> NucleusPrimitiveColors.grey600
+        "primitive.color.grey.700" -> NucleusPrimitiveColors.grey700
+        "primitive.color.grey.800" -> NucleusPrimitiveColors.grey800
+        "primitive.color.grey.900" -> NucleusPrimitiveColors.grey900
+        "primitive.color.grey.950" -> NucleusPrimitiveColors.grey950
+        "primitive.color.info.100" -> NucleusPrimitiveColors.info100
+        "primitive.color.info.200" -> NucleusPrimitiveColors.info200
+        "primitive.color.info.300" -> NucleusPrimitiveColors.info300
+        "primitive.color.info.400" -> NucleusPrimitiveColors.info400
+        "primitive.color.info.500" -> NucleusPrimitiveColors.info500
+        "primitive.color.info.600" -> NucleusPrimitiveColors.info600
+        "primitive.color.info.700" -> NucleusPrimitiveColors.info700
+        "primitive.color.info.800" -> NucleusPrimitiveColors.info800
+        "primitive.color.info.900" -> NucleusPrimitiveColors.info900
+        "primitive.color.info.950" -> NucleusPrimitiveColors.info950
+        "primitive.color.success.100" -> NucleusPrimitiveColors.success100
+        "primitive.color.success.200" -> NucleusPrimitiveColors.success200
+        "primitive.color.success.300" -> NucleusPrimitiveColors.success300
+        "primitive.color.success.400" -> NucleusPrimitiveColors.success400
+        "primitive.color.success.500" -> NucleusPrimitiveColors.success500
+        "primitive.color.success.600" -> NucleusPrimitiveColors.success600
+        "primitive.color.success.700" -> NucleusPrimitiveColors.success700
+        "primitive.color.success.800" -> NucleusPrimitiveColors.success800
+        "primitive.color.success.900" -> NucleusPrimitiveColors.success900
+        "primitive.color.success.950" -> NucleusPrimitiveColors.success950
+        "primitive.color.warning.100" -> NucleusPrimitiveColors.warning100
+        "primitive.color.warning.200" -> NucleusPrimitiveColors.warning200
+        "primitive.color.warning.300" -> NucleusPrimitiveColors.warning300
+        "primitive.color.warning.400" -> NucleusPrimitiveColors.warning400
+        "primitive.color.warning.500" -> NucleusPrimitiveColors.warning500
+        "primitive.color.warning.600" -> NucleusPrimitiveColors.warning600
+        "primitive.color.warning.700" -> NucleusPrimitiveColors.warning700
+        "primitive.color.warning.800" -> NucleusPrimitiveColors.warning800
+        "primitive.color.warning.900" -> NucleusPrimitiveColors.warning900
+        "primitive.color.warning.950" -> NucleusPrimitiveColors.warning950
+        "primitive.color.white" -> NucleusPrimitiveColors.white
+        "semantic.color.accent.content" -> NucleusSemanticColorsDark.accentContent
+        "semantic.color.accent.primary" -> NucleusSemanticColorsDark.accentPrimary
+        "semantic.color.action.destructive" -> NucleusSemanticColorsDark.actionDestructive
+        "semantic.color.action.destructiveContent" -> NucleusSemanticColorsDark.actionDestructiveContent
+        "semantic.color.action.disabled" -> NucleusSemanticColorsDark.actionDisabled
+        "semantic.color.action.disabledContent" -> NucleusSemanticColorsDark.actionDisabledContent
+        "semantic.color.action.ghost" -> NucleusSemanticColorsDark.actionGhost
+        "semantic.color.action.ghostContent" -> NucleusSemanticColorsDark.actionGhostContent
+        "semantic.color.action.primary" -> NucleusSemanticColorsDark.actionPrimary
+        "semantic.color.action.primaryContent" -> NucleusSemanticColorsDark.actionPrimaryContent
+        "semantic.color.action.secondary" -> NucleusSemanticColorsDark.actionSecondary
+        "semantic.color.action.secondaryContent" -> NucleusSemanticColorsDark.actionSecondaryContent
+        "semantic.color.action.tertiary" -> NucleusSemanticColorsDark.actionTertiary
+        "semantic.color.action.tertiaryContent" -> NucleusSemanticColorsDark.actionTertiaryContent
+        "semantic.color.border.default" -> NucleusSemanticColorsDark.borderDefault
+        "semantic.color.border.divider" -> NucleusSemanticColorsDark.borderDivider
+        "semantic.color.border.focus" -> NucleusSemanticColorsDark.borderFocus
+        "semantic.color.border.strong" -> NucleusSemanticColorsDark.borderStrong
+        "semantic.color.border.subtle" -> NucleusSemanticColorsDark.borderSubtle
+        "semantic.color.border.translucent" -> NucleusSemanticColorsDark.borderTranslucent
+        "semantic.color.icon.disabled" -> NucleusSemanticColorsDark.iconDisabled
+        "semantic.color.icon.inverse" -> NucleusSemanticColorsDark.iconInverse
+        "semantic.color.icon.primary" -> NucleusSemanticColorsDark.iconPrimary
+        "semantic.color.icon.secondary" -> NucleusSemanticColorsDark.iconSecondary
+        "semantic.color.icon.tertiary" -> NucleusSemanticColorsDark.iconTertiary
+        "semantic.color.input.background" -> NucleusSemanticColorsDark.inputBackground
+        "semantic.color.input.backgroundFocus" -> NucleusSemanticColorsDark.inputBackgroundFocus
+        "semantic.color.input.divider" -> NucleusSemanticColorsDark.inputDivider
+        "semantic.color.input.error" -> NucleusSemanticColorsDark.inputError
+        "semantic.color.input.placeholder" -> NucleusSemanticColorsDark.inputPlaceholder
+        "semantic.color.input.text" -> NucleusSemanticColorsDark.inputText
+        "semantic.color.status.error" -> NucleusSemanticColorsDark.statusError
+        "semantic.color.status.errorBackground" -> NucleusSemanticColorsDark.statusErrorBackground
+        "semantic.color.status.info" -> NucleusSemanticColorsDark.statusInfo
+        "semantic.color.status.infoBackground" -> NucleusSemanticColorsDark.statusInfoBackground
+        "semantic.color.status.success" -> NucleusSemanticColorsDark.statusSuccess
+        "semantic.color.status.successBackground" -> NucleusSemanticColorsDark.statusSuccessBackground
+        "semantic.color.status.warning" -> NucleusSemanticColorsDark.statusWarning
+        "semantic.color.status.warningBackground" -> NucleusSemanticColorsDark.statusWarningBackground
+        "semantic.color.surface.elevated" -> NucleusSemanticColorsDark.surfaceElevated
+        "semantic.color.surface.overlay" -> NucleusSemanticColorsDark.surfaceOverlay
+        "semantic.color.surface.primary" -> NucleusSemanticColorsDark.surfacePrimary
+        "semantic.color.surface.secondary" -> NucleusSemanticColorsDark.surfaceSecondary
+        "semantic.color.surface.tertiary" -> NucleusSemanticColorsDark.surfaceTertiary
+        "semantic.color.text.disabled" -> NucleusSemanticColorsDark.textDisabled
+        "semantic.color.text.inverse" -> NucleusSemanticColorsDark.textInverse
+        "semantic.color.text.primary" -> NucleusSemanticColorsDark.textPrimary
+        "semantic.color.text.secondary" -> NucleusSemanticColorsDark.textSecondary
+        "semantic.color.text.tertiary" -> NucleusSemanticColorsDark.textTertiary
         else -> null
     }
 }
