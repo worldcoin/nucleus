@@ -115,7 +115,8 @@ extension NucleusIcon: TokenResolvable {
         }
         guard
             let icon = iconTokens[components[0]],
-            let variant = variantTokens[components[1]]
+            let variant = variantTokens[components[1]],
+            icon.availableVariants.contains(variant)
         else {
             assertionFailure("unknown NucleusIcon token: \\(token)")
             return nil
