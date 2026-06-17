@@ -141,4 +141,7 @@ jobs:
         env:
           # npm token with publish rights to the @worldcoin org (same as minikit-js / idkit-js).
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm publish
+        # --ignore-scripts: the web package is pre-built (build/web), so it has no publish-time
+        # lifecycle scripts; skipping them prevents any injected prepublish/prepare script from
+        # running while NPM_TOKEN is in the environment.
+        run: npm publish --ignore-scripts
