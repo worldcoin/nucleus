@@ -130,6 +130,7 @@ jobs:
           name: web-tokens
           path: web-build/
 
+      # Primary: the public npm registry (findable on npmjs, installable without auth).
       - uses: actions/setup-node@v5
         with:
           node-version: 22
@@ -143,5 +144,19 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         # --ignore-scripts: the web package is pre-built (build/web), so it has no publish-time
         # lifecycle scripts; skipping them prevents any injected prepublish/prepare script from
-        # running while NPM_TOKEN is in the environment.
+        # running while a publish token is in the environment. --access public marks the scoped
+        # package public on npm.
+        run: npm publish --ignore-scripts --access public
+
+      # Backup: also publish to GitHub Packages (re-point the scope registry + use GITHUB_TOKEN).
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          registry-url: https://npm.pkg.github.com
+          scope: "@worldcoin"
+
+      - name: Publish to GitHub Packages (backup)
+        working-directory: web-build
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm publish --ignore-scripts

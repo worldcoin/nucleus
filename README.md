@@ -268,7 +268,7 @@ If the computed tag already exists, `prepare-release.yml` skips instead of openi
 3. **Tag + build** — the merged release commit is tagged as `v*`, then `npm run build` runs and uploads `android-tokens`, `ios-tokens`, and `web-tokens`.
 4. **publish-mvn** — publishes Android library to GitHub Packages.
 5. **publish-spm** — commits generated iOS files to the `generated/ios` branch, tags as `v*-ios`.
-6. **publish-npm** — publishes the web package to the public npm registry (`@worldcoin/nucleus`, `--access public` via `publishConfig`). Requires an `NPM_TOKEN` repo secret with publish rights to the `@worldcoin` npm org (same as minikit-js / idkit-js). Android stays on GitHub Packages (Maven).
+6. **publish-npm** — publishes the web package (`@worldcoin/nucleus`) to the **public npm registry** (`--access public`; requires an `NPM_TOKEN` repo secret with publish rights to the `@worldcoin` npm org, same as minikit-js / idkit-js) **and** mirrors it to **GitHub Packages** as a backup (`GITHUB_TOKEN`). Both publishes use `--ignore-scripts`. Android stays on GitHub Packages (Maven).
 
 `publish-release.yml` only publishes the first time it creates the `v*` tag. Reruns after that tag exists skip the publish jobs.
 
