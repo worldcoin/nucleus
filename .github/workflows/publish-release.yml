@@ -120,6 +120,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./gradlew :nucleus:publishReleasePublicationToGitHubPackagesRepository
 
+  # Primary registry: public npm (findable on npmjs, installable without auth). Independent of the
+  # GitHub Packages mirror below so a failure in one doesn't block the other.
   publish-npm:
     needs: [release, build]
     if: needs.release.outputs.publish == 'true'
@@ -130,7 +132,6 @@ jobs:
           name: web-tokens
           path: web-build/
 
-      # Primary: the public npm registry (findable on npmjs, installable without auth).
       - uses: actions/setup-node@v5
         with:
           node-version: 22
@@ -148,7 +149,18 @@ jobs:
         # package public on npm.
         run: npm publish --ignore-scripts --access public
 
-      # Backup: also publish to GitHub Packages (re-point the scope registry + use GITHUB_TOKEN).
+  # Backup registry: GitHub Packages. Separate job so it runs even if the public-npm publish fails
+  # (e.g. NPM_TOKEN missing), and vice versa.
+  publish-gh-packages:
+    needs: [release, build]
+    if: needs.release.outputs.publish == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: web-tokens
+          path: web-build/
+
       - uses: actions/setup-node@v5
         with:
           node-version: 22
