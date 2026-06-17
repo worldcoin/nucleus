@@ -191,13 +191,7 @@ Text("Hello")
 <details>
 <summary><b>Web</b></summary>
 
-Add a `.npmrc` to your project:
-
-```
-@worldcoin:registry=https://npm.pkg.github.com
-```
-
-Then install:
+Install from npm (public, no auth required):
 
 ```bash
 npm install @worldcoin/nucleus
@@ -274,7 +268,7 @@ If the computed tag already exists, `prepare-release.yml` skips instead of openi
 3. **Tag + build** — the merged release commit is tagged as `v*`, then `npm run build` runs and uploads `android-tokens`, `ios-tokens`, and `web-tokens`.
 4. **publish-mvn** — publishes Android library to GitHub Packages.
 5. **publish-spm** — commits generated iOS files to the `generated/ios` branch, tags as `v*-ios`.
-6. **publish-npm** — publishes web package to GitHub Packages npm registry.
+6. **publish-npm** — publishes the web package to the public npm registry (`@worldcoin/nucleus`, `--access public` via `publishConfig`). Requires an `NPM_TOKEN` repo secret with publish rights to the `@worldcoin` npm org (same as minikit-js / idkit-js). Android stays on GitHub Packages (Maven).
 
 `publish-release.yml` only publishes the first time it creates the `v*` tag. Reruns after that tag exists skip the publish jobs.
 

@@ -133,11 +133,12 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
-          registry-url: https://npm.pkg.github.com
+          registry-url: https://registry.npmjs.org/
           scope: "@worldcoin"
 
-      - name: Publish to GitHub Packages
+      - name: Publish to npm
         working-directory: web-build
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # npm token with publish rights to the @worldcoin org (same as minikit-js / idkit-js).
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm publish
