@@ -10,8 +10,7 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
-  contents: write
-  packages: write
+  contents: read
 
 jobs:
   release:
@@ -93,6 +92,10 @@ jobs:
     needs: [release, build]
     if: needs.release.outputs.publish == 'true'
     runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: write
+      packages: write
     steps:
       - uses: actions/checkout@v5
         with:
@@ -126,6 +129,7 @@ jobs:
     needs: [release, build]
     if: needs.release.outputs.publish == 'true'
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - uses: actions/download-artifact@v4
         with:
@@ -140,35 +144,8 @@ jobs:
 
       - name: Publish to npm
         working-directory: web-build
-        env:
-          # npm token with publish rights to the @worldcoin org (same as minikit-js / idkit-js).
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         # --ignore-scripts: the web package is pre-built (build/web), so it has no publish-time
         # lifecycle scripts; skipping them prevents any injected prepublish/prepare script from
         # running while a publish token is in the environment. --access public marks the scoped
         # package public on npm.
         run: npm publish --ignore-scripts --access public
-
-  # Backup registry: GitHub Packages. Separate job so it runs even if the public-npm publish fails
-  # (e.g. NPM_TOKEN missing), and vice versa.
-  publish-gh-packages:
-    needs: [release, build]
-    if: needs.release.outputs.publish == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          name: web-tokens
-          path: web-build/
-
-      - uses: actions/setup-node@v5
-        with:
-          node-version: 22
-          registry-url: https://npm.pkg.github.com
-          scope: "@worldcoin"
-
-      - name: Publish to GitHub Packages (backup)
-        working-directory: web-build
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm publish --ignore-scripts
