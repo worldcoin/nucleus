@@ -13,9 +13,6 @@
     "token-paths.js",
     "token-paths.d.ts"
   ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/worldcoin/nucleus.git"
