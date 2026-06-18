@@ -145,6 +145,9 @@ jobs:
           registry-url: https://registry.npmjs.org/
           scope: "@worldcoin"
 
+      # Trusted publishing requires npm >= 11.5.1; Node 22 ships with npm 10.9.x.
+      - run: npm install -g npm@latest
+
       - name: Publish to npm
         working-directory: web-build
         # --ignore-scripts: the web package is pre-built (build/web), so it has no publish-time
