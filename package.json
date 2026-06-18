@@ -1,9 +1,10 @@
 {
   "name": "@worldcoin/nucleus",
   "version": "0.1.4",
-  "private": true,
+  "private": false,
   "description": "Design tokens for the World ecosystem",
   "type": "module",
+  "license": "MIT",
   "scripts": {
     "build": "npm run clean && tsx tokens/build/index.ts",
     "typecheck": "tsc --noEmit",
