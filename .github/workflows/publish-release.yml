@@ -18,6 +18,8 @@ jobs:
       github.event.pull_request.merged == true &&
       startsWith(github.event.pull_request.head.ref, 'release/v')
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     outputs:
       version: ${{ steps.plan.outputs.version }}
       target_sha: ${{ steps.plan.outputs.target_sha }}
@@ -94,7 +96,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     permissions:
-      contents: write
       packages: write
     steps:
       - uses: actions/checkout@v5
@@ -130,6 +131,8 @@ jobs:
     if: needs.release.outputs.publish == 'true'
     runs-on: ubuntu-latest
     environment: production
+    permissions:
+      id-token: write
     steps:
       - uses: actions/download-artifact@v4
         with:
@@ -149,3 +152,28 @@ jobs:
         # running while a publish token is in the environment. --access public marks the scoped
         # package public on npm.
         run: npm publish --ignore-scripts --access public
+  publish-gh-packages:
+    needs: [release, build]
+    if: needs.release.outputs.publish == 'true'
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      packages: write
+      attestations: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: web-tokens
+          path: web-build/
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          registry-url: https://npm.pkg.github.com
+          scope: "@worldcoin"
+
+      - name: Publish to GitHub Packages (backup)
+        working-directory: web-build
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm publish --ignore-scripts
