@@ -1,6 +1,6 @@
 {
   "name": "@worldcoin/nucleus",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": true,
   "description": "Design tokens for the World ecosystem",
   "type": "module",
