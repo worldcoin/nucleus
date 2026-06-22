@@ -1,0 +1,22 @@
+// This file is auto-generated. Do not edit manually.
+
+public extension NucleusIcon {
+    /// A Nucleus icon glyph.
+    ///
+    /// Each case's raw value is the kebab-case icon name (for example `arrow-down-left`). See ``availableVariants`` for the variants a given symbol is shipped in.
+    enum Symbol: String, CaseIterable, Sendable {
+{{#each tokens}}
+        /// `{{name}}` icon. Available in: {{availableVariantsHuman}}.
+        case {{swiftCase}} = "{{name}}"
+{{/each}}
+
+        /// The variants this symbol is shipped in.
+        public var availableVariants: Set<Variant> {
+            switch self {
+{{#each tokens}}
+            case .{{swiftCase}}: return [{{availableVariantsSwift}}]
+{{/each}}
+            }
+        }
+    }
+}

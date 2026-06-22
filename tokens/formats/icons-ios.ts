@@ -9,7 +9,7 @@ import {
 } from './icons-shared.js';
 
 const TEMPLATE = Handlebars.compile(
-  readTemplate('tokens/templates/ios/NucleusIcon+Defaults.swift.hbs'),
+  readTemplate('tokens/templates/ios/NucleusIcon+Symbol.swift.hbs'),
 );
 
 interface IOSIconEntry {
