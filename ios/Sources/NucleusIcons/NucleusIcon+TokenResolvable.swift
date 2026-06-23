@@ -2,7 +2,7 @@
 
 import NucleusTokens
 
-private let iconTokens: [String: NucleusIcon] = [
+private let iconTokens: [String: NucleusIcon.Symbol] = [
     "airplane": .airplane,
     "antenna-signal": .antennaSignal,
     "apple-mac": .appleMac,
@@ -154,20 +154,20 @@ private let variantTokens: [String: NucleusIcon.Variant] = [
 
 extension NucleusIcon: TokenResolvable {
     /// Resolves a type-scoped icon token `name.variant`, e.g. `arrow-right.regular`.
-    public static func resolve(token: String) -> (icon: NucleusIcon, variant: NucleusIcon.Variant)? {
+    public static func resolve(token: String) -> NucleusIcon? {
         let components = token.components(separatedBy: ".")
         guard components.count == 2 else {
             assertionFailure("NucleusIcon token must be `name.variant`: \(token)")
             return nil
         }
         guard
-            let icon = iconTokens[components[0]],
+            let symbol = iconTokens[components[0]],
             let variant = variantTokens[components[1]],
-            icon.availableVariants.contains(variant)
+            symbol.availableVariants.contains(variant)
         else {
             assertionFailure("unknown NucleusIcon token: \(token)")
             return nil
         }
-        return (icon, variant)
+        return NucleusIcon(symbol, variant: variant)
     }
 }

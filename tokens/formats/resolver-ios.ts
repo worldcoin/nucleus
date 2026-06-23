@@ -89,7 +89,7 @@ export function generateIOSButtonResolvable(catalog: TokenCatalog): string {
 export function generateIOSIconResolvable(catalog: TokenCatalog): string {
   const names = dictionary(
     'iconTokens',
-    'NucleusIcon',
+    'NucleusIcon.Symbol',
     catalog.iconNames.map((i) => ({ key: i.name, value: `.${i.swiftCase}` })),
   );
   const variants = dictionary(
@@ -107,21 +107,21 @@ ${variants}
 
 extension NucleusIcon: TokenResolvable {
     /// Resolves a type-scoped icon token \`name.variant\`, e.g. \`arrow-right.regular\`.
-    public static func resolve(token: String) -> (icon: NucleusIcon, variant: NucleusIcon.Variant)? {
+    public static func resolve(token: String) -> NucleusIcon? {
         let components = token.components(separatedBy: ".")
         guard components.count == 2 else {
             assertionFailure("NucleusIcon token must be \`name.variant\`: \\(token)")
             return nil
         }
         guard
-            let icon = iconTokens[components[0]],
+            let symbol = iconTokens[components[0]],
             let variant = variantTokens[components[1]],
-            icon.availableVariants.contains(variant)
+            symbol.availableVariants.contains(variant)
         else {
             assertionFailure("unknown NucleusIcon token: \\(token)")
             return nil
         }
-        return (icon, variant)
+        return NucleusIcon(symbol, variant: variant)
     }
 }
 `;

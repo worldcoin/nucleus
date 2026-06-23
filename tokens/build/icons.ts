@@ -52,10 +52,10 @@ function buildIOSIcons(tokens: IconToken[]): void {
 
   const swiftDir = resolve(ROOT, IOS_ICONS_OUT);
   mkdirSync(swiftDir, { recursive: true });
-  writeFileSync(resolve(swiftDir, 'NucleusIcon+Defaults.swift'), generateIOSIcons(tokens));
+  writeFileSync(resolve(swiftDir, 'NucleusIcon+Symbol.swift'), generateIOSIcons(tokens));
 
   logStage('tokens/definitions/icons (ios)', [
-    ['ios', `${IOS_ICONS_OUT}/NucleusIcon+Defaults.swift`],
+    ['ios', `${IOS_ICONS_OUT}/NucleusIcon+Symbol.swift`],
     ['ios', `${IOS_ICONS_ASSETS_OUT} (${plans.length} imagesets)`],
   ]);
 }

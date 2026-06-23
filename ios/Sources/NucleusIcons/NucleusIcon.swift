@@ -1,21 +1,31 @@
-import SwiftUI
-import UIKit
+import Foundation
 
 /// A Nucleus design token icon.
 ///
-/// `NucleusIcon` enumerates every icon shipped by Nucleus. Each case's raw value is the kebab-case icon name (for example `arrow-down-left`). Icons ship in three variants: outline, regular, and solid. Most icons are available in all three; see ``availableVariants`` for the variants supported by a given case.
-public extension NucleusIcon {
+/// A `NucleusIcon` pairs a ``Symbol``(eg. `arrow-down-left`) with the stylistic ``Variant`` it should render in. Icons ship in three variants: outline, regular, and solid. Most symbols are available in all three; see ``Symbol/availableVariants`` for the variants supported by a given symbol.
+public struct NucleusIcon: Equatable, Hashable, Sendable {
     /// Stylistic variant of an icon.
-    enum Variant: String, CaseIterable, Sendable {
+    public enum Variant: String, CaseIterable, Sendable {
         case outline
         case regular
         case solid
     }
 
-    static let bundle = Bundle.module
+    /// The glyph this icon renders.
+    public let symbol: Symbol
+    /// The stylistic variant the symbol renders in.
+    public let variant: Variant
 
-    func assetName(for variant: Variant) -> String? {
-        guard availableVariants.contains(variant) else { return nil }
-        return "\(rawValue)-\(variant.rawValue)"
+    public init(_ symbol: Symbol, variant: Variant) {
+        self.symbol = symbol
+        self.variant = variant
+    }
+
+    public static let bundle = Bundle.module
+
+    /// The asset catalog name for this icon, or `nil` if the symbol isn't shipped in this variant.
+    public var assetName: String? {
+        guard symbol.availableVariants.contains(variant) else { return nil }
+        return "\(symbol.rawValue)-\(variant.rawValue)"
     }
 }
