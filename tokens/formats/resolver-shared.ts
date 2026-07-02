@@ -1,14 +1,14 @@
 import { loadButtonDefinition, resolveButtonStyles } from './buttons.js';
 import { discoverIconTokens, type IconVariant } from './icons-shared.js';
 import { loadColorTokens, loadFontDefinitions } from './loaders.js';
-import { camelCasePath, publicColorPath, typographyTokenPath } from './shared.js';
+import { camelCasePath, publicColorPath } from './shared.js';
 
 /**
  * Shared catalog for the token-path ↔ token resolvers. Enumerates every published token with both
  * its canonical path (for reference) and the **type-scoped wire token** the backend emits and the
  * resolvers key on — the namespace that the resolver type already implies is stripped:
  *   - color:      `semantic.color.text.primary` → `text.primary`  (and `primitive.color.grey.900` → `grey.900`)
- *   - typography: `typography.subtitle.s3`       → `s3`
+ *   - typography: referenced directly by name, e.g. `s3`
  *   - button:     `component.button.inverse.32`  → `inverse.32`
  *   - icon:       `icon.arrow-right.regular`      → `arrow-right.regular`
  * Reuses the same accessor-naming the platform token generators use, so the resolver can't drift.
@@ -27,9 +27,9 @@ export interface ColorEntry {
 }
 
 export interface FontEntry {
-  /** Type-scoped wire token (bare id), e.g. `s3`. Also the `NucleusFont(s)` accessor. */
+  /** Wire token (bare id), e.g. `s3`. Also the `NucleusFont(s)` accessor and web-constant key. */
   wireToken: string;
-  /** camelCase web-constant key, e.g. `subtitleS3`. */
+  /** web-constant key, e.g. `s3`. */
   key: string;
 }
 
@@ -92,13 +92,10 @@ export function buildTokenCatalog(): TokenCatalog {
   const semanticColors = colorEntries(SEMANTIC_LIGHT_SOURCE);
   const primitiveColors = colorEntries(PRIMITIVE_SOURCE);
 
-  const fonts: FontEntry[] = loadFontDefinitions(FONT_SOURCE).tokens.map((token) => {
-    const path = typographyTokenPath(token.name); // typography.subtitle.s3
-    return {
-      wireToken: token.name, // bare id, e.g. s3
-      key: camelCasePath(path.split('.').slice(1)), // subtitleS3 (web)
-    };
-  });
+  const fonts: FontEntry[] = loadFontDefinitions(FONT_SOURCE).tokens.map((token) => ({
+    wireToken: token.name, // bare id, e.g. s3
+    key: token.name, // s3 (web)
+  }));
 
   const buttons: ButtonEntry[] = resolveButtonStyles(
     loadButtonDefinition(BUTTON_SOURCE),

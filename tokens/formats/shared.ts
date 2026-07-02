@@ -44,27 +44,3 @@ export function parseReference(rawValue: string): string[] | null {
   const match = rawValue.match(REFERENCE_RE);
   return match ? match[1].split('.') : null;
 }
-
-const FONT_CATEGORY: Record<string, string> = {
-  d: 'display',
-  n: 'number',
-  h: 'headline',
-  s: 'subtitle',
-  l: 'label',
-  b: 'body',
-};
-
-/**
- * Grouped typography path for a flat font-token id, e.g. `s1` → `typography.subtitle.s1`.
- * The category is derived from the id prefix (UI Kit 4.0 grouping).
- */
-export function typographyTokenPath(fontName: string): string {
-  const category = FONT_CATEGORY[fontName[0]];
-  if (!category) {
-    throw new Error(
-      `Cannot derive typography category for font token "${fontName}". ` +
-        `Add a prefix mapping to FONT_CATEGORY in formats/shared.ts.`,
-    );
-  }
-  return `typography.${category}.${fontName}`;
-}

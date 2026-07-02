@@ -25,11 +25,6 @@ function colorAccessor(path: string): string {
   return camelCasePath(publicColorPath(path.split('.')));
 }
 
-/** Typography path → NucleusFont accessor (bare id), e.g. `typography.subtitle.s1` → `s1`. */
-function fontAccessor(path: string): string {
-  return path.split('.').at(-1) ?? path;
-}
-
 function toEntry(style: ResolvedButtonStyle): IOSButtonEntry {
   return {
     name: `${style.variant}${style.size}`,
@@ -40,7 +35,7 @@ function toEntry(style: ResolvedButtonStyle): IOSButtonEntry {
     cornerRadius: style.cornerRadius,
     paddingHorizontal: style.paddingHorizontal,
     paddingVertical: style.paddingVertical,
-    font: fontAccessor(style.font),
+    font: style.font,
     pressedInset: style.pressedInset,
   };
 }
