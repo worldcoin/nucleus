@@ -86,7 +86,7 @@ object NucleusTokenResolver {
         isDark: Boolean,
     ): Color? = if (isDark) colorDark(token) else colorLight(token)
 
-    /** Resolves a typography token path, e.g. \`typography.subtitle.s3\`. */
+    /** Resolves a typography token, e.g. \`s3\`. */
     fun font(token: String): NucleusFontStyle? =
         when (token) {
 ${whenBody(fontBranches, '            ')}

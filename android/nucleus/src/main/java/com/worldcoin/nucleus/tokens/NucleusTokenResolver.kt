@@ -19,30 +19,22 @@ object NucleusTokenResolver {
         isDark: Boolean,
     ): Color? = if (isDark) colorDark(token) else colorLight(token)
 
-    /** Resolves a typography token path, e.g. `typography.subtitle.s3`. */
+    /** Resolves a typography token, e.g. `s3`. */
     fun font(token: String): NucleusFontStyle? =
         when (token) {
             "b1" -> NucleusFonts.b1
             "b2" -> NucleusFonts.b2
             "b3" -> NucleusFonts.b3
-            "b4" -> NucleusFonts.b4
+            "c1" -> NucleusFonts.c1
             "d1" -> NucleusFonts.d1
             "h1" -> NucleusFonts.h1
             "h2" -> NucleusFonts.h2
             "h3" -> NucleusFonts.h3
             "h4" -> NucleusFonts.h4
-            "l1" -> NucleusFonts.l1
-            "l2" -> NucleusFonts.l2
-            "l3" -> NucleusFonts.l3
-            "n1" -> NucleusFonts.n1
-            "n2" -> NucleusFonts.n2
-            "n3" -> NucleusFonts.n3
-            "n4" -> NucleusFonts.n4
-            "n5" -> NucleusFonts.n5
+            "h5" -> NucleusFonts.h5
             "s1" -> NucleusFonts.s1
             "s2" -> NucleusFonts.s2
             "s3" -> NucleusFonts.s3
-            "s4" -> NucleusFonts.s4
             else -> null
         }
 
