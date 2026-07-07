@@ -25,10 +25,6 @@ function colorAccessor(path: string): string {
   return camelCasePath(publicColorPath(path.split('.')));
 }
 
-function fontAccessor(path: string): string {
-  return path.split('.').at(-1) ?? path;
-}
-
 function toEntry(style: ResolvedButtonStyle): AndroidButtonEntry {
   return {
     name: `${style.variant}${style.size}`,
@@ -39,7 +35,7 @@ function toEntry(style: ResolvedButtonStyle): AndroidButtonEntry {
     cornerRadius: style.cornerRadius,
     paddingHorizontal: style.paddingHorizontal,
     paddingVertical: style.paddingVertical,
-    font: fontAccessor(style.font),
+    font: style.font,
     pressedInset: style.pressedInset,
   };
 }

@@ -2,7 +2,7 @@ import { readFileSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
-import { parseReference, typographyTokenPath } from './shared.js';
+import { parseReference } from './shared.js';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 
@@ -43,8 +43,6 @@ export interface ButtonSize {
   paddingVertical: number;
   /** Source font token id, e.g. `s1`. */
   fontToken: string;
-  /** Grouped typography path, e.g. `typography.subtitle.s1`. */
-  fontPath: string;
 }
 export interface ButtonDefinition {
   variants: ButtonVariant[];
@@ -111,7 +109,6 @@ export function loadButtonDefinition(jsonPath: string): ButtonDefinition {
         `${jsonPath} → sizes.${name}.paddingVertical`,
       ),
       fontToken,
-      fontPath: typographyTokenPath(fontToken),
     };
   });
 
@@ -157,7 +154,7 @@ export function resolveButtonStyles(
         cornerRadius: size.cornerRadius,
         paddingHorizontal: size.paddingHorizontal,
         paddingVertical: size.paddingVertical,
-        font: size.fontPath,
+        font: size.fontToken,
         pressedInset: def.pressedInset,
       });
     }

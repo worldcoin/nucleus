@@ -1,11 +1,15 @@
 import Foundation
 
 extension NucleusFont {
-    public struct LineHeight: Equatable, Hashable, Sendable, ExpressibleByFloatLiteral {
+    public struct LineHeight: Equatable, Hashable, Sendable, ExpressibleByFloatLiteral, ExpressibleByIntegerLiteral {
         public let value: Double
 
         public init(floatLiteral value: Double) {
             self.value = value
+        }
+
+        public init(integerLiteral value: IntegerLiteralType) {
+            self.value = Double(value)
         }
 
         public static let tight: LineHeight = 1.0
