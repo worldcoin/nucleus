@@ -90,6 +90,27 @@ object NucleusFonts {
         letterSpacing = (0).em,
         lineHeight = (1.2).em,
     )
+    val l1 = NucleusFontStyle(
+        fontFamily = FontFamily(Font(R.font.world_pro_mvp)),
+        fontSize = 17.sp,
+        fontWeight = FontWeight(600),
+        letterSpacing = (0).em,
+        lineHeight = (1.2).em,
+    )
+    val l2 = NucleusFontStyle(
+        fontFamily = FontFamily(Font(R.font.world_pro_mvp)),
+        fontSize = 15.sp,
+        fontWeight = FontWeight(600),
+        letterSpacing = (0).em,
+        lineHeight = (1.2).em,
+    )
+    val l3 = NucleusFontStyle(
+        fontFamily = FontFamily(Font(R.font.world_pro_mvp)),
+        fontSize = 13.sp,
+        fontWeight = FontWeight(600),
+        letterSpacing = (0).em,
+        lineHeight = (1.2).em,
+    )
     val b1 = NucleusFontStyle(
         fontFamily = FontFamily(Font(R.font.world_pro_mvp)),
         fontSize = 17.sp,

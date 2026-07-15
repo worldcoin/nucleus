@@ -73,6 +73,30 @@ public extension NucleusFont {
         lineHeight: 1.2,
         dynamicTypeStyle: .footnote
     )
+    static let l1 = NucleusFont(
+        fontName: "WorldProMVPLH-Regular",
+        size: 17,
+        weight: 600,
+        letterSpacing: 0,
+        lineHeight: 1.2,
+        dynamicTypeStyle: .headline
+    )
+    static let l2 = NucleusFont(
+        fontName: "WorldProMVPLH-Regular",
+        size: 15,
+        weight: 600,
+        letterSpacing: 0,
+        lineHeight: 1.2,
+        dynamicTypeStyle: .subheadline
+    )
+    static let l3 = NucleusFont(
+        fontName: "WorldProMVPLH-Regular",
+        size: 13,
+        weight: 600,
+        letterSpacing: 0,
+        lineHeight: 1.2,
+        dynamicTypeStyle: .footnote
+    )
     static let b1 = NucleusFont(
         fontName: "WorldProMVPLH-Regular",
         size: 17,
