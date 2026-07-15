@@ -2,9 +2,13 @@ import localTokenSet from "./token-source.local";
 import packageTokenSet from "./token-source.package";
 import type {
   AppTheme,
+  ButtonSpec,
   ColorGroup,
   DemoSection,
   DemoTheme,
+  FontStyleToken,
+  IconEntry,
+  IconVariant,
   SemanticMode,
 } from "./models";
 
@@ -287,12 +291,16 @@ function buildSemanticMode(
 ): SemanticMode {
   const entries = resolveTokenEntries(tokens, tokens);
   const groups = buildGroups(entries);
+  const resolvedTokens = Object.fromEntries(
+    entries.map((entry) => [entry.name, entry.value]),
+  );
 
   return {
     id,
     name,
     theme: buildSemanticTheme(entries, fallback),
     groups,
+    resolvedTokens,
   };
 }
 
@@ -316,15 +324,98 @@ export const appThemes: AppTheme[] = semanticModes.map((mode) => ({
 
 const primitiveGroups = buildGroups(primitiveEntries);
 
+export const fontStyles: FontStyleToken[] = Object.entries(tokenSet.fonts).map(
+  ([name, style]) => ({ name, ...style }),
+);
+
+const iconVariantOrder: IconVariant[] = ["outline", "regular", "solid"];
+
+export const iconEntries: IconEntry[] = Object.entries(tokenSet.icons)
+  .map(([name, icon]) => {
+    const svg: IconEntry["svg"] = {};
+    for (const variant of iconVariantOrder) {
+      const markup = icon.svg[variant];
+      if (markup) {
+        svg[variant] = markup;
+      }
+    }
+    return { name, svg };
+  })
+  .sort((left, right) => left.name.localeCompare(right.name));
+
+const buttonVariantOrder = [
+  "primary",
+  "secondary",
+  "tertiary",
+  "ghost",
+  "inverse",
+  "disabled",
+];
+
+export const buttonSpecs: ButtonSpec[] = Object.entries(tokenSet.button)
+  .map(([key, config]) => {
+    const [, , variant, size] = key.split(".");
+    return { variant, size: Number(size), ...config };
+  })
+  .sort(
+    (left, right) =>
+      buttonVariantOrder.indexOf(left.variant) -
+        buttonVariantOrder.indexOf(right.variant) || left.size - right.size,
+  );
+
+/**
+ * Resolves a component token color reference like
+ * "semantic.color.action.primary" against a mode's resolved semantic tokens.
+ */
+export function resolveSemanticReference(
+  reference: string,
+  mode: SemanticMode,
+): string | undefined {
+  const path = reference.replace(/^semantic\.color\./, "");
+  const key = path
+    .split(".")
+    .map((segment, index) =>
+      index === 0 ? segment : segment.charAt(0).toUpperCase() + segment.slice(1),
+    )
+    .join("");
+
+  return mode.resolvedTokens[key];
+}
+
 export const demoSections: DemoSection[] = [
   {
-    id: "primitive",
-    label: "Primitive",
-    groups: primitiveGroups,
+    kind: "colors",
+    id: "colors",
+    label: "Colors",
+    palettes: [
+      {
+        id: "primitive",
+        label: "Primitive",
+        groups: primitiveGroups,
+      },
+      ...semanticModes.map((mode) => ({
+        id: `semantic-${mode.id}`,
+        label: `Semantic ${mode.name}`,
+        groups: mode.groups,
+      })),
+    ],
   },
-  ...semanticModes.map((mode) => ({
-    id: `semantic-${mode.id}`,
-    label: mode.name,
-    groups: mode.groups,
-  })),
+  {
+    kind: "typography",
+    id: "typography",
+    label: "Typography",
+    styles: fontStyles,
+  },
+  {
+    kind: "icons",
+    id: "icons",
+    label: "Icons",
+    icons: iconEntries,
+  },
+  {
+    kind: "buttons",
+    id: "buttons",
+    label: "Buttons",
+    buttons: buttonSpecs,
+  },
 ];

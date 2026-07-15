@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HeroSection } from "./components/HeroSection";
 import { TokenSectionCard } from "./components/TokenSectionCard";
 import type { AppTheme, DemoTheme } from "./models";
-import { appThemes, demoSections } from "./tokens";
+import { appThemes, demoSections, fontStyles, semanticModes } from "./tokens";
 
 function fallbackSectionTheme(theme: AppTheme): DemoTheme {
   return {
@@ -19,14 +19,30 @@ function fallbackSectionTheme(theme: AppTheme): DemoTheme {
   };
 }
 
+const THEME_STORAGE_KEY = "nucleus-theme";
+
 export default function Home() {
   const [selectedSectionId, setSelectedSectionId] = useState(demoSections[0].id);
-  const [selectedThemeId, setSelectedThemeId] = useState<AppTheme["id"]>("dark");
+  const [selectedThemeId, setSelectedThemeId] = useState<AppTheme["id"]>("light");
+
+  useEffect(() => {
+    const stored = window.localStorage.getItem(THEME_STORAGE_KEY);
+    if (stored === "light" || stored === "dark") {
+      setSelectedThemeId(stored);
+    }
+  }, []);
+
+  const selectTheme = (id: AppTheme["id"]) => {
+    setSelectedThemeId(id);
+    window.localStorage.setItem(THEME_STORAGE_KEY, id);
+  };
 
   const selectedSection =
     demoSections.find((section) => section.id === selectedSectionId) ?? demoSections[0];
   const activeTheme =
     appThemes.find((theme) => theme.id === selectedThemeId) ?? appThemes[0];
+  const activeMode =
+    semanticModes.find((mode) => mode.id === activeTheme.id) ?? semanticModes[0];
   const chromeTheme = fallbackSectionTheme(activeTheme);
 
   return (
@@ -43,11 +59,16 @@ export default function Home() {
           appThemes={appThemes}
           demoSections={demoSections}
           selectedSectionId={selectedSection.id}
-          onSelectTheme={setSelectedThemeId}
+          onSelectTheme={selectTheme}
           onSelectSection={setSelectedSectionId}
         />
 
-        <TokenSectionCard section={selectedSection} theme={chromeTheme} />
+        <TokenSectionCard
+          section={selectedSection}
+          theme={chromeTheme}
+          mode={activeMode}
+          fontStyles={fontStyles}
+        />
       </div>
     </main>
   );

@@ -1,6 +1,6 @@
 # Web Example
 
-Web sample app for Nucleus with two token source modes:
+Web sample app for Nucleus.
 
 - `local` reads generated files directly from `build/web`
 - `package` reads the local npm package artifact from `build/web`
