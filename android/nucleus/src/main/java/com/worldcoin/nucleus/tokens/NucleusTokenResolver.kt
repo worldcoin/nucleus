@@ -32,6 +32,9 @@ object NucleusTokenResolver {
             "h3" -> NucleusFonts.h3
             "h4" -> NucleusFonts.h4
             "h5" -> NucleusFonts.h5
+            "l1" -> NucleusFonts.l1
+            "l2" -> NucleusFonts.l2
+            "l3" -> NucleusFonts.l3
             "s1" -> NucleusFonts.s1
             "s2" -> NucleusFonts.s2
             "s3" -> NucleusFonts.s3
