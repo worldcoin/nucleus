@@ -9,6 +9,36 @@ export interface ColorGroup {
   colors: ColorToken[];
 }
 
+export interface FontStyleToken {
+  name: string;
+  fontName: string;
+  size: string;
+  weight: number;
+  letterSpacing: string;
+  lineHeight: number;
+}
+
+export type IconVariant = "outline" | "regular" | "solid";
+
+export interface IconEntry {
+  name: string;
+  svg: Partial<Record<IconVariant, string>>;
+}
+
+export interface ButtonSpec {
+  variant: string;
+  size: number;
+  background: string;
+  content: string;
+  border?: string;
+  height: number;
+  cornerRadius: number;
+  paddingHorizontal: number;
+  paddingVertical: number;
+  font: string;
+  pressedInset: number;
+}
+
 export interface DemoTheme {
   background: string;
   surface: string;
@@ -25,6 +55,7 @@ export interface SemanticMode {
   name: string;
   theme: DemoTheme;
   groups: ColorGroup[];
+  resolvedTokens: Record<string, string>;
 }
 
 export interface AppTheme {
@@ -37,8 +68,39 @@ export interface AppTheme {
   muted: string;
 }
 
-export interface DemoSection {
+interface DemoSectionBase {
+  id: string;
+  label: string;
+}
+
+export interface ColorPalette {
   id: string;
   label: string;
   groups: ColorGroup[];
 }
+
+export interface ColorsSection extends DemoSectionBase {
+  kind: "colors";
+  palettes: ColorPalette[];
+}
+
+export interface TypographySection extends DemoSectionBase {
+  kind: "typography";
+  styles: FontStyleToken[];
+}
+
+export interface IconsSection extends DemoSectionBase {
+  kind: "icons";
+  icons: IconEntry[];
+}
+
+export interface ButtonsSection extends DemoSectionBase {
+  kind: "buttons";
+  buttons: ButtonSpec[];
+}
+
+export type DemoSection =
+  | ColorsSection
+  | TypographySection
+  | IconsSection
+  | ButtonsSection;
