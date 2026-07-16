@@ -504,6 +504,16 @@ object NucleusTokenResolver {
             "action.secondaryContent" -> NucleusSemanticColorsLight.actionSecondaryContent
             "action.tertiary" -> NucleusSemanticColorsLight.actionTertiary
             "action.tertiaryContent" -> NucleusSemanticColorsLight.actionTertiaryContent
+            "aqua.100" -> NucleusPrimitiveColors.aqua100
+            "aqua.200" -> NucleusPrimitiveColors.aqua200
+            "aqua.300" -> NucleusPrimitiveColors.aqua300
+            "aqua.400" -> NucleusPrimitiveColors.aqua400
+            "aqua.500" -> NucleusPrimitiveColors.aqua500
+            "aqua.600" -> NucleusPrimitiveColors.aqua600
+            "aqua.700" -> NucleusPrimitiveColors.aqua700
+            "aqua.800" -> NucleusPrimitiveColors.aqua800
+            "aqua.900" -> NucleusPrimitiveColors.aqua900
+            "aqua.950" -> NucleusPrimitiveColors.aqua950
             "black" -> NucleusPrimitiveColors.black
             "border.default" -> NucleusSemanticColorsLight.borderDefault
             "border.divider" -> NucleusSemanticColorsLight.borderDivider
@@ -552,6 +562,26 @@ object NucleusTokenResolver {
             "input.error" -> NucleusSemanticColorsLight.inputError
             "input.placeholder" -> NucleusSemanticColorsLight.inputPlaceholder
             "input.text" -> NucleusSemanticColorsLight.inputText
+            "orange.100" -> NucleusPrimitiveColors.orange100
+            "orange.200" -> NucleusPrimitiveColors.orange200
+            "orange.300" -> NucleusPrimitiveColors.orange300
+            "orange.400" -> NucleusPrimitiveColors.orange400
+            "orange.500" -> NucleusPrimitiveColors.orange500
+            "orange.600" -> NucleusPrimitiveColors.orange600
+            "orange.700" -> NucleusPrimitiveColors.orange700
+            "orange.800" -> NucleusPrimitiveColors.orange800
+            "orange.900" -> NucleusPrimitiveColors.orange900
+            "orange.950" -> NucleusPrimitiveColors.orange950
+            "purple.100" -> NucleusPrimitiveColors.purple100
+            "purple.200" -> NucleusPrimitiveColors.purple200
+            "purple.300" -> NucleusPrimitiveColors.purple300
+            "purple.400" -> NucleusPrimitiveColors.purple400
+            "purple.500" -> NucleusPrimitiveColors.purple500
+            "purple.600" -> NucleusPrimitiveColors.purple600
+            "purple.700" -> NucleusPrimitiveColors.purple700
+            "purple.800" -> NucleusPrimitiveColors.purple800
+            "purple.900" -> NucleusPrimitiveColors.purple900
+            "purple.950" -> NucleusPrimitiveColors.purple950
             "status.error" -> NucleusSemanticColorsLight.statusError
             "status.errorBackground" -> NucleusSemanticColorsLight.statusErrorBackground
             "status.info" -> NucleusSemanticColorsLight.statusInfo
@@ -610,6 +640,16 @@ object NucleusTokenResolver {
             "action.secondaryContent" -> NucleusSemanticColorsDark.actionSecondaryContent
             "action.tertiary" -> NucleusSemanticColorsDark.actionTertiary
             "action.tertiaryContent" -> NucleusSemanticColorsDark.actionTertiaryContent
+            "aqua.100" -> NucleusPrimitiveColors.aqua100
+            "aqua.200" -> NucleusPrimitiveColors.aqua200
+            "aqua.300" -> NucleusPrimitiveColors.aqua300
+            "aqua.400" -> NucleusPrimitiveColors.aqua400
+            "aqua.500" -> NucleusPrimitiveColors.aqua500
+            "aqua.600" -> NucleusPrimitiveColors.aqua600
+            "aqua.700" -> NucleusPrimitiveColors.aqua700
+            "aqua.800" -> NucleusPrimitiveColors.aqua800
+            "aqua.900" -> NucleusPrimitiveColors.aqua900
+            "aqua.950" -> NucleusPrimitiveColors.aqua950
             "black" -> NucleusPrimitiveColors.black
             "border.default" -> NucleusSemanticColorsDark.borderDefault
             "border.divider" -> NucleusSemanticColorsDark.borderDivider
@@ -658,6 +698,26 @@ object NucleusTokenResolver {
             "input.error" -> NucleusSemanticColorsDark.inputError
             "input.placeholder" -> NucleusSemanticColorsDark.inputPlaceholder
             "input.text" -> NucleusSemanticColorsDark.inputText
+            "orange.100" -> NucleusPrimitiveColors.orange100
+            "orange.200" -> NucleusPrimitiveColors.orange200
+            "orange.300" -> NucleusPrimitiveColors.orange300
+            "orange.400" -> NucleusPrimitiveColors.orange400
+            "orange.500" -> NucleusPrimitiveColors.orange500
+            "orange.600" -> NucleusPrimitiveColors.orange600
+            "orange.700" -> NucleusPrimitiveColors.orange700
+            "orange.800" -> NucleusPrimitiveColors.orange800
+            "orange.900" -> NucleusPrimitiveColors.orange900
+            "orange.950" -> NucleusPrimitiveColors.orange950
+            "purple.100" -> NucleusPrimitiveColors.purple100
+            "purple.200" -> NucleusPrimitiveColors.purple200
+            "purple.300" -> NucleusPrimitiveColors.purple300
+            "purple.400" -> NucleusPrimitiveColors.purple400
+            "purple.500" -> NucleusPrimitiveColors.purple500
+            "purple.600" -> NucleusPrimitiveColors.purple600
+            "purple.700" -> NucleusPrimitiveColors.purple700
+            "purple.800" -> NucleusPrimitiveColors.purple800
+            "purple.900" -> NucleusPrimitiveColors.purple900
+            "purple.950" -> NucleusPrimitiveColors.purple950
             "status.error" -> NucleusSemanticColorsDark.statusError
             "status.errorBackground" -> NucleusSemanticColorsDark.statusErrorBackground
             "status.info" -> NucleusSemanticColorsDark.statusInfo

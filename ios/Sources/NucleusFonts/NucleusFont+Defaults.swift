@@ -102,7 +102,7 @@ public extension NucleusFont {
         size: 17,
         weight: 350,
         letterSpacing: 0,
-        lineHeight: 1.2,
+        lineHeight: 1.3,
         dynamicTypeStyle: .body
     )
     static let b2 = NucleusFont(
@@ -110,7 +110,7 @@ public extension NucleusFont {
         size: 15,
         weight: 350,
         letterSpacing: 0,
-        lineHeight: 1.2,
+        lineHeight: 1.3,
         dynamicTypeStyle: .subheadline
     )
     static let b3 = NucleusFont(
@@ -118,14 +118,14 @@ public extension NucleusFont {
         size: 13,
         weight: 350,
         letterSpacing: 0,
-        lineHeight: 1.2,
+        lineHeight: 1.3,
         dynamicTypeStyle: .footnote
     )
     static let c1 = NucleusFont(
         fontName: "WorldProMVPLH-Regular",
         size: 11,
         weight: 350,
-        letterSpacing: 0,
+        letterSpacing: 0.003,
         lineHeight: 1.4,
         dynamicTypeStyle: .caption2
     )
