@@ -20,7 +20,7 @@ interface IOSButtonEntry {
   pressedInset: number;
 }
 
-/** Color token path → NucleusColor accessor, e.g. `semantic.color.action.primary` → `actionPrimary`. */
+/** Color token path → NucleusColor accessor, e.g. `semantic.color.background.primary` → `backgroundPrimary`. */
 function colorAccessor(path: string): string {
   return camelCasePath(publicColorPath(path.split('.')));
 }

@@ -3,7 +3,7 @@ import UIKit
 
 /// A Nucleus design token color.
 ///
-/// `NucleusColor` is the building block for every color in nucleus. The full set of nucleus tokens is exposed as `static let`s on this type — primitives (`NucleusColor.grey900`) and semantics (`NucleusColor.surfacePrimary`) — and downstream apps can extend it with their own colors the same way.
+/// `NucleusColor` is the building block for every color in nucleus. The full set of nucleus tokens is exposed as `static let`s on this type — primitives (`NucleusColor.grey900`) and semantics (`NucleusColor.surfacePage`) — and downstream apps can extend it with their own colors the same way.
 ///
 /// Each value carries a `light` set of color components and an optional `dark` override. `color` and `uiColor` resolve to the right variant automatically based on the active trait collection, so most callers never need to touch the components directly:
 ///
@@ -12,8 +12,8 @@ import UIKit
 /// import SwiftUI
 ///
 /// Text("Hello")
-///     .foregroundStyle(NucleusColor.textPrimary.color)
-///     .background(NucleusColor.surfacePrimary.color)
+///     .foregroundStyle(NucleusColor.foregroundPrimary.color)
+///     .background(NucleusColor.surfacePage.color)
 /// ```
 public struct NucleusColor: Sendable {
     public let light: ColorComponents
