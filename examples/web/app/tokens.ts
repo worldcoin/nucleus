@@ -365,7 +365,7 @@ export const buttonSpecs: ButtonSpec[] = Object.entries(tokenSet.button)
 
 /**
  * Resolves a component token color reference like
- * "semantic.color.action.primary" against a mode's resolved semantic tokens.
+ * "semantic.color.background.primary" against a mode's resolved semantic tokens.
  */
 export function resolveSemanticReference(
   reference: string,

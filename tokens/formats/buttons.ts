@@ -30,7 +30,7 @@ interface RawButtonDefinition {
 
 export interface ButtonVariant {
   name: string;
-  /** Color token path, e.g. `semantic.color.action.primary`. */
+  /** Color token path, e.g. `semantic.color.background.primary`. */
   background: string;
   content: string;
   border?: string;
@@ -57,7 +57,7 @@ function refPath(raw: unknown, where: string): string {
   const ref = parseReference(raw);
   if (!ref) {
     throw new Error(
-      `${where} must be a token reference like {semantic.color.action.primary}`,
+      `${where} must be a token reference like {semantic.color.background.primary}`,
     );
   }
   return ref.join('.');

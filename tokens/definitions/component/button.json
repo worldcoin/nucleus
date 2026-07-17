@@ -4,29 +4,29 @@
       "description": "Button style tokens (UI Kit 5.0). Variant colors reference semantic tokens; sizes carry geometry + the subtitle font for the label. Pressed is a 1px inset applied by the client, not a separate color.",
       "variants": {
         "primary": {
-          "background": "{semantic.color.action.primary}",
-          "content": "{semantic.color.action.primaryContent}"
+          "background": "{semantic.color.background.primary}",
+          "content": "{semantic.color.foreground.primary}"
         },
         "secondary": {
-          "background": "{semantic.color.action.secondary}",
-          "content": "{semantic.color.action.secondaryContent}"
+          "background": "{semantic.color.background.secondary}",
+          "content": "{semantic.color.foreground.secondary}"
         },
         "tertiary": {
-          "background": "{semantic.color.action.tertiary}",
-          "content": "{semantic.color.action.tertiaryContent}",
-          "border": "{semantic.color.border.default}"
-        },
-        "ghost": {
-          "background": "{semantic.color.action.ghost}",
-          "content": "{semantic.color.action.ghostContent}"
+          "background": "{semantic.color.background.inverse}",
+          "content": "{semantic.color.foreground.primary}",
+          "border": "{semantic.color.stroke.secondary}"
         },
         "inverse": {
-          "background": "{semantic.color.surface.elevated}",
-          "content": "{semantic.color.text.primary}"
+          "background": "{semantic.color.background.inverse}",
+          "content": "{semantic.color.foreground.primary}"
+        },
+        "ghost": {
+          "background": "{semantic.color.background.transparent}",
+          "content": "{semantic.color.foreground.primary}"
         },
         "disabled": {
-          "background": "{semantic.color.action.disabled}",
-          "content": "{semantic.color.action.disabledContent}"
+          "background": "{semantic.color.background.disabled}",
+          "content": "{semantic.color.foreground.disabled}"
         }
       },
       "sizes": {
@@ -34,22 +34,22 @@
           "height": 48,
           "cornerRadius": 24,
           "paddingHorizontal": 24,
-          "paddingVertical": 12,
-          "font": "s1"
+          "paddingVertical": 14,
+          "font": "l1"
         },
         "40": {
           "height": 40,
           "cornerRadius": 20,
           "paddingHorizontal": 20,
-          "paddingVertical": 10,
-          "font": "s2"
+          "paddingVertical": 11,
+          "font": "l2"
         },
         "32": {
           "height": 32,
           "cornerRadius": 16,
-          "paddingHorizontal": 16,
-          "paddingVertical": 6,
-          "font": "s3"
+          "paddingHorizontal": 14,
+          "paddingVertical": 8,
+          "font": "l3"
         }
       },
       "pressedInset": 1

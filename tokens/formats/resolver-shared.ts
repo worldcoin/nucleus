@@ -7,7 +7,7 @@ import { camelCasePath, publicColorPath } from './shared.js';
  * Shared catalog for the token-path ↔ token resolvers. Enumerates every published token with both
  * its canonical path (for reference) and the **type-scoped wire token** the backend emits and the
  * resolvers key on — the namespace that the resolver type already implies is stripped:
- *   - color:      `semantic.color.text.primary` → `text.primary`  (and `primitive.color.grey.900` → `grey.900`)
+ *   - color:      `semantic.color.foreground.primary` → `foreground.primary`  (and `primitive.color.grey.900` → `grey.900`)
  *   - typography: referenced directly by name, e.g. `s3`
  *   - button:     `component.button.inverse.32`  → `inverse.32`
  *   - icon:       `icon.arrow-right.regular`      → `arrow-right.regular`
@@ -22,7 +22,7 @@ const BUTTON_SOURCE = 'tokens/definitions/component/button.json';
 export interface ColorEntry {
   /** Type-scoped wire token, e.g. `text.primary` / `grey.900`. */
   wireToken: string;
-  /** `NucleusColor` / `NucleusSemanticColors*` accessor, e.g. `textPrimary`. */
+  /** `NucleusColor` / `NucleusSemanticColors*` accessor, e.g. `foregroundPrimary`. */
   accessor: string;
 }
 
