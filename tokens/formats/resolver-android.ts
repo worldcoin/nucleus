@@ -80,7 +80,7 @@ import com.worldcoin.nucleus.R
  * cadences, so an unknown token is expected and must not crash).
  */
 object NucleusTokenResolver {
-    /** Resolves a color token path, e.g. \`semantic.color.text.primary\`, for the active theme. */
+    /** Resolves a color token path, e.g. \`semantic.color.foreground.primary\`, for the active theme. */
     fun color(
         token: String,
         isDark: Boolean,

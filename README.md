@@ -112,7 +112,7 @@ import com.worldcoin.nucleus.tokens.NucleusPrimitiveColors
 import com.worldcoin.nucleus.tokens.NucleusSemanticColorsLight
 
 val grey = NucleusPrimitiveColors.grey900
-val surface = NucleusSemanticColorsLight.surfacePrimary
+val surface = NucleusSemanticColorsLight.surfacePage
 ```
 
 **Typography**
@@ -167,7 +167,7 @@ import NucleusColors
 import SwiftUI
 
 Text("Hello")
-    .foregroundStyle(NucleusColor.surfacePrimary.color) // adapts to light/dark
+    .foregroundStyle(NucleusColor.foregroundPrimary.color) // adapts to light/dark
     .background(NucleusColor.grey900.color)             // primitive
 ```
 
