@@ -533,16 +533,6 @@ object NucleusTokenResolver {
             "blue.800" -> NucleusPrimitiveColors.blue800
             "blue.900" -> NucleusPrimitiveColors.blue900
             "blue.950" -> NucleusPrimitiveColors.blue950
-            "error.100" -> NucleusPrimitiveColors.error100
-            "error.200" -> NucleusPrimitiveColors.error200
-            "error.300" -> NucleusPrimitiveColors.error300
-            "error.400" -> NucleusPrimitiveColors.error400
-            "error.500" -> NucleusPrimitiveColors.error500
-            "error.600" -> NucleusPrimitiveColors.error600
-            "error.700" -> NucleusPrimitiveColors.error700
-            "error.800" -> NucleusPrimitiveColors.error800
-            "error.900" -> NucleusPrimitiveColors.error900
-            "error.950" -> NucleusPrimitiveColors.error950
             "foreground.disabled" -> NucleusSemanticColorsLight.foregroundDisabled
             "foreground.inverse" -> NucleusSemanticColorsLight.foregroundInverse
             "foreground.primary" -> NucleusSemanticColorsLight.foregroundPrimary
@@ -608,8 +598,18 @@ object NucleusTokenResolver {
             "purple.800" -> NucleusPrimitiveColors.purple800
             "purple.900" -> NucleusPrimitiveColors.purple900
             "purple.950" -> NucleusPrimitiveColors.purple950
+            "red.100" -> NucleusPrimitiveColors.red100
+            "red.200" -> NucleusPrimitiveColors.red200
+            "red.300" -> NucleusPrimitiveColors.red300
+            "red.400" -> NucleusPrimitiveColors.red400
+            "red.500" -> NucleusPrimitiveColors.red500
+            "red.600" -> NucleusPrimitiveColors.red600
+            "red.700" -> NucleusPrimitiveColors.red700
+            "red.800" -> NucleusPrimitiveColors.red800
+            "red.900" -> NucleusPrimitiveColors.red900
+            "red.950" -> NucleusPrimitiveColors.red950
+            "status.error" -> NucleusSemanticColorsLight.statusError
             "status.info" -> NucleusSemanticColorsLight.statusInfo
-            "status.negative" -> NucleusSemanticColorsLight.statusNegative
             "status.neutral" -> NucleusSemanticColorsLight.statusNeutral
             "status.success" -> NucleusSemanticColorsLight.statusSuccess
             "status.warning" -> NucleusSemanticColorsLight.statusWarning
@@ -668,16 +668,6 @@ object NucleusTokenResolver {
             "blue.800" -> NucleusPrimitiveColors.blue800
             "blue.900" -> NucleusPrimitiveColors.blue900
             "blue.950" -> NucleusPrimitiveColors.blue950
-            "error.100" -> NucleusPrimitiveColors.error100
-            "error.200" -> NucleusPrimitiveColors.error200
-            "error.300" -> NucleusPrimitiveColors.error300
-            "error.400" -> NucleusPrimitiveColors.error400
-            "error.500" -> NucleusPrimitiveColors.error500
-            "error.600" -> NucleusPrimitiveColors.error600
-            "error.700" -> NucleusPrimitiveColors.error700
-            "error.800" -> NucleusPrimitiveColors.error800
-            "error.900" -> NucleusPrimitiveColors.error900
-            "error.950" -> NucleusPrimitiveColors.error950
             "foreground.disabled" -> NucleusSemanticColorsDark.foregroundDisabled
             "foreground.inverse" -> NucleusSemanticColorsDark.foregroundInverse
             "foreground.primary" -> NucleusSemanticColorsDark.foregroundPrimary
@@ -743,8 +733,18 @@ object NucleusTokenResolver {
             "purple.800" -> NucleusPrimitiveColors.purple800
             "purple.900" -> NucleusPrimitiveColors.purple900
             "purple.950" -> NucleusPrimitiveColors.purple950
+            "red.100" -> NucleusPrimitiveColors.red100
+            "red.200" -> NucleusPrimitiveColors.red200
+            "red.300" -> NucleusPrimitiveColors.red300
+            "red.400" -> NucleusPrimitiveColors.red400
+            "red.500" -> NucleusPrimitiveColors.red500
+            "red.600" -> NucleusPrimitiveColors.red600
+            "red.700" -> NucleusPrimitiveColors.red700
+            "red.800" -> NucleusPrimitiveColors.red800
+            "red.900" -> NucleusPrimitiveColors.red900
+            "red.950" -> NucleusPrimitiveColors.red950
+            "status.error" -> NucleusSemanticColorsDark.statusError
             "status.info" -> NucleusSemanticColorsDark.statusInfo
-            "status.negative" -> NucleusSemanticColorsDark.statusNegative
             "status.neutral" -> NucleusSemanticColorsDark.statusNeutral
             "status.success" -> NucleusSemanticColorsDark.statusSuccess
             "status.warning" -> NucleusSemanticColorsDark.statusWarning
