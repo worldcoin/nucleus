@@ -5,8 +5,8 @@ import NucleusFonts
 
 public extension NucleusButton {
     static let primary32 = NucleusButton(
-        background: .backgroundPrimary,
-        content: .foregroundPrimary,
+        background: .backgroundInverse,
+        content: .foregroundInverse,
         border: nil,
         height: 32,
         cornerRadius: 16,
@@ -16,8 +16,8 @@ public extension NucleusButton {
         pressedInset: 1
     )
     static let primary40 = NucleusButton(
-        background: .backgroundPrimary,
-        content: .foregroundPrimary,
+        background: .backgroundInverse,
+        content: .foregroundInverse,
         border: nil,
         height: 40,
         cornerRadius: 20,
@@ -27,8 +27,8 @@ public extension NucleusButton {
         pressedInset: 1
     )
     static let primary48 = NucleusButton(
-        background: .backgroundPrimary,
-        content: .foregroundPrimary,
+        background: .backgroundInverse,
+        content: .foregroundInverse,
         border: nil,
         height: 48,
         cornerRadius: 24,
@@ -39,7 +39,7 @@ public extension NucleusButton {
     )
     static let secondary32 = NucleusButton(
         background: .backgroundSecondary,
-        content: .foregroundSecondary,
+        content: .foregroundPrimary,
         border: nil,
         height: 32,
         cornerRadius: 16,
@@ -50,7 +50,7 @@ public extension NucleusButton {
     )
     static let secondary40 = NucleusButton(
         background: .backgroundSecondary,
-        content: .foregroundSecondary,
+        content: .foregroundPrimary,
         border: nil,
         height: 40,
         cornerRadius: 20,
@@ -61,7 +61,7 @@ public extension NucleusButton {
     )
     static let secondary48 = NucleusButton(
         background: .backgroundSecondary,
-        content: .foregroundSecondary,
+        content: .foregroundPrimary,
         border: nil,
         height: 48,
         cornerRadius: 24,
@@ -71,7 +71,7 @@ public extension NucleusButton {
         pressedInset: 1
     )
     static let tertiary32 = NucleusButton(
-        background: .backgroundInverse,
+        background: .backgroundPrimary,
         content: .foregroundPrimary,
         border: .strokeSecondary,
         height: 32,
@@ -82,7 +82,7 @@ public extension NucleusButton {
         pressedInset: 1
     )
     static let tertiary40 = NucleusButton(
-        background: .backgroundInverse,
+        background: .backgroundPrimary,
         content: .foregroundPrimary,
         border: .strokeSecondary,
         height: 40,
@@ -93,7 +93,7 @@ public extension NucleusButton {
         pressedInset: 1
     )
     static let tertiary48 = NucleusButton(
-        background: .backgroundInverse,
+        background: .backgroundPrimary,
         content: .foregroundPrimary,
         border: .strokeSecondary,
         height: 48,
@@ -104,7 +104,7 @@ public extension NucleusButton {
         pressedInset: 1
     )
     static let inverse32 = NucleusButton(
-        background: .backgroundInverse,
+        background: .backgroundPrimary,
         content: .foregroundPrimary,
         border: nil,
         height: 32,
@@ -115,7 +115,7 @@ public extension NucleusButton {
         pressedInset: 1
     )
     static let inverse40 = NucleusButton(
-        background: .backgroundInverse,
+        background: .backgroundPrimary,
         content: .foregroundPrimary,
         border: nil,
         height: 40,
@@ -126,7 +126,7 @@ public extension NucleusButton {
         pressedInset: 1
     )
     static let inverse48 = NucleusButton(
-        background: .backgroundInverse,
+        background: .backgroundPrimary,
         content: .foregroundPrimary,
         border: nil,
         height: 48,
