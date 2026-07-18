@@ -11,28 +11,6 @@
           "$type": "color"
         }
       },
-      "background": {
-        "primary": {
-          "$value": "{primitive.color.grey.950}",
-          "$type": "color"
-        },
-        "secondary": {
-          "$value": "{primitive.color.grey.100}",
-          "$type": "color"
-        },
-        "inverse": {
-          "$value": "{primitive.color.white}",
-          "$type": "color"
-        },
-        "disabled": {
-          "$value": "{primitive.color.grey.100}",
-          "$type": "color"
-        },
-        "transparent": {
-          "$value": "#FFFFFF14",
-          "$type": "color"
-        }
-      },
       "foreground": {
         "primary": {
           "$value": "{primitive.color.grey.950}",
@@ -52,6 +30,32 @@
         },
         "disabled": {
           "$value": "{primitive.color.grey.500}",
+          "$type": "color"
+        }
+      },
+      "background": {
+        "primary": {
+          "$value": "{primitive.color.white}",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "{primitive.color.grey.100}",
+          "$type": "color"
+        },
+        "tertiary": {
+          "$value": "{primitive.color.grey.200}",
+          "$type": "color"
+        },
+        "inverse": {
+          "$value": "{primitive.color.grey.950}",
+          "$type": "color"
+        },
+        "disabled": {
+          "$value": "{primitive.color.grey.100}",
+          "$type": "color"
+        },
+        "transparent": {
+          "$value": "#FFFFFF14",
           "$type": "color"
         }
       },
@@ -79,15 +83,15 @@
           "$type": "color"
         },
         "warning": {
-          "$value": "{primitive.color.warning.600}",
+          "$value": "{primitive.color.amber.600}",
           "$type": "color"
         },
         "success": {
-          "$value": "{primitive.color.success.600}",
+          "$value": "{primitive.color.green.600}",
           "$type": "color"
         },
         "info": {
-          "$value": "{primitive.color.info.600}",
+          "$value": "{primitive.color.blue.600}",
           "$type": "color"
         },
         "neutral": {
@@ -116,12 +120,8 @@
           "$value": "{primitive.color.aqua.600}",
           "$type": "color"
         },
-        "green": {
-          "$value": "{primitive.color.success.600}",
-          "$type": "color"
-        },
         "blue": {
-          "$value": "{primitive.color.info.600}",
+          "$value": "{primitive.color.blue.600}",
           "$type": "color"
         }
       }

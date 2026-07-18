@@ -492,11 +492,20 @@ object NucleusTokenResolver {
         when (token) {
             "accent.aqua" -> NucleusSemanticColorsLight.accentAqua
             "accent.blue" -> NucleusSemanticColorsLight.accentBlue
-            "accent.green" -> NucleusSemanticColorsLight.accentGreen
             "accent.magenta" -> NucleusSemanticColorsLight.accentMagenta
             "accent.orange" -> NucleusSemanticColorsLight.accentOrange
             "accent.pink" -> NucleusSemanticColorsLight.accentPink
             "accent.purple" -> NucleusSemanticColorsLight.accentPurple
+            "amber.100" -> NucleusPrimitiveColors.amber100
+            "amber.200" -> NucleusPrimitiveColors.amber200
+            "amber.300" -> NucleusPrimitiveColors.amber300
+            "amber.400" -> NucleusPrimitiveColors.amber400
+            "amber.500" -> NucleusPrimitiveColors.amber500
+            "amber.600" -> NucleusPrimitiveColors.amber600
+            "amber.700" -> NucleusPrimitiveColors.amber700
+            "amber.800" -> NucleusPrimitiveColors.amber800
+            "amber.900" -> NucleusPrimitiveColors.amber900
+            "amber.950" -> NucleusPrimitiveColors.amber950
             "aqua.100" -> NucleusPrimitiveColors.aqua100
             "aqua.200" -> NucleusPrimitiveColors.aqua200
             "aqua.300" -> NucleusPrimitiveColors.aqua300
@@ -511,8 +520,19 @@ object NucleusTokenResolver {
             "background.inverse" -> NucleusSemanticColorsLight.backgroundInverse
             "background.primary" -> NucleusSemanticColorsLight.backgroundPrimary
             "background.secondary" -> NucleusSemanticColorsLight.backgroundSecondary
+            "background.tertiary" -> NucleusSemanticColorsLight.backgroundTertiary
             "background.transparent" -> NucleusSemanticColorsLight.backgroundTransparent
             "black" -> NucleusPrimitiveColors.black
+            "blue.100" -> NucleusPrimitiveColors.blue100
+            "blue.200" -> NucleusPrimitiveColors.blue200
+            "blue.300" -> NucleusPrimitiveColors.blue300
+            "blue.400" -> NucleusPrimitiveColors.blue400
+            "blue.500" -> NucleusPrimitiveColors.blue500
+            "blue.600" -> NucleusPrimitiveColors.blue600
+            "blue.700" -> NucleusPrimitiveColors.blue700
+            "blue.800" -> NucleusPrimitiveColors.blue800
+            "blue.900" -> NucleusPrimitiveColors.blue900
+            "blue.950" -> NucleusPrimitiveColors.blue950
             "error.100" -> NucleusPrimitiveColors.error100
             "error.200" -> NucleusPrimitiveColors.error200
             "error.300" -> NucleusPrimitiveColors.error300
@@ -528,6 +548,16 @@ object NucleusTokenResolver {
             "foreground.primary" -> NucleusSemanticColorsLight.foregroundPrimary
             "foreground.secondary" -> NucleusSemanticColorsLight.foregroundSecondary
             "foreground.tertiary" -> NucleusSemanticColorsLight.foregroundTertiary
+            "green.100" -> NucleusPrimitiveColors.green100
+            "green.200" -> NucleusPrimitiveColors.green200
+            "green.300" -> NucleusPrimitiveColors.green300
+            "green.400" -> NucleusPrimitiveColors.green400
+            "green.500" -> NucleusPrimitiveColors.green500
+            "green.600" -> NucleusPrimitiveColors.green600
+            "green.700" -> NucleusPrimitiveColors.green700
+            "green.800" -> NucleusPrimitiveColors.green800
+            "green.900" -> NucleusPrimitiveColors.green900
+            "green.950" -> NucleusPrimitiveColors.green950
             "grey.100" -> NucleusPrimitiveColors.grey100
             "grey.200" -> NucleusPrimitiveColors.grey200
             "grey.300" -> NucleusPrimitiveColors.grey300
@@ -538,16 +568,6 @@ object NucleusTokenResolver {
             "grey.800" -> NucleusPrimitiveColors.grey800
             "grey.900" -> NucleusPrimitiveColors.grey900
             "grey.950" -> NucleusPrimitiveColors.grey950
-            "info.100" -> NucleusPrimitiveColors.info100
-            "info.200" -> NucleusPrimitiveColors.info200
-            "info.300" -> NucleusPrimitiveColors.info300
-            "info.400" -> NucleusPrimitiveColors.info400
-            "info.500" -> NucleusPrimitiveColors.info500
-            "info.600" -> NucleusPrimitiveColors.info600
-            "info.700" -> NucleusPrimitiveColors.info700
-            "info.800" -> NucleusPrimitiveColors.info800
-            "info.900" -> NucleusPrimitiveColors.info900
-            "info.950" -> NucleusPrimitiveColors.info950
             "magenta.100" -> NucleusPrimitiveColors.magenta100
             "magenta.200" -> NucleusPrimitiveColors.magenta200
             "magenta.300" -> NucleusPrimitiveColors.magenta300
@@ -597,28 +617,8 @@ object NucleusTokenResolver {
             "stroke.secondary" -> NucleusSemanticColorsLight.strokeSecondary
             "stroke.tertiary" -> NucleusSemanticColorsLight.strokeTertiary
             "stroke.transparent" -> NucleusSemanticColorsLight.strokeTransparent
-            "success.100" -> NucleusPrimitiveColors.success100
-            "success.200" -> NucleusPrimitiveColors.success200
-            "success.300" -> NucleusPrimitiveColors.success300
-            "success.400" -> NucleusPrimitiveColors.success400
-            "success.500" -> NucleusPrimitiveColors.success500
-            "success.600" -> NucleusPrimitiveColors.success600
-            "success.700" -> NucleusPrimitiveColors.success700
-            "success.800" -> NucleusPrimitiveColors.success800
-            "success.900" -> NucleusPrimitiveColors.success900
-            "success.950" -> NucleusPrimitiveColors.success950
             "surface.overlay" -> NucleusSemanticColorsLight.surfaceOverlay
             "surface.page" -> NucleusSemanticColorsLight.surfacePage
-            "warning.100" -> NucleusPrimitiveColors.warning100
-            "warning.200" -> NucleusPrimitiveColors.warning200
-            "warning.300" -> NucleusPrimitiveColors.warning300
-            "warning.400" -> NucleusPrimitiveColors.warning400
-            "warning.500" -> NucleusPrimitiveColors.warning500
-            "warning.600" -> NucleusPrimitiveColors.warning600
-            "warning.700" -> NucleusPrimitiveColors.warning700
-            "warning.800" -> NucleusPrimitiveColors.warning800
-            "warning.900" -> NucleusPrimitiveColors.warning900
-            "warning.950" -> NucleusPrimitiveColors.warning950
             "white" -> NucleusPrimitiveColors.white
             else -> null
         }
@@ -627,11 +627,20 @@ object NucleusTokenResolver {
         when (token) {
             "accent.aqua" -> NucleusSemanticColorsDark.accentAqua
             "accent.blue" -> NucleusSemanticColorsDark.accentBlue
-            "accent.green" -> NucleusSemanticColorsDark.accentGreen
             "accent.magenta" -> NucleusSemanticColorsDark.accentMagenta
             "accent.orange" -> NucleusSemanticColorsDark.accentOrange
             "accent.pink" -> NucleusSemanticColorsDark.accentPink
             "accent.purple" -> NucleusSemanticColorsDark.accentPurple
+            "amber.100" -> NucleusPrimitiveColors.amber100
+            "amber.200" -> NucleusPrimitiveColors.amber200
+            "amber.300" -> NucleusPrimitiveColors.amber300
+            "amber.400" -> NucleusPrimitiveColors.amber400
+            "amber.500" -> NucleusPrimitiveColors.amber500
+            "amber.600" -> NucleusPrimitiveColors.amber600
+            "amber.700" -> NucleusPrimitiveColors.amber700
+            "amber.800" -> NucleusPrimitiveColors.amber800
+            "amber.900" -> NucleusPrimitiveColors.amber900
+            "amber.950" -> NucleusPrimitiveColors.amber950
             "aqua.100" -> NucleusPrimitiveColors.aqua100
             "aqua.200" -> NucleusPrimitiveColors.aqua200
             "aqua.300" -> NucleusPrimitiveColors.aqua300
@@ -646,8 +655,19 @@ object NucleusTokenResolver {
             "background.inverse" -> NucleusSemanticColorsDark.backgroundInverse
             "background.primary" -> NucleusSemanticColorsDark.backgroundPrimary
             "background.secondary" -> NucleusSemanticColorsDark.backgroundSecondary
+            "background.tertiary" -> NucleusSemanticColorsDark.backgroundTertiary
             "background.transparent" -> NucleusSemanticColorsDark.backgroundTransparent
             "black" -> NucleusPrimitiveColors.black
+            "blue.100" -> NucleusPrimitiveColors.blue100
+            "blue.200" -> NucleusPrimitiveColors.blue200
+            "blue.300" -> NucleusPrimitiveColors.blue300
+            "blue.400" -> NucleusPrimitiveColors.blue400
+            "blue.500" -> NucleusPrimitiveColors.blue500
+            "blue.600" -> NucleusPrimitiveColors.blue600
+            "blue.700" -> NucleusPrimitiveColors.blue700
+            "blue.800" -> NucleusPrimitiveColors.blue800
+            "blue.900" -> NucleusPrimitiveColors.blue900
+            "blue.950" -> NucleusPrimitiveColors.blue950
             "error.100" -> NucleusPrimitiveColors.error100
             "error.200" -> NucleusPrimitiveColors.error200
             "error.300" -> NucleusPrimitiveColors.error300
@@ -663,6 +683,16 @@ object NucleusTokenResolver {
             "foreground.primary" -> NucleusSemanticColorsDark.foregroundPrimary
             "foreground.secondary" -> NucleusSemanticColorsDark.foregroundSecondary
             "foreground.tertiary" -> NucleusSemanticColorsDark.foregroundTertiary
+            "green.100" -> NucleusPrimitiveColors.green100
+            "green.200" -> NucleusPrimitiveColors.green200
+            "green.300" -> NucleusPrimitiveColors.green300
+            "green.400" -> NucleusPrimitiveColors.green400
+            "green.500" -> NucleusPrimitiveColors.green500
+            "green.600" -> NucleusPrimitiveColors.green600
+            "green.700" -> NucleusPrimitiveColors.green700
+            "green.800" -> NucleusPrimitiveColors.green800
+            "green.900" -> NucleusPrimitiveColors.green900
+            "green.950" -> NucleusPrimitiveColors.green950
             "grey.100" -> NucleusPrimitiveColors.grey100
             "grey.200" -> NucleusPrimitiveColors.grey200
             "grey.300" -> NucleusPrimitiveColors.grey300
@@ -673,16 +703,6 @@ object NucleusTokenResolver {
             "grey.800" -> NucleusPrimitiveColors.grey800
             "grey.900" -> NucleusPrimitiveColors.grey900
             "grey.950" -> NucleusPrimitiveColors.grey950
-            "info.100" -> NucleusPrimitiveColors.info100
-            "info.200" -> NucleusPrimitiveColors.info200
-            "info.300" -> NucleusPrimitiveColors.info300
-            "info.400" -> NucleusPrimitiveColors.info400
-            "info.500" -> NucleusPrimitiveColors.info500
-            "info.600" -> NucleusPrimitiveColors.info600
-            "info.700" -> NucleusPrimitiveColors.info700
-            "info.800" -> NucleusPrimitiveColors.info800
-            "info.900" -> NucleusPrimitiveColors.info900
-            "info.950" -> NucleusPrimitiveColors.info950
             "magenta.100" -> NucleusPrimitiveColors.magenta100
             "magenta.200" -> NucleusPrimitiveColors.magenta200
             "magenta.300" -> NucleusPrimitiveColors.magenta300
@@ -732,28 +752,8 @@ object NucleusTokenResolver {
             "stroke.secondary" -> NucleusSemanticColorsDark.strokeSecondary
             "stroke.tertiary" -> NucleusSemanticColorsDark.strokeTertiary
             "stroke.transparent" -> NucleusSemanticColorsDark.strokeTransparent
-            "success.100" -> NucleusPrimitiveColors.success100
-            "success.200" -> NucleusPrimitiveColors.success200
-            "success.300" -> NucleusPrimitiveColors.success300
-            "success.400" -> NucleusPrimitiveColors.success400
-            "success.500" -> NucleusPrimitiveColors.success500
-            "success.600" -> NucleusPrimitiveColors.success600
-            "success.700" -> NucleusPrimitiveColors.success700
-            "success.800" -> NucleusPrimitiveColors.success800
-            "success.900" -> NucleusPrimitiveColors.success900
-            "success.950" -> NucleusPrimitiveColors.success950
             "surface.overlay" -> NucleusSemanticColorsDark.surfaceOverlay
             "surface.page" -> NucleusSemanticColorsDark.surfacePage
-            "warning.100" -> NucleusPrimitiveColors.warning100
-            "warning.200" -> NucleusPrimitiveColors.warning200
-            "warning.300" -> NucleusPrimitiveColors.warning300
-            "warning.400" -> NucleusPrimitiveColors.warning400
-            "warning.500" -> NucleusPrimitiveColors.warning500
-            "warning.600" -> NucleusPrimitiveColors.warning600
-            "warning.700" -> NucleusPrimitiveColors.warning700
-            "warning.800" -> NucleusPrimitiveColors.warning800
-            "warning.900" -> NucleusPrimitiveColors.warning900
-            "warning.950" -> NucleusPrimitiveColors.warning950
             "white" -> NucleusPrimitiveColors.white
             else -> null
         }

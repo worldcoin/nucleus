@@ -93,7 +93,7 @@
           "$type": "color"
         }
       },
-      "warning": {
+      "amber": {
         "100": {
           "$value": "#FFF9F1",
           "$type": "color"
@@ -345,7 +345,7 @@
           "$type": "color"
         }
       },
-      "success": {
+      "green": {
         "100": {
           "$value": "#F7FBF7",
           "$type": "color"
@@ -387,7 +387,7 @@
           "$type": "color"
         }
       },
-      "info": {
+      "blue": {
         "100": {
           "$value": "#F7FAFF",
           "$type": "color"
