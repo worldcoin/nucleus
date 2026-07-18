@@ -38,12 +38,12 @@ data class NucleusButtonStyle(
 object NucleusButtons {
     val primary32 = NucleusButtonStyle(
         background = NucleusButtonColor(
-            NucleusSemanticColorsLight.backgroundPrimary,
-            NucleusSemanticColorsDark.backgroundPrimary,
+            NucleusSemanticColorsLight.backgroundInverse,
+            NucleusSemanticColorsDark.backgroundInverse,
         ),
         content = NucleusButtonColor(
-            NucleusSemanticColorsLight.foregroundPrimary,
-            NucleusSemanticColorsDark.foregroundPrimary,
+            NucleusSemanticColorsLight.foregroundInverse,
+            NucleusSemanticColorsDark.foregroundInverse,
         ),
         border = null,
         height = 32.dp,
@@ -55,12 +55,12 @@ object NucleusButtons {
     )
     val primary40 = NucleusButtonStyle(
         background = NucleusButtonColor(
-            NucleusSemanticColorsLight.backgroundPrimary,
-            NucleusSemanticColorsDark.backgroundPrimary,
+            NucleusSemanticColorsLight.backgroundInverse,
+            NucleusSemanticColorsDark.backgroundInverse,
         ),
         content = NucleusButtonColor(
-            NucleusSemanticColorsLight.foregroundPrimary,
-            NucleusSemanticColorsDark.foregroundPrimary,
+            NucleusSemanticColorsLight.foregroundInverse,
+            NucleusSemanticColorsDark.foregroundInverse,
         ),
         border = null,
         height = 40.dp,
@@ -72,12 +72,12 @@ object NucleusButtons {
     )
     val primary48 = NucleusButtonStyle(
         background = NucleusButtonColor(
-            NucleusSemanticColorsLight.backgroundPrimary,
-            NucleusSemanticColorsDark.backgroundPrimary,
+            NucleusSemanticColorsLight.backgroundInverse,
+            NucleusSemanticColorsDark.backgroundInverse,
         ),
         content = NucleusButtonColor(
-            NucleusSemanticColorsLight.foregroundPrimary,
-            NucleusSemanticColorsDark.foregroundPrimary,
+            NucleusSemanticColorsLight.foregroundInverse,
+            NucleusSemanticColorsDark.foregroundInverse,
         ),
         border = null,
         height = 48.dp,
@@ -93,8 +93,8 @@ object NucleusButtons {
             NucleusSemanticColorsDark.backgroundSecondary,
         ),
         content = NucleusButtonColor(
-            NucleusSemanticColorsLight.foregroundSecondary,
-            NucleusSemanticColorsDark.foregroundSecondary,
+            NucleusSemanticColorsLight.foregroundPrimary,
+            NucleusSemanticColorsDark.foregroundPrimary,
         ),
         border = null,
         height = 32.dp,
@@ -110,8 +110,8 @@ object NucleusButtons {
             NucleusSemanticColorsDark.backgroundSecondary,
         ),
         content = NucleusButtonColor(
-            NucleusSemanticColorsLight.foregroundSecondary,
-            NucleusSemanticColorsDark.foregroundSecondary,
+            NucleusSemanticColorsLight.foregroundPrimary,
+            NucleusSemanticColorsDark.foregroundPrimary,
         ),
         border = null,
         height = 40.dp,
@@ -127,8 +127,8 @@ object NucleusButtons {
             NucleusSemanticColorsDark.backgroundSecondary,
         ),
         content = NucleusButtonColor(
-            NucleusSemanticColorsLight.foregroundSecondary,
-            NucleusSemanticColorsDark.foregroundSecondary,
+            NucleusSemanticColorsLight.foregroundPrimary,
+            NucleusSemanticColorsDark.foregroundPrimary,
         ),
         border = null,
         height = 48.dp,
@@ -140,8 +140,8 @@ object NucleusButtons {
     )
     val tertiary32 = NucleusButtonStyle(
         background = NucleusButtonColor(
-            NucleusSemanticColorsLight.backgroundInverse,
-            NucleusSemanticColorsDark.backgroundInverse,
+            NucleusSemanticColorsLight.backgroundPrimary,
+            NucleusSemanticColorsDark.backgroundPrimary,
         ),
         content = NucleusButtonColor(
             NucleusSemanticColorsLight.foregroundPrimary,
@@ -160,8 +160,8 @@ object NucleusButtons {
     )
     val tertiary40 = NucleusButtonStyle(
         background = NucleusButtonColor(
-            NucleusSemanticColorsLight.backgroundInverse,
-            NucleusSemanticColorsDark.backgroundInverse,
+            NucleusSemanticColorsLight.backgroundPrimary,
+            NucleusSemanticColorsDark.backgroundPrimary,
         ),
         content = NucleusButtonColor(
             NucleusSemanticColorsLight.foregroundPrimary,
@@ -180,8 +180,8 @@ object NucleusButtons {
     )
     val tertiary48 = NucleusButtonStyle(
         background = NucleusButtonColor(
-            NucleusSemanticColorsLight.backgroundInverse,
-            NucleusSemanticColorsDark.backgroundInverse,
+            NucleusSemanticColorsLight.backgroundPrimary,
+            NucleusSemanticColorsDark.backgroundPrimary,
         ),
         content = NucleusButtonColor(
             NucleusSemanticColorsLight.foregroundPrimary,
@@ -200,8 +200,8 @@ object NucleusButtons {
     )
     val inverse32 = NucleusButtonStyle(
         background = NucleusButtonColor(
-            NucleusSemanticColorsLight.backgroundInverse,
-            NucleusSemanticColorsDark.backgroundInverse,
+            NucleusSemanticColorsLight.backgroundPrimary,
+            NucleusSemanticColorsDark.backgroundPrimary,
         ),
         content = NucleusButtonColor(
             NucleusSemanticColorsLight.foregroundPrimary,
@@ -217,8 +217,8 @@ object NucleusButtons {
     )
     val inverse40 = NucleusButtonStyle(
         background = NucleusButtonColor(
-            NucleusSemanticColorsLight.backgroundInverse,
-            NucleusSemanticColorsDark.backgroundInverse,
+            NucleusSemanticColorsLight.backgroundPrimary,
+            NucleusSemanticColorsDark.backgroundPrimary,
         ),
         content = NucleusButtonColor(
             NucleusSemanticColorsLight.foregroundPrimary,
@@ -234,8 +234,8 @@ object NucleusButtons {
     )
     val inverse48 = NucleusButtonStyle(
         background = NucleusButtonColor(
-            NucleusSemanticColorsLight.backgroundInverse,
-            NucleusSemanticColorsDark.backgroundInverse,
+            NucleusSemanticColorsLight.backgroundPrimary,
+            NucleusSemanticColorsDark.backgroundPrimary,
         ),
         content = NucleusButtonColor(
             NucleusSemanticColorsLight.foregroundPrimary,

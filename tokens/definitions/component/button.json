@@ -4,20 +4,20 @@
       "description": "Button style tokens (UI Kit 5.0). Variant colors reference semantic tokens; sizes carry geometry + the subtitle font for the label. Pressed is a 1px inset applied by the client, not a separate color.",
       "variants": {
         "primary": {
-          "background": "{semantic.color.background.primary}",
-          "content": "{semantic.color.foreground.primary}"
+          "background": "{semantic.color.background.inverse}",
+          "content": "{semantic.color.foreground.inverse}"
         },
         "secondary": {
           "background": "{semantic.color.background.secondary}",
-          "content": "{semantic.color.foreground.secondary}"
+          "content": "{semantic.color.foreground.primary}"
         },
         "tertiary": {
-          "background": "{semantic.color.background.inverse}",
+          "background": "{semantic.color.background.primary}",
           "content": "{semantic.color.foreground.primary}",
           "border": "{semantic.color.stroke.secondary}"
         },
         "inverse": {
-          "background": "{semantic.color.background.inverse}",
+          "background": "{semantic.color.background.primary}",
           "content": "{semantic.color.foreground.primary}"
         },
         "ghost": {
