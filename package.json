@@ -1,6 +1,6 @@
 {
   "name": "@worldcoin/nucleus-monorepo",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "private": true,
   "description": "Design tokens for the World ecosystem (source repo; the published package is built into build/web)",
   "type": "module",
