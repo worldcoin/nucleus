@@ -22,7 +22,7 @@ object NucleusSemanticColorsLight {
     val strokeSecondary = NucleusPrimitiveColors.grey200
     val strokeTertiary = NucleusPrimitiveColors.grey100
     val strokeTransparent = Color(0x14000000)
-    val statusNegative = NucleusPrimitiveColors.error600
+    val statusError = NucleusPrimitiveColors.red600
     val statusWarning = NucleusPrimitiveColors.amber600
     val statusSuccess = NucleusPrimitiveColors.green600
     val statusInfo = NucleusPrimitiveColors.blue600

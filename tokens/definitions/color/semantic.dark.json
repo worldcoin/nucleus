@@ -78,8 +78,8 @@
         }
       },
       "status": {
-        "negative": {
-          "$value": "{primitive.color.error.500}",
+        "error": {
+          "$value": "{primitive.color.red.500}",
           "$type": "color"
         },
         "warning": {
