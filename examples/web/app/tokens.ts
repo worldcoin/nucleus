@@ -143,21 +143,6 @@ function pickOpaqueFamilyToken(
   return opaqueEntries[index]?.value ?? opaqueEntries[0]?.value;
 }
 
-function pickLastDistinctOpaqueToken(
-  entries: ResolvedToken[] | undefined,
-  excluded: string[],
-): string | undefined {
-  if (!entries?.length) {
-    return undefined;
-  }
-
-  const opaqueEntries = entries.filter((entry) => isOpaque(entry.value));
-  return [...opaqueEntries]
-    .reverse()
-    .find((entry) => !excluded.includes(entry.value))
-    ?.value;
-}
-
 function pickTone(entries: ResolvedToken[] | undefined, targets: number[]): string | undefined {
   const tonedEntries = entries?.filter(
     (entry): entry is ResolvedToken & { tone: number } => entry.tone !== null,
@@ -248,36 +233,83 @@ function buildNeutralPalette(entries: ResolvedToken[]): DemoTheme {
 
 function buildSemanticTheme(entries: ResolvedToken[], fallback: DemoTheme): DemoTheme {
   const groups = groupEntriesByFamily(entries);
+  const values = new Map(entries.map((entry) => [entry.name, entry.value]));
   const surfaceEntries = groups.get("surface");
+  const backgroundEntries = groups.get("background");
   const textEntries = groups.get("text");
+  const foregroundEntries = groups.get("foreground");
   const iconEntries = groups.get("icon");
   const borderEntries = groups.get("border");
+  const strokeEntries = groups.get("stroke");
   const accentEntries = groups.get("accent");
   const actionEntries = groups.get("action");
   const statusEntries = groups.get("status");
-  const surface = pickOpaqueFamilyToken(surfaceEntries, 0) ?? fallback.surface;
-  const background = pickOpaqueFamilyToken(surfaceEntries, 1) ?? surface;
-  const surfaceAlt =
-    pickLastDistinctOpaqueToken(surfaceEntries, [surface, background]) ??
+
+  const pickNamedToken = (...names: string[]): string | undefined => {
+    for (const name of names) {
+      const value = values.get(name);
+      if (value) {
+        return value;
+      }
+    }
+    return undefined;
+  };
+
+  // The semantic color model changed from surface/text/border to
+  // surface/background/foreground/stroke. Prefer explicit roles so changes in
+  // token ordering do not accidentally invert the page and card colors.
+  const background =
+    pickNamedToken("surfacePage", "surfacePrimary", "backgroundPrimary") ??
     pickOpaqueFamilyToken(surfaceEntries, 0) ??
-    fallback.surfaceAlt;
+    pickOpaqueFamilyToken(backgroundEntries, 0) ??
+    fallback.background;
+  const surface =
+    pickNamedToken(
+      "backgroundSecondary",
+      "surfaceSecondary",
+      "surfaceElevated",
+    ) ??
+    pickOpaqueFamilyToken(backgroundEntries, 1) ??
+    pickOpaqueFamilyToken(surfaceEntries, 1) ??
+    background;
   const accent =
+    pickNamedToken("accentBlue", "accentPrimary", "statusInfo") ??
     pickOpaqueFamilyToken(accentEntries, 0) ??
     pickOpaqueFamilyToken(actionEntries, 0) ??
     pickOpaqueFamilyToken(statusEntries, 0) ??
     fallback.accent;
   const accentContent =
-    pickOpaqueFamilyToken(accentEntries, 1) ??
+    pickNamedToken("accentContent", "foregroundInverse") ??
     pickOpaqueFamilyToken(actionEntries, 1) ??
     contrastColor(accent);
 
   return {
     background,
     surface,
-    surfaceAlt,
-    border: pickOpaqueFamilyToken(borderEntries, 1) ?? pickOpaqueFamilyToken(borderEntries, 0) ?? fallback.border,
-    text: pickOpaqueFamilyToken(textEntries, 0) ?? pickOpaqueFamilyToken(iconEntries, 0) ?? fallback.text,
-    muted: pickOpaqueFamilyToken(textEntries, 1) ?? pickOpaqueFamilyToken(iconEntries, 1) ?? fallback.muted,
+    surfaceAlt: surface,
+    border:
+      pickNamedToken(
+        "strokeTransparent",
+        "borderTranslucent",
+        "strokeSecondary",
+        "borderSubtle",
+        "borderDefault",
+      ) ??
+      pickOpaqueFamilyToken(strokeEntries, 1) ??
+      pickOpaqueFamilyToken(borderEntries, 0) ??
+      fallback.border,
+    text:
+      pickNamedToken("foregroundPrimary", "textPrimary", "iconPrimary") ??
+      pickOpaqueFamilyToken(foregroundEntries, 0) ??
+      pickOpaqueFamilyToken(textEntries, 0) ??
+      pickOpaqueFamilyToken(iconEntries, 0) ??
+      fallback.text,
+    muted:
+      pickNamedToken("foregroundSecondary", "textSecondary", "iconSecondary") ??
+      pickOpaqueFamilyToken(foregroundEntries, 1) ??
+      pickOpaqueFamilyToken(textEntries, 1) ??
+      pickOpaqueFamilyToken(iconEntries, 1) ??
+      fallback.muted,
     accent,
     accentContent,
   };

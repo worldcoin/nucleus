@@ -14,7 +14,7 @@ export function TypographySection({
       {styles.map((style) => (
         <div
           key={style.name}
-          className="flex flex-col gap-3 rounded-2xl border px-5 py-4 md:flex-row md:items-center"
+          className="flex flex-col gap-3 rounded-2xl border px-5 py-4 shadow-sm md:flex-row md:items-center"
           style={{
             backgroundColor: theme.surfaceAlt,
             borderColor: theme.border,

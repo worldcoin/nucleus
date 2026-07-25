@@ -28,7 +28,7 @@ function DemoButton({
 
   return (
     <button
-      className="shrink-0 transition-transform active:translate-y-px"
+      className="shrink-0 shadow-sm transition-[filter,transform] hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 active:translate-y-px"
       style={{
         backgroundColor: background,
         color: content,
@@ -41,6 +41,7 @@ function DemoButton({
         fontWeight: font?.weight,
         letterSpacing: font?.letterSpacing,
         lineHeight: font?.lineHeight,
+        outlineColor: mode.theme.accent,
       }}
     >
       {buttonLabel(spec.variant, spec.size)}
@@ -77,7 +78,7 @@ export function ButtonsSection({
               {variant}
             </h3>
             <div
-              className="flex flex-col gap-4 rounded-2xl border px-5 py-5 md:flex-row md:items-center md:justify-between"
+              className="flex flex-col gap-4 rounded-2xl border px-5 py-5 shadow-sm md:flex-row md:items-center md:justify-between"
               style={{
                 backgroundColor: theme.surfaceAlt,
                 borderColor: theme.border,

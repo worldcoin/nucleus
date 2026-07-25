@@ -18,19 +18,23 @@ export function ColorPalettes({
   return (
     <div className="space-y-6" style={{ color: theme.text }}>
       <div
-        className="inline-flex flex-wrap rounded-full border p-1"
-        style={{ borderColor: theme.border }}
+        className="inline-flex flex-wrap rounded-full border p-1 shadow-sm"
+        style={{
+          backgroundColor: theme.surfaceAlt,
+          borderColor: theme.border,
+        }}
       >
         {palettes.map((palette) => {
           const isActive = palette.id === selectedPalette.id;
           return (
             <button
               key={palette.id}
-              className="rounded-full px-3 py-1.5 text-sm font-medium transition-colors"
+              className="rounded-full px-3 py-1.5 text-sm font-medium transition-[background-color,color,opacity] hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2"
               onClick={() => setSelectedPaletteId(palette.id)}
               style={{
                 backgroundColor: isActive ? theme.text : "transparent",
                 color: isActive ? theme.background : theme.text,
+                outlineColor: theme.accent,
               }}
             >
               {palette.label}

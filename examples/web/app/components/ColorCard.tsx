@@ -21,11 +21,12 @@ export function ColorCard({
         setCopied(true);
         setTimeout(() => setCopied(false), 1200);
       }}
-      className="group flex w-full items-center gap-3 rounded-2xl border px-3 py-3 text-left transition-colors"
+      className="group flex w-full items-center gap-3 rounded-2xl border px-3 py-3 text-left shadow-sm transition-[background-color,border-color,transform] hover:-translate-y-px focus-visible:outline-2 focus-visible:outline-offset-2"
       style={{
         backgroundColor: theme.surfaceAlt,
         borderColor: theme.border,
         color: theme.text,
+        outlineColor: theme.accent,
       }}
     >
       <div
@@ -37,7 +38,10 @@ export function ColorCard({
       />
       <div className="min-w-0 flex-1">
         <div className="truncate text-sm font-semibold">{name}</div>
-        <div className="truncate font-mono text-xs" style={{ color: theme.muted }}>
+        <div
+          className="truncate font-mono text-xs"
+          style={{ color: theme.muted }}
+        >
           {value}
         </div>
       </div>
