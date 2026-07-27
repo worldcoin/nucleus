@@ -42,11 +42,12 @@ function IconCard({
         setCopied(true);
         setTimeout(() => setCopied(false), 1200);
       }}
-      className="flex flex-col items-center gap-2 rounded-2xl border px-2 py-4 transition-colors"
+      className="flex flex-col items-center gap-2 rounded-2xl border px-2 py-4 shadow-sm transition-[background-color,border-color,transform] hover:-translate-y-px focus-visible:outline-2 focus-visible:outline-offset-2"
       style={{
         backgroundColor: theme.surfaceAlt,
         borderColor: theme.border,
         color: theme.text,
+        outlineColor: theme.accent,
       }}
     >
       <span
@@ -89,27 +90,32 @@ export function IconsSection({
           placeholder={`Search ${icons.length} icons…`}
           value={query}
           onChange={(event) => setQuery(event.target.value)}
-          className="w-64 rounded-full border px-4 py-2 text-sm outline-none"
+          className="w-64 rounded-full border px-4 py-2 text-sm shadow-sm outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
           style={{
             backgroundColor: theme.surfaceAlt,
             borderColor: theme.border,
             color: theme.text,
+            outlineColor: theme.accent,
           }}
         />
         <div
-          className="inline-flex rounded-full border p-1"
-          style={{ borderColor: theme.border }}
+          className="inline-flex rounded-full border p-1 shadow-sm"
+          style={{
+            backgroundColor: theme.surfaceAlt,
+            borderColor: theme.border,
+          }}
         >
           {VARIANTS.map((option) => {
             const isActive = option === variant;
             return (
               <button
                 key={option}
-                className="rounded-full px-3 py-1.5 text-sm font-medium capitalize transition-colors"
+                className="rounded-full px-3 py-1.5 text-sm font-medium capitalize transition-[background-color,color,opacity] hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2"
                 onClick={() => setVariant(option)}
                 style={{
                   backgroundColor: isActive ? theme.text : "transparent",
                   color: isActive ? theme.background : theme.text,
+                  outlineColor: theme.accent,
                 }}
               >
                 {option}

@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --background: #F9FAFB;
-  --foreground: #17181A;
+  --background: #f9fafb;
+  --foreground: #17181a;
   --muted: #747679;
-  --border: #EAEBED;
-  --surface: #FFFFFF;
+  --border: #eaebed;
+  --surface: #ffffff;
 }
 
 @theme inline {
@@ -32,4 +32,14 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+}
+
+button:not(:disabled),
+a {
+  cursor: pointer;
+}
+
+input::placeholder {
+  color: currentColor;
+  opacity: 0.55;
 }
