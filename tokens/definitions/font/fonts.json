@@ -9,39 +9,39 @@
     "d1": {
       "family": "worldProMVP",
       "size": 56,
-      "weight": 600,
+      "weight": 550,
       "letterSpacing": -0.02,
       "lineHeight": 1.0,
       "dynamicTypeStyle": "largeTitle"
     },
     "h1": {
       "family": "worldProMVP",
-      "size": 34,
-      "weight": 550,
+      "size": 30,
+      "weight": 500,
       "letterSpacing": -0.015,
       "lineHeight": 1.2,
       "dynamicTypeStyle": "largeTitle"
     },
     "h2": {
       "family": "worldProMVP",
-      "size": 30,
-      "weight": 550,
+      "size": 27,
+      "weight": 500,
       "letterSpacing": -0.015,
       "lineHeight": 1.2,
       "dynamicTypeStyle": "title1"
     },
     "h3": {
       "family": "worldProMVP",
-      "size": 26,
-      "weight": 550,
+      "size": 24,
+      "weight": 500,
       "letterSpacing": -0.015,
       "lineHeight": 1.2,
       "dynamicTypeStyle": "title1"
     },
     "h4": {
       "family": "worldProMVP",
-      "size": 22,
-      "weight": 550,
+      "size": 21,
+      "weight": 500,
       "letterSpacing": -0.01,
       "lineHeight": 1.2,
       "dynamicTypeStyle": "title2"
@@ -49,7 +49,7 @@
     "h5": {
       "family": "worldProMVP",
       "size": 19,
-      "weight": 550,
+      "weight": 500,
       "letterSpacing": -0.01,
       "lineHeight": 1.2,
       "dynamicTypeStyle": "headline"
@@ -57,7 +57,7 @@
     "s1": {
       "family": "worldProMVP",
       "size": 17,
-      "weight": 500,
+      "weight": 450,
       "letterSpacing": -0.01,
       "lineHeight": 1.2,
       "dynamicTypeStyle": "headline"
@@ -65,7 +65,7 @@
     "s2": {
       "family": "worldProMVP",
       "size": 15,
-      "weight": 500,
+      "weight": 450,
       "letterSpacing": 0.0,
       "lineHeight": 1.2,
       "dynamicTypeStyle": "subheadline"
@@ -73,7 +73,7 @@
     "s3": {
       "family": "worldProMVP",
       "size": 13,
-      "weight": 500,
+      "weight": 450,
       "letterSpacing": 0.0,
       "lineHeight": 1.2,
       "dynamicTypeStyle": "footnote"
@@ -81,24 +81,24 @@
     "l1": {
       "family": "worldProMVP",
       "size": 17,
-      "weight": 600,
-      "letterSpacing": 0.0,
+      "weight": 550,
+      "letterSpacing": -0.01,
       "lineHeight": 1.2,
       "dynamicTypeStyle": "headline"
     },
     "l2": {
       "family": "worldProMVP",
       "size": 15,
-      "weight": 600,
-      "letterSpacing": 0.0,
+      "weight": 550,
+      "letterSpacing": -0.01,
       "lineHeight": 1.2,
       "dynamicTypeStyle": "subheadline"
     },
     "l3": {
       "family": "worldProMVP",
       "size": 13,
-      "weight": 600,
-      "letterSpacing": 0.0,
+      "weight": 550,
+      "letterSpacing": -0.01,
       "lineHeight": 1.2,
       "dynamicTypeStyle": "footnote"
     },
