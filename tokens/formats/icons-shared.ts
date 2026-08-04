@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 
 export const ICON_DEFINITIONS_DIR = 'tokens/definitions/icons';
-export const ICON_VARIANTS = ['outline', 'regular', 'solid'] as const;
+export const ICON_VARIANTS = ['regular', 'solid'] as const;
 export type IconVariant = (typeof ICON_VARIANTS)[number];
 
 export interface IconToken {

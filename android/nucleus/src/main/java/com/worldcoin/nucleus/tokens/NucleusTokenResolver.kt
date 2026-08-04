@@ -69,420 +69,376 @@ object NucleusTokenResolver {
     @DrawableRes
     fun iconRes(token: String): Int? =
         when (token) {
-            "airplane.outline" -> R.drawable.nucleus_icon_airplane_outline
             "airplane.regular" -> R.drawable.nucleus_icon_airplane_regular
             "airplane.solid" -> R.drawable.nucleus_icon_airplane_solid
-            "antenna-signal.outline" -> R.drawable.nucleus_icon_antenna_signal_outline
             "antenna-signal.regular" -> R.drawable.nucleus_icon_antenna_signal_regular
-            "apple-mac.outline" -> R.drawable.nucleus_icon_apple_mac_outline
-            "apple-mac.regular" -> R.drawable.nucleus_icon_apple_mac_regular
-            "apple-mac.solid" -> R.drawable.nucleus_icon_apple_mac_solid
-            "arrow-down-left.outline" -> R.drawable.nucleus_icon_arrow_down_left_outline
+            "antenna-signal.solid" -> R.drawable.nucleus_icon_antenna_signal_solid
+            "arrow-down-circle.regular" -> R.drawable.nucleus_icon_arrow_down_circle_regular
+            "arrow-down-circle.solid" -> R.drawable.nucleus_icon_arrow_down_circle_solid
             "arrow-down-left.regular" -> R.drawable.nucleus_icon_arrow_down_left_regular
             "arrow-down-left.solid" -> R.drawable.nucleus_icon_arrow_down_left_solid
-            "arrow-down-right.outline" -> R.drawable.nucleus_icon_arrow_down_right_outline
             "arrow-down-right.regular" -> R.drawable.nucleus_icon_arrow_down_right_regular
             "arrow-down-right.solid" -> R.drawable.nucleus_icon_arrow_down_right_solid
-            "arrow-down.outline" -> R.drawable.nucleus_icon_arrow_down_outline
             "arrow-down.regular" -> R.drawable.nucleus_icon_arrow_down_regular
             "arrow-down.solid" -> R.drawable.nucleus_icon_arrow_down_solid
-            "arrow-left.outline" -> R.drawable.nucleus_icon_arrow_left_outline
             "arrow-left.regular" -> R.drawable.nucleus_icon_arrow_left_regular
             "arrow-left.solid" -> R.drawable.nucleus_icon_arrow_left_solid
-            "arrow-right.outline" -> R.drawable.nucleus_icon_arrow_right_outline
             "arrow-right.regular" -> R.drawable.nucleus_icon_arrow_right_regular
             "arrow-right.solid" -> R.drawable.nucleus_icon_arrow_right_solid
-            "arrow-split.outline" -> R.drawable.nucleus_icon_arrow_split_outline
             "arrow-split.regular" -> R.drawable.nucleus_icon_arrow_split_regular
             "arrow-split.solid" -> R.drawable.nucleus_icon_arrow_split_solid
-            "arrow-up-left.outline" -> R.drawable.nucleus_icon_arrow_up_left_outline
+            "arrow-up-circle.regular" -> R.drawable.nucleus_icon_arrow_up_circle_regular
+            "arrow-up-circle.solid" -> R.drawable.nucleus_icon_arrow_up_circle_solid
             "arrow-up-left.regular" -> R.drawable.nucleus_icon_arrow_up_left_regular
             "arrow-up-left.solid" -> R.drawable.nucleus_icon_arrow_up_left_solid
-            "arrow-up-right.outline" -> R.drawable.nucleus_icon_arrow_up_right_outline
             "arrow-up-right.regular" -> R.drawable.nucleus_icon_arrow_up_right_regular
-            "arrow-up.outline" -> R.drawable.nucleus_icon_arrow_up_outline
             "arrow-up.regular" -> R.drawable.nucleus_icon_arrow_up_regular
             "arrow-up.solid" -> R.drawable.nucleus_icon_arrow_up_solid
-            "at-sign.outline" -> R.drawable.nucleus_icon_at_sign_outline
+            "arrow-uturn-left.regular" -> R.drawable.nucleus_icon_arrow_uturn_left_regular
+            "arrow-uturn-left.solid" -> R.drawable.nucleus_icon_arrow_uturn_left_solid
+            "arrow-uturn-right.regular" -> R.drawable.nucleus_icon_arrow_uturn_right_regular
+            "arrow-uturn-right.solid" -> R.drawable.nucleus_icon_arrow_uturn_right_solid
+            "arrows-transfer.regular" -> R.drawable.nucleus_icon_arrows_transfer_regular
+            "arrows-transfer.solid" -> R.drawable.nucleus_icon_arrows_transfer_solid
             "at-sign.regular" -> R.drawable.nucleus_icon_at_sign_regular
             "at-sign.solid" -> R.drawable.nucleus_icon_at_sign_solid
-            "badge-check.outline" -> R.drawable.nucleus_icon_badge_check_outline
             "badge-check.regular" -> R.drawable.nucleus_icon_badge_check_regular
             "badge-check.solid" -> R.drawable.nucleus_icon_badge_check_solid
-            "badge-not-checked.outline" -> R.drawable.nucleus_icon_badge_not_checked_outline
-            "badge-not-checked.regular" -> R.drawable.nucleus_icon_badge_not_checked_regular
-            "badge-not-checked.solid" -> R.drawable.nucleus_icon_badge_not_checked_solid
-            "bag.outline" -> R.drawable.nucleus_icon_bag_outline
+            "badge-xmark.regular" -> R.drawable.nucleus_icon_badge_xmark_regular
+            "badge-xmark.solid" -> R.drawable.nucleus_icon_badge_xmark_solid
             "bag.regular" -> R.drawable.nucleus_icon_bag_regular
             "bag.solid" -> R.drawable.nucleus_icon_bag_solid
-            "bank.outline" -> R.drawable.nucleus_icon_bank_outline
             "bank.regular" -> R.drawable.nucleus_icon_bank_regular
             "bank.solid" -> R.drawable.nucleus_icon_bank_solid
-            "bell-notification.outline" -> R.drawable.nucleus_icon_bell_notification_outline
             "bell-notification.regular" -> R.drawable.nucleus_icon_bell_notification_regular
             "bell-notification.solid" -> R.drawable.nucleus_icon_bell_notification_solid
-            "bell-slash.outline" -> R.drawable.nucleus_icon_bell_slash_outline
             "bell-slash.regular" -> R.drawable.nucleus_icon_bell_slash_regular
             "bell-slash.solid" -> R.drawable.nucleus_icon_bell_slash_solid
-            "bell.outline" -> R.drawable.nucleus_icon_bell_outline
             "bell.regular" -> R.drawable.nucleus_icon_bell_regular
             "bell.solid" -> R.drawable.nucleus_icon_bell_solid
-            "bookmark.outline" -> R.drawable.nucleus_icon_bookmark_outline
+            "book.regular" -> R.drawable.nucleus_icon_book_regular
+            "book.solid" -> R.drawable.nucleus_icon_book_solid
             "bookmark.regular" -> R.drawable.nucleus_icon_bookmark_regular
             "bookmark.solid" -> R.drawable.nucleus_icon_bookmark_solid
-            "box-iso.outline" -> R.drawable.nucleus_icon_box_iso_outline
-            "box-iso.regular" -> R.drawable.nucleus_icon_box_iso_regular
             "box-iso.solid" -> R.drawable.nucleus_icon_box_iso_solid
-            "calendar-plus.outline" -> R.drawable.nucleus_icon_calendar_plus_outline
+            "brand-apple.regular" -> R.drawable.nucleus_icon_brand_apple_regular
+            "brand-apple.solid" -> R.drawable.nucleus_icon_brand_apple_solid
+            "brand-instagram.regular" -> R.drawable.nucleus_icon_brand_instagram_regular
+            "brand-instagram.solid" -> R.drawable.nucleus_icon_brand_instagram_solid
+            "brand-x.regular" -> R.drawable.nucleus_icon_brand_x_regular
+            "brand-x.solid" -> R.drawable.nucleus_icon_brand_x_solid
+            "bus.regular" -> R.drawable.nucleus_icon_bus_regular
+            "bus.solid" -> R.drawable.nucleus_icon_bus_solid
             "calendar-plus.regular" -> R.drawable.nucleus_icon_calendar_plus_regular
             "calendar-plus.solid" -> R.drawable.nucleus_icon_calendar_plus_solid
-            "calendar.outline" -> R.drawable.nucleus_icon_calendar_outline
             "calendar.regular" -> R.drawable.nucleus_icon_calendar_regular
             "calendar.solid" -> R.drawable.nucleus_icon_calendar_solid
-            "camera.outline" -> R.drawable.nucleus_icon_camera_outline
             "camera.regular" -> R.drawable.nucleus_icon_camera_regular
             "camera.solid" -> R.drawable.nucleus_icon_camera_solid
-            "cash-multi.outline" -> R.drawable.nucleus_icon_cash_multi_outline
+            "card-credential.regular" -> R.drawable.nucleus_icon_card_credential_regular
+            "card-credential.solid" -> R.drawable.nucleus_icon_card_credential_solid
+            "card-credit.regular" -> R.drawable.nucleus_icon_card_credit_regular
+            "card-credit.solid" -> R.drawable.nucleus_icon_card_credit_solid
+            "card-shield.regular" -> R.drawable.nucleus_icon_card_shield_regular
+            "card-shield.solid" -> R.drawable.nucleus_icon_card_shield_solid
+            "card-world.regular" -> R.drawable.nucleus_icon_card_world_regular
+            "card-world.solid" -> R.drawable.nucleus_icon_card_world_solid
             "cash-multi.regular" -> R.drawable.nucleus_icon_cash_multi_regular
             "cash-multi.solid" -> R.drawable.nucleus_icon_cash_multi_solid
-            "cash.outline" -> R.drawable.nucleus_icon_cash_outline
             "cash.regular" -> R.drawable.nucleus_icon_cash_regular
             "cash.solid" -> R.drawable.nucleus_icon_cash_solid
-            "cellular-no-signal.outline" -> R.drawable.nucleus_icon_cellular_no_signal_outline
             "cellular-no-signal.regular" -> R.drawable.nucleus_icon_cellular_no_signal_regular
             "cellular-no-signal.solid" -> R.drawable.nucleus_icon_cellular_no_signal_solid
-            "cellular.outline" -> R.drawable.nucleus_icon_cellular_outline
             "cellular.regular" -> R.drawable.nucleus_icon_cellular_regular
             "cellular.solid" -> R.drawable.nucleus_icon_cellular_solid
-            "chat-bubble-empty.outline" -> R.drawable.nucleus_icon_chat_bubble_empty_outline
             "chat-bubble-empty.regular" -> R.drawable.nucleus_icon_chat_bubble_empty_regular
             "chat-bubble-empty.solid" -> R.drawable.nucleus_icon_chat_bubble_empty_solid
-            "chat-bubble-question.outline" -> R.drawable.nucleus_icon_chat_bubble_question_outline
             "chat-bubble-question.regular" -> R.drawable.nucleus_icon_chat_bubble_question_regular
             "chat-bubble-question.solid" -> R.drawable.nucleus_icon_chat_bubble_question_solid
-            "chat-bubble-translate.outline" -> R.drawable.nucleus_icon_chat_bubble_translate_outline
             "chat-bubble-translate.regular" -> R.drawable.nucleus_icon_chat_bubble_translate_regular
             "chat-bubble-translate.solid" -> R.drawable.nucleus_icon_chat_bubble_translate_solid
-            "chat-bubble-warning.outline" -> R.drawable.nucleus_icon_chat_bubble_warning_outline
             "chat-bubble-warning.regular" -> R.drawable.nucleus_icon_chat_bubble_warning_regular
             "chat-bubble-warning.solid" -> R.drawable.nucleus_icon_chat_bubble_warning_solid
-            "chat-bubble.outline" -> R.drawable.nucleus_icon_chat_bubble_outline
             "chat-bubble.regular" -> R.drawable.nucleus_icon_chat_bubble_regular
             "chat-bubble.solid" -> R.drawable.nucleus_icon_chat_bubble_solid
-            "chat-lines.outline" -> R.drawable.nucleus_icon_chat_lines_outline
             "chat-lines.regular" -> R.drawable.nucleus_icon_chat_lines_regular
             "chat-lines.solid" -> R.drawable.nucleus_icon_chat_lines_solid
-            "check-circle.outline" -> R.drawable.nucleus_icon_check_circle_outline
             "check-circle.regular" -> R.drawable.nucleus_icon_check_circle_regular
             "check-circle.solid" -> R.drawable.nucleus_icon_check_circle_solid
-            "check.outline" -> R.drawable.nucleus_icon_check_outline
+            "check-double.regular" -> R.drawable.nucleus_icon_check_double_regular
+            "check-double.solid" -> R.drawable.nucleus_icon_check_double_solid
             "check.regular" -> R.drawable.nucleus_icon_check_regular
             "check.solid" -> R.drawable.nucleus_icon_check_solid
-            "clock-rotate-right.outline" -> R.drawable.nucleus_icon_clock_rotate_right_outline
+            "chevron-down.regular" -> R.drawable.nucleus_icon_chevron_down_regular
+            "chevron-down.solid" -> R.drawable.nucleus_icon_chevron_down_solid
+            "chevron-left.regular" -> R.drawable.nucleus_icon_chevron_left_regular
+            "chevron-left.solid" -> R.drawable.nucleus_icon_chevron_left_solid
+            "chevron-right.regular" -> R.drawable.nucleus_icon_chevron_right_regular
+            "chevron-right.solid" -> R.drawable.nucleus_icon_chevron_right_solid
+            "chevron-up.regular" -> R.drawable.nucleus_icon_chevron_up_regular
+            "chevron-up.solid" -> R.drawable.nucleus_icon_chevron_up_solid
+            "chevrons-expand.regular" -> R.drawable.nucleus_icon_chevrons_expand_regular
+            "chevrons-expand.solid" -> R.drawable.nucleus_icon_chevrons_expand_solid
+            "chevrons-minimize.regular" -> R.drawable.nucleus_icon_chevrons_minimize_regular
+            "chevrons-minimize.solid" -> R.drawable.nucleus_icon_chevrons_minimize_solid
+            "circle.regular" -> R.drawable.nucleus_icon_circle_regular
+            "circle.solid" -> R.drawable.nucleus_icon_circle_solid
             "clock-rotate-right.regular" -> R.drawable.nucleus_icon_clock_rotate_right_regular
             "clock-rotate-right.solid" -> R.drawable.nucleus_icon_clock_rotate_right_solid
-            "clock.outline" -> R.drawable.nucleus_icon_clock_outline
             "clock.regular" -> R.drawable.nucleus_icon_clock_regular
             "clock.solid" -> R.drawable.nucleus_icon_clock_solid
-            "cloud-download.outline" -> R.drawable.nucleus_icon_cloud_download_outline
             "cloud-download.regular" -> R.drawable.nucleus_icon_cloud_download_regular
             "cloud-download.solid" -> R.drawable.nucleus_icon_cloud_download_solid
-            "cloud.outline" -> R.drawable.nucleus_icon_cloud_outline
             "cloud.regular" -> R.drawable.nucleus_icon_cloud_regular
             "cloud.solid" -> R.drawable.nucleus_icon_cloud_solid
-            "coins.outline" -> R.drawable.nucleus_icon_coins_outline
+            "coins-stack.regular" -> R.drawable.nucleus_icon_coins_stack_regular
+            "coins-stack.solid" -> R.drawable.nucleus_icon_coins_stack_solid
             "coins.regular" -> R.drawable.nucleus_icon_coins_regular
             "coins.solid" -> R.drawable.nucleus_icon_coins_solid
-            "compass.outline" -> R.drawable.nucleus_icon_compass_outline
+            "commodity.regular" -> R.drawable.nucleus_icon_commodity_regular
+            "commodity.solid" -> R.drawable.nucleus_icon_commodity_solid
             "compass.regular" -> R.drawable.nucleus_icon_compass_regular
             "compass.solid" -> R.drawable.nucleus_icon_compass_solid
-            "copy.outline" -> R.drawable.nucleus_icon_copy_outline
+            "compose.regular" -> R.drawable.nucleus_icon_compose_regular
+            "compose.solid" -> R.drawable.nucleus_icon_compose_solid
+            "contact-book.regular" -> R.drawable.nucleus_icon_contact_book_regular
+            "contact-book.solid" -> R.drawable.nucleus_icon_contact_book_solid
             "copy.regular" -> R.drawable.nucleus_icon_copy_regular
             "copy.solid" -> R.drawable.nucleus_icon_copy_solid
-            "coupon.outline" -> R.drawable.nucleus_icon_coupon_outline
             "coupon.regular" -> R.drawable.nucleus_icon_coupon_regular
             "coupon.solid" -> R.drawable.nucleus_icon_coupon_solid
-            "cube.outline" -> R.drawable.nucleus_icon_cube_outline
             "cube.regular" -> R.drawable.nucleus_icon_cube_regular
             "cube.solid" -> R.drawable.nucleus_icon_cube_solid
-            "delivery-check.outline" -> R.drawable.nucleus_icon_delivery_check_outline
+            "cursor-pointer.regular" -> R.drawable.nucleus_icon_cursor_pointer_regular
+            "cursor-pointer.solid" -> R.drawable.nucleus_icon_cursor_pointer_solid
+            "decorative-spark.regular" -> R.drawable.nucleus_icon_decorative_spark_regular
+            "decorative-spark.solid" -> R.drawable.nucleus_icon_decorative_spark_solid
             "delivery-check.regular" -> R.drawable.nucleus_icon_delivery_check_regular
             "delivery-check.solid" -> R.drawable.nucleus_icon_delivery_check_solid
-            "delivery-truck.outline" -> R.drawable.nucleus_icon_delivery_truck_outline
             "delivery-truck.regular" -> R.drawable.nucleus_icon_delivery_truck_regular
             "delivery-truck.solid" -> R.drawable.nucleus_icon_delivery_truck_solid
-            "double-check.outline" -> R.drawable.nucleus_icon_double_check_outline
-            "double-check.regular" -> R.drawable.nucleus_icon_double_check_regular
-            "double-check.solid" -> R.drawable.nucleus_icon_double_check_solid
-            "download.outline" -> R.drawable.nucleus_icon_download_outline
+            "dollar.regular" -> R.drawable.nucleus_icon_dollar_regular
+            "dollar.solid" -> R.drawable.nucleus_icon_dollar_solid
             "download.regular" -> R.drawable.nucleus_icon_download_regular
             "download.solid" -> R.drawable.nucleus_icon_download_solid
-            "edit-pencil.outline" -> R.drawable.nucleus_icon_edit_pencil_outline
             "edit-pencil.regular" -> R.drawable.nucleus_icon_edit_pencil_regular
             "edit-pencil.solid" -> R.drawable.nucleus_icon_edit_pencil_solid
-            "empty-page.outline" -> R.drawable.nucleus_icon_empty_page_outline
+            "ellipsis-circle.regular" -> R.drawable.nucleus_icon_ellipsis_circle_regular
+            "ellipsis-circle.solid" -> R.drawable.nucleus_icon_ellipsis_circle_solid
+            "ellipsis-vertical.regular" -> R.drawable.nucleus_icon_ellipsis_vertical_regular
+            "ellipsis-vertical.solid" -> R.drawable.nucleus_icon_ellipsis_vertical_solid
+            "ellipsis.regular" -> R.drawable.nucleus_icon_ellipsis_regular
+            "ellipsis.solid" -> R.drawable.nucleus_icon_ellipsis_solid
             "empty-page.regular" -> R.drawable.nucleus_icon_empty_page_regular
             "empty-page.solid" -> R.drawable.nucleus_icon_empty_page_solid
-            "eye-closed.outline" -> R.drawable.nucleus_icon_eye_closed_outline
+            "enlarge.regular" -> R.drawable.nucleus_icon_enlarge_regular
+            "enlarge.solid" -> R.drawable.nucleus_icon_enlarge_solid
             "eye-closed.regular" -> R.drawable.nucleus_icon_eye_closed_regular
             "eye-closed.solid" -> R.drawable.nucleus_icon_eye_closed_solid
-            "eye.outline" -> R.drawable.nucleus_icon_eye_outline
             "eye.regular" -> R.drawable.nucleus_icon_eye_regular
             "eye.solid" -> R.drawable.nucleus_icon_eye_solid
-            "face-id.outline" -> R.drawable.nucleus_icon_face_id_outline
             "face-id.regular" -> R.drawable.nucleus_icon_face_id_regular
             "face-id.solid" -> R.drawable.nucleus_icon_face_id_solid
-            "filter-list.outline" -> R.drawable.nucleus_icon_filter_list_outline
             "filter-list.regular" -> R.drawable.nucleus_icon_filter_list_regular
             "filter-list.solid" -> R.drawable.nucleus_icon_filter_list_solid
-            "flash.outline" -> R.drawable.nucleus_icon_flash_outline
             "flash.regular" -> R.drawable.nucleus_icon_flash_regular
             "flash.solid" -> R.drawable.nucleus_icon_flash_solid
-            "gif.outline" -> R.drawable.nucleus_icon_gif_outline
+            "flashlight.regular" -> R.drawable.nucleus_icon_flashlight_regular
+            "flashlight.solid" -> R.drawable.nucleus_icon_flashlight_solid
+            "full-screen-close.regular" -> R.drawable.nucleus_icon_full_screen_close_regular
+            "full-screen-close.solid" -> R.drawable.nucleus_icon_full_screen_close_solid
+            "full-screen-open.regular" -> R.drawable.nucleus_icon_full_screen_open_regular
+            "full-screen-open.solid" -> R.drawable.nucleus_icon_full_screen_open_solid
             "gif.regular" -> R.drawable.nucleus_icon_gif_regular
             "gif.solid" -> R.drawable.nucleus_icon_gif_solid
-            "gift.outline" -> R.drawable.nucleus_icon_gift_outline
+            "gift-card.regular" -> R.drawable.nucleus_icon_gift_card_regular
+            "gift-card.solid" -> R.drawable.nucleus_icon_gift_card_solid
+            "gift.regular" -> R.drawable.nucleus_icon_gift_regular
             "gift.solid" -> R.drawable.nucleus_icon_gift_solid
-            "globe.outline" -> R.drawable.nucleus_icon_globe_outline
+            "glasses.regular" -> R.drawable.nucleus_icon_glasses_regular
+            "glasses.solid" -> R.drawable.nucleus_icon_glasses_solid
             "globe.regular" -> R.drawable.nucleus_icon_globe_regular
             "globe.solid" -> R.drawable.nucleus_icon_globe_solid
-            "graduation-cap.outline" -> R.drawable.nucleus_icon_graduation_cap_outline
             "graduation-cap.regular" -> R.drawable.nucleus_icon_graduation_cap_regular
             "graduation-cap.solid" -> R.drawable.nucleus_icon_graduation_cap_solid
-            "graph-down.outline" -> R.drawable.nucleus_icon_graph_down_outline
             "graph-down.regular" -> R.drawable.nucleus_icon_graph_down_regular
             "graph-down.solid" -> R.drawable.nucleus_icon_graph_down_solid
-            "graph-up.outline" -> R.drawable.nucleus_icon_graph_up_outline
             "graph-up.regular" -> R.drawable.nucleus_icon_graph_up_regular
             "graph-up.solid" -> R.drawable.nucleus_icon_graph_up_solid
-            "group.outline" -> R.drawable.nucleus_icon_group_outline
             "group.regular" -> R.drawable.nucleus_icon_group_regular
             "group.solid" -> R.drawable.nucleus_icon_group_solid
-            "heart.outline" -> R.drawable.nucleus_icon_heart_outline
+            "half-moon.regular" -> R.drawable.nucleus_icon_half_moon_regular
+            "half-moon.solid" -> R.drawable.nucleus_icon_half_moon_solid
             "heart.regular" -> R.drawable.nucleus_icon_heart_regular
             "heart.solid" -> R.drawable.nucleus_icon_heart_solid
-            "help-circle.outline" -> R.drawable.nucleus_icon_help_circle_outline
             "help-circle.regular" -> R.drawable.nucleus_icon_help_circle_regular
             "help-circle.solid" -> R.drawable.nucleus_icon_help_circle_solid
-            "home.outline" -> R.drawable.nucleus_icon_home_outline
             "home.regular" -> R.drawable.nucleus_icon_home_regular
             "home.solid" -> R.drawable.nucleus_icon_home_solid
-            "info-circle.outline" -> R.drawable.nucleus_icon_info_circle_outline
+            "human-emblem.regular" -> R.drawable.nucleus_icon_human_emblem_regular
+            "human-emblem.solid" -> R.drawable.nucleus_icon_human_emblem_solid
             "info-circle.regular" -> R.drawable.nucleus_icon_info_circle_regular
             "info-circle.solid" -> R.drawable.nucleus_icon_info_circle_solid
-            "instagram.outline" -> R.drawable.nucleus_icon_instagram_outline
-            "instagram.regular" -> R.drawable.nucleus_icon_instagram_regular
-            "instagram.solid" -> R.drawable.nucleus_icon_instagram_solid
-            "key.outline" -> R.drawable.nucleus_icon_key_outline
+            "key-real.regular" -> R.drawable.nucleus_icon_key_real_regular
+            "key-real.solid" -> R.drawable.nucleus_icon_key_real_solid
             "key.regular" -> R.drawable.nucleus_icon_key_regular
             "key.solid" -> R.drawable.nucleus_icon_key_solid
-            "language.outline" -> R.drawable.nucleus_icon_language_outline
             "language.regular" -> R.drawable.nucleus_icon_language_regular
             "language.solid" -> R.drawable.nucleus_icon_language_solid
-            "link-slash.outline" -> R.drawable.nucleus_icon_link_slash_outline
+            "legal.regular" -> R.drawable.nucleus_icon_legal_regular
+            "legal.solid" -> R.drawable.nucleus_icon_legal_solid
             "link-slash.regular" -> R.drawable.nucleus_icon_link_slash_regular
-            "link.outline" -> R.drawable.nucleus_icon_link_outline
+            "link-slash.solid" -> R.drawable.nucleus_icon_link_slash_solid
             "link.regular" -> R.drawable.nucleus_icon_link_regular
             "link.solid" -> R.drawable.nucleus_icon_link_solid
-            "list.outline" -> R.drawable.nucleus_icon_list_outline
             "list.regular" -> R.drawable.nucleus_icon_list_regular
             "list.solid" -> R.drawable.nucleus_icon_list_solid
-            "lock.outline" -> R.drawable.nucleus_icon_lock_outline
             "lock.regular" -> R.drawable.nucleus_icon_lock_regular
             "lock.solid" -> R.drawable.nucleus_icon_lock_solid
-            "log-in.outline" -> R.drawable.nucleus_icon_log_in_outline
             "log-in.regular" -> R.drawable.nucleus_icon_log_in_regular
             "log-in.solid" -> R.drawable.nucleus_icon_log_in_solid
-            "log-out.outline" -> R.drawable.nucleus_icon_log_out_outline
             "log-out.regular" -> R.drawable.nucleus_icon_log_out_regular
             "log-out.solid" -> R.drawable.nucleus_icon_log_out_solid
-            "magic-wand.outline" -> R.drawable.nucleus_icon_magic_wand_outline
             "magic-wand.regular" -> R.drawable.nucleus_icon_magic_wand_regular
             "magic-wand.solid" -> R.drawable.nucleus_icon_magic_wand_solid
-            "mail.outline" -> R.drawable.nucleus_icon_mail_outline
             "mail.regular" -> R.drawable.nucleus_icon_mail_regular
             "mail.solid" -> R.drawable.nucleus_icon_mail_solid
-            "map-pin.outline" -> R.drawable.nucleus_icon_map_pin_outline
             "map-pin.regular" -> R.drawable.nucleus_icon_map_pin_regular
             "map-pin.solid" -> R.drawable.nucleus_icon_map_pin_solid
-            "map.outline" -> R.drawable.nucleus_icon_map_outline
             "map.regular" -> R.drawable.nucleus_icon_map_regular
             "map.solid" -> R.drawable.nucleus_icon_map_solid
-            "maps-arrow.outline" -> R.drawable.nucleus_icon_maps_arrow_outline
-            "maps-arrow.regular" -> R.drawable.nucleus_icon_maps_arrow_regular
-            "maps-arrow.solid" -> R.drawable.nucleus_icon_maps_arrow_solid
-            "media-image.outline" -> R.drawable.nucleus_icon_media_image_outline
-            "media-image.regular" -> R.drawable.nucleus_icon_media_image_regular
-            "media-image.solid" -> R.drawable.nucleus_icon_media_image_solid
-            "microphone.outline" -> R.drawable.nucleus_icon_microphone_outline
             "microphone.regular" -> R.drawable.nucleus_icon_microphone_regular
             "microphone.solid" -> R.drawable.nucleus_icon_microphone_solid
-            "minus.outline" -> R.drawable.nucleus_icon_minus_outline
+            "minus-circle.regular" -> R.drawable.nucleus_icon_minus_circle_regular
+            "minus-circle.solid" -> R.drawable.nucleus_icon_minus_circle_solid
             "minus.regular" -> R.drawable.nucleus_icon_minus_regular
             "minus.solid" -> R.drawable.nucleus_icon_minus_solid
-            "more-horiz-circle.outline" -> R.drawable.nucleus_icon_more_horiz_circle_outline
-            "more-horiz-circle.regular" -> R.drawable.nucleus_icon_more_horiz_circle_regular
-            "more-horiz-circle.solid" -> R.drawable.nucleus_icon_more_horiz_circle_solid
-            "more-horiz.outline" -> R.drawable.nucleus_icon_more_horiz_outline
-            "more-horiz.regular" -> R.drawable.nucleus_icon_more_horiz_regular
-            "more-horiz.solid" -> R.drawable.nucleus_icon_more_horiz_solid
-            "nav-arrow-down.outline" -> R.drawable.nucleus_icon_nav_arrow_down_outline
-            "nav-arrow-down.regular" -> R.drawable.nucleus_icon_nav_arrow_down_regular
-            "nav-arrow-down.solid" -> R.drawable.nucleus_icon_nav_arrow_down_solid
-            "nav-arrow-left.outline" -> R.drawable.nucleus_icon_nav_arrow_left_outline
-            "nav-arrow-left.regular" -> R.drawable.nucleus_icon_nav_arrow_left_regular
-            "nav-arrow-left.solid" -> R.drawable.nucleus_icon_nav_arrow_left_solid
-            "nav-arrow-right.outline" -> R.drawable.nucleus_icon_nav_arrow_right_outline
-            "nav-arrow-right.regular" -> R.drawable.nucleus_icon_nav_arrow_right_regular
-            "nav-arrow-right.solid" -> R.drawable.nucleus_icon_nav_arrow_right_solid
-            "nav-arrow-up.outline" -> R.drawable.nucleus_icon_nav_arrow_up_outline
-            "nav-arrow-up.regular" -> R.drawable.nucleus_icon_nav_arrow_up_regular
-            "nav-arrow-up.solid" -> R.drawable.nucleus_icon_nav_arrow_up_solid
-            "open-new-window.outline" -> R.drawable.nucleus_icon_open_new_window_outline
+            "navigation-diagonal.regular" -> R.drawable.nucleus_icon_navigation_diagonal_regular
+            "navigation-diagonal.solid" -> R.drawable.nucleus_icon_navigation_diagonal_solid
+            "navigation.regular" -> R.drawable.nucleus_icon_navigation_regular
+            "navigation.solid" -> R.drawable.nucleus_icon_navigation_solid
             "open-new-window.regular" -> R.drawable.nucleus_icon_open_new_window_regular
             "open-new-window.solid" -> R.drawable.nucleus_icon_open_new_window_solid
-            "orb.outline" -> R.drawable.nucleus_icon_orb_outline
-            "orb.regular" -> R.drawable.nucleus_icon_orb_regular
-            "orb.solid" -> R.drawable.nucleus_icon_orb_solid
-            "page.outline" -> R.drawable.nucleus_icon_page_outline
+            "orb-diamond.regular" -> R.drawable.nucleus_icon_orb_diamond_regular
+            "orb-diamond.solid" -> R.drawable.nucleus_icon_orb_diamond_solid
+            "orb-pearl.regular" -> R.drawable.nucleus_icon_orb_pearl_regular
+            "orb-pearl.solid" -> R.drawable.nucleus_icon_orb_pearl_solid
             "page.regular" -> R.drawable.nucleus_icon_page_regular
             "page.solid" -> R.drawable.nucleus_icon_page_solid
-            "passkey.outline" -> R.drawable.nucleus_icon_passkey_outline
-            "passkey.regular" -> R.drawable.nucleus_icon_passkey_regular
-            "passkey.solid" -> R.drawable.nucleus_icon_passkey_solid
-            "percentage.outline" -> R.drawable.nucleus_icon_percentage_outline
-            "percentage.regular" -> R.drawable.nucleus_icon_percentage_regular
+            "password.regular" -> R.drawable.nucleus_icon_password_regular
+            "password.solid" -> R.drawable.nucleus_icon_password_solid
             "percentage.solid" -> R.drawable.nucleus_icon_percentage_solid
-            "pin.outline" -> R.drawable.nucleus_icon_pin_outline
+            "person-circle.regular" -> R.drawable.nucleus_icon_person_circle_regular
+            "person-circle.solid" -> R.drawable.nucleus_icon_person_circle_solid
+            "person-key.regular" -> R.drawable.nucleus_icon_person_key_regular
+            "person-key.solid" -> R.drawable.nucleus_icon_person_key_solid
+            "person.regular" -> R.drawable.nucleus_icon_person_regular
+            "person.solid" -> R.drawable.nucleus_icon_person_solid
+            "photo.regular" -> R.drawable.nucleus_icon_photo_regular
+            "photo.solid" -> R.drawable.nucleus_icon_photo_solid
             "pin.regular" -> R.drawable.nucleus_icon_pin_regular
             "pin.solid" -> R.drawable.nucleus_icon_pin_solid
-            "play.outline" -> R.drawable.nucleus_icon_play_outline
             "play.regular" -> R.drawable.nucleus_icon_play_regular
             "play.solid" -> R.drawable.nucleus_icon_play_solid
-            "plus.outline" -> R.drawable.nucleus_icon_plus_outline
+            "plus-circle.regular" -> R.drawable.nucleus_icon_plus_circle_regular
+            "plus-circle.solid" -> R.drawable.nucleus_icon_plus_circle_solid
             "plus.regular" -> R.drawable.nucleus_icon_plus_regular
             "plus.solid" -> R.drawable.nucleus_icon_plus_solid
-            "post.outline" -> R.drawable.nucleus_icon_post_outline
             "post.regular" -> R.drawable.nucleus_icon_post_regular
             "post.solid" -> R.drawable.nucleus_icon_post_solid
-            "profile-circle.outline" -> R.drawable.nucleus_icon_profile_circle_outline
-            "profile-circle.regular" -> R.drawable.nucleus_icon_profile_circle_regular
-            "profile-circle.solid" -> R.drawable.nucleus_icon_profile_circle_solid
-            "prohibition.outline" -> R.drawable.nucleus_icon_prohibition_outline
+            "power.regular" -> R.drawable.nucleus_icon_power_regular
+            "power.solid" -> R.drawable.nucleus_icon_power_solid
             "prohibition.regular" -> R.drawable.nucleus_icon_prohibition_regular
             "prohibition.solid" -> R.drawable.nucleus_icon_prohibition_solid
-            "qr-code.outline" -> R.drawable.nucleus_icon_qr_code_outline
             "qr-code.regular" -> R.drawable.nucleus_icon_qr_code_regular
             "qr-code.solid" -> R.drawable.nucleus_icon_qr_code_solid
-            "refresh.outline" -> R.drawable.nucleus_icon_refresh_outline
+            "refresh-double.regular" -> R.drawable.nucleus_icon_refresh_double_regular
+            "refresh-double.solid" -> R.drawable.nucleus_icon_refresh_double_solid
             "refresh.regular" -> R.drawable.nucleus_icon_refresh_regular
             "refresh.solid" -> R.drawable.nucleus_icon_refresh_solid
-            "reports.outline" -> R.drawable.nucleus_icon_reports_outline
             "reports.regular" -> R.drawable.nucleus_icon_reports_regular
             "reports.solid" -> R.drawable.nucleus_icon_reports_solid
-            "safe.outline" -> R.drawable.nucleus_icon_safe_outline
             "safe.regular" -> R.drawable.nucleus_icon_safe_regular
             "safe.solid" -> R.drawable.nucleus_icon_safe_solid
-            "scan.outline" -> R.drawable.nucleus_icon_scan_outline
             "scan.regular" -> R.drawable.nucleus_icon_scan_regular
             "scan.solid" -> R.drawable.nucleus_icon_scan_solid
-            "search.outline" -> R.drawable.nucleus_icon_search_outline
             "search.regular" -> R.drawable.nucleus_icon_search_regular
             "search.solid" -> R.drawable.nucleus_icon_search_solid
-            "send-mail.outline" -> R.drawable.nucleus_icon_send_mail_outline
             "send-mail.regular" -> R.drawable.nucleus_icon_send_mail_regular
             "send-mail.solid" -> R.drawable.nucleus_icon_send_mail_solid
-            "settings.outline" -> R.drawable.nucleus_icon_settings_outline
+            "send.regular" -> R.drawable.nucleus_icon_send_regular
+            "send.solid" -> R.drawable.nucleus_icon_send_solid
             "settings.regular" -> R.drawable.nucleus_icon_settings_regular
             "settings.solid" -> R.drawable.nucleus_icon_settings_solid
-            "share-ios.outline" -> R.drawable.nucleus_icon_share_ios_outline
             "share-ios.regular" -> R.drawable.nucleus_icon_share_ios_regular
             "share-ios.solid" -> R.drawable.nucleus_icon_share_ios_solid
-            "shield-2.outline" -> R.drawable.nucleus_icon_shield_2_outline
-            "shield-2.regular" -> R.drawable.nucleus_icon_shield_2_regular
-            "shield-2.solid" -> R.drawable.nucleus_icon_shield_2_solid
-            "shield-alert.outline" -> R.drawable.nucleus_icon_shield_alert_outline
             "shield-alert.regular" -> R.drawable.nucleus_icon_shield_alert_regular
             "shield-alert.solid" -> R.drawable.nucleus_icon_shield_alert_solid
-            "shield-check.outline" -> R.drawable.nucleus_icon_shield_check_outline
+            "shield-check.regular" -> R.drawable.nucleus_icon_shield_check_regular
             "shield-check.solid" -> R.drawable.nucleus_icon_shield_check_solid
-            "shield.outline" -> R.drawable.nucleus_icon_shield_outline
+            "shield-half.solid" -> R.drawable.nucleus_icon_shield_half_solid
             "shield.regular" -> R.drawable.nucleus_icon_shield_regular
             "shield.solid" -> R.drawable.nucleus_icon_shield_solid
-            "smartphone-device.outline" -> R.drawable.nucleus_icon_smartphone_device_outline
-            "smartphone-device.regular" -> R.drawable.nucleus_icon_smartphone_device_regular
-            "smartphone-device.solid" -> R.drawable.nucleus_icon_smartphone_device_solid
-            "snow-flake.outline" -> R.drawable.nucleus_icon_snow_flake_outline
+            "smartphone.regular" -> R.drawable.nucleus_icon_smartphone_regular
+            "smartphone.solid" -> R.drawable.nucleus_icon_smartphone_solid
             "snow-flake.regular" -> R.drawable.nucleus_icon_snow_flake_regular
             "snow-flake.solid" -> R.drawable.nucleus_icon_snow_flake_solid
-            "software-update-setting.outline" -> R.drawable.nucleus_icon_software_update_setting_outline
             "software-update-setting.regular" -> R.drawable.nucleus_icon_software_update_setting_regular
             "software-update-setting.solid" -> R.drawable.nucleus_icon_software_update_setting_solid
-            "sort-down.outline" -> R.drawable.nucleus_icon_sort_down_outline
             "sort-down.regular" -> R.drawable.nucleus_icon_sort_down_regular
             "sort-down.solid" -> R.drawable.nucleus_icon_sort_down_solid
-            "sort-up.outline" -> R.drawable.nucleus_icon_sort_up_outline
             "sort-up.regular" -> R.drawable.nucleus_icon_sort_up_regular
             "sort-up.solid" -> R.drawable.nucleus_icon_sort_up_solid
-            "sort.outline" -> R.drawable.nucleus_icon_sort_outline
             "sort.regular" -> R.drawable.nucleus_icon_sort_regular
             "sort.solid" -> R.drawable.nucleus_icon_sort_solid
-            "spark.outline" -> R.drawable.nucleus_icon_spark_outline
             "spark.regular" -> R.drawable.nucleus_icon_spark_regular
             "spark.solid" -> R.drawable.nucleus_icon_spark_solid
-            "sparks.outline" -> R.drawable.nucleus_icon_sparks_outline
             "sparks.regular" -> R.drawable.nucleus_icon_sparks_regular
             "sparks.solid" -> R.drawable.nucleus_icon_sparks_solid
-            "star.outline" -> R.drawable.nucleus_icon_star_outline
             "star.regular" -> R.drawable.nucleus_icon_star_regular
             "star.solid" -> R.drawable.nucleus_icon_star_solid
-            "stats-up-square.outline" -> R.drawable.nucleus_icon_stats_up_square_outline
             "stats-up-square.regular" -> R.drawable.nucleus_icon_stats_up_square_regular
             "stats-up-square.solid" -> R.drawable.nucleus_icon_stats_up_square_solid
-            "suitcase.outline" -> R.drawable.nucleus_icon_suitcase_outline
             "suitcase.regular" -> R.drawable.nucleus_icon_suitcase_regular
             "suitcase.solid" -> R.drawable.nucleus_icon_suitcase_solid
-            "text.outline" -> R.drawable.nucleus_icon_text_outline
+            "sun.regular" -> R.drawable.nucleus_icon_sun_regular
+            "sun.solid" -> R.drawable.nucleus_icon_sun_solid
+            "tag.regular" -> R.drawable.nucleus_icon_tag_regular
+            "tag.solid" -> R.drawable.nucleus_icon_tag_solid
+            "text.regular" -> R.drawable.nucleus_icon_text_regular
             "text.solid" -> R.drawable.nucleus_icon_text_solid
-            "timer-dots.outline" -> R.drawable.nucleus_icon_timer_dots_outline
             "timer-dots.regular" -> R.drawable.nucleus_icon_timer_dots_regular
             "timer-dots.solid" -> R.drawable.nucleus_icon_timer_dots_solid
-            "trash.outline" -> R.drawable.nucleus_icon_trash_outline
+            "timer.regular" -> R.drawable.nucleus_icon_timer_regular
+            "timer.solid" -> R.drawable.nucleus_icon_timer_solid
+            "toolkit.regular" -> R.drawable.nucleus_icon_toolkit_regular
+            "toolkit.solid" -> R.drawable.nucleus_icon_toolkit_solid
             "trash.regular" -> R.drawable.nucleus_icon_trash_regular
             "trash.solid" -> R.drawable.nucleus_icon_trash_solid
-            "trophy.outline" -> R.drawable.nucleus_icon_trophy_outline
             "trophy.regular" -> R.drawable.nucleus_icon_trophy_regular
             "trophy.solid" -> R.drawable.nucleus_icon_trophy_solid
-            "user.outline" -> R.drawable.nucleus_icon_user_outline
-            "user.regular" -> R.drawable.nucleus_icon_user_regular
-            "user.solid" -> R.drawable.nucleus_icon_user_solid
-            "video-camera.outline" -> R.drawable.nucleus_icon_video_camera_outline
             "video-camera.regular" -> R.drawable.nucleus_icon_video_camera_regular
             "video-camera.solid" -> R.drawable.nucleus_icon_video_camera_solid
-            "view-grid.outline" -> R.drawable.nucleus_icon_view_grid_outline
             "view-grid.regular" -> R.drawable.nucleus_icon_view_grid_regular
             "view-grid.solid" -> R.drawable.nucleus_icon_view_grid_solid
-            "wallet.outline" -> R.drawable.nucleus_icon_wallet_outline
+            "voice.regular" -> R.drawable.nucleus_icon_voice_regular
+            "voice.solid" -> R.drawable.nucleus_icon_voice_solid
             "wallet.regular" -> R.drawable.nucleus_icon_wallet_regular
             "wallet.solid" -> R.drawable.nucleus_icon_wallet_solid
-            "warning-circle.outline" -> R.drawable.nucleus_icon_warning_circle_outline
             "warning-circle.regular" -> R.drawable.nucleus_icon_warning_circle_regular
             "warning-circle.solid" -> R.drawable.nucleus_icon_warning_circle_solid
-            "warning-hexagon.outline" -> R.drawable.nucleus_icon_warning_hexagon_outline
             "warning-hexagon.regular" -> R.drawable.nucleus_icon_warning_hexagon_regular
             "warning-hexagon.solid" -> R.drawable.nucleus_icon_warning_hexagon_solid
-            "warning-triangle-2.regular" -> R.drawable.nucleus_icon_warning_triangle_2_regular
-            "warning-triangle-2.solid" -> R.drawable.nucleus_icon_warning_triangle_2_solid
-            "warning-triangle.outline" -> R.drawable.nucleus_icon_warning_triangle_outline
             "warning-triangle.regular" -> R.drawable.nucleus_icon_warning_triangle_regular
             "warning-triangle.solid" -> R.drawable.nucleus_icon_warning_triangle_solid
-            "wifi-signal-none.outline" -> R.drawable.nucleus_icon_wifi_signal_none_outline
             "wifi-signal-none.regular" -> R.drawable.nucleus_icon_wifi_signal_none_regular
             "wifi-signal-none.solid" -> R.drawable.nucleus_icon_wifi_signal_none_solid
-            "wifi.outline" -> R.drawable.nucleus_icon_wifi_outline
             "wifi.regular" -> R.drawable.nucleus_icon_wifi_regular
             "wifi.solid" -> R.drawable.nucleus_icon_wifi_solid
-            "xmark.outline" -> R.drawable.nucleus_icon_xmark_outline
+            "worldcoin.regular" -> R.drawable.nucleus_icon_worldcoin_regular
+            "worldcoin.solid" -> R.drawable.nucleus_icon_worldcoin_solid
+            "xmark-circle.regular" -> R.drawable.nucleus_icon_xmark_circle_regular
+            "xmark-circle.solid" -> R.drawable.nucleus_icon_xmark_circle_solid
             "xmark.regular" -> R.drawable.nucleus_icon_xmark_regular
             "xmark.solid" -> R.drawable.nucleus_icon_xmark_solid
             else -> null

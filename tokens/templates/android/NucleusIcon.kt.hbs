@@ -9,7 +9,7 @@ import com.worldcoin.nucleus.R
  * A Nucleus design token icon.
  *
  * Each icon is a singleton object whose variant availability is encoded in the type system:
- * an icon implements [HasOutline], [HasRegular], and/or [HasSolid] exactly for the variants
+ * an icon implements [HasRegular] and/or [HasSolid] exactly for the variants
  * it ships, so the per-variant resource IDs are non-null and accessing a variant an icon
  * does not ship is a compile error — never a runtime crash.
  *
@@ -25,14 +25,6 @@ import com.worldcoin.nucleus.R
  * `if (icon is NucleusIcon.HasSolid) painterResource(icon.solidRes)`.
  */
 sealed class NucleusIcon(val resourceName: String) {
-    /**
-     * Implemented by icons that ship an outline variant.
-     */
-    sealed interface HasOutline {
-        @get:DrawableRes
-        val outlineRes: Int
-    }
-
     /**
      * Implemented by icons that ship a regular variant.
      */

@@ -18,7 +18,7 @@ export interface FontStyleToken {
   lineHeight: number;
 }
 
-export type IconVariant = "outline" | "regular" | "solid";
+export type IconVariant = "regular" | "solid";
 
 export interface IconEntry {
   name: string;

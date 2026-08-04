@@ -1,6 +1,1 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M20.9912 21.0034H13.0625V13.0464H20.9912V21.0034Z" fill="currentColor"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M10.9346 20.9907H3.01855V13.0464H10.9346V20.9907Z" fill="currentColor"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M11.0186 11.0503H3V3.00342H11.0186V11.0503Z" fill="currentColor"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M21.001 11.0454H12.9873V3.00342H21.001V11.0454Z" fill="currentColor"/>
-</svg>
+<svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_220_1342)"><path d="M10.935 18.991a2 2 0 0 1-2 2H5.019a2 2 0 0 1-2-2v-3.944a2 2 0 0 1 2-2h3.916a2 2 0 0 1 2 2v3.944zm10.056.013a2 2 0 0 1-2 2h-3.928a2 2 0 0 1-2-2v-3.957a2 2 0 0 1 2-2h3.928a2 2 0 0 1 2 2v3.957zM11.02 9.05a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5.004a2 2 0 0 1 2-2h4.019a2 2 0 0 1 2 2V9.05zM21 9.046a2 2 0 0 1-2 2h-4.014a2 2 0 0 1-2-2V5.004a2 2 0 0 1 2-2H19a2 2 0 0 1 2 2v4.042z" fill="#1F1F1F"/></g><defs><clipPath id="clip0_220_1342"><path fill="#fff" d="M0 0H24V24H0z"/></clipPath></defs></svg>
