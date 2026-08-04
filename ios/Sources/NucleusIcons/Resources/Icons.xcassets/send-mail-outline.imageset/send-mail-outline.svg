@@ -1,6 +1,1 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M6.0552 9.99972V5.99921H21.0218V18.0007H5.01978" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/>
-<path d="M6.40845 5.99921L13.7151 13.7147L21.0217 5.99921" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/>
-<path d="M7.14627 12.0062H2" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/>
-<path d="M7.14605 15.0004H3.46265" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/>
-</svg>
+<svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><clipPath id="a"><path d="m0 0h24v24h-24z"/></clipPath><g clip-path="url(#a)"><path d="m5.01974 18.0008h16.00206v-12.00153h-14.96664v4.00051m14.96664-4.00051-7.3066 7.71553-7.30666-7.71553m.73761 6.00693h-5.14627m5.14629 2.9942h-3.68341" stroke="#1f1f1f" stroke-miterlimit="10" stroke-width="2"/></g></svg>

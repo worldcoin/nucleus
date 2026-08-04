@@ -1,7 +1,1 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="6" y="12" width="12" height="8" stroke="currentColor" stroke-width="2"/>
-<rect width="16" height="4" transform="matrix(1 0 0 -1 4 12)" stroke="currentColor" stroke-width="2"/>
-<path d="M12 7L12 21" stroke="currentColor" stroke-width="2"/>
-<circle cx="10.2231" cy="5.77772" r="1.77778" stroke="currentColor" stroke-width="2"/>
-<circle cx="13.7778" cy="5.77778" r="1.77778" stroke="currentColor" stroke-width="2"/>
-</svg>
+<svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><clipPath id="a"><path d="m0 0h24v24h-24z"/></clipPath><g clip-path="url(#a)"><path d="m12 7.00005v14.00005m.0009-15.22232c0 .98184-.796 1.77778-1.7778 1.77778-.98185 0-1.77779-.79594-1.77779-1.77778s.79594-1.77778 1.77779-1.77778c.9818 0 1.7778.79594 1.7778 1.77778zm0 0c0 .98184.795 1.77783 1.7769 1.77783.9818 0 1.7778-.79594 1.7778-1.77778s-.796-1.77778-1.7778-1.77778c-.9819 0-1.7769.79589-1.7769 1.77773zm-6.0009 6.22232h12v8h-12zm-2 0h16v-4.00005h-16z" stroke="#1f1f1f" stroke-width="2"/></g></svg>

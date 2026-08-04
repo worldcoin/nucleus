@@ -1,7 +1,1 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M17.999 15.0004H3V6.632V3.93567H17.999V15.0004Z" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/>
-<path d="M5.92676 11.932V6.9314" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/>
-<path d="M20.9991 8.80371V18.0009H5.9707" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/>
-<path d="M15.0146 11.9321V6.93146" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/>
-<path d="M10.505 10.5307C11.0914 10.5307 11.5667 10.0553 11.5667 9.46885C11.5667 8.8824 11.0914 8.40698 10.505 8.40698C9.91868 8.40698 9.44336 8.8824 9.44336 9.46885C9.44336 10.0553 9.91868 10.5307 10.505 10.5307Z" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/>
-</svg>
+<svg fill="none" height="24" width="24" xmlns="http://www.w3.org/2000/svg"><clipPath id="a"><path d="M0 0h24v24H0z"/></clipPath><g clip-path="url(#a)"><path d="M5.927 13.496v-5m15.072 1.872v9.197H5.971m9.044-6.069v-5m2.984 8.069H3V5.5h14.999zm-6.432-5.532a1.062 1.062 0 1 1-2.124 0 1.062 1.062 0 0 1 2.124 0z" stroke="#1f1f1f" stroke-miterlimit="10" stroke-width="2"/></g></svg>

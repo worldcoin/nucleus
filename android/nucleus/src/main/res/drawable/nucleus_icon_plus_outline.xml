@@ -5,7 +5,9 @@
     android:viewportWidth="24"
     android:viewportHeight="24">
     <path
-        android:pathData="M11.9999 4.88879L12 3.99988L11.9986 20.0002M4 11.9999H20"
+        android:pathData="m0 0h24v24h-24z" />
+    <path
+        android:pathData="m11.9999 4.88879.0001-.88891-.0014 16.00032m-7.9986-8.0003h16"
         android:strokeColor="#FF000000"
         android:strokeWidth="2"
         android:strokeMiterLimit="10" />

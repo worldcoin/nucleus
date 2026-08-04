@@ -1,8 +1,1 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M13.0317 20.0072H4.02764L3.97363 9.49969H20.0482L20.0544 13.0001" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/>
-<path d="M20.0482 9.49967H3.97363L4.00912 5.49298H20.0853L20.0482 9.49967Z" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/>
-<path d="M8 4.86008V1.99243" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/>
-<path d="M15.999 4.69505V1.82739" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/>
-<path d="M17.0312 13.0002V20.9689" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/>
-<path d="M12.9951 17.0007H20.9961" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/>
-</svg>
+<svg fill="none" height="24" width="24" xmlns="http://www.w3.org/2000/svg"><clipPath id="a"><path d="M0 0h24v24H0z"/></clipPath><g clip-path="url(#a)"><path d="M13 20H4V9.5m0 0v-4h16v4m-16 0h16m0 0V13m-3 0v4m0 0v4m0-4h-4m4 0h4M16 6V2M8 6V2" stroke="#1f1f1f" stroke-width="2"/></g></svg>

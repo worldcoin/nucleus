@@ -1,5 +1,1 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M2.76562 20.0071H21.4157L11.9996 3.08984L2.76562 20.0071Z" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/>
-<path d="M12 14.582V9.34985" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/>
-<path d="M11.9992 18.0903C12.6504 18.0903 13.1782 17.5624 13.1782 16.9112C13.1782 16.2599 12.6504 15.732 11.9992 15.732C11.3481 15.732 10.8203 16.2599 10.8203 16.9112C10.8203 17.5624 11.3481 18.0903 11.9992 18.0903Z" fill="currentColor"/>
-</svg>
+<svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><clipPath id="a"><path d="m0 0h24v24h-24z"/></clipPath><g clip-path="url(#a)"><path d="m12.0001 13.496v-5.23213m1.7532-4.04513 7.1467 12.84006c.742 1.3331-.2219 2.9727-1.7475 2.9727h-14.15529c-1.51837 0-2.48297-1.6254-1.75551-2.9582l7.0085-12.84011c.7546-1.38252 2.7371-1.3907 3.5031-.01445z" stroke="#1f1f1f" stroke-miterlimit="10" stroke-width="2"/><path d="m11.9992 17.0043c.6512 0 1.179-.5279 1.179-1.1791 0-.6513-.5278-1.1792-1.179-1.1792-.6511 0-1.1789.5279-1.1789 1.1792 0 .6512.5278 1.1791 1.1789 1.1791z" fill="#1f1f1f"/></g></svg>

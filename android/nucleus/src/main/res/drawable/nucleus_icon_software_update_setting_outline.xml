@@ -5,13 +5,9 @@
     android:viewportWidth="24"
     android:viewportHeight="24">
     <path
-        android:pathData="M21.2302 12.0571L16.546 20.0002L7.35304 20.0103L2.76074 11.9969L7.40668 4.00793H16.6288L21.2302 12.0571Z"
-        android:strokeColor="#FF000000"
-        android:strokeWidth="2"
-        android:strokeMiterLimit="10" />
+        android:pathData="m0 0h24v24h-24z" />
     <path
-        android:pathData="M12.0628 15.3337C13.9479 15.3337 15.4761 13.8051 15.4761 11.9196C15.4761 10.0341 13.9479 8.50562 12.0628 8.50562C10.1776 8.50562 8.64941 10.0341 8.64941 11.9196C8.64941 13.8051 10.1776 15.3337 12.0628 15.3337Z"
-        android:strokeColor="#FF000000"
-        android:strokeWidth="2"
-        android:strokeMiterLimit="10" />
+        android:pathData="m7.5 4h9l4.5 8-4.5 8h-9l-4.5-8z" />
+    <path
+        android:pathData="m15.5 12c0 1.933-1.567 3.5-3.5 3.5s-3.5-1.567-3.5-3.5 1.567-3.5 3.5-3.5 3.5 1.567 3.5 3.5z" />
 </vector>
