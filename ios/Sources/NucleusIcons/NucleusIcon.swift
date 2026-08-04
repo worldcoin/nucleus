@@ -2,11 +2,10 @@ import Foundation
 
 /// A Nucleus design token icon.
 ///
-/// A `NucleusIcon` pairs a ``Symbol``(eg. `arrow-down-left`) with the stylistic ``Variant`` it should render in. Icons ship in three variants: outline, regular, and solid. Most symbols are available in all three; see ``Symbol/availableVariants`` for the variants supported by a given symbol.
+/// A `NucleusIcon` pairs a ``Symbol``(eg. `arrow-down-left`) with the stylistic ``Variant`` it should render in. Icons ship in two variants: regular and solid. Most symbols are available in both; see ``Symbol/availableVariants`` for the variants supported by a given symbol.
 public struct NucleusIcon: Equatable, Hashable, Sendable {
     /// Stylistic variant of an icon.
     public enum Variant: String, CaseIterable, Sendable {
-        case outline
         case regular
         case solid
     }

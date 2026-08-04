@@ -360,7 +360,7 @@ export const fontStyles: FontStyleToken[] = Object.entries(tokenSet.fonts).map(
   ([name, style]) => ({ name, ...style }),
 );
 
-const iconVariantOrder: IconVariant[] = ["outline", "regular", "solid"];
+const iconVariantOrder: IconVariant[] = ["regular", "solid"];
 
 export const iconEntries: IconEntry[] = Object.entries(tokenSet.icons)
   .map(([name, icon]) => {

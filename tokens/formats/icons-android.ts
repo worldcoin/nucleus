@@ -21,7 +21,6 @@ export function androidDrawableName(token: IconToken, variant: IconVariant): str
 // missing variant's res property is a compile error in consuming code — no nullable res
 // IDs and no runtime variant resolution.
 const VARIANT_KOTLIN: Record<IconVariant, { markerInterface: string; property: string }> = {
-  outline: { markerInterface: 'HasOutline', property: 'outlineRes' },
   regular: { markerInterface: 'HasRegular', property: 'regularRes' },
   solid: { markerInterface: 'HasSolid', property: 'solidRes' },
 };
@@ -29,7 +28,7 @@ const VARIANT_KOTLIN: Record<IconVariant, { markerInterface: string; property: s
 interface AndroidIconEntry {
   kotlinCase: string;
   resourceName: string;
-  // marker interfaces for the variants this icon ships, e.g. ['HasOutline', 'HasRegular']
+  // marker interfaces for the variants this icon ships, e.g. ['HasRegular', 'HasSolid']
   interfaces: string[];
   // one non-null res property override per shipped variant
   properties: Array<{ property: string; drawable: string }>;

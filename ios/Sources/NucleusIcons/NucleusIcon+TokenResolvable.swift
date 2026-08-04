@@ -139,7 +139,6 @@ private let iconTokens: [String: NucleusIcon.Symbol] = [
     "person-key": .personKey,
     "photo": .photo,
     "pin": .pin,
-    "placeholder": .placeholder,
     "play": .play,
     "plus": .plus,
     "plus-circle": .plusCircle,
@@ -195,7 +194,6 @@ private let iconTokens: [String: NucleusIcon.Symbol] = [
 ]
 
 private let variantTokens: [String: NucleusIcon.Variant] = [
-    "outline": .outline,
     "regular": .regular,
     "solid": .solid,
 ]

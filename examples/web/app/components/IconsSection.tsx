@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import type { DemoTheme, IconEntry, IconVariant } from "../models";
 
-const VARIANTS: IconVariant[] = ["outline", "regular", "solid"];
+const VARIANTS: IconVariant[] = ["regular", "solid"];
 
 function IconCard({
   icon,
