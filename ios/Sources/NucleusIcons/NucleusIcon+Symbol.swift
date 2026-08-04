@@ -9,8 +9,6 @@ public extension NucleusIcon {
         case airplane = "airplane"
         /// `antenna-signal` icon. Available in: outline, regular, solid.
         case antennaSignal = "antenna-signal"
-        /// `apple-mac` icon. Available in: outline, regular, solid.
-        case appleMac = "apple-mac"
         /// `arrow-down` icon. Available in: outline, regular, solid.
         case arrowDown = "arrow-down"
         /// `arrow-down-circle` icon. Available in: outline, regular, solid.
@@ -61,6 +59,12 @@ public extension NucleusIcon {
         case bookmark = "bookmark"
         /// `box-iso` icon. Available in: outline, solid.
         case boxIso = "box-iso"
+        /// `brand-apple` icon. Available in: outline, regular, solid.
+        case brandApple = "brand-apple"
+        /// `brand-instagram` icon. Available in: outline, regular, solid.
+        case brandInstagram = "brand-instagram"
+        /// `brand-x` icon. Available in: outline, regular, solid.
+        case brandX = "brand-x"
         /// `bus` icon. Available in: outline, regular, solid.
         case bus = "bus"
         /// `calendar` icon. Available in: outline, regular, solid.
@@ -83,8 +87,8 @@ public extension NucleusIcon {
         case cashMulti = "cash-multi"
         /// `cellular` icon. Available in: outline, regular, solid.
         case cellular = "cellular"
-        /// `cellular-no signal` icon. Available in: outline, regular, solid.
-        case cellularNo signal = "cellular-no signal"
+        /// `cellular-no-signal` icon. Available in: outline, regular, solid.
+        case cellularNoSignal = "cellular-no-signal"
         /// `chat-bubble` icon. Available in: outline, regular, solid.
         case chatBubble = "chat-bubble"
         /// `chat-bubble-empty` icon. Available in: outline, regular, solid.
@@ -321,10 +325,6 @@ public extension NucleusIcon {
         case smartphone = "smartphone"
         /// `snow-flake` icon. Available in: outline, regular, solid.
         case snowFlake = "snow-flake"
-        /// `social-instagram` icon. Available in: outline, regular, solid.
-        case socialInstagram = "social-instagram"
-        /// `social-x` icon. Available in: outline, regular, solid.
-        case socialX = "social-x"
         /// `software-update-setting` icon. Available in: outline, regular, solid.
         case softwareUpdateSetting = "software-update-setting"
         /// `sort` icon. Available in: outline, regular, solid.
@@ -389,7 +389,6 @@ public extension NucleusIcon {
             switch self {
             case .airplane: return [.outline, .regular, .solid]
             case .antennaSignal: return [.outline, .regular, .solid]
-            case .appleMac: return [.outline, .regular, .solid]
             case .arrowDown: return [.outline, .regular, .solid]
             case .arrowDownCircle: return [.outline, .regular, .solid]
             case .arrowDownLeft: return [.outline, .regular, .solid]
@@ -415,6 +414,9 @@ public extension NucleusIcon {
             case .book: return [.outline, .regular, .solid]
             case .bookmark: return [.outline, .regular, .solid]
             case .boxIso: return [.outline, .solid]
+            case .brandApple: return [.outline, .regular, .solid]
+            case .brandInstagram: return [.outline, .regular, .solid]
+            case .brandX: return [.outline, .regular, .solid]
             case .bus: return [.outline, .regular, .solid]
             case .calendar: return [.outline, .regular, .solid]
             case .calendarPlus: return [.outline, .regular, .solid]
@@ -426,7 +428,7 @@ public extension NucleusIcon {
             case .cash: return [.outline, .regular, .solid]
             case .cashMulti: return [.outline, .regular, .solid]
             case .cellular: return [.outline, .regular, .solid]
-            case .cellularNo signal: return [.outline, .regular, .solid]
+            case .cellularNoSignal: return [.outline, .regular, .solid]
             case .chatBubble: return [.outline, .regular, .solid]
             case .chatBubbleEmpty: return [.outline, .regular, .solid]
             case .chatBubbleQuestion: return [.outline, .regular, .solid]
@@ -545,8 +547,6 @@ public extension NucleusIcon {
             case .shieldHalf: return [.outline, .solid]
             case .smartphone: return [.outline, .regular, .solid]
             case .snowFlake: return [.outline, .regular, .solid]
-            case .socialInstagram: return [.outline, .regular, .solid]
-            case .socialX: return [.outline, .regular, .solid]
             case .softwareUpdateSetting: return [.outline, .regular, .solid]
             case .sort: return [.outline, .regular, .solid]
             case .sortDown: return [.outline, .regular, .solid]

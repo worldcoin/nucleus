@@ -75,9 +75,6 @@ object NucleusTokenResolver {
             "antenna-signal.outline" -> R.drawable.nucleus_icon_antenna_signal_outline
             "antenna-signal.regular" -> R.drawable.nucleus_icon_antenna_signal_regular
             "antenna-signal.solid" -> R.drawable.nucleus_icon_antenna_signal_solid
-            "apple-mac.outline" -> R.drawable.nucleus_icon_apple_mac_outline
-            "apple-mac.regular" -> R.drawable.nucleus_icon_apple_mac_regular
-            "apple-mac.solid" -> R.drawable.nucleus_icon_apple_mac_solid
             "arrow-down-circle.outline" -> R.drawable.nucleus_icon_arrow_down_circle_outline
             "arrow-down-circle.regular" -> R.drawable.nucleus_icon_arrow_down_circle_regular
             "arrow-down-circle.solid" -> R.drawable.nucleus_icon_arrow_down_circle_solid
@@ -151,6 +148,15 @@ object NucleusTokenResolver {
             "bookmark.solid" -> R.drawable.nucleus_icon_bookmark_solid
             "box-iso.outline" -> R.drawable.nucleus_icon_box_iso_outline
             "box-iso.solid" -> R.drawable.nucleus_icon_box_iso_solid
+            "brand-apple.outline" -> R.drawable.nucleus_icon_brand_apple_outline
+            "brand-apple.regular" -> R.drawable.nucleus_icon_brand_apple_regular
+            "brand-apple.solid" -> R.drawable.nucleus_icon_brand_apple_solid
+            "brand-instagram.outline" -> R.drawable.nucleus_icon_brand_instagram_outline
+            "brand-instagram.regular" -> R.drawable.nucleus_icon_brand_instagram_regular
+            "brand-instagram.solid" -> R.drawable.nucleus_icon_brand_instagram_solid
+            "brand-x.outline" -> R.drawable.nucleus_icon_brand_x_outline
+            "brand-x.regular" -> R.drawable.nucleus_icon_brand_x_regular
+            "brand-x.solid" -> R.drawable.nucleus_icon_brand_x_solid
             "bus.outline" -> R.drawable.nucleus_icon_bus_outline
             "bus.regular" -> R.drawable.nucleus_icon_bus_regular
             "bus.solid" -> R.drawable.nucleus_icon_bus_solid
@@ -181,9 +187,9 @@ object NucleusTokenResolver {
             "cash.outline" -> R.drawable.nucleus_icon_cash_outline
             "cash.regular" -> R.drawable.nucleus_icon_cash_regular
             "cash.solid" -> R.drawable.nucleus_icon_cash_solid
-            "cellular-no signal.outline" -> R.drawable.nucleus_icon_cellular_no signal_outline
-            "cellular-no signal.regular" -> R.drawable.nucleus_icon_cellular_no signal_regular
-            "cellular-no signal.solid" -> R.drawable.nucleus_icon_cellular_no signal_solid
+            "cellular-no-signal.outline" -> R.drawable.nucleus_icon_cellular_no_signal_outline
+            "cellular-no-signal.regular" -> R.drawable.nucleus_icon_cellular_no_signal_regular
+            "cellular-no-signal.solid" -> R.drawable.nucleus_icon_cellular_no_signal_solid
             "cellular.outline" -> R.drawable.nucleus_icon_cellular_outline
             "cellular.regular" -> R.drawable.nucleus_icon_cellular_regular
             "cellular.solid" -> R.drawable.nucleus_icon_cellular_solid
@@ -537,12 +543,6 @@ object NucleusTokenResolver {
             "snow-flake.outline" -> R.drawable.nucleus_icon_snow_flake_outline
             "snow-flake.regular" -> R.drawable.nucleus_icon_snow_flake_regular
             "snow-flake.solid" -> R.drawable.nucleus_icon_snow_flake_solid
-            "social-instagram.outline" -> R.drawable.nucleus_icon_social_instagram_outline
-            "social-instagram.regular" -> R.drawable.nucleus_icon_social_instagram_regular
-            "social-instagram.solid" -> R.drawable.nucleus_icon_social_instagram_solid
-            "social-x.outline" -> R.drawable.nucleus_icon_social_x_outline
-            "social-x.regular" -> R.drawable.nucleus_icon_social_x_regular
-            "social-x.solid" -> R.drawable.nucleus_icon_social_x_solid
             "software-update-setting.outline" -> R.drawable.nucleus_icon_software_update_setting_outline
             "software-update-setting.regular" -> R.drawable.nucleus_icon_software_update_setting_regular
             "software-update-setting.solid" -> R.drawable.nucleus_icon_software_update_setting_solid

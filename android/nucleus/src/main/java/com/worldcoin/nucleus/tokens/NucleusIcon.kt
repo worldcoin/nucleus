@@ -61,12 +61,6 @@ sealed class NucleusIcon(val resourceName: String) {
         override val solidRes get() = R.drawable.nucleus_icon_antenna_signal_solid
     }
 
-    data object AppleMac : NucleusIcon("apple-mac"), HasOutline, HasRegular, HasSolid {
-        override val outlineRes get() = R.drawable.nucleus_icon_apple_mac_outline
-        override val regularRes get() = R.drawable.nucleus_icon_apple_mac_regular
-        override val solidRes get() = R.drawable.nucleus_icon_apple_mac_solid
-    }
-
     data object ArrowDown : NucleusIcon("arrow-down"), HasOutline, HasRegular, HasSolid {
         override val outlineRes get() = R.drawable.nucleus_icon_arrow_down_outline
         override val regularRes get() = R.drawable.nucleus_icon_arrow_down_regular
@@ -215,6 +209,24 @@ sealed class NucleusIcon(val resourceName: String) {
         override val solidRes get() = R.drawable.nucleus_icon_box_iso_solid
     }
 
+    data object BrandApple : NucleusIcon("brand-apple"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_brand_apple_outline
+        override val regularRes get() = R.drawable.nucleus_icon_brand_apple_regular
+        override val solidRes get() = R.drawable.nucleus_icon_brand_apple_solid
+    }
+
+    data object BrandInstagram : NucleusIcon("brand-instagram"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_brand_instagram_outline
+        override val regularRes get() = R.drawable.nucleus_icon_brand_instagram_regular
+        override val solidRes get() = R.drawable.nucleus_icon_brand_instagram_solid
+    }
+
+    data object BrandX : NucleusIcon("brand-x"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_brand_x_outline
+        override val regularRes get() = R.drawable.nucleus_icon_brand_x_regular
+        override val solidRes get() = R.drawable.nucleus_icon_brand_x_solid
+    }
+
     data object Bus : NucleusIcon("bus"), HasOutline, HasRegular, HasSolid {
         override val outlineRes get() = R.drawable.nucleus_icon_bus_outline
         override val regularRes get() = R.drawable.nucleus_icon_bus_regular
@@ -281,10 +293,10 @@ sealed class NucleusIcon(val resourceName: String) {
         override val solidRes get() = R.drawable.nucleus_icon_cellular_solid
     }
 
-    data object CellularNo signal : NucleusIcon("cellular-no signal"), HasOutline, HasRegular, HasSolid {
-        override val outlineRes get() = R.drawable.nucleus_icon_cellular_no signal_outline
-        override val regularRes get() = R.drawable.nucleus_icon_cellular_no signal_regular
-        override val solidRes get() = R.drawable.nucleus_icon_cellular_no signal_solid
+    data object CellularNoSignal : NucleusIcon("cellular-no-signal"), HasOutline, HasRegular, HasSolid {
+        override val outlineRes get() = R.drawable.nucleus_icon_cellular_no_signal_outline
+        override val regularRes get() = R.drawable.nucleus_icon_cellular_no_signal_regular
+        override val solidRes get() = R.drawable.nucleus_icon_cellular_no_signal_solid
     }
 
     data object ChatBubble : NucleusIcon("chat-bubble"), HasOutline, HasRegular, HasSolid {
@@ -991,18 +1003,6 @@ sealed class NucleusIcon(val resourceName: String) {
         override val solidRes get() = R.drawable.nucleus_icon_snow_flake_solid
     }
 
-    data object SocialInstagram : NucleusIcon("social-instagram"), HasOutline, HasRegular, HasSolid {
-        override val outlineRes get() = R.drawable.nucleus_icon_social_instagram_outline
-        override val regularRes get() = R.drawable.nucleus_icon_social_instagram_regular
-        override val solidRes get() = R.drawable.nucleus_icon_social_instagram_solid
-    }
-
-    data object SocialX : NucleusIcon("social-x"), HasOutline, HasRegular, HasSolid {
-        override val outlineRes get() = R.drawable.nucleus_icon_social_x_outline
-        override val regularRes get() = R.drawable.nucleus_icon_social_x_regular
-        override val solidRes get() = R.drawable.nucleus_icon_social_x_solid
-    }
-
     data object SoftwareUpdateSetting : NucleusIcon("software-update-setting"), HasOutline, HasRegular, HasSolid {
         override val outlineRes get() = R.drawable.nucleus_icon_software_update_setting_outline
         override val regularRes get() = R.drawable.nucleus_icon_software_update_setting_regular
@@ -1185,7 +1185,6 @@ sealed class NucleusIcon(val resourceName: String) {
         val all: kotlin.collections.List<NucleusIcon> = listOf(
             Airplane,
             AntennaSignal,
-            AppleMac,
             ArrowDown,
             ArrowDownCircle,
             ArrowDownLeft,
@@ -1211,6 +1210,9 @@ sealed class NucleusIcon(val resourceName: String) {
             Book,
             Bookmark,
             BoxIso,
+            BrandApple,
+            BrandInstagram,
+            BrandX,
             Bus,
             Calendar,
             CalendarPlus,
@@ -1222,7 +1224,7 @@ sealed class NucleusIcon(val resourceName: String) {
             Cash,
             CashMulti,
             Cellular,
-            CellularNo signal,
+            CellularNoSignal,
             ChatBubble,
             ChatBubbleEmpty,
             ChatBubbleQuestion,
@@ -1341,8 +1343,6 @@ sealed class NucleusIcon(val resourceName: String) {
             ShieldHalf,
             Smartphone,
             SnowFlake,
-            SocialInstagram,
-            SocialX,
             SoftwareUpdateSetting,
             Sort,
             SortDown,
