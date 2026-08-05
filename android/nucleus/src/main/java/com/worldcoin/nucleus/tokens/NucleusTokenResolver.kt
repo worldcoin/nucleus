@@ -265,8 +265,6 @@ object NucleusTokenResolver {
             "graph-down.solid" -> R.drawable.nucleus_icon_graph_down_solid
             "graph-up.regular" -> R.drawable.nucleus_icon_graph_up_regular
             "graph-up.solid" -> R.drawable.nucleus_icon_graph_up_solid
-            "group.regular" -> R.drawable.nucleus_icon_group_regular
-            "group.solid" -> R.drawable.nucleus_icon_group_solid
             "half-moon.regular" -> R.drawable.nucleus_icon_half_moon_regular
             "half-moon.solid" -> R.drawable.nucleus_icon_half_moon_solid
             "heart.regular" -> R.drawable.nucleus_icon_heart_regular
@@ -330,6 +328,8 @@ object NucleusTokenResolver {
             "percentage.solid" -> R.drawable.nucleus_icon_percentage_solid
             "person-circle.regular" -> R.drawable.nucleus_icon_person_circle_regular
             "person-circle.solid" -> R.drawable.nucleus_icon_person_circle_solid
+            "person-group.regular" -> R.drawable.nucleus_icon_person_group_regular
+            "person-group.solid" -> R.drawable.nucleus_icon_person_group_solid
             "person-key.regular" -> R.drawable.nucleus_icon_person_key_regular
             "person-key.solid" -> R.drawable.nucleus_icon_person_key_solid
             "person.regular" -> R.drawable.nucleus_icon_person_regular

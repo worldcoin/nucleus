@@ -203,8 +203,6 @@ public extension NucleusIcon {
         case graphDown = "graph-down"
         /// `graph-up` icon. Available in: regular, solid.
         case graphUp = "graph-up"
-        /// `group` icon. Available in: regular, solid.
-        case group = "group"
         /// `half-moon` icon. Available in: regular, solid.
         case halfMoon = "half-moon"
         /// `heart` icon. Available in: regular, solid.
@@ -271,6 +269,8 @@ public extension NucleusIcon {
         case person = "person"
         /// `person-circle` icon. Available in: regular, solid.
         case personCircle = "person-circle"
+        /// `person-group` icon. Available in: regular, solid.
+        case personGroup = "person-group"
         /// `person-key` icon. Available in: regular, solid.
         case personKey = "person-key"
         /// `photo` icon. Available in: regular, solid.
@@ -484,7 +484,6 @@ public extension NucleusIcon {
             case .graduationCap: return [.regular, .solid]
             case .graphDown: return [.regular, .solid]
             case .graphUp: return [.regular, .solid]
-            case .group: return [.regular, .solid]
             case .halfMoon: return [.regular, .solid]
             case .heart: return [.regular, .solid]
             case .helpCircle: return [.regular, .solid]
@@ -518,6 +517,7 @@ public extension NucleusIcon {
             case .percentage: return [.solid]
             case .person: return [.regular, .solid]
             case .personCircle: return [.regular, .solid]
+            case .personGroup: return [.regular, .solid]
             case .personKey: return [.regular, .solid]
             case .photo: return [.regular, .solid]
             case .pin: return [.regular, .solid]
