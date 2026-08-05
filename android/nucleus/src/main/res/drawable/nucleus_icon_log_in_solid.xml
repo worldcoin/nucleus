@@ -7,7 +7,4 @@
     <path
         android:pathData="M19.998 2v3.995h-2V4H6v16h11.998v-2h2v4H4V2h15.998zM14.69 8.731l-2.262 2.275H20v2h-7.573l2.278 2.27-1.412 1.418-4.69-4.676 4.668-4.697 1.419 1.41z"
         android:fillColor="#FF000000" />
-    <path
-        android:pathData="M0 0H24V24H0z"
-        android:fillColor="#FF000000" />
 </vector>
