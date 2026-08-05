@@ -534,11 +534,6 @@ sealed class NucleusIcon(val resourceName: String) {
         override val solidRes get() = R.drawable.nucleus_icon_graph_up_solid
     }
 
-    data object Group : NucleusIcon("group"), HasRegular, HasSolid {
-        override val regularRes get() = R.drawable.nucleus_icon_group_regular
-        override val solidRes get() = R.drawable.nucleus_icon_group_solid
-    }
-
     data object HalfMoon : NucleusIcon("half-moon"), HasRegular, HasSolid {
         override val regularRes get() = R.drawable.nucleus_icon_half_moon_regular
         override val solidRes get() = R.drawable.nucleus_icon_half_moon_solid
@@ -701,6 +696,11 @@ sealed class NucleusIcon(val resourceName: String) {
     data object PersonCircle : NucleusIcon("person-circle"), HasRegular, HasSolid {
         override val regularRes get() = R.drawable.nucleus_icon_person_circle_regular
         override val solidRes get() = R.drawable.nucleus_icon_person_circle_solid
+    }
+
+    data object PersonGroup : NucleusIcon("person-group"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_person_group_regular
+        override val solidRes get() = R.drawable.nucleus_icon_person_group_solid
     }
 
     data object PersonKey : NucleusIcon("person-key"), HasRegular, HasSolid {
@@ -1082,7 +1082,6 @@ sealed class NucleusIcon(val resourceName: String) {
             GraduationCap,
             GraphDown,
             GraphUp,
-            Group,
             HalfMoon,
             Heart,
             HelpCircle,
@@ -1116,6 +1115,7 @@ sealed class NucleusIcon(val resourceName: String) {
             Percentage,
             Person,
             PersonCircle,
+            PersonGroup,
             PersonKey,
             Photo,
             Pin,
