@@ -19,7 +19,7 @@ import {
   imagesetContentsJson,
   planIOSImagesets,
 } from '../formats/icons-ios.js';
-import { generateWebIconsManifest, planWebIcons } from '../formats/icons-web.js';
+import { generateWebIconsManifest, iconSvgForWeb, planWebIcons } from '../formats/icons-web.js';
 import {
   ANDROID_RES_OUT,
   ANDROID_TOKENS_OUT,
@@ -105,10 +105,11 @@ function buildWebIcons(tokens: IconToken[]): void {
   for (const plan of plans) {
     for (const variant of Object.keys(plan.files) as IconVariant[]) {
       const filename = `${iconAssetBaseName(plan.name, variant)}.svg`;
-      cpSync(
+      const svg = readFileSync(
         resolve(ROOT, ICON_DEFINITIONS_DIR, variant, `${plan.name}.svg`),
-        resolve(outDir, filename),
+        'utf8',
       );
+      writeFileSync(resolve(outDir, filename), iconSvgForWeb(svg));
     }
   }
 
