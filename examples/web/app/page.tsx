@@ -7,28 +7,50 @@ import type { AppTheme } from "./models";
 import { appThemes, demoSections, fontStyles, semanticModes } from "./tokens";
 
 const THEME_STORAGE_KEY = "nucleus-theme";
+const SECTION_STORAGE_KEY = "nucleus-section";
 
 export default function Home() {
   const [selectedSectionId, setSelectedSectionId] = useState(
     demoSections[0].id,
   );
-  const [selectedThemeId, setSelectedThemeId] =
-    useState<AppTheme["id"]>("light");
+  // null until the stored theme is restored; the layout's pre-hydration CSS
+  // keeps the light-prerendered content hidden in dark mode while it's null
+  const [restoredThemeId, setRestoredThemeId] = useState<AppTheme["id"] | null>(
+    null,
+  );
+  const selectedThemeId = restoredThemeId ?? "light";
 
   useEffect(() => {
-    const stored = window.localStorage.getItem(THEME_STORAGE_KEY);
-    if (stored === "light" || stored === "dark") {
-      const restoreTheme = window.setTimeout(
-        () => setSelectedThemeId(stored),
-        0,
-      );
-      return () => window.clearTimeout(restoreTheme);
+    const storedSection = window.localStorage.getItem(SECTION_STORAGE_KEY);
+    if (storedSection && demoSections.some((s) => s.id === storedSection)) {
+      setSelectedSectionId(storedSection);
     }
+    const stored = window.localStorage.getItem(THEME_STORAGE_KEY);
+    // suppress transitions so restoring dark doesn't animate from the
+    // light-prerendered colors
+    const suppressor = document.createElement("style");
+    suppressor.textContent = "*{transition:none!important}";
+    document.head.appendChild(suppressor);
+    setRestoredThemeId(stored === "dark" ? "dark" : "light");
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() => suppressor.remove()),
+    );
   }, []);
 
+  useEffect(() => {
+    if (restoredThemeId) {
+      document.documentElement.dataset.theme = restoredThemeId;
+    }
+  }, [restoredThemeId]);
+
   const selectTheme = (id: AppTheme["id"]) => {
-    setSelectedThemeId(id);
+    setRestoredThemeId(id);
     window.localStorage.setItem(THEME_STORAGE_KEY, id);
+  };
+
+  const selectSection = (id: string) => {
+    setSelectedSectionId(id);
+    window.localStorage.setItem(SECTION_STORAGE_KEY, id);
   };
 
   const selectedSection =
@@ -42,6 +64,7 @@ export default function Home() {
 
   return (
     <main
+      data-theme-pending={restoredThemeId === null ? "" : undefined}
       className="min-h-screen transition-colors duration-300"
       style={{
         background:
@@ -59,7 +82,7 @@ export default function Home() {
           demoSections={demoSections}
           selectedSectionId={selectedSection.id}
           onSelectTheme={selectTheme}
-          onSelectSection={setSelectedSectionId}
+          onSelectSection={selectSection}
         />
 
         <TokenSectionCard
