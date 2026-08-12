@@ -7,7 +7,7 @@ import NucleusTokens
 /// Carries the colors, geometry, and label font for a button variant × size. Colors are semantic `NucleusColor`s. . The full set of button tokens are exposed as `static` accessors — for example `NucleusButton.primary48`.
 ///
 /// Nucleus only describes the token. Assembling the actual button view is up to the consumer.
-public protocol NucleusButton: Sendable, TokenResolvable {
+public protocol NucleusButtonToken: Sendable {
     var background: NucleusColor { get }
     var content: NucleusColor { get }
     var border: NucleusColor? { get }
@@ -19,7 +19,7 @@ public protocol NucleusButton: Sendable, TokenResolvable {
     var pressedInset: Double { get }
 }
 
-public struct BaseNucleusButton: NucleusButton {
+public struct NucleusButton: NucleusButtonToken {
     public let background: NucleusColor
     public let content: NucleusColor
     public let border: NucleusColor?

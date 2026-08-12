@@ -3,10 +3,10 @@
 import NucleusColors
 import NucleusFonts
 
-public extension NucleusButton where Self == BaseNucleusButton {
+public extension NucleusButtonToken where Self == NucleusButton {
 {{#each styles}}
     static var {{name}}: Self {
-        BaseNucleusButton(
+        NucleusButton(
             background: .{{background}},
             content: .{{content}},
             border: {{#if border}}.{{border}}{{else}}nil{{/if}},

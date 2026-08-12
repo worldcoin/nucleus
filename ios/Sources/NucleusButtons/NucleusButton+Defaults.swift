@@ -3,9 +3,9 @@
 import NucleusColors
 import NucleusFonts
 
-public extension NucleusButton where Self == BaseNucleusButton {
+public extension NucleusButtonToken where Self == NucleusButton {
     static var primary32: Self {
-        BaseNucleusButton(
+        NucleusButton(
             background: .backgroundInverse,
             content: .foregroundInverse,
             border: nil,
@@ -18,7 +18,7 @@ public extension NucleusButton where Self == BaseNucleusButton {
         )
     }
     static var primary40: Self {
-        BaseNucleusButton(
+        NucleusButton(
             background: .backgroundInverse,
             content: .foregroundInverse,
             border: nil,
@@ -31,7 +31,7 @@ public extension NucleusButton where Self == BaseNucleusButton {
         )
     }
     static var primary48: Self {
-        BaseNucleusButton(
+        NucleusButton(
             background: .backgroundInverse,
             content: .foregroundInverse,
             border: nil,
@@ -44,7 +44,7 @@ public extension NucleusButton where Self == BaseNucleusButton {
         )
     }
     static var secondary32: Self {
-        BaseNucleusButton(
+        NucleusButton(
             background: .backgroundSecondary,
             content: .foregroundPrimary,
             border: nil,
@@ -57,7 +57,7 @@ public extension NucleusButton where Self == BaseNucleusButton {
         )
     }
     static var secondary40: Self {
-        BaseNucleusButton(
+        NucleusButton(
             background: .backgroundSecondary,
             content: .foregroundPrimary,
             border: nil,
@@ -70,7 +70,7 @@ public extension NucleusButton where Self == BaseNucleusButton {
         )
     }
     static var secondary48: Self {
-        BaseNucleusButton(
+        NucleusButton(
             background: .backgroundSecondary,
             content: .foregroundPrimary,
             border: nil,
@@ -83,7 +83,7 @@ public extension NucleusButton where Self == BaseNucleusButton {
         )
     }
     static var tertiary32: Self {
-        BaseNucleusButton(
+        NucleusButton(
             background: .backgroundPrimary,
             content: .foregroundPrimary,
             border: .strokeSecondary,
@@ -96,7 +96,7 @@ public extension NucleusButton where Self == BaseNucleusButton {
         )
     }
     static var tertiary40: Self {
-        BaseNucleusButton(
+        NucleusButton(
             background: .backgroundPrimary,
             content: .foregroundPrimary,
             border: .strokeSecondary,
@@ -109,7 +109,7 @@ public extension NucleusButton where Self == BaseNucleusButton {
         )
     }
     static var tertiary48: Self {
-        BaseNucleusButton(
+        NucleusButton(
             background: .backgroundPrimary,
             content: .foregroundPrimary,
             border: .strokeSecondary,
@@ -122,7 +122,7 @@ public extension NucleusButton where Self == BaseNucleusButton {
         )
     }
     static var inverse32: Self {
-        BaseNucleusButton(
+        NucleusButton(
             background: .backgroundPrimary,
             content: .foregroundPrimary,
             border: nil,
@@ -135,7 +135,7 @@ public extension NucleusButton where Self == BaseNucleusButton {
         )
     }
     static var inverse40: Self {
-        BaseNucleusButton(
+        NucleusButton(
             background: .backgroundPrimary,
             content: .foregroundPrimary,
             border: nil,
@@ -148,7 +148,7 @@ public extension NucleusButton where Self == BaseNucleusButton {
         )
     }
     static var inverse48: Self {
-        BaseNucleusButton(
+        NucleusButton(
             background: .backgroundPrimary,
             content: .foregroundPrimary,
             border: nil,
@@ -161,7 +161,7 @@ public extension NucleusButton where Self == BaseNucleusButton {
         )
     }
     static var ghost32: Self {
-        BaseNucleusButton(
+        NucleusButton(
             background: .backgroundTransparent,
             content: .foregroundPrimary,
             border: nil,
@@ -174,7 +174,7 @@ public extension NucleusButton where Self == BaseNucleusButton {
         )
     }
     static var ghost40: Self {
-        BaseNucleusButton(
+        NucleusButton(
             background: .backgroundTransparent,
             content: .foregroundPrimary,
             border: nil,
@@ -187,7 +187,7 @@ public extension NucleusButton where Self == BaseNucleusButton {
         )
     }
     static var ghost48: Self {
-        BaseNucleusButton(
+        NucleusButton(
             background: .backgroundTransparent,
             content: .foregroundPrimary,
             border: nil,
@@ -200,7 +200,7 @@ public extension NucleusButton where Self == BaseNucleusButton {
         )
     }
     static var disabled32: Self {
-        BaseNucleusButton(
+        NucleusButton(
             background: .backgroundDisabled,
             content: .foregroundDisabled,
             border: nil,
@@ -213,7 +213,7 @@ public extension NucleusButton where Self == BaseNucleusButton {
         )
     }
     static var disabled40: Self {
-        BaseNucleusButton(
+        NucleusButton(
             background: .backgroundDisabled,
             content: .foregroundDisabled,
             border: nil,
@@ -226,7 +226,7 @@ public extension NucleusButton where Self == BaseNucleusButton {
         )
     }
     static var disabled48: Self {
-        BaseNucleusButton(
+        NucleusButton(
             background: .backgroundDisabled,
             content: .foregroundDisabled,
             border: nil,
