@@ -3,13 +3,22 @@ import NucleusFonts
 
 /// A Nucleus button style token.
 ///
-/// Carries the colors, geometry, and label font for a button variant × size. Colors are
-/// theme-aware `NucleusColor`s. `pressedInset` is the point inset the client applies for the
-/// pressed state (the pressed visual is a 1pt inset, not a separate color). The full set of
-/// button tokens is exposed as `static let`s — for example `NucleusButton.primary48`.
+/// Carries the colors, geometry, and label font for a button variant × size. Colors are semantic `NucleusColor`s. . The full set of button tokens are exposed as `static` accessors — for example `NucleusButton.primary48`.
 ///
-/// Nucleus only describes the token; assembling the actual button view is up to the consumer.
-public struct NucleusButton: Sendable {
+/// Nucleus only describes the token. Assembling the actual button view is up to the consumer.
+public protocol NucleusButtonToken: Sendable {
+    var background: NucleusColor { get }
+    var content: NucleusColor { get }
+    var border: NucleusColor? { get }
+    var height: Double { get }
+    var cornerRadius: Double { get }
+    var paddingHorizontal: Double { get }
+    var paddingVertical: Double { get }
+    var font: NucleusFont { get }
+    var pressedInset: Double { get }
+}
+
+public struct NucleusButton: NucleusButtonToken {
     public let background: NucleusColor
     public let content: NucleusColor
     public let border: NucleusColor?

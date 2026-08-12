@@ -3,18 +3,20 @@
 import NucleusColors
 import NucleusFonts
 
-public extension NucleusButton {
+public extension NucleusButtonToken where Self == NucleusButton {
 {{#each styles}}
-    static let {{name}} = NucleusButton(
-        background: .{{background}},
-        content: .{{content}},
-        border: {{#if border}}.{{border}}{{else}}nil{{/if}},
-        height: {{height}},
-        cornerRadius: {{cornerRadius}},
-        paddingHorizontal: {{paddingHorizontal}},
-        paddingVertical: {{paddingVertical}},
-        font: .{{font}},
-        pressedInset: {{pressedInset}}
-    )
+    static var {{name}}: Self {
+        NucleusButton(
+            background: .{{background}},
+            content: .{{content}},
+            border: {{#if border}}.{{border}}{{else}}nil{{/if}},
+            height: {{height}},
+            cornerRadius: {{cornerRadius}},
+            paddingHorizontal: {{paddingHorizontal}},
+            paddingVertical: {{paddingVertical}},
+            font: .{{font}},
+            pressedInset: {{pressedInset}}
+        )
+    }
 {{/each}}
 }
