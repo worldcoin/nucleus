@@ -2,7 +2,7 @@
 
 import NucleusTokens
 
-private let buttonTokens: [String: NucleusButton] = [
+private let buttonTokens: [String: BaseNucleusButton] = [
     "disabled.32": .disabled32,
     "disabled.40": .disabled40,
     "disabled.48": .disabled48,
@@ -23,11 +23,11 @@ private let buttonTokens: [String: NucleusButton] = [
     "tertiary.48": .tertiary48,
 ]
 
-extension NucleusButton: TokenResolvable {
+extension BaseNucleusButton: TokenResolvable {
     /// Resolves a type-scoped button style token, e.g. `inverse.32`.
-    public static func resolve(token: String) -> NucleusButton? {
+    public static func resolve(token: String) -> BaseNucleusButton? {
         guard let value = buttonTokens[token] else {
-            assertionFailure("unknown NucleusButton token: \(token)")
+            assertionFailure("unknown BaseNucleusButton token: \(token)")
             return nil
         }
         return value

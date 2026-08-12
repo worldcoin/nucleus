@@ -79,7 +79,7 @@ export function generateIOSFontResolvable(catalog: TokenCatalog): string {
 export function generateIOSButtonResolvable(catalog: TokenCatalog): string {
   const rows: Row[] = catalog.buttons.map((b) => ({ key: b.wireToken, value: `.${b.accessor}` }));
   return simpleResolvable({
-    type: 'NucleusButton',
+    type: 'BaseNucleusButton',
     mapName: 'buttonTokens',
     rows,
     doc: 'Resolves a type-scoped button style token, e.g. `inverse.32`.',
