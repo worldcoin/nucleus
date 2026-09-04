@@ -303,6 +303,8 @@ public extension NucleusIcon {
         case scan = "scan"
         /// `search` icon. Available in: regular, solid.
         case search = "search"
+        /// `selfie-emblem` icon. Available in: regular.
+        case selfieEmblem = "selfie-emblem"
         /// `send` icon. Available in: regular, solid.
         case send = "send"
         /// `send-mail` icon. Available in: regular, solid.
@@ -534,6 +536,7 @@ public extension NucleusIcon {
             case .safe: return [.regular, .solid]
             case .scan: return [.regular, .solid]
             case .search: return [.regular, .solid]
+            case .selfieEmblem: return [.regular]
             case .send: return [.regular, .solid]
             case .sendMail: return [.regular, .solid]
             case .settings: return [.regular, .solid]
