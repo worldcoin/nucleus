@@ -152,6 +152,7 @@ private let iconTokens: [String: NucleusIcon.Symbol] = [
     "safe": .safe,
     "scan": .scan,
     "search": .search,
+    "selfie-emblem": .selfieEmblem,
     "send": .send,
     "send-mail": .sendMail,
     "settings": .settings,
