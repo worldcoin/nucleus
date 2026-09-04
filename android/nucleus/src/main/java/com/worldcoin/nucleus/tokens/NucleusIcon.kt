@@ -783,9 +783,8 @@ sealed class NucleusIcon(val resourceName: String) {
         override val solidRes get() = R.drawable.nucleus_icon_search_solid
     }
 
-    data object SelfieEmblem : NucleusIcon("selfie-emblem"), HasRegular, HasSolid {
+    data object SelfieEmblem : NucleusIcon("selfie-emblem"), HasRegular {
         override val regularRes get() = R.drawable.nucleus_icon_selfie_emblem_regular
-        override val solidRes get() = R.drawable.nucleus_icon_selfie_emblem_solid
     }
 
     data object Send : NucleusIcon("send"), HasRegular, HasSolid {

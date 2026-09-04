@@ -365,7 +365,6 @@ object NucleusTokenResolver {
             "search.regular" -> R.drawable.nucleus_icon_search_regular
             "search.solid" -> R.drawable.nucleus_icon_search_solid
             "selfie-emblem.regular" -> R.drawable.nucleus_icon_selfie_emblem_regular
-            "selfie-emblem.solid" -> R.drawable.nucleus_icon_selfie_emblem_solid
             "send-mail.regular" -> R.drawable.nucleus_icon_send_mail_regular
             "send-mail.solid" -> R.drawable.nucleus_icon_send_mail_solid
             "send.regular" -> R.drawable.nucleus_icon_send_regular
