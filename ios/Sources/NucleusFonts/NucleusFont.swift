@@ -28,7 +28,7 @@ public struct NucleusFont: Equatable, Hashable, Sendable {
     ///     - size: The size of the font.
     ///     - weight: The variable weight of the font. This can either be an integer between 300...800 or a predetermined value like `.regular` or `.bold`.
     ///     - letterSpacing: The letter-spacing multiplier. Use negative values for tighter spacing and positive values for looser spacing. This value is multiplied by the font size, so a letter spacing of `-0.02` with a font size of `56` results in a kerning value of `-1.12` points.
-    ///     - lineHeight: The line-height multiplier. A value of `1.2` results in a line height 20% larger than the font's default line height.
+    ///     - lineHeight: The line-height ratio from the design token. For Figma parity, multiply the scaled font point size by this value. Consumers apply line height themselves; the package's legacy preview helper instead uses native font metrics.
     ///     - monospacedDigits: Whether numeric glyphs should render with monospaced advances.
     ///     - dynamicTypeStyle: The style that will be used when scaling the font for dynamic type. Use the style that most closely matches your font size. See [here](https://developer.apple.com/design/human-interface-guidelines/typography#iOS-iPadOS-Dynamic-Type-sizes) for more info on the sizing of each style.
     public init(
@@ -63,7 +63,7 @@ extension NucleusFont {
         return NucleusFont(fontName: fontName, size: size, weight: weight, letterSpacing: letterSpacing, lineHeight: lineHeight, monospacedDigits: usesMonospacedDigits, dynamicTypeStyle: dynamicTypeStyle)
     }
 
-    /// Mutate the line-height multiplier of an existing NucleusFont. A value of `1.2` results in a line height 20% larger than the font's default line height.
+    /// Mutate the line-height ratio of an existing NucleusFont. For Figma parity, `1.2` means 120% of the scaled font point size. Consumers are responsible for applying this spacing.
     public func lineHeight(_ lineHeight: LineHeight) -> NucleusFont {
         return NucleusFont(fontName: fontName, size: size, weight: weight, letterSpacing: letterSpacing, lineHeight: lineHeight, monospacedDigits: usesMonospacedDigits, dynamicTypeStyle: dynamicTypeStyle)
     }

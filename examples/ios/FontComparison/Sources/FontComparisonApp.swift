@@ -79,7 +79,7 @@ private struct ComparisonView: View {
                     Text("World Pro · b1")
                         .font(.largeTitle.bold())
                         .accessibilityAddTraits(.isHeader)
-                    Text("17 pt · Weight 350 · Line height ×1.3")
+                    Text("17 pt · Weight 350 · Tracking −0.5% · Line height ×1.3")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                     Text("Four identical paragraphs. Equal widths. 16 pt between paragraphs.")

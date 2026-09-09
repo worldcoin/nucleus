@@ -12,7 +12,7 @@ public extension NucleusFont {
     static let h1 = NucleusFont(
         fontName: "WorldProMVP-Regular",
         size: 30,
-        weight: 500,
+        weight: 450,
         letterSpacing: -0.015,
         lineHeight: 1.2,
         dynamicTypeStyle: .largeTitle
@@ -20,7 +20,7 @@ public extension NucleusFont {
     static let h2 = NucleusFont(
         fontName: "WorldProMVP-Regular",
         size: 27,
-        weight: 500,
+        weight: 450,
         letterSpacing: -0.015,
         lineHeight: 1.2,
         dynamicTypeStyle: .title1
@@ -28,7 +28,7 @@ public extension NucleusFont {
     static let h3 = NucleusFont(
         fontName: "WorldProMVP-Regular",
         size: 24,
-        weight: 500,
+        weight: 450,
         letterSpacing: -0.015,
         lineHeight: 1.2,
         dynamicTypeStyle: .title1
@@ -36,7 +36,7 @@ public extension NucleusFont {
     static let h4 = NucleusFont(
         fontName: "WorldProMVP-Regular",
         size: 21,
-        weight: 500,
+        weight: 450,
         letterSpacing: -0.01,
         lineHeight: 1.2,
         dynamicTypeStyle: .title2
@@ -44,7 +44,7 @@ public extension NucleusFont {
     static let h5 = NucleusFont(
         fontName: "WorldProMVP-Regular",
         size: 19,
-        weight: 500,
+        weight: 450,
         letterSpacing: -0.01,
         lineHeight: 1.2,
         dynamicTypeStyle: .headline
@@ -76,7 +76,7 @@ public extension NucleusFont {
     static let l1 = NucleusFont(
         fontName: "WorldProMVP-Regular",
         size: 17,
-        weight: 550,
+        weight: 500,
         letterSpacing: -0.01,
         lineHeight: 1.2,
         dynamicTypeStyle: .headline
@@ -84,7 +84,7 @@ public extension NucleusFont {
     static let l2 = NucleusFont(
         fontName: "WorldProMVP-Regular",
         size: 15,
-        weight: 550,
+        weight: 500,
         letterSpacing: -0.01,
         lineHeight: 1.2,
         dynamicTypeStyle: .subheadline
@@ -92,7 +92,7 @@ public extension NucleusFont {
     static let l3 = NucleusFont(
         fontName: "WorldProMVP-Regular",
         size: 13,
-        weight: 550,
+        weight: 500,
         letterSpacing: -0.01,
         lineHeight: 1.2,
         dynamicTypeStyle: .footnote
@@ -101,7 +101,7 @@ public extension NucleusFont {
         fontName: "WorldProMVP-Regular",
         size: 17,
         weight: 350,
-        letterSpacing: 0,
+        letterSpacing: -0.005,
         lineHeight: 1.3,
         dynamicTypeStyle: .body
     )
@@ -109,7 +109,7 @@ public extension NucleusFont {
         fontName: "WorldProMVP-Regular",
         size: 15,
         weight: 350,
-        letterSpacing: 0,
+        letterSpacing: -0.005,
         lineHeight: 1.3,
         dynamicTypeStyle: .subheadline
     )
@@ -118,14 +118,14 @@ public extension NucleusFont {
         size: 13,
         weight: 350,
         letterSpacing: 0,
-        lineHeight: 1.2,
+        lineHeight: 1.3,
         dynamicTypeStyle: .footnote
     )
     static let c1 = NucleusFont(
         fontName: "WorldProMVP-Regular",
         size: 11,
         weight: 350,
-        letterSpacing: 0,
+        letterSpacing: 0.003,
         lineHeight: 1.4,
         dynamicTypeStyle: .caption2
     )
