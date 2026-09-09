@@ -2,7 +2,8 @@
   "families": {
     "worldProMVP": {
       "file": "WorldProMVP.ttf",
-      "postscriptName": "WorldProMVPLH-Regular"
+      "webFiles": ["WorldProMVP.woff2", "WorldProMVP.woff"],
+      "postscriptName": "WorldProMVP-Regular"
     }
   },
   "tokens": {
