@@ -7,11 +7,11 @@ All styles use **World Pro MVP**. Nucleus resolves the supplied font through its
 | Figma style | Token | Size | Weight | Tracking | Line height |
 | --- | --- | ---: | ---: | ---: | ---: |
 | Display/D1 | d1 | 56 | 550 | −2% | 100% |
-| Headline/H1 | h1 | 30 | 450 | −1.5% | 120% |
-| Headline/H2 | h2 | 27 | 450 | −1.5% | 120% |
-| Headline/H3 | h3 | 24 | 450 | −1.5% | 120% |
-| Headline/H4 | h4 | 21 | 450 | −1% | 120% |
-| Headline/H5 | h5 | 19 | 450 | −1% | 120% |
+| Headline/H1 | h1 | 30 | 450 | −1.5% | 110% |
+| Headline/H2 | h2 | 27 | 450 | −1.5% | 110% |
+| Headline/H3 | h3 | 24 | 450 | −1.5% | 110% |
+| Headline/H4 | h4 | 21 | 450 | −1% | 110% |
+| Headline/H5 | h5 | 19 | 450 | −1% | 110% |
 | Subtitle/S1 | s1 | 17 | 450 | −1% | 120% |
 | Subtitle/S2 | s2 | 15 | 450 | 0% | 120% |
 | Subtitle/S3 | s3 | 13 | 450 | 0% | 120% |
@@ -27,13 +27,13 @@ The styles also specify zero paragraph spacing and indentation, original case, n
 
 ## Changes from v0.2.9
 
-- h1–h5 weight: 500 → 450.
+- h1–h5 weight: 500 → 450; line height: 120% → 110%.
 - l1–l3 weight: 550 → 500.
 - b1 and b2 tracking: 0 → −0.5% (`-0.005` in the source tokens).
 - b3 line height: 120% → 130% (`1.3` in the source tokens).
 - c1 tracking: 0 → +0.3% (`0.003` in the source tokens).
 
-The other four styles already matched. Font sizes are unchanged. These updates intentionally change appearance and can affect wrapping and fixed-height layouts; b3 gains 1.3 base units per line.
+The other four styles already matched. The latest Figma headline revision sets h1–h5 line height to 110%. Font sizes are unchanged. These updates intentionally change appearance and can affect wrapping and fixed-height layouts; b3 gains 1.3 base units per line.
 
 ## iOS rendering caveat
 

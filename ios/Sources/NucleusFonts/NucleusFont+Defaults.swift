@@ -14,7 +14,7 @@ public extension NucleusFont {
         size: 30,
         weight: 450,
         letterSpacing: -0.015,
-        lineHeight: 1.2,
+        lineHeight: 1.1,
         dynamicTypeStyle: .largeTitle
     )
     static let h2 = NucleusFont(
@@ -22,7 +22,7 @@ public extension NucleusFont {
         size: 27,
         weight: 450,
         letterSpacing: -0.015,
-        lineHeight: 1.2,
+        lineHeight: 1.1,
         dynamicTypeStyle: .title1
     )
     static let h3 = NucleusFont(
@@ -30,7 +30,7 @@ public extension NucleusFont {
         size: 24,
         weight: 450,
         letterSpacing: -0.015,
-        lineHeight: 1.2,
+        lineHeight: 1.1,
         dynamicTypeStyle: .title1
     )
     static let h4 = NucleusFont(
@@ -38,7 +38,7 @@ public extension NucleusFont {
         size: 21,
         weight: 450,
         letterSpacing: -0.01,
-        lineHeight: 1.2,
+        lineHeight: 1.1,
         dynamicTypeStyle: .title2
     )
     static let h5 = NucleusFont(
@@ -46,7 +46,7 @@ public extension NucleusFont {
         size: 19,
         weight: 450,
         letterSpacing: -0.01,
-        lineHeight: 1.2,
+        lineHeight: 1.1,
         dynamicTypeStyle: .headline
     )
     static let s1 = NucleusFont(

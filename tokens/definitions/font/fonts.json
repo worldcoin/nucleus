@@ -20,7 +20,7 @@
       "size": 30,
       "weight": 450,
       "letterSpacing": -0.015,
-      "lineHeight": 1.2,
+      "lineHeight": 1.1,
       "dynamicTypeStyle": "largeTitle"
     },
     "h2": {
@@ -28,7 +28,7 @@
       "size": 27,
       "weight": 450,
       "letterSpacing": -0.015,
-      "lineHeight": 1.2,
+      "lineHeight": 1.1,
       "dynamicTypeStyle": "title1"
     },
     "h3": {
@@ -36,7 +36,7 @@
       "size": 24,
       "weight": 450,
       "letterSpacing": -0.015,
-      "lineHeight": 1.2,
+      "lineHeight": 1.1,
       "dynamicTypeStyle": "title1"
     },
     "h4": {
@@ -44,7 +44,7 @@
       "size": 21,
       "weight": 450,
       "letterSpacing": -0.01,
-      "lineHeight": 1.2,
+      "lineHeight": 1.1,
       "dynamicTypeStyle": "title2"
     },
     "h5": {
@@ -52,7 +52,7 @@
       "size": 19,
       "weight": 450,
       "letterSpacing": -0.01,
-      "lineHeight": 1.2,
+      "lineHeight": 1.1,
       "dynamicTypeStyle": "headline"
     },
     "s1": {
