@@ -1,8 +1,12 @@
-# b1 font comparison on iOS
+# Typography comparison on iOS
 
 Open `FontComparison.xcodeproj`, choose the `FontComparison` scheme, and run on an iPad or iPhone simulator. The checked-in project references `NucleusFonts` from the repository root. Xcode 26 or newer is required by that package.
 
-The app compares the font from `main` before the font update (`WorldProMVPLH-Regular`) with the current `NucleusFont.b1` font. The previous TTF is bundled only in this demo. Both font names are checked at launch so a missing font cannot silently fall back to the system font.
+The app opens an **All styles** gallery covering all 16 typography tokens: d1, h1–h5, s1–s3, l1–l3, b1–b3, and c1. Each row compares the previous font and token values from v0.2.9 (`b21e737`) with the current font and Figma-aligned tokens. Both columns show their size, weight, tracking, and line-height ratio. iPad shows equal-width columns; iPhone stacks them. Use Compare, Previous, or Updated to change which versions are visible.
+
+The **b1 paragraphs** tab retains the font-only comparison described below. Unlike the full gallery, both columns in this tab use the current token values to isolate the font change.
+
+The previous TTF (`WorldProMVPLH-Regular`) is bundled only in this demo. Both font names are checked at launch so a missing font cannot silently fall back to the system font.
 
 Both samples use the same four paragraphs and the b1 token: 17 pt, variable weight 350, −0.5% tracking (−0.085 pt at the standard size), and a 1.3 line-height multiplier. The previous sample copies the current b1 settings and changes only the font name. Spacing matches the package's `PreviewFontModifier`: `UIFont.lineHeight * 0.3` is added between lines, with half that amount as vertical padding on each paragraph. Separate paragraphs have an additional, identical 16 pt gap.
 

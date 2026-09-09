@@ -22,7 +22,7 @@ struct FontComparisonApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ComparisonView()
+            TypographyGalleryView()
         }
     }
 }
@@ -196,5 +196,251 @@ private extension DynamicTypeSize {
         case .accessibility5: .accessibilityExtraExtraExtraLarge
         @unknown default: .large
         }
+    }
+}
+
+private enum GalleryPage: String, CaseIterable, Identifiable {
+    case all = "All styles"
+    case paragraphs = "b1 paragraphs"
+    var id: Self { self }
+}
+
+private struct TypographyStyle: Identifiable {
+    let id: String
+    let category: String
+    let current: NucleusFont
+    let previous: NucleusFont
+
+    var sample: String {
+        switch category {
+        case "Display": "A world\nfor everyone"
+        case "Headline": "A world for everyone.\nBuilt on human connection."
+        case "Subtitle": "Real people. Shared possibilities.\nMake room for what comes next."
+        case "Label": "Continue with World\nExplore your possibilities"
+        case "Body": "The world is full of real people with different stories, ideas, and experiences. A shared network should make it easier for everyone to take part.\n\nGood typography gives those stories room to breathe. Look closely at words like quietly, journey, café, naïve, and mañana."
+        default: "Your information stays in your control.\nLast updated today · 09:41 · café, naïve, mañana"
+        }
+    }
+
+    // Frozen v0.2.9 values from main at b21e737, before the font and Figma alignment.
+    static let all: [TypographyStyle] = [
+        TypographyStyle(
+            id: "d1", category: "Display", current: .d1,
+            previous: NucleusFont(fontName: "WorldProMVPLH-Regular", size: 56,
+                weight: 550, letterSpacing: -0.02, lineHeight: 1.0,
+                dynamicTypeStyle: .largeTitle)
+        ),
+        TypographyStyle(
+            id: "h1", category: "Headline", current: .h1,
+            previous: NucleusFont(fontName: "WorldProMVPLH-Regular", size: 30,
+                weight: 500, letterSpacing: -0.015, lineHeight: 1.2,
+                dynamicTypeStyle: .largeTitle)
+        ),
+        TypographyStyle(
+            id: "h2", category: "Headline", current: .h2,
+            previous: NucleusFont(fontName: "WorldProMVPLH-Regular", size: 27,
+                weight: 500, letterSpacing: -0.015, lineHeight: 1.2,
+                dynamicTypeStyle: .title1)
+        ),
+        TypographyStyle(
+            id: "h3", category: "Headline", current: .h3,
+            previous: NucleusFont(fontName: "WorldProMVPLH-Regular", size: 24,
+                weight: 500, letterSpacing: -0.015, lineHeight: 1.2,
+                dynamicTypeStyle: .title1)
+        ),
+        TypographyStyle(
+            id: "h4", category: "Headline", current: .h4,
+            previous: NucleusFont(fontName: "WorldProMVPLH-Regular", size: 21,
+                weight: 500, letterSpacing: -0.01, lineHeight: 1.2,
+                dynamicTypeStyle: .title2)
+        ),
+        TypographyStyle(
+            id: "h5", category: "Headline", current: .h5,
+            previous: NucleusFont(fontName: "WorldProMVPLH-Regular", size: 19,
+                weight: 500, letterSpacing: -0.01, lineHeight: 1.2,
+                dynamicTypeStyle: .headline)
+        ),
+        TypographyStyle(
+            id: "s1", category: "Subtitle", current: .s1,
+            previous: NucleusFont(fontName: "WorldProMVPLH-Regular", size: 17,
+                weight: 450, letterSpacing: -0.01, lineHeight: 1.2,
+                dynamicTypeStyle: .headline)
+        ),
+        TypographyStyle(
+            id: "s2", category: "Subtitle", current: .s2,
+            previous: NucleusFont(fontName: "WorldProMVPLH-Regular", size: 15,
+                weight: 450, letterSpacing: 0.0, lineHeight: 1.2,
+                dynamicTypeStyle: .subheadline)
+        ),
+        TypographyStyle(
+            id: "s3", category: "Subtitle", current: .s3,
+            previous: NucleusFont(fontName: "WorldProMVPLH-Regular", size: 13,
+                weight: 450, letterSpacing: 0.0, lineHeight: 1.2,
+                dynamicTypeStyle: .footnote)
+        ),
+        TypographyStyle(
+            id: "l1", category: "Label", current: .l1,
+            previous: NucleusFont(fontName: "WorldProMVPLH-Regular", size: 17,
+                weight: 550, letterSpacing: -0.01, lineHeight: 1.2,
+                dynamicTypeStyle: .headline)
+        ),
+        TypographyStyle(
+            id: "l2", category: "Label", current: .l2,
+            previous: NucleusFont(fontName: "WorldProMVPLH-Regular", size: 15,
+                weight: 550, letterSpacing: -0.01, lineHeight: 1.2,
+                dynamicTypeStyle: .subheadline)
+        ),
+        TypographyStyle(
+            id: "l3", category: "Label", current: .l3,
+            previous: NucleusFont(fontName: "WorldProMVPLH-Regular", size: 13,
+                weight: 550, letterSpacing: -0.01, lineHeight: 1.2,
+                dynamicTypeStyle: .footnote)
+        ),
+        TypographyStyle(
+            id: "b1", category: "Body", current: .b1,
+            previous: NucleusFont(fontName: "WorldProMVPLH-Regular", size: 17,
+                weight: 350, letterSpacing: 0.0, lineHeight: 1.3,
+                dynamicTypeStyle: .body)
+        ),
+        TypographyStyle(
+            id: "b2", category: "Body", current: .b2,
+            previous: NucleusFont(fontName: "WorldProMVPLH-Regular", size: 15,
+                weight: 350, letterSpacing: 0.0, lineHeight: 1.3,
+                dynamicTypeStyle: .subheadline)
+        ),
+        TypographyStyle(
+            id: "b3", category: "Body", current: .b3,
+            previous: NucleusFont(fontName: "WorldProMVPLH-Regular", size: 13,
+                weight: 350, letterSpacing: 0.0, lineHeight: 1.2,
+                dynamicTypeStyle: .footnote)
+        ),
+        TypographyStyle(
+            id: "c1", category: "Caption", current: .c1,
+            previous: NucleusFont(fontName: "WorldProMVPLH-Regular", size: 11,
+                weight: 350, letterSpacing: 0.0, lineHeight: 1.4,
+                dynamicTypeStyle: .caption2)
+        )
+    ]
+}
+
+private struct TypographyGalleryView: View {
+    @State private var page: GalleryPage = .all
+    @State private var mode: ComparisonMode = .both
+
+    var body: some View {
+        VStack(spacing: 0) {
+            Picker("Typography view", selection: $page) {
+                ForEach(GalleryPage.allCases) { item in
+                    Text(item.rawValue).tag(item)
+                }
+            }
+            .pickerStyle(.segmented)
+            .frame(maxWidth: 420)
+            .padding()
+
+            if page == .all {
+                ScrollView {
+                    LazyVStack(alignment: .leading, spacing: 24) {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("World Pro · Typography")
+                                .font(.largeTitle.bold())
+                                .accessibilityAddTraits(.isHeader)
+                            Text("All 16 styles · Previous release → UI Kit 5.0")
+                                .font(.headline)
+                            Text("Previous uses the original font and tokens. Updated uses the new font and Figma-aligned tokens. Both follow the existing Nucleus iOS preview spacing.")
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                            Text("Dynamic Type follows the device setting. The values shown are base sizes; rendered line spacing can differ from Figma.")
+                                .font(.footnote)
+                                .foregroundStyle(.secondary)
+                        }
+                        Picker("Versions to show", selection: $mode) {
+                            ForEach(ComparisonMode.allCases) { item in
+                                Text(item.rawValue).tag(item)
+                            }
+                        }
+                        .pickerStyle(.segmented)
+                        .frame(maxWidth: 420)
+
+                        ForEach(TypographyStyle.all) { style in
+                            TypographyRow(style: style, mode: mode)
+                        }
+                    }
+                    .padding(24)
+                    .frame(maxWidth: 1100, alignment: .leading)
+                    .frame(maxWidth: .infinity)
+                }
+                .accessibilityIdentifier("typographyGallery")
+            } else {
+                ComparisonView()
+            }
+        }
+        .background(Color(uiColor: .systemGroupedBackground))
+    }
+}
+
+private struct TypographyRow: View {
+    let style: TypographyStyle
+    let mode: ComparisonMode
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+
+    private var layout: AnyLayout {
+        horizontalSizeClass == .regular
+            ? AnyLayout(HStackLayout(alignment: .top, spacing: 20))
+            : AnyLayout(VStackLayout(alignment: .leading, spacing: 16))
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("\(style.id.uppercased()) · \(style.category)")
+                .font(.headline)
+                .accessibilityAddTraits(.isHeader)
+            layout {
+                ForEach(mode.versions) { version in
+                    TypographySpecimen(
+                        token: version == .previous ? style.previous : style.current,
+                        version: version, sample: style.sample
+                    )
+                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                }
+            }
+        }
+        .accessibilityIdentifier("typography-\(style.id)")
+    }
+}
+
+private struct TypographySpecimen: View {
+    let token: NucleusFont
+    let version: FontVersion
+    let sample: String
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    var body: some View {
+        let traits = UITraitCollection(preferredContentSizeCategory: dynamicTypeSize.uiCategory)
+        let font = token.asUIFont(compatibleWith: traits)
+        let addedSpacing = font.lineHeight * (token.lineHeight.value - 1)
+
+        VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading, spacing: 6) {
+                Text(version.rawValue)
+                    .font(.subheadline.bold())
+                Text("\(token.size, specifier: "%.0f") pt · Weight \(token.weight.value)")
+                    .font(.caption.monospacedDigit())
+                    .foregroundStyle(.secondary)
+                Text("Tracking \(token.letterSpacing * 100, specifier: "%+.1f")% · Line height \(token.lineHeight.value * 100, specifier: "%.0f")%")
+                    .font(.caption.monospacedDigit())
+                    .foregroundStyle(.secondary)
+            }
+            Text(sample)
+                .font(Font(font))
+                .kerning(font.pointSize * token.letterSpacing)
+                .lineSpacing(addedSpacing)
+                .padding(.vertical, addedSpacing / 2)
+                .fixedSize(horizontal: false, vertical: true)
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .padding(20)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color(uiColor: .secondarySystemGroupedBackground), in: .rect(cornerRadius: 16))
     }
 }
