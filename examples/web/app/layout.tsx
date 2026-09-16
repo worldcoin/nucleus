@@ -4,9 +4,9 @@ import "./globals.css";
 import { appThemes } from "./tokens";
 
 const worldPro = localFont({
-  src: "../../../build/web/fonts/WorldProMVP.ttf",
+  src: "../../../build/web/fonts/WorldProMVP.woff2",
   variable: "--font-world-pro",
-  weight: "100 900",
+  weight: "300 800",
 });
 
 export const metadata: Metadata = {

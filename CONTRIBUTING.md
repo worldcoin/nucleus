@@ -49,6 +49,8 @@ The repo-root `VERSION` file is the canonical version. `npm run build` stamps it
 
 For new typography tokens: add the font file to `tokens/definitions/font/`, declare it in the `families` block of `fonts.json`, then reference it from the token. The Android resource name is derived by snake-casing the filename.
 
+For font updates, replace the source TTF and set `postscriptName` to the font's internal PostScript name. Optional `webFiles` lists WOFF2 and WOFF filenames in the same source directory; these are copied alongside the TTF into the web package. Keep existing filenames when updating a family so consumer asset paths remain valid, and run `npm run build` to refresh the bundled platform copies.
+
 ## CI
 
 The verification workflow (`.github/workflows/verify.yml`) runs `format:check`, `lint`, `typecheck`, `build`, and the codegen-in-sync check on every push to `main` and every PR.
