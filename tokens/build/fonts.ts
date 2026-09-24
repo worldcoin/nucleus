@@ -80,9 +80,11 @@ function buildWebFonts(families: FontFamily[], tokens: FontToken[]): void {
 
   const copied: string[] = [];
   for (const family of families) {
-    const dest = `${WEB_FONTS_OUT}/${family.file}`;
-    copyFile(`${FONT_DEFINITIONS_DIR}/${family.file}`, dest);
-    copied.push(dest);
+    for (const file of [family.file, ...(family.webFiles ?? [])]) {
+      const dest = `${WEB_FONTS_OUT}/${file}`;
+      copyFile(`${FONT_DEFINITIONS_DIR}/${file}`, dest);
+      copied.push(dest);
+    }
   }
 
   logStage('tokens/definitions/font (web)', [

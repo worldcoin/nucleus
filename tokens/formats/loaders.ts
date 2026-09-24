@@ -63,6 +63,7 @@ export function loadColorTokens(jsonPath: string): ColorLeaf[] {
 export interface FontFamily {
   key: string;
   file: string;
+  webFiles?: string[];
   postscriptName: string;
 }
 
@@ -83,6 +84,7 @@ export interface FontDefinitions {
 
 interface RawFontFamily {
   file?: unknown;
+  webFiles?: unknown;
   postscriptName?: unknown;
 }
 
@@ -116,9 +118,20 @@ function requireNumber(value: unknown, where: string): number {
 
 function parseFamily(key: string, raw: RawFontFamily, jsonPath: string): FontFamily {
   const where = `${jsonPath} → families.${key}`;
+  if (raw.webFiles !== undefined && !Array.isArray(raw.webFiles)) {
+    throw new Error(`${where}.webFiles must be an array`);
+  }
+  const webFiles = (raw.webFiles as unknown[] | undefined)?.map((value, index) => {
+    const file = requireString(value, `${where}.webFiles[${index}]`);
+    if (!/^[^/\\]+\.woff2?$/.test(file)) {
+      throw new Error(`${where}.webFiles[${index}] must be a WOFF or WOFF2 filename`);
+    }
+    return file;
+  });
   return {
     key,
     file: requireString(raw.file, `${where}.file`),
+    webFiles,
     postscriptName: requireString(raw.postscriptName, `${where}.postscriptName`),
   };
 }
