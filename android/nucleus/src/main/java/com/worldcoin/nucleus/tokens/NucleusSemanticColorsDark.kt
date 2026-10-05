@@ -25,12 +25,12 @@ object NucleusSemanticColorsDark {
     val statusError = NucleusPrimitiveColors.red500
     val statusWarning = NucleusPrimitiveColors.amber500
     val statusSuccess = NucleusPrimitiveColors.green500
-    val statusInfo = NucleusPrimitiveColors.blue500
+    val statusInfo = NucleusPrimitiveColors.blue600
     val statusNeutral = NucleusPrimitiveColors.grey500
     val accentOrange = NucleusPrimitiveColors.orange500
     val accentPurple = NucleusPrimitiveColors.purple500
     val accentPink = NucleusPrimitiveColors.pink500
     val accentMagenta = NucleusPrimitiveColors.magenta500
     val accentAqua = NucleusPrimitiveColors.aqua500
-    val accentBlue = NucleusPrimitiveColors.blue500
+    val accentBlue = NucleusPrimitiveColors.blue600
 }
