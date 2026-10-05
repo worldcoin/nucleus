@@ -2,7 +2,7 @@
 
 public extension NucleusColor {
     static let accentAqua = NucleusColor(light: "3FDBED", dark: "72E5F4")
-    static let accentBlue = NucleusColor(light: "007CFB", dark: "4B98FE")
+    static let accentBlue = NucleusColor(hex: "007CFB")
     static let accentMagenta = NucleusColor(light: "D501FD", dark: "DC4CFF")
     static let accentOrange = NucleusColor(light: "FF6F0F", dark: "FF925D")
     static let accentPink = NucleusColor(light: "FA58A4", dark: "FD83B6")
@@ -19,7 +19,7 @@ public extension NucleusColor {
     static let foregroundSecondary = NucleusColor(light: "7D7D7D", dark: "B8B8B8")
     static let foregroundTertiary = NucleusColor(light: "9C9C9C", dark: "7D7D7D")
     static let statusError = NucleusColor(light: "EA392A", dark: "FC614F")
-    static let statusInfo = NucleusColor(light: "007CFB", dark: "4B98FE")
+    static let statusInfo = NucleusColor(hex: "007CFB")
     static let statusNeutral = NucleusColor(light: "9C9C9C", dark: "B8B8B8")
     static let statusSuccess = NucleusColor(light: "00C230", dark: "5CCE62")
     static let statusWarning = NucleusColor(light: "FFAE00", dark: "FFBF5D")

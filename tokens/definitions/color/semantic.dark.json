@@ -91,7 +91,7 @@
           "$type": "color"
         },
         "info": {
-          "$value": "{primitive.color.blue.500}",
+          "$value": "{primitive.color.blue.600}",
           "$type": "color"
         },
         "neutral": {
@@ -121,7 +121,7 @@
           "$type": "color"
         },
         "blue": {
-          "$value": "{primitive.color.blue.500}",
+          "$value": "{primitive.color.blue.600}",
           "$type": "color"
         }
       }
