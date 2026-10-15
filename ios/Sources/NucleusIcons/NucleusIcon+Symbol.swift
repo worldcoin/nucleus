@@ -9,6 +9,8 @@ public extension NucleusIcon {
         case airplane = "airplane"
         /// `antenna-signal` icon. Available in: regular, solid.
         case antennaSignal = "antenna-signal"
+        /// `apps` icon. Available in: regular, solid.
+        case apps = "apps"
         /// `arrow-down` icon. Available in: regular, solid.
         case arrowDown = "arrow-down"
         /// `arrow-down-circle` icon. Available in: regular, solid.
@@ -19,17 +21,19 @@ public extension NucleusIcon {
         case arrowDownRight = "arrow-down-right"
         /// `arrow-left` icon. Available in: regular, solid.
         case arrowLeft = "arrow-left"
+        /// `arrow-left-circle` icon. Available in: regular, solid.
+        case arrowLeftCircle = "arrow-left-circle"
         /// `arrow-right` icon. Available in: regular, solid.
         case arrowRight = "arrow-right"
-        /// `arrow-split` icon. Available in: regular, solid.
-        case arrowSplit = "arrow-split"
+        /// `arrow-right-circle` icon. Available in: regular, solid.
+        case arrowRightCircle = "arrow-right-circle"
         /// `arrow-up` icon. Available in: regular, solid.
         case arrowUp = "arrow-up"
         /// `arrow-up-circle` icon. Available in: regular, solid.
         case arrowUpCircle = "arrow-up-circle"
         /// `arrow-up-left` icon. Available in: regular, solid.
         case arrowUpLeft = "arrow-up-left"
-        /// `arrow-up-right` icon. Available in: regular.
+        /// `arrow-up-right` icon. Available in: regular, solid.
         case arrowUpRight = "arrow-up-right"
         /// `arrow-uturn-left` icon. Available in: regular, solid.
         case arrowUturnLeft = "arrow-uturn-left"
@@ -57,7 +61,7 @@ public extension NucleusIcon {
         case book = "book"
         /// `bookmark` icon. Available in: regular, solid.
         case bookmark = "bookmark"
-        /// `box-iso` icon. Available in: solid.
+        /// `box-iso` icon. Available in: regular, solid.
         case boxIso = "box-iso"
         /// `brand-apple` icon. Available in: regular, solid.
         case brandApple = "brand-apple"
@@ -65,6 +69,8 @@ public extension NucleusIcon {
         case brandInstagram = "brand-instagram"
         /// `brand-x` icon. Available in: regular, solid.
         case brandX = "brand-x"
+        /// `bulb` icon. Available in: regular, solid.
+        case bulb = "bulb"
         /// `bus` icon. Available in: regular, solid.
         case bus = "bus"
         /// `calendar` icon. Available in: regular, solid.
@@ -73,6 +79,8 @@ public extension NucleusIcon {
         case calendarPlus = "calendar-plus"
         /// `camera` icon. Available in: regular, solid.
         case camera = "camera"
+        /// `car` icon. Available in: regular, solid.
+        case car = "car"
         /// `card-credential` icon. Available in: regular, solid.
         case cardCredential = "card-credential"
         /// `card-credit` icon. Available in: regular, solid.
@@ -121,6 +129,8 @@ public extension NucleusIcon {
         case chevronsMinimize = "chevrons-minimize"
         /// `circle` icon. Available in: regular, solid.
         case circle = "circle"
+        /// `clipboard` icon. Available in: regular, solid.
+        case clipboard = "clipboard"
         /// `clock` icon. Available in: regular, solid.
         case clock = "clock"
         /// `clock-rotate-right` icon. Available in: regular, solid.
@@ -179,6 +189,8 @@ public extension NucleusIcon {
         case faceId = "face-id"
         /// `filter-list` icon. Available in: regular, solid.
         case filterList = "filter-list"
+        /// `flag` icon. Available in: regular, solid.
+        case flag = "flag"
         /// `flash` icon. Available in: regular, solid.
         case flash = "flash"
         /// `flashlight` icon. Available in: regular, solid.
@@ -205,10 +217,16 @@ public extension NucleusIcon {
         case graphUp = "graph-up"
         /// `half-moon` icon. Available in: regular, solid.
         case halfMoon = "half-moon"
+        /// `head` icon. Available in: regular, solid.
+        case head = "head"
         /// `heart` icon. Available in: regular, solid.
         case heart = "heart"
+        /// `heart-crossed` icon. Available in: regular, solid.
+        case heartCrossed = "heart-crossed"
         /// `help-circle` icon. Available in: regular, solid.
         case helpCircle = "help-circle"
+        /// `historic-shield` icon. Available in: regular, solid.
+        case historicShield = "historic-shield"
         /// `home` icon. Available in: regular, solid.
         case home = "home"
         /// `human-emblem` icon. Available in: regular, solid.
@@ -221,6 +239,8 @@ public extension NucleusIcon {
         case keyReal = "key-real"
         /// `language` icon. Available in: regular, solid.
         case language = "language"
+        /// `laptop` icon. Available in: regular, solid.
+        case laptop = "laptop"
         /// `legal` icon. Available in: regular, solid.
         case legal = "legal"
         /// `link` icon. Available in: regular, solid.
@@ -239,12 +259,16 @@ public extension NucleusIcon {
         case magicWand = "magic-wand"
         /// `mail` icon. Available in: regular, solid.
         case mail = "mail"
+        /// `mail-send` icon. Available in: regular, solid.
+        case mailSend = "mail-send"
         /// `map` icon. Available in: regular, solid.
         case map = "map"
         /// `map-pin` icon. Available in: regular, solid.
         case mapPin = "map-pin"
         /// `microphone` icon. Available in: regular, solid.
         case microphone = "microphone"
+        /// `mini-apps` icon. Available in: regular, solid.
+        case miniApps = "mini-apps"
         /// `minus` icon. Available in: regular, solid.
         case minus = "minus"
         /// `minus-circle` icon. Available in: regular, solid.
@@ -255,15 +279,19 @@ public extension NucleusIcon {
         case navigationDiagonal = "navigation-diagonal"
         /// `open-new-window` icon. Available in: regular, solid.
         case openNewWindow = "open-new-window"
+        /// `orb-app` icon. Available in: regular, solid.
+        case orbApp = "orb-app"
         /// `orb-diamond` icon. Available in: regular, solid.
         case orbDiamond = "orb-diamond"
+        /// `orb-diamond-2` icon. Available in: regular, solid.
+        case orbDiamond2 = "orb-diamond-2"
         /// `orb-pearl` icon. Available in: regular, solid.
         case orbPearl = "orb-pearl"
         /// `page` icon. Available in: regular, solid.
         case page = "page"
         /// `password` icon. Available in: regular, solid.
         case password = "password"
-        /// `percentage` icon. Available in: solid.
+        /// `percentage` icon. Available in: regular, solid.
         case percentage = "percentage"
         /// `person` icon. Available in: regular, solid.
         case person = "person"
@@ -273,6 +301,10 @@ public extension NucleusIcon {
         case personGroup = "person-group"
         /// `person-key` icon. Available in: regular, solid.
         case personKey = "person-key"
+        /// `personal-vault` icon. Available in: regular, solid.
+        case personalVault = "personal-vault"
+        /// `phone` icon. Available in: regular, solid.
+        case phone = "phone"
         /// `photo` icon. Available in: regular, solid.
         case photo = "photo"
         /// `pin` icon. Available in: regular, solid.
@@ -283,6 +315,8 @@ public extension NucleusIcon {
         case plus = "plus"
         /// `plus-circle` icon. Available in: regular, solid.
         case plusCircle = "plus-circle"
+        /// `poll` icon. Available in: regular, solid.
+        case poll = "poll"
         /// `post` icon. Available in: regular, solid.
         case post = "post"
         /// `power` icon. Available in: regular, solid.
@@ -303,12 +337,10 @@ public extension NucleusIcon {
         case scan = "scan"
         /// `search` icon. Available in: regular, solid.
         case search = "search"
-        /// `selfie-emblem` icon. Available in: regular.
+        /// `selfie-emblem` icon. Available in: regular, solid.
         case selfieEmblem = "selfie-emblem"
         /// `send` icon. Available in: regular, solid.
         case send = "send"
-        /// `send-mail` icon. Available in: regular, solid.
-        case sendMail = "send-mail"
         /// `settings` icon. Available in: regular, solid.
         case settings = "settings"
         /// `share-ios` icon. Available in: regular, solid.
@@ -319,7 +351,9 @@ public extension NucleusIcon {
         case shieldAlert = "shield-alert"
         /// `shield-check` icon. Available in: regular, solid.
         case shieldCheck = "shield-check"
-        /// `shield-half` icon. Available in: solid.
+        /// `shield-cross` icon. Available in: regular, solid.
+        case shieldCross = "shield-cross"
+        /// `shield-half` icon. Available in: regular, solid.
         case shieldHalf = "shield-half"
         /// `smartphone` icon. Available in: regular, solid.
         case smartphone = "smartphone"
@@ -337,6 +371,8 @@ public extension NucleusIcon {
         case spark = "spark"
         /// `sparks` icon. Available in: regular, solid.
         case sparks = "sparks"
+        /// `split` icon. Available in: regular, solid.
+        case split = "split"
         /// `star` icon. Available in: regular, solid.
         case star = "star"
         /// `stats-up-square` icon. Available in: regular, solid.
@@ -355,10 +391,14 @@ public extension NucleusIcon {
         case timerDots = "timer-dots"
         /// `toolkit` icon. Available in: regular, solid.
         case toolkit = "toolkit"
+        /// `touch-id` icon. Available in: regular, solid.
+        case touchId = "touch-id"
         /// `trash` icon. Available in: regular, solid.
         case trash = "trash"
         /// `trophy` icon. Available in: regular, solid.
         case trophy = "trophy"
+        /// `user-badge-check` icon. Available in: regular, solid.
+        case userBadgeCheck = "user-badge-check"
         /// `video-camera` icon. Available in: regular, solid.
         case videoCamera = "video-camera"
         /// `view-grid` icon. Available in: regular, solid.
@@ -373,10 +413,18 @@ public extension NucleusIcon {
         case warningHexagon = "warning-hexagon"
         /// `warning-triangle` icon. Available in: regular, solid.
         case warningTriangle = "warning-triangle"
+        /// `wheelchair` icon. Available in: regular, solid.
+        case wheelchair = "wheelchair"
         /// `wifi` icon. Available in: regular, solid.
         case wifi = "wifi"
         /// `wifi-signal-none` icon. Available in: regular, solid.
         case wifiSignalNone = "wifi-signal-none"
+        /// `world-chain` icon. Available in: regular, solid.
+        case worldChain = "world-chain"
+        /// `world-money` icon. Available in: regular, solid.
+        case worldMoney = "world-money"
+        /// `world-music` icon. Available in: regular, solid.
+        case worldMusic = "world-music"
         /// `worldcoin` icon. Available in: regular, solid.
         case worldcoin = "worldcoin"
         /// `xmark` icon. Available in: regular, solid.
@@ -389,17 +437,19 @@ public extension NucleusIcon {
             switch self {
             case .airplane: return [.regular, .solid]
             case .antennaSignal: return [.regular, .solid]
+            case .apps: return [.regular, .solid]
             case .arrowDown: return [.regular, .solid]
             case .arrowDownCircle: return [.regular, .solid]
             case .arrowDownLeft: return [.regular, .solid]
             case .arrowDownRight: return [.regular, .solid]
             case .arrowLeft: return [.regular, .solid]
+            case .arrowLeftCircle: return [.regular, .solid]
             case .arrowRight: return [.regular, .solid]
-            case .arrowSplit: return [.regular, .solid]
+            case .arrowRightCircle: return [.regular, .solid]
             case .arrowUp: return [.regular, .solid]
             case .arrowUpCircle: return [.regular, .solid]
             case .arrowUpLeft: return [.regular, .solid]
-            case .arrowUpRight: return [.regular]
+            case .arrowUpRight: return [.regular, .solid]
             case .arrowUturnLeft: return [.regular, .solid]
             case .arrowUturnRight: return [.regular, .solid]
             case .arrowsTransfer: return [.regular, .solid]
@@ -413,14 +463,16 @@ public extension NucleusIcon {
             case .bellSlash: return [.regular, .solid]
             case .book: return [.regular, .solid]
             case .bookmark: return [.regular, .solid]
-            case .boxIso: return [.solid]
+            case .boxIso: return [.regular, .solid]
             case .brandApple: return [.regular, .solid]
             case .brandInstagram: return [.regular, .solid]
             case .brandX: return [.regular, .solid]
+            case .bulb: return [.regular, .solid]
             case .bus: return [.regular, .solid]
             case .calendar: return [.regular, .solid]
             case .calendarPlus: return [.regular, .solid]
             case .camera: return [.regular, .solid]
+            case .car: return [.regular, .solid]
             case .cardCredential: return [.regular, .solid]
             case .cardCredit: return [.regular, .solid]
             case .cardShield: return [.regular, .solid]
@@ -445,6 +497,7 @@ public extension NucleusIcon {
             case .chevronsExpand: return [.regular, .solid]
             case .chevronsMinimize: return [.regular, .solid]
             case .circle: return [.regular, .solid]
+            case .clipboard: return [.regular, .solid]
             case .clock: return [.regular, .solid]
             case .clockRotateRight: return [.regular, .solid]
             case .cloud: return [.regular, .solid]
@@ -474,6 +527,7 @@ public extension NucleusIcon {
             case .eyeClosed: return [.regular, .solid]
             case .faceId: return [.regular, .solid]
             case .filterList: return [.regular, .solid]
+            case .flag: return [.regular, .solid]
             case .flash: return [.regular, .solid]
             case .flashlight: return [.regular, .solid]
             case .fullScreenClose: return [.regular, .solid]
@@ -487,14 +541,18 @@ public extension NucleusIcon {
             case .graphDown: return [.regular, .solid]
             case .graphUp: return [.regular, .solid]
             case .halfMoon: return [.regular, .solid]
+            case .head: return [.regular, .solid]
             case .heart: return [.regular, .solid]
+            case .heartCrossed: return [.regular, .solid]
             case .helpCircle: return [.regular, .solid]
+            case .historicShield: return [.regular, .solid]
             case .home: return [.regular, .solid]
             case .humanEmblem: return [.regular, .solid]
             case .infoCircle: return [.regular, .solid]
             case .key: return [.regular, .solid]
             case .keyReal: return [.regular, .solid]
             case .language: return [.regular, .solid]
+            case .laptop: return [.regular, .solid]
             case .legal: return [.regular, .solid]
             case .link: return [.regular, .solid]
             case .linkSlash: return [.regular, .solid]
@@ -504,28 +562,35 @@ public extension NucleusIcon {
             case .logOut: return [.regular, .solid]
             case .magicWand: return [.regular, .solid]
             case .mail: return [.regular, .solid]
+            case .mailSend: return [.regular, .solid]
             case .map: return [.regular, .solid]
             case .mapPin: return [.regular, .solid]
             case .microphone: return [.regular, .solid]
+            case .miniApps: return [.regular, .solid]
             case .minus: return [.regular, .solid]
             case .minusCircle: return [.regular, .solid]
             case .navigation: return [.regular, .solid]
             case .navigationDiagonal: return [.regular, .solid]
             case .openNewWindow: return [.regular, .solid]
+            case .orbApp: return [.regular, .solid]
             case .orbDiamond: return [.regular, .solid]
+            case .orbDiamond2: return [.regular, .solid]
             case .orbPearl: return [.regular, .solid]
             case .page: return [.regular, .solid]
             case .password: return [.regular, .solid]
-            case .percentage: return [.solid]
+            case .percentage: return [.regular, .solid]
             case .person: return [.regular, .solid]
             case .personCircle: return [.regular, .solid]
             case .personGroup: return [.regular, .solid]
             case .personKey: return [.regular, .solid]
+            case .personalVault: return [.regular, .solid]
+            case .phone: return [.regular, .solid]
             case .photo: return [.regular, .solid]
             case .pin: return [.regular, .solid]
             case .play: return [.regular, .solid]
             case .plus: return [.regular, .solid]
             case .plusCircle: return [.regular, .solid]
+            case .poll: return [.regular, .solid]
             case .post: return [.regular, .solid]
             case .power: return [.regular, .solid]
             case .prohibition: return [.regular, .solid]
@@ -536,15 +601,15 @@ public extension NucleusIcon {
             case .safe: return [.regular, .solid]
             case .scan: return [.regular, .solid]
             case .search: return [.regular, .solid]
-            case .selfieEmblem: return [.regular]
+            case .selfieEmblem: return [.regular, .solid]
             case .send: return [.regular, .solid]
-            case .sendMail: return [.regular, .solid]
             case .settings: return [.regular, .solid]
             case .shareIos: return [.regular, .solid]
             case .shield: return [.regular, .solid]
             case .shieldAlert: return [.regular, .solid]
             case .shieldCheck: return [.regular, .solid]
-            case .shieldHalf: return [.solid]
+            case .shieldCross: return [.regular, .solid]
+            case .shieldHalf: return [.regular, .solid]
             case .smartphone: return [.regular, .solid]
             case .snowFlake: return [.regular, .solid]
             case .softwareUpdateSetting: return [.regular, .solid]
@@ -553,6 +618,7 @@ public extension NucleusIcon {
             case .sortUp: return [.regular, .solid]
             case .spark: return [.regular, .solid]
             case .sparks: return [.regular, .solid]
+            case .split: return [.regular, .solid]
             case .star: return [.regular, .solid]
             case .statsUpSquare: return [.regular, .solid]
             case .suitcase: return [.regular, .solid]
@@ -562,8 +628,10 @@ public extension NucleusIcon {
             case .timer: return [.regular, .solid]
             case .timerDots: return [.regular, .solid]
             case .toolkit: return [.regular, .solid]
+            case .touchId: return [.regular, .solid]
             case .trash: return [.regular, .solid]
             case .trophy: return [.regular, .solid]
+            case .userBadgeCheck: return [.regular, .solid]
             case .videoCamera: return [.regular, .solid]
             case .viewGrid: return [.regular, .solid]
             case .voice: return [.regular, .solid]
@@ -571,8 +639,12 @@ public extension NucleusIcon {
             case .warningCircle: return [.regular, .solid]
             case .warningHexagon: return [.regular, .solid]
             case .warningTriangle: return [.regular, .solid]
+            case .wheelchair: return [.regular, .solid]
             case .wifi: return [.regular, .solid]
             case .wifiSignalNone: return [.regular, .solid]
+            case .worldChain: return [.regular, .solid]
+            case .worldMoney: return [.regular, .solid]
+            case .worldMusic: return [.regular, .solid]
             case .worldcoin: return [.regular, .solid]
             case .xmark: return [.regular, .solid]
             case .xmarkCircle: return [.regular, .solid]

@@ -73,6 +73,8 @@ object NucleusTokenResolver {
             "airplane.solid" -> R.drawable.nucleus_icon_airplane_solid
             "antenna-signal.regular" -> R.drawable.nucleus_icon_antenna_signal_regular
             "antenna-signal.solid" -> R.drawable.nucleus_icon_antenna_signal_solid
+            "apps.regular" -> R.drawable.nucleus_icon_apps_regular
+            "apps.solid" -> R.drawable.nucleus_icon_apps_solid
             "arrow-down-circle.regular" -> R.drawable.nucleus_icon_arrow_down_circle_regular
             "arrow-down-circle.solid" -> R.drawable.nucleus_icon_arrow_down_circle_solid
             "arrow-down-left.regular" -> R.drawable.nucleus_icon_arrow_down_left_regular
@@ -81,17 +83,20 @@ object NucleusTokenResolver {
             "arrow-down-right.solid" -> R.drawable.nucleus_icon_arrow_down_right_solid
             "arrow-down.regular" -> R.drawable.nucleus_icon_arrow_down_regular
             "arrow-down.solid" -> R.drawable.nucleus_icon_arrow_down_solid
+            "arrow-left-circle.regular" -> R.drawable.nucleus_icon_arrow_left_circle_regular
+            "arrow-left-circle.solid" -> R.drawable.nucleus_icon_arrow_left_circle_solid
             "arrow-left.regular" -> R.drawable.nucleus_icon_arrow_left_regular
             "arrow-left.solid" -> R.drawable.nucleus_icon_arrow_left_solid
+            "arrow-right-circle.regular" -> R.drawable.nucleus_icon_arrow_right_circle_regular
+            "arrow-right-circle.solid" -> R.drawable.nucleus_icon_arrow_right_circle_solid
             "arrow-right.regular" -> R.drawable.nucleus_icon_arrow_right_regular
             "arrow-right.solid" -> R.drawable.nucleus_icon_arrow_right_solid
-            "arrow-split.regular" -> R.drawable.nucleus_icon_arrow_split_regular
-            "arrow-split.solid" -> R.drawable.nucleus_icon_arrow_split_solid
             "arrow-up-circle.regular" -> R.drawable.nucleus_icon_arrow_up_circle_regular
             "arrow-up-circle.solid" -> R.drawable.nucleus_icon_arrow_up_circle_solid
             "arrow-up-left.regular" -> R.drawable.nucleus_icon_arrow_up_left_regular
             "arrow-up-left.solid" -> R.drawable.nucleus_icon_arrow_up_left_solid
             "arrow-up-right.regular" -> R.drawable.nucleus_icon_arrow_up_right_regular
+            "arrow-up-right.solid" -> R.drawable.nucleus_icon_arrow_up_right_solid
             "arrow-up.regular" -> R.drawable.nucleus_icon_arrow_up_regular
             "arrow-up.solid" -> R.drawable.nucleus_icon_arrow_up_solid
             "arrow-uturn-left.regular" -> R.drawable.nucleus_icon_arrow_uturn_left_regular
@@ -120,6 +125,7 @@ object NucleusTokenResolver {
             "book.solid" -> R.drawable.nucleus_icon_book_solid
             "bookmark.regular" -> R.drawable.nucleus_icon_bookmark_regular
             "bookmark.solid" -> R.drawable.nucleus_icon_bookmark_solid
+            "box-iso.regular" -> R.drawable.nucleus_icon_box_iso_regular
             "box-iso.solid" -> R.drawable.nucleus_icon_box_iso_solid
             "brand-apple.regular" -> R.drawable.nucleus_icon_brand_apple_regular
             "brand-apple.solid" -> R.drawable.nucleus_icon_brand_apple_solid
@@ -127,6 +133,8 @@ object NucleusTokenResolver {
             "brand-instagram.solid" -> R.drawable.nucleus_icon_brand_instagram_solid
             "brand-x.regular" -> R.drawable.nucleus_icon_brand_x_regular
             "brand-x.solid" -> R.drawable.nucleus_icon_brand_x_solid
+            "bulb.regular" -> R.drawable.nucleus_icon_bulb_regular
+            "bulb.solid" -> R.drawable.nucleus_icon_bulb_solid
             "bus.regular" -> R.drawable.nucleus_icon_bus_regular
             "bus.solid" -> R.drawable.nucleus_icon_bus_solid
             "calendar-plus.regular" -> R.drawable.nucleus_icon_calendar_plus_regular
@@ -135,6 +143,8 @@ object NucleusTokenResolver {
             "calendar.solid" -> R.drawable.nucleus_icon_calendar_solid
             "camera.regular" -> R.drawable.nucleus_icon_camera_regular
             "camera.solid" -> R.drawable.nucleus_icon_camera_solid
+            "car.regular" -> R.drawable.nucleus_icon_car_regular
+            "car.solid" -> R.drawable.nucleus_icon_car_solid
             "card-credential.regular" -> R.drawable.nucleus_icon_card_credential_regular
             "card-credential.solid" -> R.drawable.nucleus_icon_card_credential_solid
             "card-credit.regular" -> R.drawable.nucleus_icon_card_credit_regular
@@ -183,6 +193,8 @@ object NucleusTokenResolver {
             "chevrons-minimize.solid" -> R.drawable.nucleus_icon_chevrons_minimize_solid
             "circle.regular" -> R.drawable.nucleus_icon_circle_regular
             "circle.solid" -> R.drawable.nucleus_icon_circle_solid
+            "clipboard.regular" -> R.drawable.nucleus_icon_clipboard_regular
+            "clipboard.solid" -> R.drawable.nucleus_icon_clipboard_solid
             "clock-rotate-right.regular" -> R.drawable.nucleus_icon_clock_rotate_right_regular
             "clock-rotate-right.solid" -> R.drawable.nucleus_icon_clock_rotate_right_solid
             "clock.regular" -> R.drawable.nucleus_icon_clock_regular
@@ -241,6 +253,8 @@ object NucleusTokenResolver {
             "face-id.solid" -> R.drawable.nucleus_icon_face_id_solid
             "filter-list.regular" -> R.drawable.nucleus_icon_filter_list_regular
             "filter-list.solid" -> R.drawable.nucleus_icon_filter_list_solid
+            "flag.regular" -> R.drawable.nucleus_icon_flag_regular
+            "flag.solid" -> R.drawable.nucleus_icon_flag_solid
             "flash.regular" -> R.drawable.nucleus_icon_flash_regular
             "flash.solid" -> R.drawable.nucleus_icon_flash_solid
             "flashlight.regular" -> R.drawable.nucleus_icon_flashlight_regular
@@ -267,10 +281,16 @@ object NucleusTokenResolver {
             "graph-up.solid" -> R.drawable.nucleus_icon_graph_up_solid
             "half-moon.regular" -> R.drawable.nucleus_icon_half_moon_regular
             "half-moon.solid" -> R.drawable.nucleus_icon_half_moon_solid
+            "head.regular" -> R.drawable.nucleus_icon_head_regular
+            "head.solid" -> R.drawable.nucleus_icon_head_solid
+            "heart-crossed.regular" -> R.drawable.nucleus_icon_heart_crossed_regular
+            "heart-crossed.solid" -> R.drawable.nucleus_icon_heart_crossed_solid
             "heart.regular" -> R.drawable.nucleus_icon_heart_regular
             "heart.solid" -> R.drawable.nucleus_icon_heart_solid
             "help-circle.regular" -> R.drawable.nucleus_icon_help_circle_regular
             "help-circle.solid" -> R.drawable.nucleus_icon_help_circle_solid
+            "historic-shield.regular" -> R.drawable.nucleus_icon_historic_shield_regular
+            "historic-shield.solid" -> R.drawable.nucleus_icon_historic_shield_solid
             "home.regular" -> R.drawable.nucleus_icon_home_regular
             "home.solid" -> R.drawable.nucleus_icon_home_solid
             "human-emblem.regular" -> R.drawable.nucleus_icon_human_emblem_regular
@@ -283,6 +303,8 @@ object NucleusTokenResolver {
             "key.solid" -> R.drawable.nucleus_icon_key_solid
             "language.regular" -> R.drawable.nucleus_icon_language_regular
             "language.solid" -> R.drawable.nucleus_icon_language_solid
+            "laptop.regular" -> R.drawable.nucleus_icon_laptop_regular
+            "laptop.solid" -> R.drawable.nucleus_icon_laptop_solid
             "legal.regular" -> R.drawable.nucleus_icon_legal_regular
             "legal.solid" -> R.drawable.nucleus_icon_legal_solid
             "link-slash.regular" -> R.drawable.nucleus_icon_link_slash_regular
@@ -299,6 +321,8 @@ object NucleusTokenResolver {
             "log-out.solid" -> R.drawable.nucleus_icon_log_out_solid
             "magic-wand.regular" -> R.drawable.nucleus_icon_magic_wand_regular
             "magic-wand.solid" -> R.drawable.nucleus_icon_magic_wand_solid
+            "mail-send.regular" -> R.drawable.nucleus_icon_mail_send_regular
+            "mail-send.solid" -> R.drawable.nucleus_icon_mail_send_solid
             "mail.regular" -> R.drawable.nucleus_icon_mail_regular
             "mail.solid" -> R.drawable.nucleus_icon_mail_solid
             "map-pin.regular" -> R.drawable.nucleus_icon_map_pin_regular
@@ -307,6 +331,8 @@ object NucleusTokenResolver {
             "map.solid" -> R.drawable.nucleus_icon_map_solid
             "microphone.regular" -> R.drawable.nucleus_icon_microphone_regular
             "microphone.solid" -> R.drawable.nucleus_icon_microphone_solid
+            "mini-apps.regular" -> R.drawable.nucleus_icon_mini_apps_regular
+            "mini-apps.solid" -> R.drawable.nucleus_icon_mini_apps_solid
             "minus-circle.regular" -> R.drawable.nucleus_icon_minus_circle_regular
             "minus-circle.solid" -> R.drawable.nucleus_icon_minus_circle_solid
             "minus.regular" -> R.drawable.nucleus_icon_minus_regular
@@ -317,6 +343,10 @@ object NucleusTokenResolver {
             "navigation.solid" -> R.drawable.nucleus_icon_navigation_solid
             "open-new-window.regular" -> R.drawable.nucleus_icon_open_new_window_regular
             "open-new-window.solid" -> R.drawable.nucleus_icon_open_new_window_solid
+            "orb-app.regular" -> R.drawable.nucleus_icon_orb_app_regular
+            "orb-app.solid" -> R.drawable.nucleus_icon_orb_app_solid
+            "orb-diamond-2.regular" -> R.drawable.nucleus_icon_orb_diamond_2_regular
+            "orb-diamond-2.solid" -> R.drawable.nucleus_icon_orb_diamond_2_solid
             "orb-diamond.regular" -> R.drawable.nucleus_icon_orb_diamond_regular
             "orb-diamond.solid" -> R.drawable.nucleus_icon_orb_diamond_solid
             "orb-pearl.regular" -> R.drawable.nucleus_icon_orb_pearl_regular
@@ -325,6 +355,7 @@ object NucleusTokenResolver {
             "page.solid" -> R.drawable.nucleus_icon_page_solid
             "password.regular" -> R.drawable.nucleus_icon_password_regular
             "password.solid" -> R.drawable.nucleus_icon_password_solid
+            "percentage.regular" -> R.drawable.nucleus_icon_percentage_regular
             "percentage.solid" -> R.drawable.nucleus_icon_percentage_solid
             "person-circle.regular" -> R.drawable.nucleus_icon_person_circle_regular
             "person-circle.solid" -> R.drawable.nucleus_icon_person_circle_solid
@@ -334,6 +365,10 @@ object NucleusTokenResolver {
             "person-key.solid" -> R.drawable.nucleus_icon_person_key_solid
             "person.regular" -> R.drawable.nucleus_icon_person_regular
             "person.solid" -> R.drawable.nucleus_icon_person_solid
+            "personal-vault.regular" -> R.drawable.nucleus_icon_personal_vault_regular
+            "personal-vault.solid" -> R.drawable.nucleus_icon_personal_vault_solid
+            "phone.regular" -> R.drawable.nucleus_icon_phone_regular
+            "phone.solid" -> R.drawable.nucleus_icon_phone_solid
             "photo.regular" -> R.drawable.nucleus_icon_photo_regular
             "photo.solid" -> R.drawable.nucleus_icon_photo_solid
             "pin.regular" -> R.drawable.nucleus_icon_pin_regular
@@ -344,6 +379,8 @@ object NucleusTokenResolver {
             "plus-circle.solid" -> R.drawable.nucleus_icon_plus_circle_solid
             "plus.regular" -> R.drawable.nucleus_icon_plus_regular
             "plus.solid" -> R.drawable.nucleus_icon_plus_solid
+            "poll.regular" -> R.drawable.nucleus_icon_poll_regular
+            "poll.solid" -> R.drawable.nucleus_icon_poll_solid
             "post.regular" -> R.drawable.nucleus_icon_post_regular
             "post.solid" -> R.drawable.nucleus_icon_post_solid
             "power.regular" -> R.drawable.nucleus_icon_power_regular
@@ -365,8 +402,7 @@ object NucleusTokenResolver {
             "search.regular" -> R.drawable.nucleus_icon_search_regular
             "search.solid" -> R.drawable.nucleus_icon_search_solid
             "selfie-emblem.regular" -> R.drawable.nucleus_icon_selfie_emblem_regular
-            "send-mail.regular" -> R.drawable.nucleus_icon_send_mail_regular
-            "send-mail.solid" -> R.drawable.nucleus_icon_send_mail_solid
+            "selfie-emblem.solid" -> R.drawable.nucleus_icon_selfie_emblem_solid
             "send.regular" -> R.drawable.nucleus_icon_send_regular
             "send.solid" -> R.drawable.nucleus_icon_send_solid
             "settings.regular" -> R.drawable.nucleus_icon_settings_regular
@@ -377,6 +413,9 @@ object NucleusTokenResolver {
             "shield-alert.solid" -> R.drawable.nucleus_icon_shield_alert_solid
             "shield-check.regular" -> R.drawable.nucleus_icon_shield_check_regular
             "shield-check.solid" -> R.drawable.nucleus_icon_shield_check_solid
+            "shield-cross.regular" -> R.drawable.nucleus_icon_shield_cross_regular
+            "shield-cross.solid" -> R.drawable.nucleus_icon_shield_cross_solid
+            "shield-half.regular" -> R.drawable.nucleus_icon_shield_half_regular
             "shield-half.solid" -> R.drawable.nucleus_icon_shield_half_solid
             "shield.regular" -> R.drawable.nucleus_icon_shield_regular
             "shield.solid" -> R.drawable.nucleus_icon_shield_solid
@@ -396,6 +435,8 @@ object NucleusTokenResolver {
             "spark.solid" -> R.drawable.nucleus_icon_spark_solid
             "sparks.regular" -> R.drawable.nucleus_icon_sparks_regular
             "sparks.solid" -> R.drawable.nucleus_icon_sparks_solid
+            "split.regular" -> R.drawable.nucleus_icon_split_regular
+            "split.solid" -> R.drawable.nucleus_icon_split_solid
             "star.regular" -> R.drawable.nucleus_icon_star_regular
             "star.solid" -> R.drawable.nucleus_icon_star_solid
             "stats-up-square.regular" -> R.drawable.nucleus_icon_stats_up_square_regular
@@ -414,10 +455,14 @@ object NucleusTokenResolver {
             "timer.solid" -> R.drawable.nucleus_icon_timer_solid
             "toolkit.regular" -> R.drawable.nucleus_icon_toolkit_regular
             "toolkit.solid" -> R.drawable.nucleus_icon_toolkit_solid
+            "touch-id.regular" -> R.drawable.nucleus_icon_touch_id_regular
+            "touch-id.solid" -> R.drawable.nucleus_icon_touch_id_solid
             "trash.regular" -> R.drawable.nucleus_icon_trash_regular
             "trash.solid" -> R.drawable.nucleus_icon_trash_solid
             "trophy.regular" -> R.drawable.nucleus_icon_trophy_regular
             "trophy.solid" -> R.drawable.nucleus_icon_trophy_solid
+            "user-badge-check.regular" -> R.drawable.nucleus_icon_user_badge_check_regular
+            "user-badge-check.solid" -> R.drawable.nucleus_icon_user_badge_check_solid
             "video-camera.regular" -> R.drawable.nucleus_icon_video_camera_regular
             "video-camera.solid" -> R.drawable.nucleus_icon_video_camera_solid
             "view-grid.regular" -> R.drawable.nucleus_icon_view_grid_regular
@@ -432,10 +477,18 @@ object NucleusTokenResolver {
             "warning-hexagon.solid" -> R.drawable.nucleus_icon_warning_hexagon_solid
             "warning-triangle.regular" -> R.drawable.nucleus_icon_warning_triangle_regular
             "warning-triangle.solid" -> R.drawable.nucleus_icon_warning_triangle_solid
+            "wheelchair.regular" -> R.drawable.nucleus_icon_wheelchair_regular
+            "wheelchair.solid" -> R.drawable.nucleus_icon_wheelchair_solid
             "wifi-signal-none.regular" -> R.drawable.nucleus_icon_wifi_signal_none_regular
             "wifi-signal-none.solid" -> R.drawable.nucleus_icon_wifi_signal_none_solid
             "wifi.regular" -> R.drawable.nucleus_icon_wifi_regular
             "wifi.solid" -> R.drawable.nucleus_icon_wifi_solid
+            "world-chain.regular" -> R.drawable.nucleus_icon_world_chain_regular
+            "world-chain.solid" -> R.drawable.nucleus_icon_world_chain_solid
+            "world-money.regular" -> R.drawable.nucleus_icon_world_money_regular
+            "world-money.solid" -> R.drawable.nucleus_icon_world_money_solid
+            "world-music.regular" -> R.drawable.nucleus_icon_world_music_regular
+            "world-music.solid" -> R.drawable.nucleus_icon_world_music_solid
             "worldcoin.regular" -> R.drawable.nucleus_icon_worldcoin_regular
             "worldcoin.solid" -> R.drawable.nucleus_icon_worldcoin_solid
             "xmark-circle.regular" -> R.drawable.nucleus_icon_xmark_circle_regular

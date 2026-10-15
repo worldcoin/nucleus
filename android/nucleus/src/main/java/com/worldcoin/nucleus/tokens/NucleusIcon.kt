@@ -51,6 +51,11 @@ sealed class NucleusIcon(val resourceName: String) {
         override val solidRes get() = R.drawable.nucleus_icon_antenna_signal_solid
     }
 
+    data object Apps : NucleusIcon("apps"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_apps_regular
+        override val solidRes get() = R.drawable.nucleus_icon_apps_solid
+    }
+
     data object ArrowDown : NucleusIcon("arrow-down"), HasRegular, HasSolid {
         override val regularRes get() = R.drawable.nucleus_icon_arrow_down_regular
         override val solidRes get() = R.drawable.nucleus_icon_arrow_down_solid
@@ -76,14 +81,19 @@ sealed class NucleusIcon(val resourceName: String) {
         override val solidRes get() = R.drawable.nucleus_icon_arrow_left_solid
     }
 
+    data object ArrowLeftCircle : NucleusIcon("arrow-left-circle"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_arrow_left_circle_regular
+        override val solidRes get() = R.drawable.nucleus_icon_arrow_left_circle_solid
+    }
+
     data object ArrowRight : NucleusIcon("arrow-right"), HasRegular, HasSolid {
         override val regularRes get() = R.drawable.nucleus_icon_arrow_right_regular
         override val solidRes get() = R.drawable.nucleus_icon_arrow_right_solid
     }
 
-    data object ArrowSplit : NucleusIcon("arrow-split"), HasRegular, HasSolid {
-        override val regularRes get() = R.drawable.nucleus_icon_arrow_split_regular
-        override val solidRes get() = R.drawable.nucleus_icon_arrow_split_solid
+    data object ArrowRightCircle : NucleusIcon("arrow-right-circle"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_arrow_right_circle_regular
+        override val solidRes get() = R.drawable.nucleus_icon_arrow_right_circle_solid
     }
 
     data object ArrowUp : NucleusIcon("arrow-up"), HasRegular, HasSolid {
@@ -101,8 +111,9 @@ sealed class NucleusIcon(val resourceName: String) {
         override val solidRes get() = R.drawable.nucleus_icon_arrow_up_left_solid
     }
 
-    data object ArrowUpRight : NucleusIcon("arrow-up-right"), HasRegular {
+    data object ArrowUpRight : NucleusIcon("arrow-up-right"), HasRegular, HasSolid {
         override val regularRes get() = R.drawable.nucleus_icon_arrow_up_right_regular
+        override val solidRes get() = R.drawable.nucleus_icon_arrow_up_right_solid
     }
 
     data object ArrowUturnLeft : NucleusIcon("arrow-uturn-left"), HasRegular, HasSolid {
@@ -170,7 +181,8 @@ sealed class NucleusIcon(val resourceName: String) {
         override val solidRes get() = R.drawable.nucleus_icon_bookmark_solid
     }
 
-    data object BoxIso : NucleusIcon("box-iso"), HasSolid {
+    data object BoxIso : NucleusIcon("box-iso"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_box_iso_regular
         override val solidRes get() = R.drawable.nucleus_icon_box_iso_solid
     }
 
@@ -187,6 +199,11 @@ sealed class NucleusIcon(val resourceName: String) {
     data object BrandX : NucleusIcon("brand-x"), HasRegular, HasSolid {
         override val regularRes get() = R.drawable.nucleus_icon_brand_x_regular
         override val solidRes get() = R.drawable.nucleus_icon_brand_x_solid
+    }
+
+    data object Bulb : NucleusIcon("bulb"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_bulb_regular
+        override val solidRes get() = R.drawable.nucleus_icon_bulb_solid
     }
 
     data object Bus : NucleusIcon("bus"), HasRegular, HasSolid {
@@ -207,6 +224,11 @@ sealed class NucleusIcon(val resourceName: String) {
     data object Camera : NucleusIcon("camera"), HasRegular, HasSolid {
         override val regularRes get() = R.drawable.nucleus_icon_camera_regular
         override val solidRes get() = R.drawable.nucleus_icon_camera_solid
+    }
+
+    data object Car : NucleusIcon("car"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_car_regular
+        override val solidRes get() = R.drawable.nucleus_icon_car_solid
     }
 
     data object CardCredential : NucleusIcon("card-credential"), HasRegular, HasSolid {
@@ -327,6 +349,11 @@ sealed class NucleusIcon(val resourceName: String) {
     data object Circle : NucleusIcon("circle"), HasRegular, HasSolid {
         override val regularRes get() = R.drawable.nucleus_icon_circle_regular
         override val solidRes get() = R.drawable.nucleus_icon_circle_solid
+    }
+
+    data object Clipboard : NucleusIcon("clipboard"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_clipboard_regular
+        override val solidRes get() = R.drawable.nucleus_icon_clipboard_solid
     }
 
     data object Clock : NucleusIcon("clock"), HasRegular, HasSolid {
@@ -474,6 +501,11 @@ sealed class NucleusIcon(val resourceName: String) {
         override val solidRes get() = R.drawable.nucleus_icon_filter_list_solid
     }
 
+    data object Flag : NucleusIcon("flag"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_flag_regular
+        override val solidRes get() = R.drawable.nucleus_icon_flag_solid
+    }
+
     data object Flash : NucleusIcon("flash"), HasRegular, HasSolid {
         override val regularRes get() = R.drawable.nucleus_icon_flash_regular
         override val solidRes get() = R.drawable.nucleus_icon_flash_solid
@@ -539,14 +571,29 @@ sealed class NucleusIcon(val resourceName: String) {
         override val solidRes get() = R.drawable.nucleus_icon_half_moon_solid
     }
 
+    data object Head : NucleusIcon("head"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_head_regular
+        override val solidRes get() = R.drawable.nucleus_icon_head_solid
+    }
+
     data object Heart : NucleusIcon("heart"), HasRegular, HasSolid {
         override val regularRes get() = R.drawable.nucleus_icon_heart_regular
         override val solidRes get() = R.drawable.nucleus_icon_heart_solid
     }
 
+    data object HeartCrossed : NucleusIcon("heart-crossed"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_heart_crossed_regular
+        override val solidRes get() = R.drawable.nucleus_icon_heart_crossed_solid
+    }
+
     data object HelpCircle : NucleusIcon("help-circle"), HasRegular, HasSolid {
         override val regularRes get() = R.drawable.nucleus_icon_help_circle_regular
         override val solidRes get() = R.drawable.nucleus_icon_help_circle_solid
+    }
+
+    data object HistoricShield : NucleusIcon("historic-shield"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_historic_shield_regular
+        override val solidRes get() = R.drawable.nucleus_icon_historic_shield_solid
     }
 
     data object Home : NucleusIcon("home"), HasRegular, HasSolid {
@@ -577,6 +624,11 @@ sealed class NucleusIcon(val resourceName: String) {
     data object Language : NucleusIcon("language"), HasRegular, HasSolid {
         override val regularRes get() = R.drawable.nucleus_icon_language_regular
         override val solidRes get() = R.drawable.nucleus_icon_language_solid
+    }
+
+    data object Laptop : NucleusIcon("laptop"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_laptop_regular
+        override val solidRes get() = R.drawable.nucleus_icon_laptop_solid
     }
 
     data object Legal : NucleusIcon("legal"), HasRegular, HasSolid {
@@ -624,6 +676,11 @@ sealed class NucleusIcon(val resourceName: String) {
         override val solidRes get() = R.drawable.nucleus_icon_mail_solid
     }
 
+    data object MailSend : NucleusIcon("mail-send"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_mail_send_regular
+        override val solidRes get() = R.drawable.nucleus_icon_mail_send_solid
+    }
+
     data object Map : NucleusIcon("map"), HasRegular, HasSolid {
         override val regularRes get() = R.drawable.nucleus_icon_map_regular
         override val solidRes get() = R.drawable.nucleus_icon_map_solid
@@ -637,6 +694,11 @@ sealed class NucleusIcon(val resourceName: String) {
     data object Microphone : NucleusIcon("microphone"), HasRegular, HasSolid {
         override val regularRes get() = R.drawable.nucleus_icon_microphone_regular
         override val solidRes get() = R.drawable.nucleus_icon_microphone_solid
+    }
+
+    data object MiniApps : NucleusIcon("mini-apps"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_mini_apps_regular
+        override val solidRes get() = R.drawable.nucleus_icon_mini_apps_solid
     }
 
     data object Minus : NucleusIcon("minus"), HasRegular, HasSolid {
@@ -664,9 +726,19 @@ sealed class NucleusIcon(val resourceName: String) {
         override val solidRes get() = R.drawable.nucleus_icon_open_new_window_solid
     }
 
+    data object OrbApp : NucleusIcon("orb-app"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_orb_app_regular
+        override val solidRes get() = R.drawable.nucleus_icon_orb_app_solid
+    }
+
     data object OrbDiamond : NucleusIcon("orb-diamond"), HasRegular, HasSolid {
         override val regularRes get() = R.drawable.nucleus_icon_orb_diamond_regular
         override val solidRes get() = R.drawable.nucleus_icon_orb_diamond_solid
+    }
+
+    data object OrbDiamond2 : NucleusIcon("orb-diamond-2"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_orb_diamond_2_regular
+        override val solidRes get() = R.drawable.nucleus_icon_orb_diamond_2_solid
     }
 
     data object OrbPearl : NucleusIcon("orb-pearl"), HasRegular, HasSolid {
@@ -684,7 +756,8 @@ sealed class NucleusIcon(val resourceName: String) {
         override val solidRes get() = R.drawable.nucleus_icon_password_solid
     }
 
-    data object Percentage : NucleusIcon("percentage"), HasSolid {
+    data object Percentage : NucleusIcon("percentage"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_percentage_regular
         override val solidRes get() = R.drawable.nucleus_icon_percentage_solid
     }
 
@@ -706,6 +779,16 @@ sealed class NucleusIcon(val resourceName: String) {
     data object PersonKey : NucleusIcon("person-key"), HasRegular, HasSolid {
         override val regularRes get() = R.drawable.nucleus_icon_person_key_regular
         override val solidRes get() = R.drawable.nucleus_icon_person_key_solid
+    }
+
+    data object PersonalVault : NucleusIcon("personal-vault"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_personal_vault_regular
+        override val solidRes get() = R.drawable.nucleus_icon_personal_vault_solid
+    }
+
+    data object Phone : NucleusIcon("phone"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_phone_regular
+        override val solidRes get() = R.drawable.nucleus_icon_phone_solid
     }
 
     data object Photo : NucleusIcon("photo"), HasRegular, HasSolid {
@@ -731,6 +814,11 @@ sealed class NucleusIcon(val resourceName: String) {
     data object PlusCircle : NucleusIcon("plus-circle"), HasRegular, HasSolid {
         override val regularRes get() = R.drawable.nucleus_icon_plus_circle_regular
         override val solidRes get() = R.drawable.nucleus_icon_plus_circle_solid
+    }
+
+    data object Poll : NucleusIcon("poll"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_poll_regular
+        override val solidRes get() = R.drawable.nucleus_icon_poll_solid
     }
 
     data object Post : NucleusIcon("post"), HasRegular, HasSolid {
@@ -783,18 +871,14 @@ sealed class NucleusIcon(val resourceName: String) {
         override val solidRes get() = R.drawable.nucleus_icon_search_solid
     }
 
-    data object SelfieEmblem : NucleusIcon("selfie-emblem"), HasRegular {
+    data object SelfieEmblem : NucleusIcon("selfie-emblem"), HasRegular, HasSolid {
         override val regularRes get() = R.drawable.nucleus_icon_selfie_emblem_regular
+        override val solidRes get() = R.drawable.nucleus_icon_selfie_emblem_solid
     }
 
     data object Send : NucleusIcon("send"), HasRegular, HasSolid {
         override val regularRes get() = R.drawable.nucleus_icon_send_regular
         override val solidRes get() = R.drawable.nucleus_icon_send_solid
-    }
-
-    data object SendMail : NucleusIcon("send-mail"), HasRegular, HasSolid {
-        override val regularRes get() = R.drawable.nucleus_icon_send_mail_regular
-        override val solidRes get() = R.drawable.nucleus_icon_send_mail_solid
     }
 
     data object Settings : NucleusIcon("settings"), HasRegular, HasSolid {
@@ -822,7 +906,13 @@ sealed class NucleusIcon(val resourceName: String) {
         override val solidRes get() = R.drawable.nucleus_icon_shield_check_solid
     }
 
-    data object ShieldHalf : NucleusIcon("shield-half"), HasSolid {
+    data object ShieldCross : NucleusIcon("shield-cross"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_shield_cross_regular
+        override val solidRes get() = R.drawable.nucleus_icon_shield_cross_solid
+    }
+
+    data object ShieldHalf : NucleusIcon("shield-half"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_shield_half_regular
         override val solidRes get() = R.drawable.nucleus_icon_shield_half_solid
     }
 
@@ -864,6 +954,11 @@ sealed class NucleusIcon(val resourceName: String) {
     data object Sparks : NucleusIcon("sparks"), HasRegular, HasSolid {
         override val regularRes get() = R.drawable.nucleus_icon_sparks_regular
         override val solidRes get() = R.drawable.nucleus_icon_sparks_solid
+    }
+
+    data object Split : NucleusIcon("split"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_split_regular
+        override val solidRes get() = R.drawable.nucleus_icon_split_solid
     }
 
     data object Star : NucleusIcon("star"), HasRegular, HasSolid {
@@ -911,6 +1006,11 @@ sealed class NucleusIcon(val resourceName: String) {
         override val solidRes get() = R.drawable.nucleus_icon_toolkit_solid
     }
 
+    data object TouchId : NucleusIcon("touch-id"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_touch_id_regular
+        override val solidRes get() = R.drawable.nucleus_icon_touch_id_solid
+    }
+
     data object Trash : NucleusIcon("trash"), HasRegular, HasSolid {
         override val regularRes get() = R.drawable.nucleus_icon_trash_regular
         override val solidRes get() = R.drawable.nucleus_icon_trash_solid
@@ -919,6 +1019,11 @@ sealed class NucleusIcon(val resourceName: String) {
     data object Trophy : NucleusIcon("trophy"), HasRegular, HasSolid {
         override val regularRes get() = R.drawable.nucleus_icon_trophy_regular
         override val solidRes get() = R.drawable.nucleus_icon_trophy_solid
+    }
+
+    data object UserBadgeCheck : NucleusIcon("user-badge-check"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_user_badge_check_regular
+        override val solidRes get() = R.drawable.nucleus_icon_user_badge_check_solid
     }
 
     data object VideoCamera : NucleusIcon("video-camera"), HasRegular, HasSolid {
@@ -956,6 +1061,11 @@ sealed class NucleusIcon(val resourceName: String) {
         override val solidRes get() = R.drawable.nucleus_icon_warning_triangle_solid
     }
 
+    data object Wheelchair : NucleusIcon("wheelchair"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_wheelchair_regular
+        override val solidRes get() = R.drawable.nucleus_icon_wheelchair_solid
+    }
+
     data object Wifi : NucleusIcon("wifi"), HasRegular, HasSolid {
         override val regularRes get() = R.drawable.nucleus_icon_wifi_regular
         override val solidRes get() = R.drawable.nucleus_icon_wifi_solid
@@ -964,6 +1074,21 @@ sealed class NucleusIcon(val resourceName: String) {
     data object WifiSignalNone : NucleusIcon("wifi-signal-none"), HasRegular, HasSolid {
         override val regularRes get() = R.drawable.nucleus_icon_wifi_signal_none_regular
         override val solidRes get() = R.drawable.nucleus_icon_wifi_signal_none_solid
+    }
+
+    data object WorldChain : NucleusIcon("world-chain"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_world_chain_regular
+        override val solidRes get() = R.drawable.nucleus_icon_world_chain_solid
+    }
+
+    data object WorldMoney : NucleusIcon("world-money"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_world_money_regular
+        override val solidRes get() = R.drawable.nucleus_icon_world_money_solid
+    }
+
+    data object WorldMusic : NucleusIcon("world-music"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_world_music_regular
+        override val solidRes get() = R.drawable.nucleus_icon_world_music_solid
     }
 
     data object Worldcoin : NucleusIcon("worldcoin"), HasRegular, HasSolid {
@@ -989,13 +1114,15 @@ sealed class NucleusIcon(val resourceName: String) {
         val all: kotlin.collections.List<NucleusIcon> = listOf(
             Airplane,
             AntennaSignal,
+            Apps,
             ArrowDown,
             ArrowDownCircle,
             ArrowDownLeft,
             ArrowDownRight,
             ArrowLeft,
+            ArrowLeftCircle,
             ArrowRight,
-            ArrowSplit,
+            ArrowRightCircle,
             ArrowUp,
             ArrowUpCircle,
             ArrowUpLeft,
@@ -1017,10 +1144,12 @@ sealed class NucleusIcon(val resourceName: String) {
             BrandApple,
             BrandInstagram,
             BrandX,
+            Bulb,
             Bus,
             Calendar,
             CalendarPlus,
             Camera,
+            Car,
             CardCredential,
             CardCredit,
             CardShield,
@@ -1045,6 +1174,7 @@ sealed class NucleusIcon(val resourceName: String) {
             ChevronsExpand,
             ChevronsMinimize,
             Circle,
+            Clipboard,
             Clock,
             ClockRotateRight,
             Cloud,
@@ -1074,6 +1204,7 @@ sealed class NucleusIcon(val resourceName: String) {
             EyeClosed,
             FaceId,
             FilterList,
+            Flag,
             Flash,
             Flashlight,
             FullScreenClose,
@@ -1087,14 +1218,18 @@ sealed class NucleusIcon(val resourceName: String) {
             GraphDown,
             GraphUp,
             HalfMoon,
+            Head,
             Heart,
+            HeartCrossed,
             HelpCircle,
+            HistoricShield,
             Home,
             HumanEmblem,
             InfoCircle,
             Key,
             KeyReal,
             Language,
+            Laptop,
             Legal,
             Link,
             LinkSlash,
@@ -1104,15 +1239,19 @@ sealed class NucleusIcon(val resourceName: String) {
             LogOut,
             MagicWand,
             Mail,
+            MailSend,
             Map,
             MapPin,
             Microphone,
+            MiniApps,
             Minus,
             MinusCircle,
             Navigation,
             NavigationDiagonal,
             OpenNewWindow,
+            OrbApp,
             OrbDiamond,
+            OrbDiamond2,
             OrbPearl,
             Page,
             Password,
@@ -1121,11 +1260,14 @@ sealed class NucleusIcon(val resourceName: String) {
             PersonCircle,
             PersonGroup,
             PersonKey,
+            PersonalVault,
+            Phone,
             Photo,
             Pin,
             Play,
             Plus,
             PlusCircle,
+            Poll,
             Post,
             Power,
             Prohibition,
@@ -1138,12 +1280,12 @@ sealed class NucleusIcon(val resourceName: String) {
             Search,
             SelfieEmblem,
             Send,
-            SendMail,
             Settings,
             ShareIos,
             Shield,
             ShieldAlert,
             ShieldCheck,
+            ShieldCross,
             ShieldHalf,
             Smartphone,
             SnowFlake,
@@ -1153,6 +1295,7 @@ sealed class NucleusIcon(val resourceName: String) {
             SortUp,
             Spark,
             Sparks,
+            Split,
             Star,
             StatsUpSquare,
             Suitcase,
@@ -1162,8 +1305,10 @@ sealed class NucleusIcon(val resourceName: String) {
             Timer,
             TimerDots,
             Toolkit,
+            TouchId,
             Trash,
             Trophy,
+            UserBadgeCheck,
             VideoCamera,
             ViewGrid,
             Voice,
@@ -1171,8 +1316,12 @@ sealed class NucleusIcon(val resourceName: String) {
             WarningCircle,
             WarningHexagon,
             WarningTriangle,
+            Wheelchair,
             Wifi,
             WifiSignalNone,
+            WorldChain,
+            WorldMoney,
+            WorldMusic,
             Worldcoin,
             Xmark,
             XmarkCircle,
