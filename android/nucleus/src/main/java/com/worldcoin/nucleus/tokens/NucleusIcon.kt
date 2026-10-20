@@ -420,6 +420,11 @@ sealed class NucleusIcon(val resourceName: String) {
         override val solidRes get() = R.drawable.nucleus_icon_document_empty_solid
     }
 
+    data object DocumentFlat : NucleusIcon("document-flat"), HasRegular, HasSolid {
+        override val regularRes get() = R.drawable.nucleus_icon_document_flat_regular
+        override val solidRes get() = R.drawable.nucleus_icon_document_flat_solid
+    }
+
     data object Dollar : NucleusIcon("dollar"), HasRegular {
         override val regularRes get() = R.drawable.nucleus_icon_dollar_regular
     }
@@ -1086,6 +1091,7 @@ sealed class NucleusIcon(val resourceName: String) {
             DeliveryTruck,
             Document,
             DocumentEmpty,
+            DocumentFlat,
             Dollar,
             Download,
             EditPencil,

@@ -169,6 +169,8 @@ public extension NucleusIcon {
         case document = "document"
         /// `document-empty` icon. Available in: regular, solid.
         case documentEmpty = "document-empty"
+        /// `document-flat` icon. Available in: regular, solid.
+        case documentFlat = "document-flat"
         /// `dollar` icon. Available in: regular.
         case dollar = "dollar"
         /// `download` icon. Available in: regular.
@@ -513,6 +515,7 @@ public extension NucleusIcon {
             case .deliveryTruck: return [.regular, .solid]
             case .document: return [.regular, .solid]
             case .documentEmpty: return [.regular, .solid]
+            case .documentFlat: return [.regular, .solid]
             case .dollar: return [.regular]
             case .download: return [.regular]
             case .editPencil: return [.regular, .solid]
