@@ -39,6 +39,11 @@ Generated files appear in:
 
 The repo-root `VERSION` file is the canonical version. `npm run build` stamps it into the web `package.json`; the Android library reads it from `build.gradle.kts`; SPM consumes the SPM tag.
 
+Run `npm test` for the Android SVG conversion tests. With an Android device or emulator connected,
+run `cd android && ./gradlew :nucleus:connectedDebugAndroidTest` to compare every generated icon's
+Compose rendering with Android's core path parser. CI runs this on API 30 and 35 because older
+Android native paths handle relative moves after closing a contour differently.
+
 
 ## Adding or modifying tokens
 

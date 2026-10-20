@@ -1,4 +1,5 @@
 import Handlebars from 'handlebars';
+import svgpath from 'svgpath';
 
 import { readTemplate } from './shared.js';
 import type { IconToken, IconVariant } from './icons-shared.js';
@@ -178,6 +179,12 @@ function elementToDrawablePath(
       throw new Error(`Unsupported svg element: <${tag}>`);
   }
   if (!pathData) return null;
+
+  // Compose delegates relative commands to android.graphics.Path. On older
+  // Android releases its native pen position after close() can differ from
+  // SVG's contour start. Absolute coordinates avoid displaced subpaths.
+  pathData = svgpath(pathData).abs().round(6).toString();
+  if (!pathData) throw new Error('Invalid svg path data');
 
   const attr = (name: string) => attrs.get(name) ?? inherited.get(name);
 
