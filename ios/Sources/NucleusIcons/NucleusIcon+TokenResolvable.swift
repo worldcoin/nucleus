@@ -85,6 +85,7 @@ private let iconTokens: [String: NucleusIcon.Symbol] = [
     "delivery-truck": .deliveryTruck,
     "document": .document,
     "document-empty": .documentEmpty,
+    "document-flat": .documentFlat,
     "dollar": .dollar,
     "download": .download,
     "edit-pencil": .editPencil,

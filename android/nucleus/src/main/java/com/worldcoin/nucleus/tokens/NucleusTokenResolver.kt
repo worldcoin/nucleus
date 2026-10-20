@@ -200,6 +200,8 @@ object NucleusTokenResolver {
             "delivery-truck.solid" -> R.drawable.nucleus_icon_delivery_truck_solid
             "document-empty.regular" -> R.drawable.nucleus_icon_document_empty_regular
             "document-empty.solid" -> R.drawable.nucleus_icon_document_empty_solid
+            "document-flat.regular" -> R.drawable.nucleus_icon_document_flat_regular
+            "document-flat.solid" -> R.drawable.nucleus_icon_document_flat_solid
             "document.regular" -> R.drawable.nucleus_icon_document_regular
             "document.solid" -> R.drawable.nucleus_icon_document_solid
             "dollar.regular" -> R.drawable.nucleus_icon_dollar_regular
