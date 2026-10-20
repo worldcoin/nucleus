@@ -1,2 +1,3 @@
 # Next.js static exports are generated and already ignored by Git.
 examples/web/out/
+**/build/
