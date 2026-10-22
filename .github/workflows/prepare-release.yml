@@ -116,7 +116,7 @@ jobs:
       - uses: actions/setup-node@v5
         if: steps.plan.outputs.action == 'create_pr'
         with:
-          node-version: 22
+          node-version: 22.23.4
           cache: npm
 
       - name: Create release branch and PR
