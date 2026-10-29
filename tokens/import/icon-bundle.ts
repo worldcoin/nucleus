@@ -9,6 +9,7 @@ import {
   writeFileSync,
 } from 'node:fs';
 import { dirname, resolve } from 'node:path';
+import { canonicalSvg } from './normalize-icon.js';
 import { svgToVectorDrawable } from '../formats/icons-android.js';
 
 export const FILE_KEY = 'w4tJNJK5PKXQAksXgfnKsM';
@@ -174,14 +175,22 @@ export function importBundle(value: unknown, directory: string, write = false) {
     changed: string[] = [],
     unchanged: string[] = [];
   const planned: Array<{ path: string; content: string }> = [];
+  const outputs = new Map<string, string>();
   for (const i of bundle.icons) {
     const id = key(i),
       path = resolve(directory, `${id}.svg`);
     const previous = existsSync(path) ? readFileSync(path, 'utf8') : null;
-    if (previous === i.svg) unchanged.push(id);
+    const normalized = canonicalSvg(i.svg);
+    svgToVectorDrawable(normalized);
+    const content =
+      previous !== null && canonicalSvg(previous) === normalized
+        ? previous
+        : normalized;
+    outputs.set(id, sha256(content));
+    if (previous === content) unchanged.push(id);
     else {
       (previous === null ? added : changed).push(id);
-      planned.push({ path, content: i.svg });
+      planned.push({ path, content });
     }
   }
   const manifest =
@@ -192,12 +201,14 @@ export function importBundle(value: unknown, directory: string, write = false) {
         sectionId: bundle.sectionId,
         version: bundle.version,
         bundleSha256: sha256(serializeBundle(bundle)),
+        normalization: 'svgo-4.1.0-artboard-v1',
         icons: bundle.icons.map(
           ({ name, variant, nodeId, sha256: digest }) => ({
             name,
             variant,
             nodeId,
             sha256: digest,
+            outputSha256: outputs.get(`${variant}/${name}`),
           }),
         ),
       },

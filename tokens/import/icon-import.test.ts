@@ -308,3 +308,28 @@ test('generated symbol collisions with retained public names fail before writes'
     rmSync(dir, { recursive: true, force: true });
   }
 });
+
+test('normalization removes only provably redundant full-artboard clips', async () => {
+  const { canonicalSvg } = await import('./normalize-icon.js');
+  const clipped = (shape: string, rect = '<rect width="24" height="24"/>') =>
+    `<svg width="24" height="24" viewBox="0 0 24 24"><g clip-path="url(#figma)">${shape}</g><defs><clipPath id="figma">${rect}</clipPath></defs></svg>`;
+  const inside = '<path d="M2 2H22V22H2Z" fill="#1F1F1F"/>';
+  const raw = clipped(inside);
+  const optimized = canonicalSvg(raw);
+  assert.doesNotMatch(optimized, /clip-path|clipPath|figma/);
+  assert.equal(
+    optimized,
+    canonicalSvg(
+      `<svg width="24" height="24" viewBox="0 0 24 24">${inside}</svg>`,
+    ),
+  );
+  assert.equal(canonicalSvg(optimized), optimized);
+  for (const meaningful of [
+    clipped('<path d="M-1 0H25V24H-1Z"/>'),
+    clipped(inside, '<rect width="12" height="24"/>'),
+    clipped('<path d="M1 1H23V23H1Z" stroke="black" stroke-width="4"/>'),
+    clipped('<path d="M2 2H22V22H2Z" transform="translate(10 0)"/>'),
+    clipped('<path d="M2 2C-10 2 30 22 22 22Z"/>'),
+  ])
+    assert.match(canonicalSvg(meaningful), /clip-path/);
+});

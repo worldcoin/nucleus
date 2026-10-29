@@ -72,14 +72,20 @@ A bundle is self-contained JSON with these fields:
 - `inventory`: every expected `{name, variant, nodeId}` from that source section.
 - `icons`: the same identities plus `svg` and `sha256` for every render.
 
-SVG normalization only converts line endings to LF, trims surrounding whitespace, and adds
-one trailing newline. Identity arrays are sorted by variant/name with a locale-independent
+The saved bundle preserves raw Figma SVGs (LF line endings and one trailing newline).
+On import, pinned SVGO 4.1.0 compacts paths at five decimal places and sorts attributes.
+A custom pass removes a 24×24 artboard clip only when all affected shapes are provably
+inside the viewport. Bezier control-point hulls provide a conservative bounds check;
+strokes, transforms, filters, and uncertain bounds retain their clips. Non-artboard clips
+are preserved. Existing SVG bytes are retained when their normalized output is identical.
+This avoids rewriting equivalent assets purely for formatting. Identity arrays are sorted by variant/name with a locale-independent
 comparison. Serialization uses fixed field ordering and two-space JSON indentation.
 No timestamps, authentication tokens, or expiring download URLs enter the bundle or manifest.
 Changing request batch size, concurrency, or input array order does not change canonical bytes.
 
 `tokens/definitions/icons/figma-manifest.json` records the Figma revision, each source node and
-SVG checksum, and the SHA-256 of the canonical bundle. A saved bundle is the exact replay
+raw SVG checksum, normalized output checksum, normalization version, and the SHA-256
+of the canonical bundle. A saved bundle is the exact replay
 artifact: preserve it in durable storage alongside the change. The current snapshot is
 `tokens/import/snapshots/2415886286182418274.json`. Re-downloading a pinned Figma
 revision fixes the source design, but Figma's hosted SVG renderer may change over time;
