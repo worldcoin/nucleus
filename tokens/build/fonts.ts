@@ -5,11 +5,14 @@ import { generateAndroidFonts } from '../formats/fonts-android.js';
 import { generateIOSFonts } from '../formats/fonts-ios.js';
 import { generateWebFonts } from '../formats/fonts-web.js';
 import { loadFontDefinitions } from '../formats/loaders.js';
+import { snakeCase } from '../formats/shared.js';
 import type { FontFamily } from '../formats/loaders.js';
 import type { FontToken } from '../formats/loaders.js';
 import {
+  ANDROID_RES_OUT,
   ANDROID_TOKENS_OUT,
   IOS_FONTS_OUT,
+  IOS_FONTS_RESOURCES_OUT,
   ROOT,
   WEB_FONTS_OUT,
   WEB_OUT,
@@ -32,18 +35,43 @@ function copyFile(fromRel: string, toRel: string): void {
   cpSync(from, to);
 }
 
-function buildIOSFonts(tokens: FontToken[]): void {
+function buildIOSFonts(families: FontFamily[], tokens: FontToken[]): void {
   const swiftOut = `${IOS_FONTS_OUT}/NucleusFont+Defaults.swift`;
   writeOut(swiftOut, generateIOSFonts(tokens));
 
-  logStage('tokens/definitions/font (ios)', [['ios', swiftOut]]);
+  const copied: string[] = [];
+  for (const family of families) {
+    const dest = `${IOS_FONTS_RESOURCES_OUT}/${family.file}`;
+    copyFile(`${FONT_ASSETS_DIR}/${family.file}`, dest);
+    copied.push(dest);
+  }
+
+  const licenseOut = `${IOS_FONTS_RESOURCES_OUT}/LICENSE.md`;
+  copyFile(`${FONT_ASSETS_DIR}/LICENSE.md`, licenseOut);
+  copied.push(licenseOut);
+
+  logStage('tokens/definitions/font (ios)', [
+    ['ios', swiftOut],
+    ...copied.map((path) => ['ios', path] as const),
+  ]);
 }
 
-function buildAndroidFonts(tokens: FontToken[]): void {
+function buildAndroidFonts(families: FontFamily[], tokens: FontToken[]): void {
   const kotlinOut = `${ANDROID_TOKENS_OUT}/NucleusFonts.kt`;
   writeOut(kotlinOut, generateAndroidFonts(tokens));
 
-  logStage('tokens/definitions/font (android)', [['android', kotlinOut]]);
+  const copied: string[] = [];
+  for (const family of families) {
+    const resource = snakeCase(family.file);
+    const dest = `${ANDROID_RES_OUT}/font/${resource}.ttf`;
+    copyFile(`${FONT_ASSETS_DIR}/${family.file}`, dest);
+    copied.push(dest);
+  }
+
+  logStage('tokens/definitions/font (android)', [
+    ['android', kotlinOut],
+    ...copied.map((path) => ['android', path] as const),
+  ]);
 }
 
 function buildWebFonts(families: FontFamily[], tokens: FontToken[]): void {
@@ -62,6 +90,7 @@ function buildWebFonts(families: FontFamily[], tokens: FontToken[]): void {
       copied.push(dest);
     }
   }
+
   const licenseOut = `${WEB_FONTS_OUT}/LICENSE.md`;
   copyFile(`${FONT_ASSETS_DIR}/LICENSE.md`, licenseOut);
   copied.push(licenseOut);
@@ -75,7 +104,7 @@ function buildWebFonts(families: FontFamily[], tokens: FontToken[]): void {
 
 export function buildFonts(): void {
   const { families, tokens } = loadFontDefinitions(FONT_SOURCE);
-  buildIOSFonts(tokens);
-  buildAndroidFonts(tokens);
+  buildIOSFonts(families, tokens);
+  buildAndroidFonts(families, tokens);
   buildWebFonts(families, tokens);
 }

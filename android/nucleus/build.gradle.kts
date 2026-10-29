@@ -1,75 +1,10 @@
-import groovy.json.JsonSlurper
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import java.util.Locale
-import javax.inject.Inject
 
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ktlint)
     `maven-publish`
-}
-
-abstract class GenerateFontResources : DefaultTask() {
-    @get:InputDirectory
-    @get:PathSensitive(PathSensitivity.RELATIVE)
-    abstract val fontDirectory: DirectoryProperty
-
-    @get:InputFile
-    @get:PathSensitive(PathSensitivity.NONE)
-    abstract val definitionsFile: RegularFileProperty
-
-    @get:OutputDirectory
-    abstract val outputDirectory: DirectoryProperty
-
-    @get:Inject
-    abstract val fileSystemOperations: FileSystemOperations
-
-    @TaskAction
-    fun generate() {
-        val definitions = JsonSlurper().parse(definitionsFile.get().asFile) as Map<*, *>
-        val families = definitions["families"] as Map<*, *>
-        val filenames = families.values.map { (it as Map<*, *>)["file"] as String }
-        filenames.forEach { filename ->
-            require(
-                fontDirectory
-                    .file(filename)
-                    .get()
-                    .asFile.isFile,
-            ) {
-                "Missing font source: $filename"
-            }
-        }
-        fileSystemOperations.sync {
-            into(outputDirectory)
-            from(fontDirectory) {
-                include(filenames)
-                into("font")
-                // Match snakeCase() in tokens/formats/shared.ts.
-                rename { filename ->
-                    filename
-                        .substringBeforeLast('.')
-                        .replace(Regex("([a-z0-9])([A-Z])"), "$1_$2")
-                        .lowercase(Locale.ROOT) + ".ttf"
-                }
-            }
-        }
-    }
-}
-
-val generateFontResources by tasks.registering(GenerateFontResources::class) {
-    fontDirectory.set(layout.projectDirectory.dir("../../fonts"))
-    definitionsFile.set(layout.projectDirectory.file("../../tokens/definitions/font/fonts.json"))
-    outputDirectory.set(layout.buildDirectory.dir("generated/fontResources/res"))
-}
-
-androidComponents {
-    onVariants { variant ->
-        variant.sources.res?.addGeneratedSourceDirectory(
-            generateFontResources,
-            GenerateFontResources::outputDirectory,
-        )
-    }
 }
 
 group = "com.worldcoin"
