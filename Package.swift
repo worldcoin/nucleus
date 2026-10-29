@@ -47,11 +47,11 @@ let package = Package(
             exclude: [
                 "WorldPro.woff",
                 "WorldPro.woff2",
-                "WorldPro_icon_codepoints.csv",
-                "WorldPro_PUA_proof.html",
+                "WorldPro_icon_unicode_map.csv",
             ],
             resources: [
                 .process("WorldPro.ttf"),
+                .copy("LICENSE.md"),
             ]
         ),
         .target(

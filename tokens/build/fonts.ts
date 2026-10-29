@@ -62,6 +62,9 @@ function buildWebFonts(families: FontFamily[], tokens: FontToken[]): void {
       copied.push(dest);
     }
   }
+  const licenseOut = `${WEB_FONTS_OUT}/LICENSE.md`;
+  copyFile(`${FONT_ASSETS_DIR}/LICENSE.md`, licenseOut);
+  copied.push(licenseOut);
 
   logStage('tokens/definitions/font (web)', [
     ['web', cssOut],
