@@ -61,16 +61,27 @@ Do not run concurrent imports into the same checkout.
 
 ## Diagnostics and exit status
 
-The import CLI returns JSON with `status`, `applied`, `diagnostics`, and the change lists.
-Use npm's silent flag to capture pure JSON:
+The import CLI writes JSON to stdout with `status`, `applied`, `diagnostics`, and the change
+lists. Reports are transient runtime output and must never be committed. `report.json` is
+ignored by Git. For manual runs, leave the output in the terminal:
 
 ```sh
-npm run --silent icons:import -- /tmp/nucleus-icons.json > report.json
+npm run --silent icons:import -- /tmp/nucleus-icons.json
 # CI/review gate: nonzero exit and no writes if warnings are present:
-npm run --silent icons:import -- /tmp/nucleus-icons.json --strict > report.json
+npm run --silent icons:import -- /tmp/nucleus-icons.json --strict
 ```
 
-- `ok`: no diagnostics; exit 0.
+In GitHub Actions, capture stdout outside the checkout and use it to compose the PR
+description. For example, in a workflow shell step:
+
+```sh
+npm run --silent icons:import -- /tmp/nucleus-icons.json --write > "$RUNNER_TEMP/report.json"
+```
+
+The report is separate from the committed snapshot, rename configuration, and provenance
+manifest. The importer does not create a report file itself.
+
+- `ok`: no warnings (informational diagnostics may be present); exit 0.
 - `warning`: available icons can be imported; exit 0, including with `--write`.
 - `blocked`: `--strict` found warnings; exit 1 and no files are written, even with `--write`.
 - `error`: invalid input or an operational failure; exit 1 with an error diagnostic.
