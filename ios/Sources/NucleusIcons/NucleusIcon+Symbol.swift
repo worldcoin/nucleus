@@ -301,8 +301,6 @@ public extension NucleusIcon {
         case personKey = "person-key"
         /// `person-lock` icon. Available in: regular, solid.
         case personLock = "person-lock"
-        /// `personal-vault` icon. Available in: regular.
-        case personalVault = "personal-vault"
         /// `phone` icon. Available in: regular, solid.
         case phone = "phone"
         /// `photo` icon. Available in: regular, solid.
@@ -583,7 +581,6 @@ public extension NucleusIcon {
             case .personGroup: return [.regular, .solid]
             case .personKey: return [.regular, .solid]
             case .personLock: return [.regular, .solid]
-            case .personalVault: return [.regular]
             case .phone: return [.regular, .solid]
             case .photo: return [.regular, .solid]
             case .photoPlay: return [.regular, .solid]

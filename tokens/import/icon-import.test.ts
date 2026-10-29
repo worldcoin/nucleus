@@ -19,6 +19,7 @@ import {
   serializeBundle,
   validateBundle,
   importBundle,
+  duplicateDiagnostics,
   type IconBundle,
 } from './icon-bundle.js';
 import { inventoryFromSection, downloadBundle } from './download-icons.js';
@@ -402,6 +403,56 @@ test('stable source IDs detect renames while local-only names are reported witho
       ),
     );
     assert.deepEqual(readdirSync(join(dir, 'regular')), ['test-icon.svg']);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('duplicate artwork diagnostics list exact variant names and distinguish changed artwork', () => {
+  const input = bundle();
+  const duplicates = duplicateDiagnostics(input.icons);
+  assert.equal(duplicates.length, 1);
+  assert.equal(duplicates[0].code, 'DUPLICATE_ARTWORK');
+  assert.deepEqual(duplicates[0].members, [
+    'regular/test-icon',
+    'solid/test-icon',
+  ]);
+  input.icons[1].svg = svg.replace('H22', 'H20');
+  assert.deepEqual(duplicateDiagnostics(input.icons), []);
+});
+
+test('explicit naming migrations report removals, honor dry-run/strict, and replay without changes', () => {
+  const dir = temp();
+  try {
+    const input = bundle();
+    for (const i of [...input.inventory, ...input.icons])
+      i.name = 'person-lock';
+    input.icons[1].svg = svg.replace('H22', 'H20');
+    input.icons[1].sha256 = sha256(input.icons[1].svg);
+    mkdirSync(join(dir, 'regular'));
+    const legacy = join(dir, 'regular/personal-vault.svg');
+    writeFileSync(legacy, svg);
+    const dryRun = importBundle(input, dir);
+    assert.deepEqual(dryRun.removed, ['regular/personal-vault']);
+    assert.deepEqual(dryRun.namingChanges, [
+      { from: 'personal-vault', to: 'person-lock' },
+    ]);
+    assert.equal(readFileSync(legacy, 'utf8'), svg);
+    assert.equal(importBundle(input, dir, true, true).status, 'blocked');
+    assert.equal(readFileSync(legacy, 'utf8'), svg);
+    importBundle(input, dir, true);
+    assert.deepEqual(readdirSync(join(dir, 'regular')), ['person-lock.svg']);
+    const repeat = importBundle(input, dir, true, true);
+    assert.equal(repeat.status, 'ok');
+    assert.deepEqual(repeat.removed, []);
+    assert.deepEqual(repeat.added, []);
+    assert.deepEqual(repeat.changed, []);
+    assert.ok(
+      repeat.diagnostics.some(
+        (d) => d.code === 'NAME_CHANGED' && d.severity === 'info',
+      ),
+    );
+    assert.deepEqual(repeat.namingChanges, dryRun.namingChanges);
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }

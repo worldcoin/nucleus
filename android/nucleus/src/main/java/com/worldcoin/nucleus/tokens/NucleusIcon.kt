@@ -781,10 +781,6 @@ sealed class NucleusIcon(val resourceName: String) {
         override val solidRes get() = R.drawable.nucleus_icon_person_lock_solid
     }
 
-    data object PersonalVault : NucleusIcon("personal-vault"), HasRegular {
-        override val regularRes get() = R.drawable.nucleus_icon_personal_vault_regular
-    }
-
     data object Phone : NucleusIcon("phone"), HasRegular, HasSolid {
         override val regularRes get() = R.drawable.nucleus_icon_phone_regular
         override val solidRes get() = R.drawable.nucleus_icon_phone_solid
@@ -1259,7 +1255,6 @@ sealed class NucleusIcon(val resourceName: String) {
             PersonGroup,
             PersonKey,
             PersonLock,
-            PersonalVault,
             Phone,
             Photo,
             PhotoPlay,

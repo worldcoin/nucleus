@@ -79,17 +79,30 @@ Warning codes are `MISSING_VARIANT` (a counterpart is absent from Figma), `NEW_I
 (a Figma name is absent locally), `LOCAL_ONLY_ICON` (a local name is absent from Figma),
 and `NAME_MISMATCH` (a stable Figma node ID has changed name since the previous manifest).
 Name differences do not establish aliases; the importer never guesses which icon should replace another.
+`DUPLICATE_ARTWORK` warnings include a sorted `members` list such as
+`["regular/arrow-down", "solid/arrow-down"]`. These groups compare normalized SVG bytes;
+they are not a perceptual similarity search. Both downloader and importer report them.
+Duplicates are reported, not automatically removed, since distinct variants may intentionally match.
 The downloader also reports missing-variant diagnostics in its JSON summary.
 
 A variant absent from Figma is supported. A variant declared in the inventory but missing
 its downloaded SVG is an incomplete export and remains a blocking error, as do duplicate
 identities, checksum failures, symbol collisions, and invalid/unsupported SVGs. A component
 set with no supported variants cannot be exported and fails explicitly.
-Strict mode can be used for dry runs or writes; it gates on all warnings, including new
-names and retained legacy names. Diagnostics do not alter the snapshot or manifest bytes.
+Strict mode can be used for dry runs or writes; it gates on all warnings, including duplicate
+artwork, new names, and retained legacy names. Informational diagnostics do not block strict mode. Diagnostics do not alter the snapshot or manifest bytes.
 
-Names missing from the export are retained, never deleted. For example, Figma now uses
-`person-lock` while this repo already exposes `personal-vault`; both remain available.
+Names missing from the export are retained unless an explicit naming migration authorizes
+removal. The reviewed mapping in `tokens/import/icon-renames.json` replaces `personal-vault`
+with `person-lock`. Consumers must use `person-lock`, Swift `.personLock`, and Kotlin
+`NucleusIcon.PersonLock`; the old public name is removed.
+
+Reports include `namingChanges: [{"from":"personal-vault","to":"person-lock"}]` and
+a `NAME_CHANGED` informational diagnostic even after migration, so naming history stays
+visible. `removed` lists actual or planned retired variant paths; it is empty on replay.
+A migration requires a source target for every retired local variant before deleting any
+files. All validation and strict-mode checks happen before removals. Unconfigured
+renames detected by node ID remain warnings and do not authorize deletion.
 Commit source SVGs, the generated manifest, and regenerated iOS/Android assets together.
 The web build is ignored by Git. Native runtime rendering still needs platform testing.
 

@@ -13,6 +13,7 @@ import {
   validateBundle,
   validateInventory,
   inventoryDiagnostics,
+  duplicateDiagnostics,
   type IconIdentity,
   type IconAsset,
 } from './icon-bundle.js';
@@ -211,10 +212,14 @@ async function main() {
     },
   );
   atomicWrite(resolve(values.out), serializeBundle(bundle));
+  const diagnostics = [
+    ...inventoryDiagnostics(bundle.inventory),
+    ...duplicateDiagnostics(bundle.icons),
+  ];
   console.log(
     JSON.stringify({
-      status: inventoryDiagnostics(bundle.inventory).length ? 'warning' : 'ok',
-      diagnostics: inventoryDiagnostics(bundle.inventory),
+      status: diagnostics.length ? 'warning' : 'ok',
+      diagnostics,
       version: bundle.version,
       exported: bundle.icons.length,
       output: resolve(values.out),

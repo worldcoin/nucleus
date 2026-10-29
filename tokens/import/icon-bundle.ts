@@ -75,12 +75,19 @@ export function validateInventory(values: unknown[]): IconIdentity[] {
   return inventory;
 }
 export interface Diagnostic {
-  severity: 'warning';
-  code: 'MISSING_VARIANT' | 'LOCAL_ONLY_ICON' | 'NEW_ICON' | 'NAME_MISMATCH';
+  severity: 'warning' | 'info';
+  code:
+    | 'MISSING_VARIANT'
+    | 'LOCAL_ONLY_ICON'
+    | 'NEW_ICON'
+    | 'NAME_MISMATCH'
+    | 'NAME_CHANGED'
+    | 'DUPLICATE_ARTWORK';
   icon: string;
   variant?: string;
   nodeId?: string;
   previousName?: string;
+  members?: string[];
   message: string;
 }
 export function inventoryDiagnostics(inventory: IconIdentity[]): Diagnostic[] {
@@ -100,6 +107,29 @@ export function inventoryDiagnostics(inventory: IconIdentity[]): Diagnostic[] {
         ];
   });
 }
+export function duplicateDiagnostics(icons: IconAsset[]): Diagnostic[] {
+  const groups = new Map<string, string[]>();
+  for (const icon of icons) {
+    const digest = sha256(canonicalSvg(icon.svg));
+    const members = groups.get(digest) ?? [];
+    members.push(key(icon));
+    groups.set(digest, members);
+  }
+  return [...groups.values()]
+    .filter((members) => members.length > 1)
+    .map((members) => {
+      members.sort(compare);
+      return {
+        severity: 'warning' as const,
+        code: 'DUPLICATE_ARTWORK' as const,
+        icon: members[0].split('/')[1],
+        members,
+        message: `Identical normalized SVG artwork: ${members.join(', ')}. Variants remain separate.`,
+      };
+    })
+    .sort((a, b) => compare(a.members[0], b.members[0]));
+}
+
 export function validateBundle(value: unknown): IconBundle {
   const b = value as IconBundle;
   if (
@@ -189,7 +219,50 @@ export function importBundle(
       if (!sourceKeys.has(id)) retained.push(id);
     }
   }
-  const diagnostics = inventoryDiagnostics(bundle.inventory);
+  const diagnostics = [
+    ...inventoryDiagnostics(bundle.inventory),
+    ...duplicateDiagnostics(bundle.icons),
+  ];
+  const configuredRenames: Array<{ from: string; to: string }> = JSON.parse(
+    readFileSync(new URL('./icon-renames.json', import.meta.url), 'utf8'),
+  );
+  const namingChanges: Array<{ from: string; to: string }> = [];
+  const removed: string[] = [];
+  for (const rename of configuredRenames) {
+    if (
+      ![rename.from, rename.to].every(
+        (name) =>
+          typeof name === 'string' &&
+          /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/.test(name),
+      ) ||
+      rename.from === rename.to
+    )
+      throw new Error('Invalid configured icon rename');
+    if (!bundle.icons.some((i) => i.name === rename.to)) continue;
+    if (bundle.icons.some((i) => i.name === rename.from))
+      throw new Error(
+        `Configured retired name still exists in Figma: ${rename.from}`,
+      );
+    const legacyKeys = retained.filter(
+      (id) => id.split('/')[1] === rename.from,
+    );
+    for (const id of legacyKeys) {
+      const targetKey = `${id.split('/')[0]}/${rename.to}`;
+      if (!sourceKeys.has(targetKey))
+        throw new Error(`Rename target variant missing: ${targetKey}`);
+      removed.push(id);
+      retained.splice(retained.indexOf(id), 1);
+    }
+    localNames.delete(rename.from);
+    namingChanges.push(rename);
+    diagnostics.push({
+      severity: 'info',
+      code: 'NAME_CHANGED',
+      icon: rename.to,
+      previousName: rename.from,
+      message: `Configured naming migration: ${rename.from} → ${rename.to}. Retired source files are removed on write.`,
+    });
+  }
   const sourceNames = new Set(bundle.inventory.map((i) => i.name));
   for (const name of [...localNames].sort(compare)) {
     if (!sourceNames.has(name))
@@ -219,7 +292,13 @@ export function importBundle(
     );
     for (const i of bundle.inventory) {
       const previousName = previousNames.get(i.nodeId);
-      if (previousName && previousName !== i.name)
+      if (previousName && previousName !== i.name) {
+        if (
+          !namingChanges.some(
+            (change) => change.from === previousName && change.to === i.name,
+          )
+        )
+          namingChanges.push({ from: previousName, to: i.name });
         diagnostics.push({
           severity: 'warning',
           code: 'NAME_MISMATCH',
@@ -229,15 +308,20 @@ export function importBundle(
           variant: i.variant,
           message: `Figma node ${i.nodeId} changed name from ${previousName} to ${i.name}; no alias is inferred.`,
         });
+      }
     }
   }
+  namingChanges.sort((a, b) =>
+    compare(`${a.from}/${a.to}`, `${b.from}/${b.to}`),
+  );
   diagnostics.sort((a, b) =>
     compare(
       `${a.code}/${a.icon}/${a.variant ?? ''}`,
       `${b.code}/${b.icon}/${b.variant ?? ''}`,
     ),
   );
-  const blocked = strict && diagnostics.length > 0;
+  const hasWarnings = diagnostics.some((d) => d.severity === 'warning');
+  const blocked = strict && hasWarnings;
   const symbols = new Map<string, string>();
   for (const id of [...sourceKeys, ...retained]) {
     const name = id.split('/')[1];
@@ -297,14 +381,18 @@ export function importBundle(
     !existsSync(manifestPath) ||
     readFileSync(manifestPath, 'utf8') !== manifest;
   if (manifestChanged) planned.push({ path: manifestPath, content: manifest });
-  if (write && !blocked)
+  if (write && !blocked) {
     for (const entry of planned) atomicWrite(entry.path, entry.content);
+    for (const id of removed) rmSync(resolve(directory, `${id}.svg`));
+  }
   return {
-    status: blocked ? 'blocked' : diagnostics.length ? 'warning' : 'ok',
+    status: blocked ? 'blocked' : hasWarnings ? 'warning' : 'ok',
     mode: write ? 'write' : 'dry-run',
     applied: write && !blocked,
     strict,
     diagnostics,
+    namingChanges,
+    removed: removed.sort(compare),
     version: bundle.version,
     exported: bundle.icons.length,
     added,

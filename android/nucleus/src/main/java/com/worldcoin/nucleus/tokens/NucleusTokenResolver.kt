@@ -365,7 +365,6 @@ object NucleusTokenResolver {
             "person-lock.solid" -> R.drawable.nucleus_icon_person_lock_solid
             "person.regular" -> R.drawable.nucleus_icon_person_regular
             "person.solid" -> R.drawable.nucleus_icon_person_solid
-            "personal-vault.regular" -> R.drawable.nucleus_icon_personal_vault_regular
             "phone.regular" -> R.drawable.nucleus_icon_phone_regular
             "phone.solid" -> R.drawable.nucleus_icon_phone_solid
             "photo-play.regular" -> R.drawable.nucleus_icon_photo_play_regular
