@@ -4,7 +4,7 @@ import "./globals.css";
 import { appThemes } from "./tokens";
 
 const worldPro = localFont({
-  src: "../../../build/web/fonts/WorldProMVP.woff2",
+  src: "../../../build/web/fonts/WorldPro.woff2",
   variable: "--font-world-pro",
   weight: "300 800",
 });

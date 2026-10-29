@@ -1,8 +1,8 @@
 {
   "families": {
     "worldProMVP": {
-      "file": "WorldProMVP.ttf",
-      "webFiles": ["WorldProMVP.woff2", "WorldProMVP.woff"],
+      "file": "WorldPro.ttf",
+      "webFiles": ["WorldPro.woff2", "WorldPro.woff"],
       "postscriptName": "WorldProMVP-Regular"
     }
   },

@@ -1,4 +1,5 @@
 import Foundation
+import NucleusFontResources
 import UIKit
 import SwiftUI
 
@@ -134,7 +135,7 @@ extension NucleusFont {
 
     public static func registerFonts() {
         guard !isRegistered else { return }
-        guard let fonts = Bundle.module.urls(forResourcesWithExtension: "ttf", subdirectory: nil) else {
+        guard let fonts = NucleusFontResources.bundle.urls(forResourcesWithExtension: "ttf", subdirectory: nil) else {
             return
         }
         for fontURL in fonts {

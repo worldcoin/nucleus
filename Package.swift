@@ -42,12 +42,27 @@ let package = Package(
             path: "ios/Sources/NucleusColors"
         ),
         .target(
-            name: "NucleusFonts",
-            dependencies: ["NucleusTokens"],
-            path: "ios/Sources/NucleusFonts",
+            name: "NucleusFontResources",
+            path: "fonts",
+            exclude: [
+                "WorldPro.woff",
+                "WorldPro.woff2",
+                "WorldPro_icon_codepoints.csv",
+                "WorldPro_PUA_proof.html",
+            ],
             resources: [
-                .process("Resources/Fonts"),
+                .process("WorldPro.ttf"),
             ]
+        ),
+        .target(
+            name: "NucleusFonts",
+            dependencies: ["NucleusTokens", "NucleusFontResources"],
+            path: "ios/Sources/NucleusFonts"
+        ),
+        .testTarget(
+            name: "NucleusFontsTests",
+            dependencies: ["NucleusFonts"],
+            path: "ios/Tests/NucleusFontsTests"
         ),
         .target(
             name: "NucleusButtons",
