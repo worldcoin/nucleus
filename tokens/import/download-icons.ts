@@ -12,6 +12,7 @@ import {
   sha256,
   validateBundle,
   validateInventory,
+  inventoryDiagnostics,
   type IconIdentity,
   type IconAsset,
 } from './icon-bundle.js';
@@ -41,16 +42,23 @@ export function inventoryFromSection(section: FigmaNode): IconIdentity[] {
   const icons: IconIdentity[] = [];
   for (const set of section.children ?? []) {
     if (set.type !== 'COMPONENT_SET' || set.name === 'placeholder') continue;
+    if (
+      !(set.children ?? []).some(
+        (n) =>
+          n.type === 'COMPONENT' &&
+          ['Weight=Regular', 'Weight=Solid'].includes(n.name),
+      )
+    )
+      throw new Error(`No supported variants for ${set.name}`);
     for (const variant of ['regular', 'solid'] as const) {
       const name = `Weight=${variant === 'regular' ? 'Regular' : 'Solid'}`;
       const nodes = (set.children ?? []).filter(
         (n) => n.type === 'COMPONENT' && n.name === name,
       );
-      if (nodes.length !== 1)
-        throw new Error(
-          `Expected exactly one ${name} component for ${set.name}`,
-        );
-      icons.push({ name: set.name, variant, nodeId: nodes[0].id });
+      if (nodes.length > 1)
+        throw new Error(`Duplicate ${name} components for ${set.name}`);
+      if (nodes.length)
+        icons.push({ name: set.name, variant, nodeId: nodes[0].id });
     }
   }
   return icons.sort((a, b) =>
@@ -205,6 +213,8 @@ async function main() {
   atomicWrite(resolve(values.out), serializeBundle(bundle));
   console.log(
     JSON.stringify({
+      status: inventoryDiagnostics(bundle.inventory).length ? 'warning' : 'ok',
+      diagnostics: inventoryDiagnostics(bundle.inventory),
       version: bundle.version,
       exported: bundle.icons.length,
       output: resolve(values.out),
@@ -216,7 +226,22 @@ if (
   import.meta.url === pathToFileURL(resolve(process.argv[1])).href
 ) {
   main().catch((error) => {
-    console.error(error.message);
+    console.log(
+      JSON.stringify(
+        {
+          status: 'error',
+          diagnostics: [
+            {
+              severity: 'error',
+              code: 'DOWNLOAD_FAILED',
+              message: error.message,
+            },
+          ],
+        },
+        null,
+        2,
+      ),
+    );
     process.exitCode = 1;
   });
 }

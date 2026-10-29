@@ -26,8 +26,8 @@ render to that version. Source settings are fixed in `tokens/import/icon-bundle.
 file `w4tJNJK5PKXQAksXgfnKsM`, section `1181:11691`.
 
 It exports the explicit `Weight=Regular` and `Weight=Solid` components from named component
-sets, skipping Dynamic, placeholder, and loose frames. Both explicit variants are required
-for each icon. No total count is hardcoded. The initial October 29, 2026 export had 212 sets
+sets, skipping Dynamic, placeholder, and loose frames. Icons may have either or both
+explicit variants; absent counterparts produce diagnostics rather than blocking import. No total count is hardcoded. The initial October 29, 2026 export had 212 sets
 and 424 SVGs; 97 Solid exports matched the Regular artwork. They remain separate variants.
 
 Rendering requests are sequential batches of 40 nodes; SVG downloads use four workers.
@@ -52,12 +52,41 @@ npm run icons:import -- /tmp/nucleus-icons.json
 ```
 
 Import defaults to a dry run and prints sorted lists of additions, changes, unchanged icons,
-and retained public names. It validates the entire bundle before writing. It checks names,
+and retained public names, plus structured diagnostics. It validates the entire bundle before writing. It checks names,
 IDs, completeness against the inventory, generated symbol collisions, SHA-256 checksums,
 24×24 SVG bounds, and the existing Android SVG converter's supported artwork.
 Each changed file is replaced with a temporary-file rename. A multi-file import is not a
 filesystem transaction: if filesystem writes fail, rerun the same bundle to converge.
 Do not run concurrent imports into the same checkout.
+
+## Diagnostics and exit status
+
+The import CLI returns JSON with `status`, `applied`, `diagnostics`, and the change lists.
+Use npm's silent flag to capture pure JSON:
+
+```sh
+npm run --silent icons:import -- /tmp/nucleus-icons.json > report.json
+# CI/review gate: nonzero exit and no writes if warnings are present:
+npm run --silent icons:import -- /tmp/nucleus-icons.json --strict > report.json
+```
+
+- `ok`: no diagnostics; exit 0.
+- `warning`: available icons can be imported; exit 0, including with `--write`.
+- `blocked`: `--strict` found warnings; exit 1 and no files are written, even with `--write`.
+- `error`: invalid input or an operational failure; exit 1 with an error diagnostic.
+
+Warning codes are `MISSING_VARIANT` (a counterpart is absent from Figma), `NEW_ICON`
+(a Figma name is absent locally), `LOCAL_ONLY_ICON` (a local name is absent from Figma),
+and `NAME_MISMATCH` (a stable Figma node ID has changed name since the previous manifest).
+Name differences do not establish aliases; the importer never guesses which icon should replace another.
+The downloader also reports missing-variant diagnostics in its JSON summary.
+
+A variant absent from Figma is supported. A variant declared in the inventory but missing
+its downloaded SVG is an incomplete export and remains a blocking error, as do duplicate
+identities, checksum failures, symbol collisions, and invalid/unsupported SVGs. A component
+set with no supported variants cannot be exported and fails explicitly.
+Strict mode can be used for dry runs or writes; it gates on all warnings, including new
+names and retained legacy names. Diagnostics do not alter the snapshot or manifest bytes.
 
 Names missing from the export are retained, never deleted. For example, Figma now uses
 `person-lock` while this repo already exposes `personal-vault`; both remain available.

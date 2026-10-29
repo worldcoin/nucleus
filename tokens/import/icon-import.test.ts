@@ -21,7 +21,7 @@ import {
   importBundle,
   type IconBundle,
 } from './icon-bundle.js';
-import { downloadBundle } from './download-icons.js';
+import { inventoryFromSection, downloadBundle } from './download-icons.js';
 
 const svg =
   '<svg width="24" height="24" viewBox="0 0 24 24"><path d="M2 2H22V22H2Z" fill="#1F1F1F"/></svg>\n';
@@ -332,4 +332,77 @@ test('normalization removes only provably redundant full-artboard clips', async 
     clipped('<path d="M2 2C-10 2 30 22 22 22Z"/>'),
   ])
     assert.match(canonicalSvg(meaningful), /clip-path/);
+});
+
+test('a single source variant imports with diagnostics; strict mode blocks all writes', () => {
+  const dir = temp();
+  try {
+    const input = bundle();
+    input.inventory.pop();
+    input.icons.pop();
+    assert.equal(validateBundle(input).icons.length, 1);
+    const strict = importBundle(input, dir, true, true);
+    assert.equal(strict.status, 'blocked');
+    assert.equal(strict.applied, false);
+    assert.ok(
+      strict.diagnostics.some(
+        (d) => d.code === 'MISSING_VARIANT' && d.variant === 'solid',
+      ),
+    );
+    assert.deepEqual(readdirSync(dir), []);
+    const normal = importBundle(input, dir, true);
+    assert.equal(normal.status, 'warning');
+    assert.equal(normal.applied, true);
+    assert.equal(normal.added.length, 1);
+    assert.ok(readdirSync(join(dir, 'regular')).includes('test-icon.svg'));
+    assert.equal(importBundle(input, dir, true).changed.length, 0);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('downloader discovers available variants without requiring both', () => {
+  const section = document(1).children[0];
+  section.children[0].children = section.children[0].children.filter(
+    (n) => n.name !== 'Weight=Solid',
+  );
+  assert.deepEqual(
+    inventoryFromSection(section).map((i) => i.variant),
+    ['regular'],
+  );
+  section.children[0].children.push(section.children[0].children[0]);
+  assert.throws(() => inventoryFromSection(section), /Duplicate/);
+});
+
+test('stable source IDs detect renames while local-only names are reported without inferred aliases', () => {
+  const dir = temp();
+  try {
+    importBundle(bundle(), dir, true);
+    const renamed = bundle();
+    for (const i of [...renamed.inventory, ...renamed.icons])
+      i.name = 'renamed-icon';
+    const report = importBundle(renamed, dir, true, true);
+    assert.equal(report.status, 'blocked');
+    assert.ok(
+      report.diagnostics.some(
+        (d) => d.code === 'LOCAL_ONLY_ICON' && d.icon === 'test-icon',
+      ),
+    );
+    assert.ok(
+      report.diagnostics.some(
+        (d) => d.code === 'NEW_ICON' && d.icon === 'renamed-icon',
+      ),
+    );
+    assert.ok(
+      report.diagnostics.some(
+        (d) =>
+          d.code === 'NAME_MISMATCH' &&
+          d.previousName === 'test-icon' &&
+          d.nodeId === '1:1',
+      ),
+    );
+    assert.deepEqual(readdirSync(join(dir, 'regular')), ['test-icon.svg']);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
 });

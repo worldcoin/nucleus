@@ -72,12 +72,33 @@ export function validateInventory(values: unknown[]): IconIdentity[] {
     nodes.add(i.nodeId);
     expected.set(key(i), i);
   }
-  for (const i of inventory) {
-    const other = `${i.variant === 'solid' ? 'regular' : 'solid'}/${i.name}`;
-    if (!expected.has(other))
-      throw new Error(`Missing explicit variant: ${other}`);
-  }
   return inventory;
+}
+export interface Diagnostic {
+  severity: 'warning';
+  code: 'MISSING_VARIANT' | 'LOCAL_ONLY_ICON' | 'NEW_ICON' | 'NAME_MISMATCH';
+  icon: string;
+  variant?: string;
+  nodeId?: string;
+  previousName?: string;
+  message: string;
+}
+export function inventoryDiagnostics(inventory: IconIdentity[]): Diagnostic[] {
+  const keys = new Set(inventory.map(key));
+  return inventory.flatMap((i) => {
+    const variant = i.variant === 'regular' ? 'solid' : 'regular';
+    return keys.has(`${variant}/${i.name}`)
+      ? []
+      : [
+          {
+            severity: 'warning' as const,
+            code: 'MISSING_VARIANT' as const,
+            icon: i.name,
+            variant,
+            message: `Figma has no ${variant} variant for ${i.name}; available variants can still be imported.`,
+          },
+        ];
+  });
 }
 export function validateBundle(value: unknown): IconBundle {
   const b = value as IconBundle;
@@ -149,18 +170,74 @@ export function atomicWrite(path: string, content: string): void {
     rmSync(temporary, { force: true });
   }
 }
-export function importBundle(value: unknown, directory: string, write = false) {
+export function importBundle(
+  value: unknown,
+  directory: string,
+  write = false,
+  strict = false,
+) {
   const bundle = validateBundle(value);
   const sourceKeys = new Set(bundle.icons.map(key));
   const retained: string[] = [];
+  const localNames = new Set<string>();
   for (const variant of ['regular', 'solid']) {
     const folder = resolve(directory, variant);
     if (!existsSync(folder)) continue;
     for (const name of readdirSync(folder).filter((n) => n.endsWith('.svg'))) {
       const id = `${variant}/${name.slice(0, -4)}`;
+      localNames.add(name.slice(0, -4));
       if (!sourceKeys.has(id)) retained.push(id);
     }
   }
+  const diagnostics = inventoryDiagnostics(bundle.inventory);
+  const sourceNames = new Set(bundle.inventory.map((i) => i.name));
+  for (const name of [...localNames].sort(compare)) {
+    if (!sourceNames.has(name))
+      diagnostics.push({
+        severity: 'warning',
+        code: 'LOCAL_ONLY_ICON',
+        icon: name,
+        message: `${name} exists locally but not in Figma; retained. This may be a rename or removal, not a proven alias.`,
+      });
+  }
+  for (const name of [...sourceNames].sort(compare)) {
+    if (!localNames.has(name))
+      diagnostics.push({
+        severity: 'warning',
+        code: 'NEW_ICON',
+        icon: name,
+        message: `${name} exists in Figma but not locally; check the name before adding it.`,
+      });
+  }
+  const existingManifestPath = resolve(directory, 'figma-manifest.json');
+  if (existsSync(existingManifestPath)) {
+    const previous = JSON.parse(readFileSync(existingManifestPath, 'utf8'));
+    if (!Array.isArray(previous.icons))
+      throw new Error('Invalid existing Figma manifest');
+    const previousNames = new Map<string, string>(
+      previous.icons.map((i: IconIdentity) => [i.nodeId, i.name]),
+    );
+    for (const i of bundle.inventory) {
+      const previousName = previousNames.get(i.nodeId);
+      if (previousName && previousName !== i.name)
+        diagnostics.push({
+          severity: 'warning',
+          code: 'NAME_MISMATCH',
+          icon: i.name,
+          nodeId: i.nodeId,
+          previousName,
+          variant: i.variant,
+          message: `Figma node ${i.nodeId} changed name from ${previousName} to ${i.name}; no alias is inferred.`,
+        });
+    }
+  }
+  diagnostics.sort((a, b) =>
+    compare(
+      `${a.code}/${a.icon}/${a.variant ?? ''}`,
+      `${b.code}/${b.icon}/${b.variant ?? ''}`,
+    ),
+  );
+  const blocked = strict && diagnostics.length > 0;
   const symbols = new Map<string, string>();
   for (const id of [...sourceKeys, ...retained]) {
     const name = id.split('/')[1];
@@ -220,10 +297,14 @@ export function importBundle(value: unknown, directory: string, write = false) {
     !existsSync(manifestPath) ||
     readFileSync(manifestPath, 'utf8') !== manifest;
   if (manifestChanged) planned.push({ path: manifestPath, content: manifest });
-  if (write)
+  if (write && !blocked)
     for (const entry of planned) atomicWrite(entry.path, entry.content);
   return {
+    status: blocked ? 'blocked' : diagnostics.length ? 'warning' : 'ok',
     mode: write ? 'write' : 'dry-run',
+    applied: write && !blocked,
+    strict,
+    diagnostics,
     version: bundle.version,
     exported: bundle.icons.length,
     added,
