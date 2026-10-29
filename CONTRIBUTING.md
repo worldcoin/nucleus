@@ -47,6 +47,8 @@ Android native paths handle relative moves after closing a contour differently.
 
 ## Adding or modifying tokens
 
+For SVG icon updates, follow the [Figma icon export and import workflow](docs/figma-icons.md).
+
 1. Edit the relevant JSON file in `tokens/definitions/`. The loader validates the shape at build time and throws a clear error if a field is missing or malformed.
 2. Run `npm run build` to regenerate platform sources and verify output.
 3. Commit both the source change _and_ the regenerated files (CI enforces this with `git diff --exit-code`).

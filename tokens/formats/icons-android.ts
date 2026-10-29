@@ -268,10 +268,19 @@ export function svgToVectorDrawable(svg: string): string {
       case 'rect':
       case 'circle': {
         if (defsDepth > 0) {
-          if (clipPathDepth === 0 || tag !== 'path') {
+          if (clipPathDepth === 0 || (tag !== 'path' && tag !== 'rect')) {
             throw new Error(`Unsupported svg element in <defs>: <${tag}>`);
           }
-          assertArtboardClip(attrs.get('d') ?? '', width, height);
+          if (tag === 'rect') {
+            const allowed = new Set(['x', 'y', 'width', 'height', 'fill']);
+            if ([...attrs.keys()].some((key) => !allowed.has(key)) ||
+                Number(attrs.get('x') ?? '0') !== 0 || Number(attrs.get('y') ?? '0') !== 0 ||
+                Number(attrs.get('width')) !== width || Number(attrs.get('height')) !== height) {
+              throw new Error('Unsupported svg clipPath rect (expected full artboard)');
+            }
+          } else {
+            assertArtboardClip(attrs.get('d') ?? '', width, height);
+          }
           break;
         }
         const path = elementToDrawablePath(tag, attrs, inherited);
