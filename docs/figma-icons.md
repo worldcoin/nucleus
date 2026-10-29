@@ -149,3 +149,32 @@ The scripts use the official [Figma file and image endpoints](https://developers
 Downloader tests mock those endpoints to check pinning, batching, retries, and authentication
 boundaries. Import tests use temporary directories to check determinism, idempotency, and
 rejection of incomplete/corrupted bundles before writes.
+
+## Monthly GitHub Action
+
+`.github/workflows/sync-icons.yml` runs on the first day of each month at **14:17 UTC**,
+and supports manual dispatch on `main`. The workflow must be merged into `main` before
+scheduled runs start. Configure the repository Actions secret `FIGMA_ACCESS_TOKEN` with
+Figma `file_content:read` access. Local `.env` files are not available in Actions.
+
+The job downloads the latest source revision (pinning all renders to it), imports available
+icons, regenerates platforms, runs checks, and verifies zero-change replay. Warnings such
+as matching Regular/Solid artwork are included in the PR rather than blocking the sync.
+If only provenance changed because of unrelated Figma edits, no PR is created.
+
+Actual icon changes produce a PR on `codex/monthly-icon-sync`. The same branch/PR is
+updated on subsequent runs; a stale PR is closed if its changes no longer differ from
+`main`. The PR includes added/updated/removed variants, naming migrations, retained names,
+missing-variant diagnostics, and duplicate groups. Long lists are summarized with full
+results linked in the run artifact. An appropriate `major`, `minor`, or `patch` release
+label is applied, replacing conflicting release labels. The workflow never merges PRs.
+
+`report.json`, the replay report, and the description stay in `$RUNNER_TEMP`. The import
+report, description, and raw bundle are uploaded as an artifact retained for 30 days.
+Only source/generated assets, provenance, and a new replay snapshot enter the sync commit.
+
+Repository settings must allow GitHub Actions to create PRs. By default the workflow uses
+`GITHUB_TOKEN`; GitHub may require a user to **Approve workflows to run** on its automated
+PRs. For fully automatic PR CI, optionally set `ICON_SYNC_GITHUB_TOKEN` to a GitHub App or
+fine-grained PAT with repository contents and pull-request write access. See
+[GitHub's workflow-triggering rules](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow).
