@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.3.0
+- [Full changelog](https://github.com/worldcoin/nucleus/compare/v0.2.16...v0.3.0)
+
 ## v0.2.16
 - [Full changelog](https://github.com/worldcoin/nucleus/compare/v0.2.15...v0.2.16)
 
