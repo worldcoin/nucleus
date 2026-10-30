@@ -31,10 +31,10 @@ implementation("com.worldcoin:nucleus:<version>")
 Add the Swift Package Manager dependency:
 
 ```swift
-.package(url: "https://github.com/worldcoin/nucleus.git", branch: "generated/ios")
+.package(url: "https://github.com/worldcoin/nucleus.git", branch: "main")
 ```
 
-Or pin to a release tag (e.g. `vX.Y.Z-ios`), then add the products you need:
+Or pin to a release tag (e.g. `vX.Y.Z`), then add the products you need:
 
 ```swift
 .product(name: "NucleusColors", package: "nucleus"),

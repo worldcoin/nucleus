@@ -49,6 +49,11 @@ let package = Package(
                 .process("Resources/Fonts"),
             ]
         ),
+        .testTarget(
+            name: "NucleusFontsTests",
+            dependencies: ["NucleusFonts"],
+            path: "ios/Tests/NucleusFontsTests"
+        ),
         .target(
             name: "NucleusButtons",
             dependencies: ["NucleusTokens", "NucleusColors", "NucleusFonts"],

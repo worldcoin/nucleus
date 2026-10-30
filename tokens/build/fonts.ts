@@ -20,7 +20,7 @@ import {
 } from './shared.js';
 
 const FONT_SOURCE = 'tokens/definitions/font/fonts.json';
-const FONT_DEFINITIONS_DIR = 'tokens/definitions/font';
+const FONT_ASSETS_DIR = 'fonts';
 
 function writeOut(relPath: string, content: string): void {
   const absolute = resolve(ROOT, relPath);
@@ -42,9 +42,13 @@ function buildIOSFonts(families: FontFamily[], tokens: FontToken[]): void {
   const copied: string[] = [];
   for (const family of families) {
     const dest = `${IOS_FONTS_RESOURCES_OUT}/${family.file}`;
-    copyFile(`${FONT_DEFINITIONS_DIR}/${family.file}`, dest);
+    copyFile(`${FONT_ASSETS_DIR}/${family.file}`, dest);
     copied.push(dest);
   }
+
+  const licenseOut = `${IOS_FONTS_RESOURCES_OUT}/LICENSE.md`;
+  copyFile(`${FONT_ASSETS_DIR}/LICENSE.md`, licenseOut);
+  copied.push(licenseOut);
 
   logStage('tokens/definitions/font (ios)', [
     ['ios', swiftOut],
@@ -60,7 +64,7 @@ function buildAndroidFonts(families: FontFamily[], tokens: FontToken[]): void {
   for (const family of families) {
     const resource = snakeCase(family.file);
     const dest = `${ANDROID_RES_OUT}/font/${resource}.ttf`;
-    copyFile(`${FONT_DEFINITIONS_DIR}/${family.file}`, dest);
+    copyFile(`${FONT_ASSETS_DIR}/${family.file}`, dest);
     copied.push(dest);
   }
 
@@ -82,10 +86,14 @@ function buildWebFonts(families: FontFamily[], tokens: FontToken[]): void {
   for (const family of families) {
     for (const file of [family.file, ...(family.webFiles ?? [])]) {
       const dest = `${WEB_FONTS_OUT}/${file}`;
-      copyFile(`${FONT_DEFINITIONS_DIR}/${file}`, dest);
+      copyFile(`${FONT_ASSETS_DIR}/${file}`, dest);
       copied.push(dest);
     }
   }
+
+  const licenseOut = `${WEB_FONTS_OUT}/LICENSE.md`;
+  copyFile(`${FONT_ASSETS_DIR}/LICENSE.md`, licenseOut);
+  copied.push(licenseOut);
 
   logStage('tokens/definitions/font (web)', [
     ['web', cssOut],

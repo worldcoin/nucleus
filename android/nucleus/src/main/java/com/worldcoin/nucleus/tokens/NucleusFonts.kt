@@ -28,112 +28,112 @@ data class NucleusFontStyle(
 
 object NucleusFonts {
     val d1 = NucleusFontStyle(
-        fontFamily = FontFamily(Font(R.font.world_pro_mvp)),
+        fontFamily = FontFamily(Font(R.font.world_pro)),
         fontSize = 56.sp,
         fontWeight = FontWeight(550),
         letterSpacing = (-0.02).em,
         lineHeight = (1).em,
     )
     val h1 = NucleusFontStyle(
-        fontFamily = FontFamily(Font(R.font.world_pro_mvp)),
+        fontFamily = FontFamily(Font(R.font.world_pro)),
         fontSize = 30.sp,
         fontWeight = FontWeight(450),
         letterSpacing = (-0.015).em,
         lineHeight = (1.1).em,
     )
     val h2 = NucleusFontStyle(
-        fontFamily = FontFamily(Font(R.font.world_pro_mvp)),
+        fontFamily = FontFamily(Font(R.font.world_pro)),
         fontSize = 27.sp,
         fontWeight = FontWeight(450),
         letterSpacing = (-0.015).em,
         lineHeight = (1.1).em,
     )
     val h3 = NucleusFontStyle(
-        fontFamily = FontFamily(Font(R.font.world_pro_mvp)),
+        fontFamily = FontFamily(Font(R.font.world_pro)),
         fontSize = 24.sp,
         fontWeight = FontWeight(450),
         letterSpacing = (-0.015).em,
         lineHeight = (1.1).em,
     )
     val h4 = NucleusFontStyle(
-        fontFamily = FontFamily(Font(R.font.world_pro_mvp)),
+        fontFamily = FontFamily(Font(R.font.world_pro)),
         fontSize = 21.sp,
         fontWeight = FontWeight(450),
         letterSpacing = (-0.01).em,
         lineHeight = (1.1).em,
     )
     val h5 = NucleusFontStyle(
-        fontFamily = FontFamily(Font(R.font.world_pro_mvp)),
+        fontFamily = FontFamily(Font(R.font.world_pro)),
         fontSize = 19.sp,
         fontWeight = FontWeight(450),
         letterSpacing = (-0.01).em,
         lineHeight = (1.1).em,
     )
     val s1 = NucleusFontStyle(
-        fontFamily = FontFamily(Font(R.font.world_pro_mvp)),
+        fontFamily = FontFamily(Font(R.font.world_pro)),
         fontSize = 17.sp,
         fontWeight = FontWeight(450),
         letterSpacing = (-0.01).em,
         lineHeight = (1.2).em,
     )
     val s2 = NucleusFontStyle(
-        fontFamily = FontFamily(Font(R.font.world_pro_mvp)),
+        fontFamily = FontFamily(Font(R.font.world_pro)),
         fontSize = 15.sp,
         fontWeight = FontWeight(450),
         letterSpacing = (0).em,
         lineHeight = (1.2).em,
     )
     val s3 = NucleusFontStyle(
-        fontFamily = FontFamily(Font(R.font.world_pro_mvp)),
+        fontFamily = FontFamily(Font(R.font.world_pro)),
         fontSize = 13.sp,
         fontWeight = FontWeight(450),
         letterSpacing = (0).em,
         lineHeight = (1.2).em,
     )
     val l1 = NucleusFontStyle(
-        fontFamily = FontFamily(Font(R.font.world_pro_mvp)),
+        fontFamily = FontFamily(Font(R.font.world_pro)),
         fontSize = 17.sp,
         fontWeight = FontWeight(500),
         letterSpacing = (-0.01).em,
         lineHeight = (1.2).em,
     )
     val l2 = NucleusFontStyle(
-        fontFamily = FontFamily(Font(R.font.world_pro_mvp)),
+        fontFamily = FontFamily(Font(R.font.world_pro)),
         fontSize = 15.sp,
         fontWeight = FontWeight(500),
         letterSpacing = (-0.01).em,
         lineHeight = (1.2).em,
     )
     val l3 = NucleusFontStyle(
-        fontFamily = FontFamily(Font(R.font.world_pro_mvp)),
+        fontFamily = FontFamily(Font(R.font.world_pro)),
         fontSize = 13.sp,
         fontWeight = FontWeight(500),
         letterSpacing = (-0.01).em,
         lineHeight = (1.2).em,
     )
     val b1 = NucleusFontStyle(
-        fontFamily = FontFamily(Font(R.font.world_pro_mvp)),
+        fontFamily = FontFamily(Font(R.font.world_pro)),
         fontSize = 17.sp,
         fontWeight = FontWeight(350),
         letterSpacing = (-0.005).em,
         lineHeight = (1.3).em,
     )
     val b2 = NucleusFontStyle(
-        fontFamily = FontFamily(Font(R.font.world_pro_mvp)),
+        fontFamily = FontFamily(Font(R.font.world_pro)),
         fontSize = 15.sp,
         fontWeight = FontWeight(350),
         letterSpacing = (-0.005).em,
         lineHeight = (1.3).em,
     )
     val b3 = NucleusFontStyle(
-        fontFamily = FontFamily(Font(R.font.world_pro_mvp)),
+        fontFamily = FontFamily(Font(R.font.world_pro)),
         fontSize = 13.sp,
         fontWeight = FontWeight(350),
         letterSpacing = (0).em,
         lineHeight = (1.3).em,
     )
     val c1 = NucleusFontStyle(
-        fontFamily = FontFamily(Font(R.font.world_pro_mvp)),
+        fontFamily = FontFamily(Font(R.font.world_pro)),
         fontSize = 11.sp,
         fontWeight = FontWeight(350),
         letterSpacing = (0.003).em,
