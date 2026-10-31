@@ -1,0 +1,123 @@
+name: Sync Figma Icons
+
+on:
+  schedule:
+    # First day of each month at 14:17 UTC (away from the top-of-hour peak).
+    - cron: '17 14 1 * *'
+  workflow_dispatch:
+
+concurrency:
+  group: sync-figma-icons
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          ref: main
+
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Explain GitHub token fallback
+        env:
+          ICON_SYNC_GITHUB_TOKEN: ${{ secrets.ICON_SYNC_GITHUB_TOKEN }}
+        run: |
+          if [ -z "$ICON_SYNC_GITHUB_TOKEN" ]; then
+            echo '::notice::Using GITHUB_TOKEN. A maintainer may need to approve PR workflows before CI runs.'
+            echo 'PRs use GITHUB_TOKEN; a maintainer may need to click **Approve workflows to run**. Set ICON_SYNC_GITHUB_TOKEN for unattended PR CI.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Download pinned icon bundle
+        env:
+          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+        run: npm run --silent icons:download -- --out "$RUNNER_TEMP/icon-bundle.json"
+
+      - name: Import icons and capture transient report
+        run: npm run --silent icons:import -- "$RUNNER_TEMP/icon-bundle.json" --write > "$RUNNER_TEMP/report.json"
+
+      - name: Build and validate
+        run: |
+          npm run build
+          npm test
+          npm run typecheck
+          npm run lint
+          npm run format:check
+          npm run --silent icons:import -- "$RUNNER_TEMP/icon-bundle.json" > "$RUNNER_TEMP/replay-report.json"
+          jq -e '(.added | length) == 0 and (.changed | length) == 0 and (.removed | length) == 0 and .manifestChanged == false' "$RUNNER_TEMP/replay-report.json"
+
+      - name: Prepare PR description and decide whether icons changed
+        id: plan
+        env:
+          RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          node --import tsx tokens/import/sync-report.ts "$RUNNER_TEMP/report.json" "$RUNNER_TEMP/icon-pr.md" "$RUN_URL" > "$RUNNER_TEMP/plan.json"
+          HAS_CHANGES=$(jq -r '.hasChanges' "$RUNNER_TEMP/plan.json")
+          echo "has_changes=$HAS_CHANGES" >> "$GITHUB_OUTPUT"
+          echo "release_label=$(jq -r '.releaseLabel' "$RUNNER_TEMP/plan.json")" >> "$GITHUB_OUTPUT"
+          if [ "$HAS_CHANGES" = true ]; then
+            VERSION=$(jq -r '.version' "$RUNNER_TEMP/report.json")
+            cp "$RUNNER_TEMP/icon-bundle.json" "tokens/import/snapshots/$VERSION.json"
+            cat "$RUNNER_TEMP/icon-pr.md" >> "$GITHUB_STEP_SUMMARY"
+          else
+            # Ignore provenance-only updates from unrelated Figma file edits.
+            git restore -- tokens/definitions/icons/figma-manifest.json
+            echo 'No icon changes; no new PR required.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Save full import report and replay bundle
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: figma-icon-sync-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/report.json
+            ${{ runner.temp }}/icon-bundle.json
+            ${{ runner.temp }}/icon-pr.md
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Open or update icon sync PR
+        id: pr
+        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7
+        with:
+          # Keep the company-provided token fallback; PR CI may require approval.
+          token: ${{ secrets.ICON_SYNC_GITHUB_TOKEN || github.token }}
+          base: main
+          branch: codex/monthly-icon-sync
+          delete-branch: true
+          commit-message: 'Sync icons from Figma'
+          title: 'Sync icons from Figma'
+          body-path: ${{ runner.temp }}/icon-pr.md
+          add-paths: |
+            tokens/definitions/icons/
+            tokens/import/snapshots/
+            ios/Sources/NucleusIcons/
+            android/nucleus/src/main/
+
+      - name: Set release label without accumulating conflicting labels
+        if: steps.pr.outputs.pull-request-number && steps.plan.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.ICON_SYNC_GITHUB_TOKEN || github.token }}
+          PR_NUMBER: ${{ steps.pr.outputs.pull-request-number }}
+          RELEASE_LABEL: ${{ steps.plan.outputs.release_label }}
+        run: |
+          EXISTING_LABELS=$(gh pr view "$PR_NUMBER" --json labels --jq '.labels[].name | select(. == "major" or . == "minor" or . == "patch")')
+          while IFS= read -r LABEL; do
+            if [ -n "$LABEL" ] && [ "$LABEL" != "$RELEASE_LABEL" ]; then
+              gh pr edit "$PR_NUMBER" --remove-label "$LABEL"
+            fi
+          done <<< "$EXISTING_LABELS"
+          gh pr edit "$PR_NUMBER" --add-label "$RELEASE_LABEL"

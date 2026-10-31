@@ -150,7 +150,7 @@ private let iconTokens: [String: NucleusIcon.Symbol] = [
     "person-circle": .personCircle,
     "person-group": .personGroup,
     "person-key": .personKey,
-    "personal-vault": .personalVault,
+    "person-lock": .personLock,
     "phone": .phone,
     "photo": .photo,
     "photo-play": .photoPlay,

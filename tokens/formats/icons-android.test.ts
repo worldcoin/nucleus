@@ -26,3 +26,14 @@ test('initial relative moves, repeated coordinates, exponents and arcs retain SV
 test('malformed paths fail generation', () => {
   assert.throws(() => pathData('M1'), /Invalid svg path data/);
 });
+
+test('unoptimized Figma artboard rect clips match the optimized path form', () => {
+  const svg = (clip: string) => `<svg viewBox="0 0 24 24"><g clip-path="url(#clip)"><path d="M2 2H22V22H2Z" fill="#1F1F1F"/></g><defs><clipPath id="clip">${clip}</clipPath></defs></svg>`;
+  assert.equal(
+    svgToVectorDrawable(svg('<rect width="24" height="24" fill="white"/>')),
+    svgToVectorDrawable(svg('<path d="M0 0H24V24H0Z"/>')),
+  );
+  for (const rect of ['<rect width="20" height="24"/>', '<rect x="1" width="24" height="24"/>', '<rect width="24" height="24" rx="2"/>', '<rect width="24" height="24" transform="translate(1 0)"/>']) {
+    assert.throws(() => svgToVectorDrawable(svg(rect)), /expected full artboard/);
+  }
+});

@@ -6,7 +6,9 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "test": "tsx --test tokens/formats/icons-android.test.ts",
+    "icons:download": "node --import tsx tokens/import/download-icons.ts",
+    "icons:import": "node --import tsx tokens/import/figma-icons.ts",
+    "test": "node --import tsx --test tokens/formats/icons-android.test.ts tokens/import/icon-import.test.ts tokens/import/sync-report.test.ts",
     "build": "npm run clean && tsx tokens/build/index.ts",
     "typecheck": "tsc --noEmit",
     "lint": "oxlint",
@@ -22,6 +24,7 @@
     "@types/node": "^25.3.3",
     "oxlint": "^1.51.0",
     "prettier": "^3.8.1",
+    "svgo": "4.1.0",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
