@@ -246,6 +246,7 @@ export function importBundle(
     const legacyKeys = retained.filter(
       (id) => id.split('/')[1] === rename.from,
     );
+    if (!legacyKeys.length) continue;
     for (const id of legacyKeys) {
       const targetKey = `${id.split('/')[0]}/${rename.to}`;
       if (!sourceKeys.has(targetKey))

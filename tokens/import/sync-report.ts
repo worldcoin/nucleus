@@ -49,7 +49,7 @@ export function renderSyncReport(report: Report, runUrl?: string): string {
     list('Updated variants', report.changed),
     list('Removed variants', report.removed),
     list(
-      'Naming changes (including recorded migrations)',
+      'Naming changes',
       report.namingChanges.map((n) => `${n.from} → ${n.to}`),
     ),
     list('Retained local variants absent from Figma', report.retained),

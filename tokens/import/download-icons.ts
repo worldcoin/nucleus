@@ -97,15 +97,15 @@ export async function downloadBundle(
           headers: authenticated ? { 'X-Figma-Token': token } : {},
           signal: AbortSignal.timeout(30_000),
         });
+        if (response.ok) return await response.text();
       } catch {
         if (attempt === 3)
           throw new Error(
-            'Figma request failed after 4 attempts (network or timeout)',
+            'Figma request failed after 4 attempts (network, body read, or timeout)',
           );
         await pause(1000 * 2 ** attempt);
         continue;
       }
-      if (response.ok) return response.text();
       if (response.status !== 429 && response.status < 500)
         throw new Error(`Figma request failed (HTTP ${response.status})`);
       if (attempt === 3)

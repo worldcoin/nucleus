@@ -31,6 +31,15 @@ jobs:
 
       - run: npm ci
 
+      - name: Explain GitHub token fallback
+        env:
+          ICON_SYNC_GITHUB_TOKEN: ${{ secrets.ICON_SYNC_GITHUB_TOKEN }}
+        run: |
+          if [ -z "$ICON_SYNC_GITHUB_TOKEN" ]; then
+            echo '::notice::Using GITHUB_TOKEN. A maintainer may need to approve PR workflows before CI runs.'
+            echo 'PRs use GITHUB_TOKEN; a maintainer may need to click **Approve workflows to run**. Set ICON_SYNC_GITHUB_TOKEN for unattended PR CI.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
       - name: Download pinned icon bundle
         env:
           FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
@@ -84,6 +93,7 @@ jobs:
         id: pr
         uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7
         with:
+          # Keep the company-provided token fallback; PR CI may require approval.
           token: ${{ secrets.ICON_SYNC_GITHUB_TOKEN || github.token }}
           base: main
           branch: codex/monthly-icon-sync

@@ -447,13 +447,68 @@ test('explicit naming migrations report removals, honor dry-run/strict, and repl
     assert.deepEqual(repeat.removed, []);
     assert.deepEqual(repeat.added, []);
     assert.deepEqual(repeat.changed, []);
-    assert.ok(
-      repeat.diagnostics.some(
-        (d) => d.code === 'NAME_CHANGED' && d.severity === 'info',
-      ),
+    assert.equal(
+      repeat.diagnostics.some((d) => d.code === 'NAME_CHANGED'),
+      false,
     );
-    assert.deepEqual(repeat.namingChanges, dryRun.namingChanges);
+    assert.deepEqual(repeat.namingChanges, []);
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
+});
+
+test('response body read failures retry the entire request, then succeed', async () => {
+  const source = transport(1);
+  let attempts = 0;
+  const delays: number[] = [];
+  const fetch = (async (input, init) => {
+    const response = await source.mock(input, init);
+    if (attempts++ === 0)
+      return new Response(
+        new ReadableStream({
+          start(controller) {
+            controller.error(new Error('Interrupted response stream'));
+          },
+        }),
+      );
+    return response;
+  }) as typeof globalThis.fetch;
+  const result = await downloadBundle('secret', '12345', {
+    fetch,
+    sleep: async (ms) => {
+      delays.push(ms);
+    },
+  });
+  assert.equal(result.icons.length, 2);
+  assert.equal(
+    source.calls.filter((c) => c.url.pathname.includes('/files/')).length,
+    2,
+  );
+  assert.deepEqual(delays, [1000]);
+});
+
+test('repeated response body failures stop after four attempts', async () => {
+  let attempts = 0;
+  const delays: number[] = [];
+  const fetch = (async () => {
+    attempts++;
+    return new Response(
+      new ReadableStream({
+        start(controller) {
+          controller.error(new Error('Body read timeout'));
+        },
+      }),
+    );
+  }) as typeof globalThis.fetch;
+  await assert.rejects(
+    downloadBundle('secret', '12345', {
+      fetch,
+      sleep: async (ms) => {
+        delays.push(ms);
+      },
+    }),
+    /after 4 attempts/,
+  );
+  assert.equal(attempts, 4);
+  assert.deepEqual(delays, [1000, 2000, 4000]);
 });

@@ -32,7 +32,7 @@ and 424 SVGs; 97 Solid exports matched the Regular artwork. They remain separate
 
 Rendering requests are sequential batches of 40 nodes; SVG downloads use four workers.
 Adjust with `--batch-size 1..100` and `--concurrency 1..8`. Requests time out after 30 seconds.
-Network errors, HTTP 429, and HTTP 5xx get at most four attempts. Retry-After is honored up
+Network errors (including response-body read failures), HTTP 429, and HTTP 5xx get at most four attempts. Retry-After is honored up
 to 30 seconds; longer limits stop the export so it can be retried later. Permanent errors,
 missing renders, and unsupported artwork fail the operation. The output bundle is replaced
 only after all downloads and validation succeed. Token headers go only to the Figma API,
@@ -109,8 +109,9 @@ with `person-lock`. Consumers must use `person-lock`, Swift `.personLock`, and K
 `NucleusIcon.PersonLock`; the old public name is removed.
 
 Reports include `namingChanges: [{"from":"personal-vault","to":"person-lock"}]` and
-a `NAME_CHANGED` informational diagnostic even after migration, so naming history stays
-visible. `removed` lists actual or planned retired variant paths; it is empty on replay.
+a `NAME_CHANGED` informational diagnostic only while retiring existing local files.
+Completed migrations remain configured but are omitted from subsequent reports.
+`removed` lists actual or planned retired variant paths; both lists are empty on replay.
 A migration requires a source target for every retired local variant before deleting any
 files. All validation and strict-mode checks happen before removals. Unconfigured
 renames detected by node ID remain warnings and do not authorize deletion.
