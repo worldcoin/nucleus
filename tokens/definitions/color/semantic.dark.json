@@ -17,11 +17,11 @@
           "$type": "color"
         },
         "secondary": {
-          "$value": "{primitive.color.grey.500}",
+          "$value": "{primitive.color.grey.400}",
           "$type": "color"
         },
         "tertiary": {
-          "$value": "{primitive.color.grey.600}",
+          "$value": "{primitive.color.grey.500}",
           "$type": "color"
         },
         "inverse": {
