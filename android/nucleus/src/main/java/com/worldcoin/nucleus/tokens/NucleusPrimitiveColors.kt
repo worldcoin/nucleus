@@ -16,7 +16,7 @@ object NucleusPrimitiveColors {
     val grey700 = Color(0xFF7D7D7D)
     val grey800 = Color(0xFF5C5C5C)
     val grey900 = Color(0xFF3A3A3A)
-    val grey950 = Color(0xFF1F1F1F)
+    val grey950 = Color(0xFF181818)
     val red100 = Color(0xFFFFF8F7)
     val red200 = Color(0xFFFFD7D0)
     val red300 = Color(0xFFFFB4A8)

@@ -51,7 +51,7 @@ public extension NucleusColor {
     static let grey700 = NucleusColor(hex: "7D7D7D")
     static let grey800 = NucleusColor(hex: "5C5C5C")
     static let grey900 = NucleusColor(hex: "3A3A3A")
-    static let grey950 = NucleusColor(hex: "1F1F1F")
+    static let grey950 = NucleusColor(hex: "181818")
     static let magenta100 = NucleusColor(hex: "FDF5FF")
     static let magenta200 = NucleusColor(hex: "F5D1FF")
     static let magenta300 = NucleusColor(hex: "ECA4FF")

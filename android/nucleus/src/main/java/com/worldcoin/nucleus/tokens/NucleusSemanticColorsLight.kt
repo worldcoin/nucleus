@@ -8,8 +8,8 @@ object NucleusSemanticColorsLight {
     val surfacePage = NucleusPrimitiveColors.white
     val surfaceOverlay = Color(0x66000000)
     val foregroundPrimary = NucleusPrimitiveColors.grey950
-    val foregroundSecondary = NucleusPrimitiveColors.grey700
-    val foregroundTertiary = NucleusPrimitiveColors.grey600
+    val foregroundSecondary = NucleusPrimitiveColors.grey800
+    val foregroundTertiary = NucleusPrimitiveColors.grey700
     val foregroundInverse = NucleusPrimitiveColors.white
     val foregroundDisabled = NucleusPrimitiveColors.grey500
     val backgroundPrimary = NucleusPrimitiveColors.white
