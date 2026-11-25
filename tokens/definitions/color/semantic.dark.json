@@ -9,6 +9,10 @@
         "overlay": {
           "$value": "#000000B2",
           "$type": "color"
+        },
+        "elevated": {
+          "$value": "{primitive.color.grey.950}",
+          "$type": "color"
         }
       },
       "foreground": {
@@ -17,11 +21,11 @@
           "$type": "color"
         },
         "secondary": {
-          "$value": "{primitive.color.grey.500}",
+          "$value": "{primitive.color.grey.400}",
           "$type": "color"
         },
         "tertiary": {
-          "$value": "{primitive.color.grey.700}",
+          "$value": "{primitive.color.grey.500}",
           "$type": "color"
         },
         "inverse": {
@@ -29,7 +33,7 @@
           "$type": "color"
         },
         "disabled": {
-          "$value": "{primitive.color.grey.600}",
+          "$value": "{primitive.color.grey.700}",
           "$type": "color"
         }
       },
@@ -79,11 +83,11 @@
       },
       "status": {
         "error": {
-          "$value": "{primitive.color.red.500}",
+          "$value": "{primitive.color.red.600}",
           "$type": "color"
         },
         "warning": {
-          "$value": "{primitive.color.amber.500}",
+          "$value": "{primitive.color.orange.600}",
           "$type": "color"
         },
         "success": {
@@ -101,7 +105,7 @@
       },
       "accent": {
         "orange": {
-          "$value": "{primitive.color.orange.500}",
+          "$value": "{primitive.color.orange.600}",
           "$type": "color"
         },
         "purple": {

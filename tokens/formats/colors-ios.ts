@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars';
 
 import { camelCasePath, parseReference, publicColorPath, readTemplate } from './shared.js';
-import { loadColorTokens } from './loaders.js';
+import { loadColorTokens, resolvePrimitiveColors } from './loaders.js';
 import type { ColorLeaf } from './loaders.js';
 
 const PRIMITIVES_TEMPLATE = Handlebars.compile(
@@ -96,7 +96,9 @@ export function generateIOSColors(args: {
   const lightTokens = loadColorTokens(args.semanticLightSource);
   const darkTokens = loadColorTokens(args.semanticDarkSource);
 
-  const { entries: primitiveEntries, byPath: primitivesByPath } = buildPrimitives(primitiveTokens);
+  const { entries: primitiveEntries, byPath: primitivesByPath } = buildPrimitives(
+    resolvePrimitiveColors(primitiveTokens),
+  );
   const semanticEntries = buildSemantics(lightTokens, darkTokens, primitivesByPath);
 
   return {

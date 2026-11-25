@@ -7,7 +7,7 @@ import {
 } from '../formats/colors-android.js';
 import { generateIOSColors } from '../formats/colors-ios.js';
 import { generateWebColorCss, generateWebColorJson } from '../formats/colors-web.js';
-import { loadColorTokens } from '../formats/loaders.js';
+import { loadColorTokens, resolvePrimitiveColors } from '../formats/loaders.js';
 import { ANDROID_TOKENS_OUT, IOS_COLORS_OUT, ROOT, WEB_OUT, logStage } from './shared.js';
 
 const PRIMITIVE_SOURCE = 'tokens/definitions/color/primitive.json';
@@ -19,7 +19,6 @@ interface ColorBuildTarget {
   androidFileName: string;
   androidObjectName: string;
   webBaseName: string;
-  /** When true, treat as primitive (no reference resolution). */
   primitive?: boolean;
 }
 
@@ -55,8 +54,9 @@ function buildAndroidAndWebColors(): void {
   for (const target of targets) {
     const tokens = loadColorTokens(target.source);
 
+    const values = target.primitive ? resolvePrimitiveColors(tokens) : tokens;
     const androidContent = target.primitive
-      ? generateAndroidPrimitiveColors(tokens)
+      ? generateAndroidPrimitiveColors(values)
       : generateAndroidSemanticColors(target.androidObjectName, tokens);
     const androidOut = `${ANDROID_TOKENS_OUT}/${target.androidFileName}`;
     writeOut(androidOut, androidContent);
@@ -64,7 +64,7 @@ function buildAndroidAndWebColors(): void {
     const cssOut = `${WEB_OUT}/${target.webBaseName}.css`;
     const jsonOut = `${WEB_OUT}/${target.webBaseName}.json`;
     writeOut(cssOut, generateWebColorCss(tokens));
-    writeOut(jsonOut, generateWebColorJson(tokens));
+    writeOut(jsonOut, generateWebColorJson(values));
 
     logStage(target.source, [
       ['android', androidOut],
