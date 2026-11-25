@@ -462,6 +462,7 @@ object NucleusTokenResolver {
             "grey.200" -> NucleusPrimitiveColors.grey200
             "grey.300" -> NucleusPrimitiveColors.grey300
             "grey.400" -> NucleusPrimitiveColors.grey400
+            "grey.50" -> NucleusPrimitiveColors.grey50
             "grey.500" -> NucleusPrimitiveColors.grey500
             "grey.600" -> NucleusPrimitiveColors.grey600
             "grey.700" -> NucleusPrimitiveColors.grey700
@@ -527,6 +528,7 @@ object NucleusTokenResolver {
             "stroke.secondary" -> NucleusSemanticColorsLight.strokeSecondary
             "stroke.tertiary" -> NucleusSemanticColorsLight.strokeTertiary
             "stroke.transparent" -> NucleusSemanticColorsLight.strokeTransparent
+            "surface.elevated" -> NucleusSemanticColorsLight.surfaceElevated
             "surface.overlay" -> NucleusSemanticColorsLight.surfaceOverlay
             "surface.page" -> NucleusSemanticColorsLight.surfacePage
             "white" -> NucleusPrimitiveColors.white
@@ -597,6 +599,7 @@ object NucleusTokenResolver {
             "grey.200" -> NucleusPrimitiveColors.grey200
             "grey.300" -> NucleusPrimitiveColors.grey300
             "grey.400" -> NucleusPrimitiveColors.grey400
+            "grey.50" -> NucleusPrimitiveColors.grey50
             "grey.500" -> NucleusPrimitiveColors.grey500
             "grey.600" -> NucleusPrimitiveColors.grey600
             "grey.700" -> NucleusPrimitiveColors.grey700
@@ -662,6 +665,7 @@ object NucleusTokenResolver {
             "stroke.secondary" -> NucleusSemanticColorsDark.strokeSecondary
             "stroke.tertiary" -> NucleusSemanticColorsDark.strokeTertiary
             "stroke.transparent" -> NucleusSemanticColorsDark.strokeTransparent
+            "surface.elevated" -> NucleusSemanticColorsDark.surfaceElevated
             "surface.overlay" -> NucleusSemanticColorsDark.surfaceOverlay
             "surface.page" -> NucleusSemanticColorsDark.surfacePage
             "white" -> NucleusPrimitiveColors.white

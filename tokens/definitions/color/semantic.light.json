@@ -9,6 +9,10 @@
         "overlay": {
           "$value": "#00000066",
           "$type": "color"
+        },
+        "elevated": {
+          "$value": "{primitive.color.white}",
+          "$type": "color"
         }
       },
       "foreground": {
@@ -43,7 +47,7 @@
           "$type": "color"
         },
         "tertiary": {
-          "$value": "#F1F1F1",
+          "$value": "{primitive.color.grey.200}",
           "$type": "color"
         },
         "inverse": {
@@ -51,7 +55,7 @@
           "$type": "color"
         },
         "disabled": {
-          "$value": "{primitive.color.grey.100}",
+          "$value": "{primitive.color.grey.50}",
           "$type": "color"
         },
         "transparent": {
@@ -65,11 +69,11 @@
           "$type": "color"
         },
         "secondary": {
-          "$value": "#F1F1F1",
+          "$value": "{primitive.color.grey.100}",
           "$type": "color"
         },
         "tertiary": {
-          "$value": "{primitive.color.grey.100}",
+          "$value": "{primitive.color.grey.50}",
           "$type": "color"
         },
         "transparent": {
@@ -83,7 +87,7 @@
           "$type": "color"
         },
         "warning": {
-          "$value": "{primitive.color.amber.600}",
+          "$value": "{primitive.color.orange.600}",
           "$type": "color"
         },
         "success": {

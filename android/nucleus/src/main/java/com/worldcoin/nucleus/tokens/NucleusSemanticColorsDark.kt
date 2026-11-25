@@ -7,6 +7,7 @@ import androidx.compose.ui.graphics.Color
 object NucleusSemanticColorsDark {
     val surfacePage = NucleusPrimitiveColors.black
     val surfaceOverlay = Color(0xB2000000)
+    val surfaceElevated = NucleusPrimitiveColors.grey950
     val foregroundPrimary = NucleusPrimitiveColors.white
     val foregroundSecondary = NucleusPrimitiveColors.grey400
     val foregroundTertiary = NucleusPrimitiveColors.grey500
@@ -22,12 +23,12 @@ object NucleusSemanticColorsDark {
     val strokeSecondary = NucleusPrimitiveColors.grey900
     val strokeTertiary = NucleusPrimitiveColors.grey950
     val strokeTransparent = Color(0x1AFFFFFF)
-    val statusError = NucleusPrimitiveColors.red500
-    val statusWarning = NucleusPrimitiveColors.amber500
+    val statusError = NucleusPrimitiveColors.red600
+    val statusWarning = NucleusPrimitiveColors.orange600
     val statusSuccess = NucleusPrimitiveColors.green500
     val statusInfo = NucleusPrimitiveColors.blue600
     val statusNeutral = NucleusPrimitiveColors.grey500
-    val accentOrange = NucleusPrimitiveColors.orange500
+    val accentOrange = NucleusPrimitiveColors.orange600
     val accentPurple = NucleusPrimitiveColors.purple500
     val accentPink = NucleusPrimitiveColors.pink500
     val accentMagenta = NucleusPrimitiveColors.magenta500

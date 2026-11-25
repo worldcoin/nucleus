@@ -2,6 +2,8 @@ import { readFileSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
+import { parseReference } from './shared.js';
+
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 
 function readJson<T>(jsonPath: string): T {
@@ -56,6 +58,26 @@ function flattenColorTree(
 
 export function loadColorTokens(jsonPath: string): ColorLeaf[] {
   return flattenColorTree(readJson<RawColorTree>(jsonPath), jsonPath);
+}
+
+// Native primitive accessors and the web primitive JSON expose concrete colors.
+export function resolvePrimitiveColors(tokens: ColorLeaf[]): ColorLeaf[] {
+  const byPath = new Map(tokens.map((token) => [token.path.join('.'), token.rawValue]));
+
+  return tokens.map(({ path, rawValue }) => {
+    const visited = new Set([path.join('.')]);
+    let reference = parseReference(rawValue);
+    while (reference) {
+      const key = reference.join('.');
+      if (visited.has(key)) throw new Error(`Circular primitive color reference: ${key}`);
+      visited.add(key);
+      const target = byPath.get(key);
+      if (target === undefined) throw new Error(`Unknown primitive color reference: ${key}`);
+      rawValue = target;
+      reference = parseReference(rawValue);
+    }
+    return { path, rawValue };
+  });
 }
 
 // ---------- fonts ----------
